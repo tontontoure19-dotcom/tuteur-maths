@@ -32,8 +32,9 @@ services:
       - key: ANTHROPIC_API_KEY
         sync: false
 
-      # Code d'accès partagé : SANS LUI, n'importe quel visiteur du site
-      # poserait des questions à vos frais. À renseigner impérativement.
+      # Codes d'accès, un par testeur, séparés par des virgules (fabriqués
+      # par CODES.bat). SANS EUX, n'importe quel visiteur du site poserait
+      # des questions à vos frais. À renseigner impérativement.
       - key: CODE_ACCES
         sync: false
 

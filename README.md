@@ -183,7 +183,29 @@ L'application tourne sur : **https://tuteur-maths.onrender.com**
 | L'élève | https://tuteur-maths.onrender.com |
 | Le parent | https://tuteur-maths.onrender.com/parent.html |
 
-Chaque testeur saisit le code d'accès une seule fois.
+Chaque testeur saisit **son** code d'accès une seule fois.
+
+---
+
+## Les codes d'accès
+
+Un code par testeur, jamais un code partagé : c'est ce qui permet de couper
+l'accès à une seule personne, et de voir si un code circule.
+
+**Fabriquer les codes** — double-cliquez sur `CODES.bat`. Il crée 5 codes
+`BEPC-…` et 5 codes `BAC-…` dans `backend/codes.txt` (fichier privé, jamais
+envoyé sur GitHub) et l'ouvre dans le Bloc-notes. Écrivez à côté de chaque
+code le nom de la personne à qui vous l'avez donné.
+
+Pour un autre nombre : `CODES.bat BEPC BEPC BAC` fabrique 3 codes.
+
+**Les activer** — copiez la dernière ligne du fichier (tous les codes séparés
+par des virgules) dans Render → *Environment* → `CODE_ACCES`.
+
+**Surveiller** — https://tuteur-maths.onrender.com/api/codes?code=VOTRE_CODE
+montre, pour chaque code, les prénoms qui l'ont utilisé. Un code avec
+plusieurs prénoms (`"partage": true`) a été transmis à d'autres : retirez-le
+de `CODE_ACCES` dans Render, les autres testeurs ne sont pas dérangés.
 
 ---
 
@@ -198,13 +220,13 @@ Le fichier `render.yaml` décrit tout le déploiement.
 | Variable | Valeur |
 |---|---|
 | `ANTHROPIC_API_KEY` | Votre clé (celle du fichier `.env` local) |
-| `CODE_ACCES` | **Un code de votre choix**, ex. `KARANDI2026` |
+| `CODE_ACCES` | Les codes fabriqués par `CODES.bat`, séparés par des virgules |
 
 ⚠️ **`CODE_ACCES` est obligatoire.** Sans lui, n'importe quel visiteur du site
 poserait des questions facturées sur votre clé.
 
-Vous donnez ensuite ce code à vos élèves testeurs, avec le lien.
-Ils le saisissent une seule fois.
+Vous donnez ensuite **un code différent à chaque testeur**, avec le lien.
+Chacun le saisit une seule fois.
 
 ### Plan et conservation des données
 

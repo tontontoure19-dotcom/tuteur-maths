@@ -3,6 +3,9 @@
 *.env
 !.env.example
 
+# Liste des codes d'accès des testeurs
+backend/codes.txt
+
 # Conversations et bilans des élèves (données personnelles)
 backend/sessions/
 backend/bilans/

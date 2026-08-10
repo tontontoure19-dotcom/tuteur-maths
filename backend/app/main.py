@@ -55,15 +55,21 @@ app.add_middleware(
 _cle = (os.getenv("ANTHROPIC_API_KEY") or "").strip()
 CLE_PRESENTE = _cle.startswith("sk-ant-")
 
-# Code d'accès partagé : protège la clé API une fois l'application en ligne.
+# Codes d'accès : un par testeur, séparés par des virgules dans CODE_ACCES.
+# Permet de couper l'accès à une seule personne sans gêner les autres, et de
+# repérer un code qui circule (plusieurs prénoms sur le même code).
 # Vide en local = aucune protection (pratique pour développer).
-CODE_ACCES = (os.getenv("CODE_ACCES") or "").strip()
+CODES_ACCES = {c.strip() for c in (os.getenv("CODE_ACCES") or "").split(",") if c.strip()}
 
 
-def _verifier_code(code: str | None) -> None:
-    """Refuse les inconnus quand un code est configuré."""
-    if CODE_ACCES and (code or "").strip() != CODE_ACCES:
+def _verifier_code(code: str | None) -> str | None:
+    """Refuse les inconnus quand des codes sont configurés."""
+    if not CODES_ACCES:
+        return None
+    propre = (code or "").strip()
+    if propre not in CODES_ACCES:
         raise HTTPException(status_code=403, detail="Code d'accès invalide.")
+    return propre
 
 client = anthropic.Anthropic()  # lit ANTHROPIC_API_KEY dans l'environnement
 
@@ -127,7 +133,8 @@ def _cout_gnf(usage) -> float:
 
 
 def _enregistrer(eleve: str, role: str, texte: str, avec_photo: bool = False,
-                 cout_gnf: float | None = None, niveau: str | None = None) -> None:
+                 cout_gnf: float | None = None, niveau: str | None = None,
+                 code: str | None = None) -> None:
     """Journalise un échange — matière première du rapport au parent."""
     fichier = DOSSIER_SESSIONS / f"{_identifiant(eleve)}.jsonl"
     ligne = {
@@ -140,6 +147,8 @@ def _enregistrer(eleve: str, role: str, texte: str, avec_photo: bool = False,
         ligne["cout_gnf"] = round(cout_gnf, 2)
     if niveau:
         ligne["niveau"] = niveau
+    if code:
+        ligne["code"] = code
     with fichier.open("a", encoding="utf-8") as f:
         f.write(json.dumps(ligne, ensure_ascii=False) + "\n")
 
@@ -147,7 +156,7 @@ def _enregistrer(eleve: str, role: str, texte: str, avec_photo: bool = False,
 @app.post("/api/chat")
 def chat(demande: DemandeChat):
     """Répond à l'élève en flux continu (le texte s'affiche au fur et à mesure)."""
-    _verifier_code(demande.code)
+    code_utilise = _verifier_code(demande.code)
     if not demande.messages:
         raise HTTPException(status_code=400, detail="Aucun message.")
 
@@ -162,7 +171,7 @@ def chat(demande: DemandeChat):
     dernier = demande.messages[-1]
     if dernier.role == "user":
         _enregistrer(demande.eleve, "eleve", dernier.content, bool(dernier.image),
-                     niveau=demande.niveau)
+                     niveau=demande.niveau, code=code_utilise)
 
     def flux():
         morceaux: list[str] = []
@@ -230,7 +239,7 @@ def rapport(eleve: str):
 @app.get("/api/config")
 def config():
     """Dit à l'application si un code d'accès est exigé."""
-    return {"code_requis": bool(CODE_ACCES)}
+    return {"code_requis": bool(CODES_ACCES)}
 
 
 @app.get("/api/eleves")
@@ -250,6 +259,40 @@ def liste_eleves(code: str | None = None):
         })
     eleves.sort(key=lambda e: e["derniere_activite"], reverse=True)
     return {"eleves": eleves}
+
+
+@app.get("/api/codes")
+def usage_codes(code: str | None = None):
+    """Qui utilise quel code — sert à repérer un code qui a été partagé.
+
+    Un code utilisé par plusieurs prénoms = il circule au-delà du testeur.
+    """
+    _verifier_code(code)
+    par_code: dict[str, dict] = {}
+    for fichier in DOSSIER_SESSIONS.glob("*.jsonl"):
+        nom = fichier.stem.replace("_", " ").title()
+        for ligne in fichier.read_text(encoding="utf-8").splitlines():
+            if not ligne:
+                continue
+            entree = json.loads(ligne)
+            utilise = entree.get("code")
+            if not utilise:
+                continue
+            fiche = par_code.setdefault(utilise, {"code": utilise, "eleves": set(),
+                                                  "questions": 0, "derniere_activite": ""})
+            fiche["eleves"].add(nom)
+            fiche["questions"] += 1
+            fiche["derniere_activite"] = max(fiche["derniere_activite"], entree["horodatage"])
+
+    codes = []
+    for fiche in par_code.values():
+        eleves = sorted(fiche["eleves"])
+        codes.append({**fiche, "eleves": eleves, "partage": len(eleves) > 1})
+    codes.sort(key=lambda c: c["derniere_activite"], reverse=True)
+
+    jamais_utilises = sorted(CODES_ACCES - par_code.keys())
+    return {"codes": codes, "jamais_utilises": jamais_utilises,
+            "total_configures": len(CODES_ACCES)}
 
 
 @app.get("/api/bilan/{eleve}")
