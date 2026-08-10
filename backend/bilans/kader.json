@@ -1,23 +1,22 @@
 {
- "resume_parent": "Cette séance a été très courte : votre enfant s'est connecté mais n'a finalement pas commencé d'exercice de mathématiques. Il a d'abord demandé au tuteur de proposer un sujet, puis a souhaité travailler le français ou la géographie, ce que ce tuteur ne peut pas faire. La conversation s'est arrêtée avant que le moindre calcul ne soit fait. Il n'y a donc pas encore d'éléments pour évaluer le niveau : la prochaine séance devra vraiment démarrer sur un exercice.",
- "perseverance": "faible",
- "commentaire_perseverance": "Aucun exercice n'a été tenté : la séance s'est arrêtée dès que le tuteur a proposé des sujets de mathématiques.",
+ "resume_parent": "Cette semaine, votre enfant s'est connecté à la séance mais aucun exercice de mathématiques n'a réellement été commencé. La discussion a porté sur le choix du sujet : votre enfant a d'abord demandé au tuteur de proposer un thème, puis a souhaité travailler le français ou la géographie (matières que le tuteur n'assure pas), avant de demander un accompagnement « étape par étape comme en cours » jusqu'à finir un chapitre. La séance s'est arrêtée au moment où il fallait choisir ce chapitre. Il n'y a donc pas encore de progrès mesurable, mais la demande d'un vrai suivi structuré est un bon signal : il suffit maintenant de fixer un chapitre précis avant de se connecter.",
+ "perseverance": "irrégulière",
+ "commentaire_perseverance": "Impossible d'évaluer l'effort face à la difficulté : la séance s'est terminée avant le premier exercice, et votre enfant a plusieurs fois déplacé la conversation au lieu de commencer.",
  "chapitres": [],
  "points_forts": [
-  "Votre enfant a pris l'initiative de se connecter au tuteur et de demander de l'aide.",
-  "Une ouverture d'esprit intéressante : la curiosité pour d'autres matières (français, géographie) montre de l'envie d'apprendre."
+  "A pris l'initiative de se connecter et d'engager la conversation avec le tuteur.",
+  "A exprimé une vraie demande d'apprentissage sérieux : être accompagné pas à pas jusqu'à terminer un chapitre entier, ce qui montre une envie de comprendre en profondeur et pas seulement d'avoir des réponses.",
+  "Reste ouvert aux propositions du tuteur et échange poliment."
  ],
  "points_a_travailler": [
-  "Passer réellement à l'action : accepter une proposition d'exercice et le commencer, même sans être sûr de savoir faire.",
-  "Arriver à la séance avec un objectif préparé (par exemple le dernier chapitre vu en classe).",
-  "Aucun chapitre du programme de 10e année n'a encore pu être évalué : il faut d'abord un premier vrai test pour savoir où se situent les besoins."
+  "Passer à l'action : aucune question de mathématiques n'a été traitée pendant la séance.",
+  "Savoir dire sur quel chapitre travailler (Pythagore, Thalès, calcul littéral, équations, statistiques…) au lieu d'attendre que le tuteur choisisse.",
+  "Distinguer ce que l'outil peut faire (mathématiques uniquement) pour ne pas perdre de temps sur d'autres matières.",
+  "Repérer où en est le cours de 10e année en classe, afin de choisir un chapitre utile pour le BEPC."
  ],
  "recommandations": [
-  "Pour la prochaine séance, venir avec le cahier de mathématiques ouvert sur la dernière leçon vue en classe, et commencer par une question de cette leçon.",
-  "Accepter le premier exercice proposé par le tuteur, même s'il paraît difficile : le but est justement de voir ce qui est acquis et ce qui ne l'est pas.",
-  "Prévoir une séance d'au moins 20 minutes consacrée uniquement aux mathématiques, sans changer de matière en cours de route.",
-  "Choisir avec votre enfant un chapitre précis du BEPC pour la semaine (par exemple Pythagore ou le calcul littéral) et s'y tenir."
+  ","
  ],
- "_echanges": 4,
- "_cout_gnf": 263.96
+ "_echanges": 6,
+ "_cout_gnf": 396.55
 }
