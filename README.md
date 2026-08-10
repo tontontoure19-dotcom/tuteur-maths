@@ -52,12 +52,19 @@ python -m venv .venv
 
 ### 3. Lancer
 
-```bash
-cd backend
-.venv\Scripts\python.exe -m uvicorn app.main:app --reload --port 8100
-```
+**Double-cliquez sur `DEMARRER.bat`** (dans le dossier `tuteur-bepc`).
+Une fenêtre noire s'ouvre — c'est normal, c'est le serveur. Chrome s'ouvre
+tout seul sur l'application.
 
-Puis ouvrez **http://localhost:8100** dans le navigateur.
+⚠️ **Ne fermez pas la fenêtre noire** tant que vous utilisez l'application :
+c'est elle qui fait tourner le tuteur. Pour arrêter, fermez-la.
+
+Deux adresses :
+
+| Pour | Adresse |
+|---|---|
+| L'élève | http://localhost:8100 |
+| Le parent | http://localhost:8100/parent.html |
 
 > Si le tuteur affiche « Clé API absente », c'est que l'étape 1 n'est pas faite.
 
@@ -131,10 +138,10 @@ C'est la base du futur rapport hebdomadaire au parent.
 
 ## Suivi de niveau (page parent)
 
-Le parent ouvre :
+Le parent ouvre (sans rien après, la liste des élèves s'affiche) :
 
 ```
-http://localhost:8100/parent.html?eleve=Aminata
+http://localhost:8100/parent.html
 ```
 
 Il y trouve, généré automatiquement à partir des conversations :
