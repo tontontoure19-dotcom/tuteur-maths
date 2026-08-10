@@ -1,7 +1,8 @@
 // Service worker minimal : permet l'installation sur l'écran d'accueil
 // et garde l'interface disponible même avec une connexion faible.
 // Les réponses de l'IA (/api/) ne sont jamais mises en cache.
-const CACHE = 'tuteur-v1';
+// Changer ce numéro force tous les téléphones à récupérer la nouvelle version.
+const CACHE = 'tuteur-v2';
 const FICHIERS = ['./', './index.html', './manifest.json', './icone.svg'];
 
 self.addEventListener('install', e => {

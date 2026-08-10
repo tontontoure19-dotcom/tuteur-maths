@@ -256,7 +256,23 @@ async function envoyer() {
   }
 }
 
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+/* Mise à jour automatique : quand je corrige quelque chose, l'élève reçoit
+   la nouvelle version sans avoir à recharger ni réinstaller quoi que ce soit. */
+if ('serviceWorker' in navigator) {
+  let rechargement = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (rechargement) return;       // garde-fou anti-boucle
+    rechargement = true;
+    location.reload();
+  });
+  navigator.serviceWorker.register('sw.js').then(reg => {
+    reg.update();
+    // On revérifie quand l'élève revient sur l'application.
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) reg.update();
+    });
+  }).catch(() => {});
+}
 </script>
 </body>
 </html>
