@@ -5,14 +5,28 @@ services:
   - type: web
     name: tuteur-maths
     runtime: python
-    plan: free
+    # Plan payant (~7 $/mois) : nécessaire pour le disque ci-dessous, qui
+    # conserve les conversations et les bilans entre deux redémarrages.
+    plan: starter
     rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/config
+
+    # Disque persistant : sans lui, le suivi de niveau des élèves serait
+    # remis à zéro à chaque redémarrage du service.
+    disk:
+      name: donnees
+      mountPath: /var/data
+      sizeGB: 1
+
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.7
+
+      # L'application écrit conversations et bilans ici, sur le disque.
+      - key: DATA_DIR
+        value: /var/data
 
       # Votre clé Anthropic — à coller dans Render, jamais ici.
       - key: ANTHROPIC_API_KEY
@@ -29,21 +43,3 @@ services:
 
       - key: CORS_ORIGINS
         value: "*"
-
-    # ⚠️ IMPORTANT — mémoire des conversations
-    #
-    # Sur le plan gratuit, le disque est effacé à chaque redémarrage (et le
-    # service redémarre après 15 minutes sans visite). Les conversations et
-    # les bilans parents seraient donc perdus régulièrement.
-    #
-    # Les élèves ne perdent rien (leur conversation est gardée sur leur
-    # téléphone), mais LE SUIVI DE NIVEAU serait remis à zéro — or c'est
-    # justement ce que vous voulez faire valider par les parents.
-    #
-    # Pour conserver les données, passez le plan à "starter" et décommentez
-    # le bloc ci-dessous (coût : environ 7 $/mois + 0,25 $/Go).
-    #
-    # disk:
-    #   name: donnees
-    #   mountPath: /opt/render/project/src/backend/sessions
-    #   sizeGB: 1

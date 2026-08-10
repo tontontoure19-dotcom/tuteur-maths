@@ -27,11 +27,13 @@ load_dotenv(dotenv_path=BASE_DIR / ".env")
 MODELE = "claude-opus-5"
 EFFORT = "medium"
 
-# Dossier des conversations, base des rapports aux parents.
-DOSSIER_SESSIONS = BASE_DIR / "sessions"
-DOSSIER_SESSIONS.mkdir(exist_ok=True)
-DOSSIER_BILANS = BASE_DIR / "bilans"
-DOSSIER_BILANS.mkdir(exist_ok=True)
+# Toutes les données durables vivent sous un seul dossier : en ligne, c'est
+# le disque persistant de Render (DATA_DIR), qui survit aux redémarrages.
+DOSSIER_DONNEES = Path(os.getenv("DATA_DIR") or BASE_DIR)
+DOSSIER_SESSIONS = DOSSIER_DONNEES / "sessions"
+DOSSIER_BILANS = DOSSIER_DONNEES / "bilans"
+DOSSIER_SESSIONS.mkdir(parents=True, exist_ok=True)
+DOSSIER_BILANS.mkdir(parents=True, exist_ok=True)
 
 
 def _identifiant(eleve: str) -> str:

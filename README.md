@@ -193,16 +193,12 @@ poserait des questions facturées sur votre clé.
 Vous donnez ensuite ce code à vos élèves testeurs, avec le lien.
 Ils le saisissent une seule fois.
 
-### ⚠️ Limite du plan gratuit : les bilans sont effacés
+### Plan et conservation des données
 
-Sur le plan gratuit, le disque est remis à zéro à chaque redémarrage du
-service (et il redémarre après 15 minutes sans visite).
+Le service tourne sur le plan **starter** (~7 $/mois) avec un disque de 1 Go.
+C'est ce disque qui conserve les conversations et les bilans entre deux
+redémarrages — sans lui, le suivi de niveau serait remis à zéro
+régulièrement, or c'est précisément ce que les parents doivent voir.
 
-| | Conservé ? |
-|---|---|
-| Conversation de l'élève | ✅ oui (gardée sur son téléphone) |
-| **Suivi de niveau / bilan parent** | ❌ **non, remis à zéro** |
-
-Or c'est le suivi de niveau que vous voulez faire valider par les parents.
-Pour le conserver : passer le service en plan **starter** (~7 $/mois) et
-décommenter le bloc `disk:` dans `render.yaml`.
+Les données vivent dans `/var/data` (variable `DATA_DIR`). En local, sans
+cette variable, elles restent dans `backend/sessions` et `backend/bilans`.
