@@ -71,7 +71,7 @@
 <div id="accueil">
   <div class="logo">📐</div>
   <h1>Tuteur Maths</h1>
-  <p>Je t'aide à préparer le BEPC. Je ne te donnerai jamais la réponse — mais tu vas la trouver toi-même.</p>
+  <p>Bloqué sur un exercice ? Envoie-le-moi.<br>On le résout ensemble, et tu sauras le refaire seul le jour du BEPC.</p>
   <input id="prenom" placeholder="Ton prénom" autocomplete="given-name">
   <button class="btn" id="commencer" disabled>Commencer</button>
 </div>
@@ -177,11 +177,21 @@ function majEnvoyer() {
   $('envoyer').disabled = occupe || (!zone.value.trim() && !photo);
 }
 
+/* Le tuteur écrit **un mot** pour insister : on l'affiche en gras au lieu
+   de laisser les astérisques à l'écran. On échappe d'abord le HTML. */
+function formater(texte) {
+  const sur = texte.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+  return sur.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
+}
+
 function afficher(qui, texte, urlPhoto) {
   const d = document.createElement('div');
   d.className = 'msg ' + qui;
   if (urlPhoto) { const i = new Image(); i.src = urlPhoto; d.appendChild(i); }
-  d.appendChild(document.createTextNode(texte));
+  const t = document.createElement('span');
+  t.innerHTML = formater(texte);
+  d.appendChild(t);
+  d.corps = t;
   $('fil').appendChild(d);
   $('fil').scrollTop = $('fil').scrollHeight;
   return d;
@@ -201,7 +211,7 @@ async function envoyer() {
   photo = null; $('apercu').classList.add('cache'); majEnvoyer();
 
   const bulle = afficher('tuteur', '');
-  bulle.innerHTML = '<span class="points"><span></span><span></span><span></span></span>';
+  bulle.corps.innerHTML = '<span class="points"><span></span><span></span><span></span></span>';
   let reponse = '', premier = true;
 
   try {
@@ -224,9 +234,9 @@ async function envoyer() {
         const ev = JSON.parse(ligne.slice(6));
         if (ev.erreur) throw new Error(ev.erreur);
         if (ev.texte) {
-          if (premier) { bulle.innerHTML = ''; premier = false; }
+          if (premier) { bulle.corps.innerHTML = ''; premier = false; }
           reponse += ev.texte;
-          bulle.textContent = reponse;
+          bulle.corps.innerHTML = formater(reponse);
           $('fil').scrollTop = $('fil').scrollHeight;
         }
       }
