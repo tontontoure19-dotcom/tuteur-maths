@@ -32,6 +32,8 @@
          display:flex;align-items:center;gap:10px;flex-shrink:0}
   header .t{font-weight:700;font-size:16px}
   header .s{font-size:12px;opacity:.85}
+  header button{background:rgba(255,255,255,.18);color:#fff;border:none;border-radius:50%;
+                width:36px;height:36px;font-size:22px;line-height:1;cursor:pointer;flex-shrink:0}
 
   /* ---- Conversation ---- */
   #fil{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;
@@ -78,7 +80,8 @@
 
 <header class="cache" id="entete">
   <div style="font-size:22px">📐</div>
-  <div><div class="t">Tuteur Maths</div><div class="s" id="salut"></div></div>
+  <div style="flex:1"><div class="t">Tuteur Maths</div><div class="s" id="salut"></div></div>
+  <button id="nouveau" title="Nouvel exercice">＋</button>
 </header>
 
 <div id="fil" class="cache"></div>
@@ -94,12 +97,69 @@
 
 <script>
 const API = location.origin;
+const MAX_MESSAGES = 40;  // au-delà, c'est un autre exercice : on allège
 let eleve = localStorage.getItem('eleve') || '';
 let historique = [];      // conversation envoyée à l'IA
 let photo = null;         // {data, type} de la photo en attente
 let occupe = false;
 
 const $ = id => document.getElementById(id);
+
+/* --- Mémoire de la conversation ---------------------------------------
+   Sans ça, l'élève perd tout son travail dès qu'il actualise, change
+   d'application, ou que le téléphone recharge la page.            */
+
+function urlPhotoDe(m) {
+  return m.image ? 'data:' + (m.image_type || 'image/jpeg') + ';base64,' + m.image : null;
+}
+
+function sauvegarder() {
+  // On ne garde que la dernière photo : les images sont lourdes et
+  // rempliraient la mémoire du navigateur au bout de quelques exercices.
+  let derniereVue = false;
+  const aGarder = historique.slice(-MAX_MESSAGES).slice().reverse().map(m => {
+    if (!m.image) return m;
+    if (!derniereVue) { derniereVue = true; return m; }
+    return { role: m.role, content: m.content + ' [photo]' };
+  }).reverse();
+
+  try {
+    localStorage.setItem('conversation', JSON.stringify(aGarder));
+  } catch (e) {
+    // Mémoire pleine : on repart sur les échanges récents, sans photo.
+    try {
+      localStorage.setItem('conversation', JSON.stringify(
+        historique.slice(-12).map(m => ({ role: m.role, content: m.content }))
+      ));
+    } catch (_) { /* on continue quand même : la conversation reste à l'écran */ }
+  }
+}
+
+function restaurer() {
+  try {
+    const brut = localStorage.getItem('conversation');
+    if (!brut) return false;
+    historique = JSON.parse(brut);
+    if (!Array.isArray(historique) || !historique.length) { historique = []; return false; }
+    historique.forEach(m => {
+      afficher(m.role === 'user' ? 'eleve' : 'tuteur', m.content, urlPhotoDe(m));
+    });
+    return true;
+  } catch (e) {
+    historique = [];
+    return false;
+  }
+}
+
+function nouvelExercice() {
+  if (occupe) return;
+  if (historique.length && !confirm('Effacer cette conversation et repartir sur un nouvel exercice ?')) return;
+  historique = [];
+  localStorage.removeItem('conversation');
+  $('fil').innerHTML = '';
+  afficher('tuteur', 'On repart à zéro. Quel exercice tu veux travailler ?');
+  $('texte').focus();
+}
 
 /* ---------- Démarrage ---------- */
 $('prenom').addEventListener('input', e => {
@@ -120,11 +180,13 @@ function ouvrirChat() {
   $('accueil').classList.add('cache');
   ['entete', 'fil', 'barre'].forEach(id => $(id).classList.remove('cache'));
   $('salut').textContent = 'Salut ' + eleve + ' 👋';
-  if (!historique.length) {
+  // On récupère la conversation en cours ; sinon on accueille l'élève.
+  if (!restaurer()) {
     afficher('tuteur',
       'Salut ' + eleve + ' ! Sur quoi tu travailles aujourd\'hui ?\n\n' +
       'Tu peux m\'écrire ta question, ou photographier ton exercice avec le bouton 📷.');
   }
+  $('fil').scrollTop = $('fil').scrollHeight;
   $('texte').focus();
 }
 
@@ -172,6 +234,7 @@ zone.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); envoyer(); }
 });
 $('envoyer').addEventListener('click', envoyer);
+$('nouveau').addEventListener('click', nouvelExercice);
 
 function majEnvoyer() {
   $('envoyer').disabled = occupe || (!zone.value.trim() && !photo);
@@ -206,6 +269,7 @@ async function envoyer() {
   afficher('eleve', texte, photo && photo.url);
   historique.push({ role: 'user', content: texte,
                     image: photo && photo.data, image_type: photo && photo.type });
+  sauvegarder();
 
   zone.value = ''; zone.style.height = 'auto';
   photo = null; $('apercu').classList.add('cache'); majEnvoyer();
@@ -217,7 +281,9 @@ async function envoyer() {
   try {
     const r = await fetch(API + '/api/chat', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ eleve, messages: historique })
+      // On n'envoie que les échanges récents : au-delà, l'élève travaille
+      // sur un autre exercice et l'historique ferait grimper le coût.
+      body: JSON.stringify({ eleve, messages: historique.slice(-MAX_MESSAGES) })
     });
     if (!r.ok) throw new Error('serveur');
 
@@ -242,6 +308,7 @@ async function envoyer() {
       }
     }
     historique.push({ role: 'assistant', content: reponse });
+    sauvegarder();
   } catch (err) {
     bulle.remove();
     // On affiche la vraie cause quand le serveur nous l'a donnée : sans ça,
@@ -251,6 +318,7 @@ async function envoyer() {
       : 'Connexion interrompue. Vérifie ton réseau et réessaie.';
     afficher('erreur', cause);
     historique.pop();
+    sauvegarder();
   } finally {
     occupe = false; majEnvoyer();
   }
