@@ -208,6 +208,24 @@ def rapport(eleve: str):
     }
 
 
+@app.get("/api/eleves")
+def liste_eleves():
+    """Élèves ayant déjà travaillé — évite au parent de deviner l'orthographe."""
+    eleves = []
+    for fichier in DOSSIER_SESSIONS.glob("*.jsonl"):
+        lignes = [l for l in fichier.read_text(encoding="utf-8").splitlines() if l]
+        if not lignes:
+            continue
+        eleves.append({
+            "identifiant": fichier.stem,
+            "nom": fichier.stem.replace("_", " ").title(),
+            "questions": sum(1 for l in lignes if json.loads(l)["role"] == "eleve"),
+            "derniere_activite": json.loads(lignes[-1])["horodatage"],
+        })
+    eleves.sort(key=lambda e: e["derniere_activite"], reverse=True)
+    return {"eleves": eleves}
+
+
 @app.get("/api/bilan/{eleve}")
 def bilan_eleve(eleve: str):
     """Bilan de niveau destiné au parent : chapitres, progression, conseils.

@@ -53,6 +53,11 @@
   .b-irreguliere{background:#FDF3E0;color:var(--orange)}
   .b-faible{background:#FDECEC;color:var(--rouge)}
 
+  .lien-eleve{display:flex;justify-content:space-between;align-items:center;width:100%;
+              background:var(--vert-clair);border:none;border-radius:12px;padding:14px 16px;
+              margin-bottom:8px;font-size:16px;font-weight:600;color:var(--vert);
+              cursor:pointer;font-family:inherit;text-align:left}
+  .lien-eleve span{font-weight:400;font-size:13px;color:var(--gris)}
   .info{text-align:center;color:var(--gris);padding:34px 18px;font-size:15px}
   .erreur{background:#FDECEC;color:#9B2C2C;border-radius:12px;padding:14px;font-size:14.5px}
   .pied{text-align:center;color:var(--gris);font-size:12.5px;padding:8px 0 26px}
@@ -84,7 +89,32 @@ $('voir').addEventListener('click', charger);
 
 // Permet d'envoyer un lien direct au parent : parent.html?eleve=Fatoumata
 const depuisLien = new URLSearchParams(location.search).get('eleve');
-if (depuisLien) { $('nom').value = depuisLien; charger(); }
+if (depuisLien) { $('nom').value = depuisLien; charger(); } else { proposerEleves(); }
+
+/* Sans nom saisi (ou nom introuvable), on propose les élèves qui ont
+   déjà travaillé : le parent n'a pas à deviner l'orthographe exacte. */
+async function proposerEleves(message) {
+  try {
+    const r = await fetch('/api/eleves');
+    const { eleves } = await r.json();
+    if (!eleves.length) {
+      $('zone').innerHTML = '<div class="info">Aucun élève n\'a encore utilisé le tuteur.<br>' +
+        'Le suivi apparaîtra dès les premiers exercices.</div>';
+      return;
+    }
+    const liens = eleves.map(e =>
+      `<button class="lien-eleve" data-nom="${echapper(e.nom)}">
+         ${echapper(e.nom)} <span>${e.questions} question(s)</span>
+       </button>`).join('');
+    $('zone').innerHTML =
+      (message ? `<div class="erreur" style="margin-bottom:14px">${echapper(message)}</div>` : '') +
+      `<div class="carte"><h2>Choisissez un élève</h2>${liens}</div>`;
+    document.querySelectorAll('.lien-eleve').forEach(b =>
+      b.addEventListener('click', () => { $('nom').value = b.dataset.nom; charger(); }));
+  } catch (e) {
+    $('zone').innerHTML = '<div class="erreur">Impossible de contacter le serveur.</div>';
+  }
+}
 
 async function charger() {
   const nom = $('nom').value.trim();
@@ -104,7 +134,8 @@ async function charger() {
     }
     afficher(d);
   } catch (e) {
-    $('zone').innerHTML = '<div class="erreur">' + echapper(e.message) + '</div>';
+    // Nom inconnu : plutôt qu'une erreur sèche, on propose les élèves existants.
+    proposerEleves('Aucun travail trouvé pour « ' + nom + ' ».');
   } finally {
     $('voir').disabled = false;
   }
