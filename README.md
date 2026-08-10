@@ -174,6 +174,19 @@ un parent qui rafraîchit sa page ne coûte rien.
 
 ---
 
+## En ligne
+
+L'application tourne sur : **https://tuteur-maths.onrender.com**
+
+| Pour | Adresse |
+|---|---|
+| L'élève | https://tuteur-maths.onrender.com |
+| Le parent | https://tuteur-maths.onrender.com/parent.html |
+
+Chaque testeur saisit le code d'accès une seule fois.
+
+---
+
 ## Mise en ligne (Render)
 
 Le fichier `render.yaml` décrit tout le déploiement.
