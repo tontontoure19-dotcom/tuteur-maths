@@ -39,13 +39,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-CLE_PRESENTE = bool(os.getenv("ANTHROPIC_API_KEY"))
+# Une clé non remplacée (texte d'exemple) doit être traitée comme absente,
+# sinon l'utilisateur reçoit une erreur d'authentification incompréhensible.
+_cle = (os.getenv("ANTHROPIC_API_KEY") or "").strip()
+CLE_PRESENTE = _cle.startswith("sk-ant-")
+
 client = anthropic.Anthropic()  # lit ANTHROPIC_API_KEY dans l'environnement
 
 if not CLE_PRESENTE:
     print(
-        "\n  ATTENTION : aucune clé API trouvée.\n"
-        "  Copiez backend/.env.example vers backend/.env et collez-y votre clé.\n"
+        "\n  ATTENTION : aucune clé API valide trouvée.\n"
+        "  Ouvrez le fichier backend/.env et collez votre clé (elle commence par sk-ant-).\n"
         "  L'interface fonctionnera, mais le tuteur ne pourra pas répondre.\n"
     )
 
@@ -113,8 +117,8 @@ def chat(demande: DemandeChat):
     def flux():
         morceaux: list[str] = []
         if not CLE_PRESENTE:
-            message = ("Clé API absente : copiez backend/.env.example vers "
-                       "backend/.env et collez-y votre clé Anthropic.")
+            message = ("Clé API absente : ouvrez le fichier backend/.env "
+                       "et collez-y votre clé Anthropic (elle commence par sk-ant-).")
             yield f"data: {json.dumps({'erreur': message}, ensure_ascii=False)}\n\n"
             return
         try:
