@@ -1,0 +1,49 @@
+# Blueprint Render : met le tuteur en ligne en un clic.
+# Dans Render : New + > Blueprint > sélectionner ce dépôt.
+
+services:
+  - type: web
+    name: tuteur-maths
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/config
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+
+      # Votre clé Anthropic — à coller dans Render, jamais ici.
+      - key: ANTHROPIC_API_KEY
+        sync: false
+
+      # Code d'accès partagé : SANS LUI, n'importe quel visiteur du site
+      # poserait des questions à vos frais. À renseigner impérativement.
+      - key: CODE_ACCES
+        sync: false
+
+      # Taux de change utilisé pour afficher les coûts en francs guinéens.
+      - key: GNF_PAR_DOLLAR
+        value: "8700"
+
+      - key: CORS_ORIGINS
+        value: "*"
+
+    # ⚠️ IMPORTANT — mémoire des conversations
+    #
+    # Sur le plan gratuit, le disque est effacé à chaque redémarrage (et le
+    # service redémarre après 15 minutes sans visite). Les conversations et
+    # les bilans parents seraient donc perdus régulièrement.
+    #
+    # Les élèves ne perdent rien (leur conversation est gardée sur leur
+    # téléphone), mais LE SUIVI DE NIVEAU serait remis à zéro — or c'est
+    # justement ce que vous voulez faire valider par les parents.
+    #
+    # Pour conserver les données, passez le plan à "starter" et décommentez
+    # le bloc ci-dessous (coût : environ 7 $/mois + 0,25 $/Go).
+    #
+    # disk:
+    #   name: donnees
+    #   mountPath: /opt/render/project/src/backend/sessions
+    #   sizeGB: 1

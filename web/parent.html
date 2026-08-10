@@ -82,6 +82,17 @@
 
 <script>
 const $ = id => document.getElementById(id);
+// Le parent utilise le même code d'accès que son enfant.
+let codeAcces = localStorage.getItem('code_acces') || '';
+const avecCode = url => codeAcces ? url + (url.includes('?') ? '&' : '?') +
+                                    'code=' + encodeURIComponent(codeAcces) : url;
+
+fetch('/api/config').then(r => r.json()).then(c => {
+  if (c.code_requis && !codeAcces) {
+    const saisi = prompt("Code d'accès :");
+    if (saisi) { codeAcces = saisi.trim(); localStorage.setItem('code_acces', codeAcces); location.reload(); }
+  }
+}).catch(() => {});
 const echapper = t => String(t ?? '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 
 $('nom').addEventListener('keydown', e => { if (e.key === 'Enter') charger(); });
@@ -95,7 +106,7 @@ if (depuisLien) { $('nom').value = depuisLien; charger(); } else { proposerEleve
    déjà travaillé : le parent n'a pas à deviner l'orthographe exacte. */
 async function proposerEleves(message) {
   try {
-    const r = await fetch('/api/eleves');
+    const r = await fetch(avecCode('/api/eleves'));
     const { eleves } = await r.json();
     if (!eleves.length) {
       $('zone').innerHTML = '<div class="info">Aucun élève n\'a encore utilisé le tuteur.<br>' +
@@ -124,7 +135,7 @@ async function charger() {
   $('zone').innerHTML = '<div class="info">Analyse du travail de votre enfant…<br>' +
                         'Cela prend quelques secondes.</div>';
   try {
-    const r = await fetch('/api/bilan/' + encodeURIComponent(nom));
+    const r = await fetch(avecCode('/api/bilan/' + encodeURIComponent(nom)));
     const d = await r.json();
     if (!r.ok) throw new Error(d.detail || 'Erreur');
     if (d.pas_assez_de_donnees) {

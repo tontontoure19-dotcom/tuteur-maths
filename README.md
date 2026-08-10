@@ -171,3 +171,38 @@ un parent qui rafraîchit sa page ne coûte rien.
 | **Un élève actif sur un mois** | **~5 000 à 15 000 GNF** |
 
 À comparer aux 75 000 GNF/mois d'abonnement visés.
+
+---
+
+## Mise en ligne (Render)
+
+Le fichier `render.yaml` décrit tout le déploiement.
+
+1. Pousser le dépôt sur GitHub
+2. Sur [render.com](https://render.com) : **New +** → **Blueprint** → sélectionner le dépôt
+3. Renseigner les deux variables demandées :
+
+| Variable | Valeur |
+|---|---|
+| `ANTHROPIC_API_KEY` | Votre clé (celle du fichier `.env` local) |
+| `CODE_ACCES` | **Un code de votre choix**, ex. `KARANDI2026` |
+
+⚠️ **`CODE_ACCES` est obligatoire.** Sans lui, n'importe quel visiteur du site
+poserait des questions facturées sur votre clé.
+
+Vous donnez ensuite ce code à vos élèves testeurs, avec le lien.
+Ils le saisissent une seule fois.
+
+### ⚠️ Limite du plan gratuit : les bilans sont effacés
+
+Sur le plan gratuit, le disque est remis à zéro à chaque redémarrage du
+service (et il redémarre après 15 minutes sans visite).
+
+| | Conservé ? |
+|---|---|
+| Conversation de l'élève | ✅ oui (gardée sur son téléphone) |
+| **Suivi de niveau / bilan parent** | ❌ **non, remis à zéro** |
+
+Or c'est le suivi de niveau que vous voulez faire valider par les parents.
+Pour le conserver : passer le service en plan **starter** (~7 $/mois) et
+décommenter le bloc `disk:` dans `render.yaml`.

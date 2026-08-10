@@ -94,6 +94,7 @@
   <div class="logo">📐</div>
   <h1>Tuteur Maths</h1>
   <p>Bloqué sur un exercice ? Envoie-le-moi.<br>On le résout ensemble, et tu sauras le refaire seul le jour du BEPC.</p>
+  <input id="code" class="cache" placeholder="Code d'accès" autocomplete="off">
   <input id="prenom" placeholder="Ton prénom" autocomplete="given-name">
   <div class="niveaux">
     <button class="niveau actif" data-niveau="bepc">10ᵉ année<span>BEPC</span></button>
@@ -129,8 +130,24 @@ let niveau = 'bepc';      // « bepc » (10e année) ou « bac » (Terminale)
 let historique = [];      // conversation envoyée à l'IA
 let photo = null;         // {data, type} de la photo en attente
 let occupe = false;
+let codeAcces = localStorage.getItem('code_acces') || '';
 
 const $ = id => document.getElementById(id);
+
+/* Le code d'accès protège la clé API : sans lui, n'importe quel visiteur
+   du site pourrait poser des questions aux frais du propriétaire. */
+fetch('/api/config').then(r => r.json()).then(c => {
+  if (c.code_requis && !codeAcces) {
+    $('code').classList.remove('cache');
+    $('code').addEventListener('input', majDemarrage);
+    majDemarrage();
+  }
+}).catch(() => {});
+
+function majDemarrage() {
+  const codeOk = $('code').classList.contains('cache') || $('code').value.trim().length >= 4;
+  $('commencer').disabled = $('prenom').value.trim().length < 2 || !codeOk;
+}
 
 /* --- Plusieurs élèves sur un même téléphone ----------------------------
    Ici un téléphone est souvent partagé (frères et sœurs, cousins).
@@ -258,15 +275,17 @@ function nouvelExercice() {
 }
 
 /* ---------- Démarrage ---------- */
-$('prenom').addEventListener('input', e => {
-  $('commencer').disabled = e.target.value.trim().length < 2;
-});
+$('prenom').addEventListener('input', majDemarrage);
 $('prenom').addEventListener('keydown', e => {
   if (e.key === 'Enter' && !$('commencer').disabled) demarrer();
 });
 $('commencer').addEventListener('click', demarrer);
 
 function demarrer() {
+  if (!$('code').classList.contains('cache')) {
+    codeAcces = $('code').value.trim();
+    localStorage.setItem('code_acces', codeAcces);
+  }
   eleve = $('prenom').value.trim();
   enregistrerProfil(eleve, niveau);
   ouvrirChat();
@@ -393,8 +412,13 @@ async function envoyer() {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       // On n'envoie que les échanges récents : au-delà, l'élève travaille
       // sur un autre exercice et l'historique ferait grimper le coût.
-      body: JSON.stringify({ eleve, niveau, messages: historique.slice(-MAX_MESSAGES) })
+      body: JSON.stringify({ eleve, niveau, code: codeAcces,
+                             messages: historique.slice(-MAX_MESSAGES) })
     });
+    if (r.status === 403) {
+      localStorage.removeItem('code_acces');
+      throw new Error("Code d'accès invalide. Recharge la page et ressaisis-le.");
+    }
     if (!r.ok) throw new Error('serveur');
 
     const lecteur = r.body.getReader(), dec = new TextDecoder();

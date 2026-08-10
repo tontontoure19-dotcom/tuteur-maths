@@ -53,6 +53,16 @@ app.add_middleware(
 _cle = (os.getenv("ANTHROPIC_API_KEY") or "").strip()
 CLE_PRESENTE = _cle.startswith("sk-ant-")
 
+# Code d'accès partagé : protège la clé API une fois l'application en ligne.
+# Vide en local = aucune protection (pratique pour développer).
+CODE_ACCES = (os.getenv("CODE_ACCES") or "").strip()
+
+
+def _verifier_code(code: str | None) -> None:
+    """Refuse les inconnus quand un code est configuré."""
+    if CODE_ACCES and (code or "").strip() != CODE_ACCES:
+        raise HTTPException(status_code=403, detail="Code d'accès invalide.")
+
 client = anthropic.Anthropic()  # lit ANTHROPIC_API_KEY dans l'environnement
 
 if not CLE_PRESENTE:
@@ -76,6 +86,7 @@ class DemandeChat(BaseModel):
     messages: list[Message]
     # « bepc » (10e année) ou « bac » (Terminale)
     niveau: str = Field(default=NIVEAU_DEFAUT, max_length=10)
+    code: str | None = Field(default=None, max_length=60)
 
 
 def _bloc_utilisateur(message: Message) -> list[dict]:
@@ -134,6 +145,7 @@ def _enregistrer(eleve: str, role: str, texte: str, avec_photo: bool = False,
 @app.post("/api/chat")
 def chat(demande: DemandeChat):
     """Répond à l'élève en flux continu (le texte s'affiche au fur et à mesure)."""
+    _verifier_code(demande.code)
     if not demande.messages:
         raise HTTPException(status_code=400, detail="Aucun message.")
 
@@ -213,9 +225,16 @@ def rapport(eleve: str):
     }
 
 
+@app.get("/api/config")
+def config():
+    """Dit à l'application si un code d'accès est exigé."""
+    return {"code_requis": bool(CODE_ACCES)}
+
+
 @app.get("/api/eleves")
-def liste_eleves():
+def liste_eleves(code: str | None = None):
     """Élèves ayant déjà travaillé — évite au parent de deviner l'orthographe."""
+    _verifier_code(code)
     eleves = []
     for fichier in DOSSIER_SESSIONS.glob("*.jsonl"):
         lignes = [l for l in fichier.read_text(encoding="utf-8").splitlines() if l]
@@ -232,12 +251,13 @@ def liste_eleves():
 
 
 @app.get("/api/bilan/{eleve}")
-def bilan_eleve(eleve: str):
+def bilan_eleve(eleve: str, code: str | None = None):
     """Bilan de niveau destiné au parent : chapitres, progression, conseils.
 
     Recalculé uniquement quand l'élève a travaillé depuis la dernière fois,
     pour ne pas payer une analyse à chaque rafraîchissement de page.
     """
+    _verifier_code(code)
     if not CLE_PRESENTE:
         raise HTTPException(status_code=503,
                             detail="Clé API absente : impossible de générer le bilan.")
