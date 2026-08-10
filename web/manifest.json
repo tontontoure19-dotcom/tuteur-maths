@@ -1,0 +1,15 @@
+{
+  "name": "Tuteur Maths — BEPC",
+  "short_name": "Tuteur Maths",
+  "description": "Ton tuteur de mathématiques pour préparer le BEPC.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F7F6F3",
+  "theme_color": "#0B6E4F",
+  "icons": [
+    { "src": "icone.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

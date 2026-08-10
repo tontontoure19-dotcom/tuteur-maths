@@ -1,0 +1,12 @@
+# Secrets — ne jamais versionner
+.env
+*.env
+!.env.example
+
+# Conversations des élèves (données personnelles)
+backend/sessions/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
