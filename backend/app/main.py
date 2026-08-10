@@ -83,7 +83,27 @@ def _bloc_utilisateur(message: Message) -> list[dict]:
     return blocs
 
 
-def _enregistrer(eleve: str, role: str, texte: str, avec_photo: bool = False) -> None:
+# Tarifs Claude Opus 5, en dollars par million de jetons.
+PRIX_ENTREE = 5.00
+PRIX_SORTIE = 25.00
+PRIX_CACHE_ECRITURE = 6.25   # 1,25 x entrée
+PRIX_CACHE_LECTURE = 0.50    # 0,10 x entrée
+GNF_PAR_DOLLAR = float(os.getenv("GNF_PAR_DOLLAR", "8700"))
+
+
+def _cout_gnf(usage) -> float:
+    """Coût réel d'un échange, en francs guinéens."""
+    dollars = (
+        (usage.input_tokens or 0) * PRIX_ENTREE
+        + (usage.output_tokens or 0) * PRIX_SORTIE
+        + (getattr(usage, "cache_creation_input_tokens", 0) or 0) * PRIX_CACHE_ECRITURE
+        + (getattr(usage, "cache_read_input_tokens", 0) or 0) * PRIX_CACHE_LECTURE
+    ) / 1_000_000
+    return dollars * GNF_PAR_DOLLAR
+
+
+def _enregistrer(eleve: str, role: str, texte: str, avec_photo: bool = False,
+                 cout_gnf: float | None = None) -> None:
     """Journalise un échange — matière première du rapport au parent."""
     fichier = DOSSIER_SESSIONS / f"{eleve.lower().replace(' ', '_')}.jsonl"
     ligne = {
@@ -92,6 +112,8 @@ def _enregistrer(eleve: str, role: str, texte: str, avec_photo: bool = False) ->
         "texte": texte,
         "photo": avec_photo,
     }
+    if cout_gnf is not None:
+        ligne["cout_gnf"] = round(cout_gnf, 2)
     with fichier.open("a", encoding="utf-8") as f:
         f.write(json.dumps(ligne, ensure_ascii=False) + "\n")
 
@@ -138,6 +160,7 @@ def chat(demande: DemandeChat):
                 for texte in stream.text_stream:
                     morceaux.append(texte)
                     yield f"data: {json.dumps({'texte': texte}, ensure_ascii=False)}\n\n"
+                cout = _cout_gnf(stream.get_final_message().usage)
         except anthropic.APIStatusError as erreur:
             yield f"data: {json.dumps({'erreur': str(erreur.message)}, ensure_ascii=False)}\n\n"
             return
@@ -148,7 +171,7 @@ def chat(demande: DemandeChat):
             yield f"data: {json.dumps({'erreur': f'Erreur technique : {erreur}'}, ensure_ascii=False)}\n\n"
             return
 
-        _enregistrer(demande.eleve, "tuteur", "".join(morceaux))
+        _enregistrer(demande.eleve, "tuteur", "".join(morceaux), cout_gnf=cout)
         yield f"data: {json.dumps({'fin': True})}\n\n"
 
     return StreamingResponse(flux(), media_type="text/event-stream")
@@ -163,11 +186,14 @@ def rapport(eleve: str):
 
     lignes = [json.loads(l) for l in fichier.read_text(encoding="utf-8").splitlines() if l]
     questions = [l for l in lignes if l["role"] == "eleve"]
+    cout_total = sum(l.get("cout_gnf", 0) for l in lignes)
     return {
         "eleve": eleve,
         "echanges": len(lignes),
         "questions": len(questions),
         "photos": sum(1 for l in questions if l.get("photo")),
+        "cout_total_gnf": round(cout_total, 2),
+        "cout_moyen_par_question_gnf": round(cout_total / len(questions), 2) if questions else 0,
         "premiere_activite": lignes[0]["horodatage"] if lignes else None,
         "derniere_activite": lignes[-1]["horodatage"] if lignes else None,
     }
