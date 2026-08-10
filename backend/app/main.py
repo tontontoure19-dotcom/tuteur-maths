@@ -16,6 +16,7 @@ from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
+from . import bilan as module_bilan
 from .prompts import construire_systeme
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,6 +30,14 @@ EFFORT = "medium"
 # Dossier des conversations, base des rapports aux parents.
 DOSSIER_SESSIONS = BASE_DIR / "sessions"
 DOSSIER_SESSIONS.mkdir(exist_ok=True)
+DOSSIER_BILANS = BASE_DIR / "bilans"
+DOSSIER_BILANS.mkdir(exist_ok=True)
+
+
+def _identifiant(eleve: str) -> str:
+    """Nom de fichier sûr à partir d'un prénom saisi librement."""
+    propre = "".join(c for c in eleve.lower().strip() if c.isalnum() or c in " -_")
+    return propre.replace(" ", "_")[:40] or "eleve"
 
 app = FastAPI(title="Tuteur BEPC — Maths", version="0.1.0")
 
@@ -105,7 +114,7 @@ def _cout_gnf(usage) -> float:
 def _enregistrer(eleve: str, role: str, texte: str, avec_photo: bool = False,
                  cout_gnf: float | None = None) -> None:
     """Journalise un échange — matière première du rapport au parent."""
-    fichier = DOSSIER_SESSIONS / f"{eleve.lower().replace(' ', '_')}.jsonl"
+    fichier = DOSSIER_SESSIONS / f"{_identifiant(eleve)}.jsonl"
     ligne = {
         "horodatage": datetime.now(timezone.utc).isoformat(),
         "role": role,
@@ -180,7 +189,7 @@ def chat(demande: DemandeChat):
 @app.get("/api/rapport/{eleve}")
 def rapport(eleve: str):
     """Résumé d'activité d'un élève — base du rapport hebdomadaire au parent."""
-    fichier = DOSSIER_SESSIONS / f"{eleve.lower().replace(' ', '_')}.jsonl"
+    fichier = DOSSIER_SESSIONS / f"{_identifiant(eleve)}.jsonl"
     if not fichier.exists():
         return {"eleve": eleve, "echanges": 0, "questions": 0, "photos": 0}
 
@@ -197,6 +206,38 @@ def rapport(eleve: str):
         "premiere_activite": lignes[0]["horodatage"] if lignes else None,
         "derniere_activite": lignes[-1]["horodatage"] if lignes else None,
     }
+
+
+@app.get("/api/bilan/{eleve}")
+def bilan_eleve(eleve: str):
+    """Bilan de niveau destiné au parent : chapitres, progression, conseils.
+
+    Recalculé uniquement quand l'élève a travaillé depuis la dernière fois,
+    pour ne pas payer une analyse à chaque rafraîchissement de page.
+    """
+    if not CLE_PRESENTE:
+        raise HTTPException(status_code=503,
+                            detail="Clé API absente : impossible de générer le bilan.")
+
+    identifiant = _identifiant(eleve)
+    try:
+        resultat = module_bilan.generer(
+            DOSSIER_SESSIONS / f"{identifiant}.jsonl",
+            DOSSIER_BILANS / f"{identifiant}.json",
+            client,
+            _cout_gnf,
+        )
+    except anthropic.APIStatusError as erreur:
+        raise HTTPException(status_code=502, detail=str(erreur.message))
+
+    if resultat is None:
+        raise HTTPException(status_code=404, detail="Aucune activité pour cet élève.")
+
+    # On complète le bilan avec les chiffres bruts d'activité.
+    resultat = dict(resultat)
+    resultat["eleve"] = eleve
+    resultat["activite"] = rapport(eleve)
+    return resultat
 
 
 # Le site (l'« application ») est servi par la même adresse que l'API.

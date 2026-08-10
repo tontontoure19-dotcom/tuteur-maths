@@ -1,6 +1,6 @@
 # Tuteur Maths — BEPC (Guinée)
 
-Un tuteur de mathématiques par IA pour les élèves de 3e qui préparent le BEPC.
+Un tuteur de mathématiques par IA pour les élèves de 10e année qui préparent le BEPC.
 **Il ne donne jamais la réponse** : il fait chercher l'élève, étape par étape.
 
 Porteur : Tonton Touré / MansaSoft — Conakry
@@ -81,7 +81,7 @@ disponibles pour tout le monde immédiatement.
 tuteur-bepc/
 ├── backend/
 │   ├── app/
-│   │   ├── prompts.py   ← LE CŒUR : pédagogie du tuteur + programme 3e
+│   │   ├── prompts.py   ← LE CŒUR : pédagogie du tuteur + programme 10e année
 │   │   └── main.py      ← l'API (parle à Claude, garde la clé côté serveur)
 │   ├── sessions/        ← conversations des élèves (jamais versionnées)
 │   └── .env             ← votre clé API (jamais versionnée)
@@ -120,8 +120,42 @@ C'est la base du futur rapport hebdomadaire au parent.
 ## Ce qui reste à faire
 
 - [ ] Intégrer les vrais sujets d'annales BEPC dans `prompts.py`
-- [ ] Rapport hebdomadaire au parent (page dédiée + envoi WhatsApp)
+- [x] Suivi de niveau et recommandations (page parent)
+- [ ] Envoi automatique du bilan par WhatsApp chaque semaine
 - [ ] Limite d'usage par abonnement (protéger la marge)
 - [ ] Mise en ligne (Render) pour que les élèves y accèdent hors du PC
 - [ ] Choisir le nom définitif (langue nationale)
-- [ ] Test avec 5 élèves de 3e
+- [ ] Test avec 5 élèves de 10e année
+
+---
+
+## Suivi de niveau (page parent)
+
+Le parent ouvre :
+
+```
+http://localhost:8100/parent.html?eleve=Aminata
+```
+
+Il y trouve, généré automatiquement à partir des conversations :
+
+- **En résumé** — 3-4 phrases en français simple, sans jargon
+- **Persévérance** — s'accroche-t-il face à la difficulté, ou abandonne-t-il vite ?
+- **Chapitres travaillés** — chacun classé *acquis* / *en cours* / *difficulté*
+- **Ce qui va bien** — réussites concrètes
+- **À retravailler** — difficultés précises
+- **Conseils pour cette semaine** — actions faisables en 7 jours
+
+Le bilan n'est recalculé que si l'élève a travaillé depuis la dernière fois :
+un parent qui rafraîchit sa page ne coûte rien.
+
+### Coûts mesurés en réel
+
+| | Coût |
+|---|---|
+| Une question posée au tuteur | ~50-75 GNF |
+| Une séance complète (7 questions) | ~340 GNF |
+| Un bilan parent | ~445 GNF |
+| **Un élève actif sur un mois** | **~5 000 à 15 000 GNF** |
+
+À comparer aux 75 000 GNF/mois d'abonnement visés.

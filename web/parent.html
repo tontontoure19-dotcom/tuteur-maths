@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B6E4F">
+<title>Suivi de votre enfant — Tuteur Maths</title>
+<link rel="icon" href="icone.svg">
+<style>
+  :root{--vert:#0B6E4F;--vert-clair:#E6F2EE;--jaune:#FCD116;--rouge:#C0392B;
+        --orange:#D68910;--fond:#F7F6F3;--texte:#17211D;--gris:#6B7671;--bord:#E8E4DE}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--fond);
+       color:var(--texte);line-height:1.55}
+  header{background:var(--vert);color:#fff;padding:calc(env(safe-area-inset-top) + 18px) 18px 18px}
+  header h1{font-size:19px;font-weight:700}
+  header p{font-size:13px;opacity:.85;margin-top:2px}
+  main{max-width:640px;margin:0 auto;padding:18px}
+
+  .recherche{display:flex;gap:8px;margin-bottom:18px}
+  .recherche input{flex:1;padding:13px 15px;border:1px solid var(--bord);border-radius:12px;
+                   font-size:16px;background:#fff}
+  .recherche input:focus{outline:none;border-color:var(--vert)}
+  .recherche button{background:var(--vert);color:#fff;border:none;border-radius:12px;
+                    padding:13px 20px;font-size:16px;font-weight:600;cursor:pointer}
+  .recherche button:disabled{opacity:.5;cursor:wait}
+
+  .carte{background:#fff;border:1px solid var(--bord);border-radius:16px;padding:18px;margin-bottom:14px}
+  .carte h2{font-size:14px;text-transform:uppercase;letter-spacing:.5px;color:var(--gris);
+            margin-bottom:10px;font-weight:700}
+  .resume{font-size:16.5px}
+
+  .chiffres{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+  .chiffre{background:#fff;border:1px solid var(--bord);border-radius:14px;padding:14px 10px;text-align:center}
+  .chiffre b{display:block;font-size:22px;color:var(--vert)}
+  .chiffre span{font-size:11.5px;color:var(--gris)}
+
+  .chap{display:flex;align-items:flex-start;gap:11px;padding:11px 0;border-bottom:1px solid var(--bord)}
+  .chap:last-child{border-bottom:none}
+  .pastille{width:11px;height:11px;border-radius:50%;flex-shrink:0;margin-top:6px}
+  .acquis{background:var(--vert)} .encours{background:var(--orange)} .difficulte{background:var(--rouge)}
+  .chap-nom{font-weight:600}
+  .chap-info{font-size:13.5px;color:var(--gris)}
+
+  ul{list-style:none} li{padding-left:22px;position:relative;margin-bottom:8px;font-size:15.5px}
+  li::before{position:absolute;left:0;top:0}
+  .forts li::before{content:"✓";color:var(--vert);font-weight:700}
+  .faibles li::before{content:"!";color:var(--orange);font-weight:700}
+  .conseils li::before{content:"→";color:var(--vert);font-weight:700}
+
+  .badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:600}
+  .b-excellente,.b-bonne{background:var(--vert-clair);color:var(--vert)}
+  .b-irreguliere{background:#FDF3E0;color:var(--orange)}
+  .b-faible{background:#FDECEC;color:var(--rouge)}
+
+  .info{text-align:center;color:var(--gris);padding:34px 18px;font-size:15px}
+  .erreur{background:#FDECEC;color:#9B2C2C;border-radius:12px;padding:14px;font-size:14.5px}
+  .pied{text-align:center;color:var(--gris);font-size:12.5px;padding:8px 0 26px}
+  .cache{display:none !important}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📊 Suivi de votre enfant</h1>
+  <p>Ce que votre enfant a travaillé, et où il en est.</p>
+</header>
+
+<main>
+  <div class="recherche">
+    <input id="nom" placeholder="Prénom de votre enfant" autocomplete="off">
+    <button id="voir">Voir</button>
+  </div>
+
+  <div id="zone"></div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const echapper = t => String(t ?? '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+$('nom').addEventListener('keydown', e => { if (e.key === 'Enter') charger(); });
+$('voir').addEventListener('click', charger);
+
+// Permet d'envoyer un lien direct au parent : parent.html?eleve=Fatoumata
+const depuisLien = new URLSearchParams(location.search).get('eleve');
+if (depuisLien) { $('nom').value = depuisLien; charger(); }
+
+async function charger() {
+  const nom = $('nom').value.trim();
+  if (!nom) return;
+
+  $('voir').disabled = true;
+  $('zone').innerHTML = '<div class="info">Analyse du travail de votre enfant…<br>' +
+                        'Cela prend quelques secondes.</div>';
+  try {
+    const r = await fetch('/api/bilan/' + encodeURIComponent(nom));
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'Erreur');
+    if (d.pas_assez_de_donnees) {
+      $('zone').innerHTML = '<div class="info">Votre enfant vient de commencer' +
+        ' (' + d.echanges + ' échanges).<br>Le bilan sera disponible après quelques exercices.</div>';
+      return;
+    }
+    afficher(d);
+  } catch (e) {
+    $('zone').innerHTML = '<div class="erreur">' + echapper(e.message) + '</div>';
+  } finally {
+    $('voir').disabled = false;
+  }
+}
+
+function afficher(d) {
+  const a = d.activite || {};
+  const classePerseverance = 'b-' + (d.perseverance || '')
+        .normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+  const chapitres = (d.chapitres || []).map(c => {
+    const cls = c.niveau === 'acquis' ? 'acquis'
+              : c.niveau === 'en cours' ? 'encours' : 'difficulte';
+    return `<div class="chap">
+      <div class="pastille ${cls}"></div>
+      <div>
+        <div class="chap-nom">${echapper(c.nom)}</div>
+        <div class="chap-info">${echapper(c.niveau)} · ${c.questions} question(s) — ${echapper(c.commentaire)}</div>
+      </div></div>`;
+  }).join('');
+
+  const liste = (items, cls) =>
+    `<ul class="${cls}">${(items || []).map(x => `<li>${echapper(x)}</li>`).join('')}</ul>`;
+
+  $('zone').innerHTML = `
+    <div class="chiffres">
+      <div class="chiffre"><b>${a.questions ?? 0}</b><span>questions posées</span></div>
+      <div class="chiffre"><b>${(d.chapitres || []).length}</b><span>chapitres travaillés</span></div>
+      <div class="chiffre"><b>${a.photos ?? 0}</b><span>exercices photographiés</span></div>
+    </div>
+
+    <div class="carte">
+      <h2>En résumé</h2>
+      <p class="resume">${echapper(d.resume_parent)}</p>
+    </div>
+
+    <div class="carte">
+      <h2>Persévérance</h2>
+      <span class="badge ${classePerseverance}">${echapper(d.perseverance)}</span>
+      <p style="margin-top:9px;font-size:15px">${echapper(d.commentaire_perseverance)}</p>
+    </div>
+
+    <div class="carte">
+      <h2>Chapitres travaillés</h2>
+      ${chapitres || '<p style="color:var(--gris)">Aucun chapitre identifié pour l\'instant.</p>'}
+    </div>
+
+    <div class="carte"><h2>Ce qui va bien</h2>${liste(d.points_forts, 'forts')}</div>
+    <div class="carte"><h2>À retravailler</h2>${liste(d.points_a_travailler, 'faibles')}</div>
+    <div class="carte"><h2>Conseils pour cette semaine</h2>${liste(d.recommandations, 'conseils')}</div>
+
+    <div class="pied">Bilan établi à partir de ${a.echanges ?? 0} échanges avec le tuteur.</div>`;
+}
+</script>
+</body>
+</html>
