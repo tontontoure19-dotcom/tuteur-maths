@@ -2,7 +2,9 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- interactive-widget : sans lui, l'ouverture du clavier Android pousse la page
+     vers le haut et fait disparaître l'en-tête et la conversation. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <meta name="theme-color" content="#0B6E4F">
 <title>Tuteur Maths — BEPC</title>
 <link rel="manifest" href="manifest.json">
@@ -12,11 +14,14 @@
   :root{--vert:#0B6E4F;--vert-clair:#E6F2EE;--jaune:#FCD116;--fond:#F7F6F3;--texte:#17211D;--gris:#6B7671}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--fond);
-       color:var(--texte);height:100dvh;display:flex;flex-direction:column;overscroll-behavior:none}
+       color:var(--texte);height:var(--hauteur, 100dvh);display:flex;flex-direction:column;
+       overscroll-behavior:none;position:fixed;top:0;left:0;right:0}
 
   /* ---- Écran d'accueil : on demande juste le prénom ---- */
+  /* overflow-y : avec le clavier ouvert, l'écran d'accueil doit rester
+     parcourable au lieu de tronquer le bouton « Commencer ». */
   #accueil{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;
-           padding:28px;text-align:center;gap:14px}
+           padding:28px;text-align:center;gap:14px;overflow-y:auto}
   #accueil .logo{font-size:56px;line-height:1}
   #accueil h1{font-size:24px;font-weight:800}
   #accueil p{color:var(--gris);font-size:15px;max-width:300px;line-height:1.5}
@@ -133,6 +138,19 @@ let occupe = false;
 let codeAcces = localStorage.getItem('code_acces') || '';
 
 const $ = id => document.getElementById(id);
+
+/* Clavier Android : sur les navigateurs qui ignorent « interactive-widget »,
+   on mesure nous-mêmes la hauteur réellement visible. Sans ça, l'en-tête et
+   la conversation glissent hors de l'écran dès que le clavier s'ouvre. */
+if (window.visualViewport) {
+  const ajusterHauteur = () => {
+    document.body.style.setProperty('--hauteur', window.visualViewport.height + 'px');
+    // Le dernier message doit rester visible au-dessus du clavier.
+    if (!$('fil').classList.contains('cache')) $('fil').scrollTop = $('fil').scrollHeight;
+  };
+  window.visualViewport.addEventListener('resize', ajusterHauteur);
+  ajusterHauteur();
+}
 
 /* Le code d'accès protège la clé API : sans lui, n'importe quel visiteur
    du site pourrait poser des questions aux frais du propriétaire. */
