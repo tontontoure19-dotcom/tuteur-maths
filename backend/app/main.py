@@ -17,7 +17,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from . import bilan as module_bilan
-from .prompts import construire_systeme
+from .prompts import NIVEAU_DEFAUT, NIVEAUX, construire_systeme
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(dotenv_path=BASE_DIR / ".env")
@@ -74,6 +74,8 @@ class Message(BaseModel):
 class DemandeChat(BaseModel):
     eleve: str = Field(..., max_length=60)
     messages: list[Message]
+    # « bepc » (10e année) ou « bac » (Terminale)
+    niveau: str = Field(default=NIVEAU_DEFAUT, max_length=10)
 
 
 def _bloc_utilisateur(message: Message) -> list[dict]:
@@ -112,7 +114,7 @@ def _cout_gnf(usage) -> float:
 
 
 def _enregistrer(eleve: str, role: str, texte: str, avec_photo: bool = False,
-                 cout_gnf: float | None = None) -> None:
+                 cout_gnf: float | None = None, niveau: str | None = None) -> None:
     """Journalise un échange — matière première du rapport au parent."""
     fichier = DOSSIER_SESSIONS / f"{_identifiant(eleve)}.jsonl"
     ligne = {
@@ -123,6 +125,8 @@ def _enregistrer(eleve: str, role: str, texte: str, avec_photo: bool = False,
     }
     if cout_gnf is not None:
         ligne["cout_gnf"] = round(cout_gnf, 2)
+    if niveau:
+        ligne["niveau"] = niveau
     with fichier.open("a", encoding="utf-8") as f:
         f.write(json.dumps(ligne, ensure_ascii=False) + "\n")
 
@@ -143,7 +147,8 @@ def chat(demande: DemandeChat):
 
     dernier = demande.messages[-1]
     if dernier.role == "user":
-        _enregistrer(demande.eleve, "eleve", dernier.content, bool(dernier.image))
+        _enregistrer(demande.eleve, "eleve", dernier.content, bool(dernier.image),
+                     niveau=demande.niveau)
 
     def flux():
         morceaux: list[str] = []
@@ -159,7 +164,7 @@ def chat(demande: DemandeChat):
                 output_config={"effort": EFFORT},
                 system=[{
                     "type": "text",
-                    "text": construire_systeme(),
+                    "text": construire_systeme(demande.niveau),
                     # Le programme est identique à chaque appel : on le met en
                     # cache pour diviser son coût par 10.
                     "cache_control": {"type": "ephemeral"},

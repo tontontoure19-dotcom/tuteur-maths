@@ -1,6 +1,7 @@
 # Tuteur Maths — BEPC (Guinée)
 
-Un tuteur de mathématiques par IA pour les élèves de 10e année qui préparent le BEPC.
+Un tuteur de mathématiques par IA pour les élèves guinéens qui préparent le
+**BEPC** (10e année) ou le **BAC** (Terminale).
 **Il ne donne jamais la réponse** : il fait chercher l'élève, étape par étape.
 
 Porteur : Tonton Touré / MansaSoft — Conakry
@@ -132,7 +133,11 @@ C'est la base du futur rapport hebdomadaire au parent.
 - [ ] Limite d'usage par abonnement (protéger la marge)
 - [ ] Mise en ligne (Render) pour que les élèves y accèdent hors du PC
 - [ ] Choisir le nom définitif (langue nationale)
-- [ ] Test avec 5 élèves de 10e année
+- [x] Deux niveaux : 10e année (BEPC) et Terminale (BAC)
+- [x] Plusieurs élèves sur un même téléphone (profils séparés)
+- [ ] Système de codes d'accès (un code = un abonnement)
+- [ ] Paiement hebdomadaire (Orange Money / MTN)
+- [ ] Test avec des candidats BEPC et BAC
 
 ---
 

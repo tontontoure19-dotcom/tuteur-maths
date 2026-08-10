@@ -27,6 +27,26 @@
        font-size:17px;font-weight:600;cursor:pointer;width:100%;max-width:300px}
   .btn:disabled{opacity:.5}
 
+  /* Choix du niveau : BEPC ou BAC */
+  .niveaux{display:flex;gap:8px;width:100%;max-width:300px}
+  .niveau{flex:1;background:#fff;border:2px solid #DDD8D0;border-radius:14px;padding:11px 6px;
+          font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--texte);
+          display:flex;flex-direction:column;gap:2px;line-height:1.2}
+  .niveau span{font-size:11.5px;font-weight:400;color:var(--gris)}
+  .niveau.actif{border-color:var(--vert);background:var(--vert-clair);color:var(--vert)}
+  .niveau.actif span{color:var(--vert)}
+
+  /* Élèves déjà enregistrés sur ce téléphone (plusieurs personnes le partagent) */
+  #deja-inscrits{width:100%;max-width:300px;margin-top:4px}
+  #deja-inscrits .titre{font-size:12.5px;color:var(--gris);margin:10px 0 7px;text-align:left}
+  .profil{display:flex;justify-content:space-between;align-items:center;width:100%;
+          background:#fff;border:1px solid #DDD8D0;border-radius:12px;padding:12px 14px;
+          margin-bottom:7px;font-size:16px;font-weight:600;cursor:pointer;
+          font-family:inherit;color:var(--texte);text-align:left}
+  .profil small{font-weight:400;font-size:12px;color:var(--gris)}
+  .profil .suppr{background:none;border:none;color:var(--gris);font-size:17px;
+                 cursor:pointer;padding:0 0 0 10px}
+
   /* ---- En-tête ---- */
   header{background:var(--vert);color:#fff;padding:calc(env(safe-area-inset-top) + 13px) 16px 13px;
          display:flex;align-items:center;gap:10px;flex-shrink:0}
@@ -75,12 +95,18 @@
   <h1>Tuteur Maths</h1>
   <p>Bloqué sur un exercice ? Envoie-le-moi.<br>On le résout ensemble, et tu sauras le refaire seul le jour du BEPC.</p>
   <input id="prenom" placeholder="Ton prénom" autocomplete="given-name">
+  <div class="niveaux">
+    <button class="niveau actif" data-niveau="bepc">10ᵉ année<span>BEPC</span></button>
+    <button class="niveau" data-niveau="bac">Terminale<span>BAC</span></button>
+  </div>
   <button class="btn" id="commencer" disabled>Commencer</button>
+  <div id="deja-inscrits"></div>
 </div>
 
 <header class="cache" id="entete">
   <div style="font-size:22px">📐</div>
   <div style="flex:1"><div class="t">Tuteur Maths</div><div class="s" id="salut"></div></div>
+  <button id="changer" title="Changer d'élève">👤</button>
   <button id="nouveau" title="Nouvel exercice">＋</button>
 </header>
 
@@ -98,12 +124,82 @@
 <script>
 const API = location.origin;
 const MAX_MESSAGES = 40;  // au-delà, c'est un autre exercice : on allège
-let eleve = localStorage.getItem('eleve') || '';
+let eleve = '';           // prénom de l'élève actif
+let niveau = 'bepc';      // « bepc » (10e année) ou « bac » (Terminale)
 let historique = [];      // conversation envoyée à l'IA
 let photo = null;         // {data, type} de la photo en attente
 let occupe = false;
 
 const $ = id => document.getElementById(id);
+
+/* --- Plusieurs élèves sur un même téléphone ----------------------------
+   Ici un téléphone est souvent partagé (frères et sœurs, cousins).
+   Chaque élève a donc son propre profil et sa propre conversation, et on
+   peut passer de l'un à l'autre sans rien perdre.                      */
+
+const identifiantDe = nom =>
+  nom.toLowerCase().trim().replace(/[^a-z0-9 _-]/g, '').replace(/ /g, '_').slice(0, 40);
+const cleConversation = () => 'conv_' + identifiantDe(eleve);
+
+function lireProfils() {
+  try { return JSON.parse(localStorage.getItem('profils') || '[]'); }
+  catch (e) { return []; }
+}
+
+function enregistrerProfil(nom, niv) {
+  const profils = lireProfils().filter(p => identifiantDe(p.nom) !== identifiantDe(nom));
+  profils.unshift({ nom, niveau: niv });
+  localStorage.setItem('profils', JSON.stringify(profils.slice(0, 8)));
+  localStorage.setItem('profil_actif', JSON.stringify({ nom, niveau: niv }));
+}
+
+function supprimerProfil(nom) {
+  localStorage.setItem('profils', JSON.stringify(
+    lireProfils().filter(p => identifiantDe(p.nom) !== identifiantDe(nom))));
+  localStorage.removeItem('conv_' + identifiantDe(nom));
+}
+
+/** Retour à l'écran d'accueil pour qu'un autre élève prenne la main. */
+function changerEleve() {
+  if (occupe) return;
+  localStorage.removeItem('profil_actif');
+  eleve = ''; historique = [];
+  $('fil').innerHTML = '';
+  $('prenom').value = '';
+  $('commencer').disabled = true;
+  ['entete', 'fil', 'barre', 'apercu'].forEach(id => $(id).classList.add('cache'));
+  $('accueil').classList.remove('cache');
+  afficherProfils();
+}
+
+function afficherProfils() {
+  const profils = lireProfils();
+  const zone = $('deja-inscrits');
+  if (!profils.length) { zone.innerHTML = ''; return; }
+  zone.innerHTML = '<div class="titre">Déjà sur ce téléphone :</div>' +
+    profils.map(p => `<div class="profil" data-nom="${p.nom.replace(/"/g, '&quot;')}">
+        <span>${p.nom} <small>${p.niveau === 'bac' ? 'Terminale' : '10ᵉ année'}</small></span>
+        <button class="suppr" title="Retirer">✕</button>
+      </div>`).join('');
+
+  zone.querySelectorAll('.profil').forEach(el => {
+    const nom = el.dataset.nom;
+    el.addEventListener('click', ev => {
+      if (ev.target.classList.contains('suppr')) return;
+      const p = lireProfils().find(x => x.nom === nom);
+      eleve = p.nom; niveau = p.niveau || 'bepc';
+      enregistrerProfil(eleve, niveau);
+      ouvrirChat();
+    });
+    el.querySelector('.suppr').addEventListener('click', ev => {
+      ev.stopPropagation();
+      if (confirm('Retirer ' + nom + ' de ce téléphone ? Sa conversation sera effacée.')) {
+        supprimerProfil(nom);
+        afficherProfils();
+      }
+    });
+  });
+}
 
 /* --- Mémoire de la conversation ---------------------------------------
    Sans ça, l'élève perd tout son travail dès qu'il actualise, change
@@ -124,11 +220,11 @@ function sauvegarder() {
   }).reverse();
 
   try {
-    localStorage.setItem('conversation', JSON.stringify(aGarder));
+    localStorage.setItem(cleConversation(), JSON.stringify(aGarder));
   } catch (e) {
     // Mémoire pleine : on repart sur les échanges récents, sans photo.
     try {
-      localStorage.setItem('conversation', JSON.stringify(
+      localStorage.setItem(cleConversation(), JSON.stringify(
         historique.slice(-12).map(m => ({ role: m.role, content: m.content }))
       ));
     } catch (_) { /* on continue quand même : la conversation reste à l'écran */ }
@@ -137,7 +233,7 @@ function sauvegarder() {
 
 function restaurer() {
   try {
-    const brut = localStorage.getItem('conversation');
+    const brut = localStorage.getItem(cleConversation());
     if (!brut) return false;
     historique = JSON.parse(brut);
     if (!Array.isArray(historique) || !historique.length) { historique = []; return false; }
@@ -155,7 +251,7 @@ function nouvelExercice() {
   if (occupe) return;
   if (historique.length && !confirm('Effacer cette conversation et repartir sur un nouvel exercice ?')) return;
   historique = [];
-  localStorage.removeItem('conversation');
+  localStorage.removeItem(cleConversation());
   $('fil').innerHTML = '';
   afficher('tuteur', 'On repart à zéro. Quel exercice tu veux travailler ?');
   $('texte').focus();
@@ -172,14 +268,22 @@ $('commencer').addEventListener('click', demarrer);
 
 function demarrer() {
   eleve = $('prenom').value.trim();
-  localStorage.setItem('eleve', eleve);
+  enregistrerProfil(eleve, niveau);
   ouvrirChat();
 }
+
+// Choix du niveau sur l'écran d'accueil
+document.querySelectorAll('.niveau').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.niveau').forEach(x => x.classList.remove('actif'));
+  b.classList.add('actif');
+  niveau = b.dataset.niveau;
+}));
 
 function ouvrirChat() {
   $('accueil').classList.add('cache');
   ['entete', 'fil', 'barre'].forEach(id => $(id).classList.remove('cache'));
-  $('salut').textContent = 'Salut ' + eleve + ' 👋';
+  $('salut').textContent = 'Salut ' + eleve + ' 👋 · ' +
+    (niveau === 'bac' ? 'Terminale' : '10ᵉ année');
   // On récupère la conversation en cours ; sinon on accueille l'élève.
   if (!restaurer()) {
     afficher('tuteur',
@@ -190,7 +294,12 @@ function ouvrirChat() {
   $('texte').focus();
 }
 
-if (eleve) ouvrirChat();
+// Reprise automatique du dernier élève actif sur ce téléphone.
+try {
+  const actif = JSON.parse(localStorage.getItem('profil_actif') || 'null');
+  if (actif && actif.nom) { eleve = actif.nom; niveau = actif.niveau || 'bepc'; ouvrirChat(); }
+  else afficherProfils();
+} catch (e) { afficherProfils(); }
 
 /* ---------- Photo ---------- */
 $('photo-btn').addEventListener('click', () => $('fichier').click());
@@ -235,6 +344,7 @@ zone.addEventListener('keydown', e => {
 });
 $('envoyer').addEventListener('click', envoyer);
 $('nouveau').addEventListener('click', nouvelExercice);
+$('changer').addEventListener('click', changerEleve);
 
 function majEnvoyer() {
   $('envoyer').disabled = occupe || (!zone.value.trim() && !photo);
@@ -283,7 +393,7 @@ async function envoyer() {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       // On n'envoie que les échanges récents : au-delà, l'élève travaille
       // sur un autre exercice et l'historique ferait grimper le coût.
-      body: JSON.stringify({ eleve, messages: historique.slice(-MAX_MESSAGES) })
+      body: JSON.stringify({ eleve, niveau, messages: historique.slice(-MAX_MESSAGES) })
     });
     if (!r.ok) throw new Error('serveur');
 
