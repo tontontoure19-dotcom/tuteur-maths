@@ -426,16 +426,31 @@ async function envoyer() {
   let reponse = '', premier = true;
 
   try {
-    const r = await fetch(API + '/api/chat', {
+    const appelChat = () => fetch(API + '/api/chat', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       // On n'envoie que les échanges récents : au-delà, l'élève travaille
       // sur un autre exercice et l'historique ferait grimper le coût.
       body: JSON.stringify({ eleve, niveau, code: codeAcces,
                              messages: historique.slice(-MAX_MESSAGES) })
     });
+
+    let r = await appelChat();
+    /* Code refusé — le plus souvent parce qu'il a changé depuis la dernière
+       visite. On le redemande sur place plutôt que de renvoyer l'élève à
+       l'écran de départ : sa conversation reste intacte. */
     if (r.status === 403) {
       localStorage.removeItem('code_acces');
-      throw new Error("Code d'accès invalide. Recharge la page et ressaisis-le.");
+      codeAcces = '';
+      const saisi = prompt("Ton code d'accès n'est plus valable.\nSaisis ton nouveau code :");
+      if (!saisi || !saisi.trim()) throw new Error("Il me faut ton code d'accès pour continuer.");
+      codeAcces = saisi.trim();
+      localStorage.setItem('code_acces', codeAcces);
+      r = await appelChat();
+      if (r.status === 403) {
+        localStorage.removeItem('code_acces');
+        codeAcces = '';
+        throw new Error("Ce code n'est pas reconnu. Vérifie-le auprès de la personne qui te l'a donné.");
+      }
     }
     if (!r.ok) throw new Error('serveur');
 

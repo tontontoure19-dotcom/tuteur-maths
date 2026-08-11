@@ -87,6 +87,22 @@ let codeAcces = localStorage.getItem('code_acces') || '';
 const avecCode = url => codeAcces ? url + (url.includes('?') ? '&' : '?') +
                                     'code=' + encodeURIComponent(codeAcces) : url;
 
+/* Code refusé — le plus souvent parce qu'il a changé. On le redemande sur
+   place, sinon le parent tombe sur « aucun élève » sans comprendre pourquoi. */
+async function recuperer(url) {
+  let r = await fetch(avecCode(url));
+  if (r.status !== 403) return r;
+  localStorage.removeItem('code_acces');
+  codeAcces = '';
+  const saisi = prompt("Votre code d'accès n'est plus valable.\nSaisissez le nouveau code :");
+  if (!saisi || !saisi.trim()) return r;
+  codeAcces = saisi.trim();
+  localStorage.setItem('code_acces', codeAcces);
+  r = await fetch(avecCode(url));
+  if (r.status === 403) { localStorage.removeItem('code_acces'); codeAcces = ''; }
+  return r;
+}
+
 fetch('/api/config').then(r => r.json()).then(c => {
   if (c.code_requis && !codeAcces) {
     const saisi = prompt("Code d'accès :");
@@ -106,7 +122,7 @@ if (depuisLien) { $('nom').value = depuisLien; charger(); } else { proposerEleve
    déjà travaillé : le parent n'a pas à deviner l'orthographe exacte. */
 async function proposerEleves(message) {
   try {
-    const r = await fetch(avecCode('/api/eleves'));
+    const r = await recuperer('/api/eleves');
     const { eleves } = await r.json();
     if (!eleves.length) {
       $('zone').innerHTML = '<div class="info">Aucun élève n\'a encore utilisé le tuteur.<br>' +
@@ -135,7 +151,7 @@ async function charger() {
   $('zone').innerHTML = '<div class="info">Analyse du travail de votre enfant…<br>' +
                         'Cela prend quelques secondes.</div>';
   try {
-    const r = await fetch(avecCode('/api/bilan/' + encodeURIComponent(nom)));
+    const r = await recuperer('/api/bilan/' + encodeURIComponent(nom));
     const d = await r.json();
     if (!r.ok) throw new Error(d.detail || 'Erreur');
     if (d.pas_assez_de_donnees) {
