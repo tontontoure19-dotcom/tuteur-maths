@@ -371,6 +371,40 @@ def conversation(eleve: str, code: str | None = None, seance: int | None = None)
     }
 
 
+@app.get("/api/profils")
+def profils(code: str | None = None):
+    """Élèves déjà rattachés à cet abonnement.
+
+    Sur un nouvel appareil, l'application les propose au lieu de faire
+    retaper le prénom : une faute de frappe — ou le code saisi par erreur
+    dans la case du prénom — créait un élève de plus, à l'historique vide.
+    """
+    code_utilise = _verifier_code(code)
+    if not code_utilise:
+        return {"profils": []}
+
+    empreinte = hashlib.sha256(code_utilise.encode("utf-8")).hexdigest()[:10]
+    trouves = []
+    for fichier in DOSSIER_SESSIONS.glob(f"{empreinte}_*.jsonl"):
+        echanges = _journal(fichier)
+        if not echanges:
+            continue
+        nom = echanges[-1].get("eleve") or fichier.stem.split("_", 1)[-1]
+        # Un « élève » qui porte le nom d'un code d'accès vient d'une saisie
+        # dans la mauvaise case : on ne le propose pas.
+        if _nom_normalise(nom) in {_nom_normalise(c) for c in CODES_ACCES}:
+            continue
+        trouves.append({
+            "nom": nom,
+            "niveau": next((e["niveau"] for e in reversed(echanges) if e.get("niveau")),
+                           NIVEAU_DEFAUT),
+            "questions": sum(1 for e in echanges if e["role"] == "eleve"),
+            "derniere_activite": echanges[-1]["horodatage"],
+        })
+    trouves.sort(key=lambda p: p["derniere_activite"], reverse=True)
+    return {"profils": trouves}
+
+
 @app.get("/api/seances/{eleve}")
 def liste_seances(eleve: str, code: str | None = None):
     """Toutes les séances de l'élève, la plus récente en premier.

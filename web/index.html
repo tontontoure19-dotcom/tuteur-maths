@@ -49,6 +49,9 @@
           margin-bottom:7px;font-size:16px;font-weight:600;cursor:pointer;
           font-family:inherit;color:var(--texte);text-align:left}
   .profil small{font-weight:400;font-size:12px;color:var(--gris)}
+  .profil.distant{border-color:var(--vert);background:var(--vert-clair);color:var(--vert)}
+  .profil.distant small{color:var(--vert);opacity:.8}
+  .profil .fleche{color:inherit;opacity:.6}
   .profil .suppr{background:none;border:none;color:var(--gris);font-size:17px;
                  cursor:pointer;padding:0 0 0 10px}
 
@@ -274,10 +277,42 @@ function changerEleve() {
   afficherProfils();
 }
 
+/* Le serveur sait qui travaille déjà avec ce code. Sur un appareil neuf, on
+   propose ces élèves : sans ça, un prénom retapé autrement — ou le code
+   collé par erreur dans la case du prénom — crée un élève de plus, vide. */
+async function proposerProfilsDuCode() {
+  if (!codeAcces) return;
+  const zone = $('deja-inscrits');
+  try {
+    const r = await fetch(API + '/api/profils?' + parametres());
+    if (!r.ok) return;
+    const { profils } = await r.json();
+    const connusIci = lireProfils().map(p => identifiantDe(p.nom));
+    const ailleurs = profils.filter(p => !connusIci.includes(identifiantDe(p.nom)));
+    if (!ailleurs.length) return;
+
+    zone.insertAdjacentHTML('afterbegin',
+      '<div class="titre">Avec ce code, sur un autre appareil :</div>' +
+      ailleurs.map(p => `<div class="profil distant" data-nom="${echapper(p.nom)}"
+                              data-niveau="${p.niveau}">
+          <span>${echapper(p.nom)} <small>${p.questions} question(s) déjà posée(s)</small></span>
+          <span class="fleche">›</span>
+        </div>`).join(''));
+
+    zone.querySelectorAll('.profil.distant').forEach(el =>
+      el.addEventListener('click', () => {
+        eleve = el.dataset.nom;
+        niveau = el.dataset.niveau === 'bac' ? 'bac' : 'bepc';
+        enregistrerProfil(eleve, niveau);
+        ouvrirChat();
+      }));
+  } catch (e) { /* hors ligne : l'élève saisit son prénom comme avant */ }
+}
+
 function afficherProfils() {
   const profils = lireProfils();
   const zone = $('deja-inscrits');
-  if (!profils.length) { zone.innerHTML = ''; return; }
+  if (!profils.length) { zone.innerHTML = ''; proposerProfilsDuCode(); return; }
   zone.innerHTML = '<div class="titre">Déjà sur ce téléphone :</div>' +
     profils.map(p => `<div class="profil" data-nom="${p.nom.replace(/"/g, '&quot;')}">
         <span>${p.nom} <small>${p.niveau === 'bac' ? 'Terminale' : '10ᵉ année'}</small></span>
@@ -301,6 +336,7 @@ function afficherProfils() {
       }
     });
   });
+  proposerProfilsDuCode();
 }
 
 /* --- Mémoire de la conversation ---------------------------------------
@@ -458,6 +494,14 @@ function demarrer() {
     localStorage.setItem('code_acces', codeAcces);
   }
   eleve = $('prenom').value.trim();
+  // Erreur fréquente sur un deuxième appareil : recopier le code d'accès
+  // dans la case du prénom. Ça fabrique un élève sans aucun historique.
+  if (codeAcces && identifiantDe(eleve) === identifiantDe(codeAcces)) {
+    alert("Ça, c'est ton code d'accès.\n\n" +
+          "Écris ici ton prénom — le même que sur ton téléphone.");
+    $('prenom').value = ''; $('commencer').disabled = true; $('prenom').focus();
+    return;
+  }
   enregistrerProfil(eleve, niveau);
   ouvrirChat();
 }
