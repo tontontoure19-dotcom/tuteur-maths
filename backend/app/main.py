@@ -167,6 +167,16 @@ CLE_PRESENTE = _cle.startswith("sk-ant-")
 CODES_ACCES = {c.strip() for c in (os.getenv("CODE_ACCES") or "").split(",") if c.strip()}
 
 
+# Un abonnement = un élève, ou deux quand des frères et sœurs partagent un
+# téléphone. Au-delà, le code circule : on refuse le troisième prénom.
+MAX_ELEVES_PAR_CODE = int(os.getenv("MAX_ELEVES_PAR_CODE", "2"))
+
+# Plafond de questions par jour et par abonnement. C'est la vraie protection
+# du budget : un code enregistré dans un appareil prêté ne peut pas être
+# utilisé sans fin, même si l'application, elle, ne redemande rien.
+MAX_QUESTIONS_PAR_JOUR = int(os.getenv("MAX_QUESTIONS_PAR_JOUR", "40"))
+
+
 def _verifier_code(code: str | None) -> str | None:
     """Refuse les inconnus quand des codes sont configurés."""
     if not CODES_ACCES:
@@ -184,6 +194,48 @@ if not CLE_PRESENTE:
         "  Ouvrez le fichier backend/.env et collez votre clé (elle commence par sk-ant-).\n"
         "  L'interface fonctionnera, mais le tuteur ne pourra pas répondre.\n"
     )
+
+
+def _fichiers_du_code(code: str) -> list[Path]:
+    """Journaux des élèves rattachés à cet abonnement."""
+    empreinte = hashlib.sha256(code.encode("utf-8")).hexdigest()[:10]
+    return list(DOSSIER_SESSIONS.glob(f"{empreinte}_*.jsonl"))
+
+
+def _verifier_quota(eleve: str, code: str | None) -> None:
+    """Ce qu'un abonnement a le droit de consommer.
+
+    L'application garde le code enregistré dans l'appareil, comme WhatsApp :
+    redemander le code chaque jour ferait fuir les élèves. La contrepartie,
+    c'est que le budget doit être protégé ici, côté serveur.
+    """
+    if not code:
+        return
+    fichiers = _fichiers_du_code(code)
+
+    connus = {f.stem for f in fichiers}
+    if _identifiant(eleve, code) not in connus and len(connus) >= MAX_ELEVES_PAR_CODE:
+        raise HTTPException(
+            status_code=409,
+            detail=f"Ce code est déjà utilisé par {len(connus)} élèves "
+                   f"({', '.join(sorted(n.split('_', 1)[-1].title() for n in connus))}). "
+                   "Chaque élève a besoin de son propre code.",
+        )
+
+    aujourdhui = datetime.now(timezone.utc).date().isoformat()
+    posees = sum(
+        1
+        for f in fichiers
+        for e in _journal(f)
+        if e["role"] == "eleve" and e["horodatage"].startswith(aujourdhui)
+    )
+    if posees >= MAX_QUESTIONS_PAR_JOUR:
+        raise HTTPException(
+            status_code=429,
+            detail=f"Tu as posé {posees} questions aujourd'hui, c'est la limite "
+                   "journalière. Reprends demain — et relis ce qu'on a déjà fait "
+                   "en attendant.",
+        )
 
 
 class Message(BaseModel):
@@ -275,6 +327,7 @@ def chat(demande: DemandeChat):
     code_utilise = _verifier_code(demande.code)
     if not demande.messages:
         raise HTTPException(status_code=400, detail="Aucun message.")
+    _verifier_quota(demande.eleve, code_utilise)
 
     messages = [
         {

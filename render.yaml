@@ -38,6 +38,13 @@ services:
       - key: CODE_ACCES
         sync: false
 
+      # Limites d'un abonnement. L'application garde le code enregistré dans
+      # l'appareil : c'est ici que le budget est réellement protégé.
+      - key: MAX_ELEVES_PAR_CODE
+        value: "2"
+      - key: MAX_QUESTIONS_PAR_JOUR
+        value: "40"
+
       # Taux de change utilisé pour afficher les coûts en francs guinéens.
       - key: GNF_PAR_DOLLAR
         value: "8700"

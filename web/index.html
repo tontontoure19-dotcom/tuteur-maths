@@ -765,6 +765,12 @@ async function envoyer() {
         throw new Error("Ce code n'est pas reconnu. Vérifie-le auprès de la personne qui te l'a donné.");
       }
     }
+    /* Limites de l'abonnement (trop d'élèves sur un code, plafond du jour) :
+       le serveur explique lui-même la raison, on la montre telle quelle. */
+    if (r.status === 409 || r.status === 429) {
+      const { detail } = await r.json().catch(() => ({}));
+      throw new Error(detail || "Cet abonnement a atteint sa limite.");
+    }
     if (!r.ok) throw new Error('serveur');
 
     const lecteur = r.body.getReader(), dec = new TextDecoder();

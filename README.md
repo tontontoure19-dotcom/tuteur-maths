@@ -222,6 +222,18 @@ Pour un autre nombre : `CODES.bat BEPC BEPC BAC` fabrique 3 codes.
 **Les activer** — copiez la dernière ligne du fichier (tous les codes séparés
 par des virgules) dans Render → *Environment* → `CODE_ACCES`.
 
+**Ce qu'un code peut consommer** — l'application garde le code enregistré
+dans l'appareil, comme WhatsApp : on ne le redemande pas à chaque ouverture,
+sinon les élèves abandonnent. Le budget est donc protégé côté serveur :
+
+| Limite | Défaut | Variable Render |
+|---|---|---|
+| Élèves par code | 2 (frères et sœurs) | `MAX_ELEVES_PAR_CODE` |
+| Questions par jour et par code | 40 | `MAX_QUESTIONS_PAR_JOUR` |
+
+Le 3ᵉ prénom sur un code est refusé, en nommant les deux élèves déjà en
+place. Au-delà du plafond du jour, le tuteur invite à revenir demain.
+
 **Surveiller** — https://tuteur-maths.onrender.com/api/codes?code=VOTRE_CODE
 montre, pour chaque code, les prénoms qui l'ont utilisé. Un code avec
 plusieurs prénoms (`"partage": true`) a été transmis à d'autres : retirez-le
