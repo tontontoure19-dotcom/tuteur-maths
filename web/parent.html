@@ -58,6 +58,8 @@
               margin-bottom:8px;font-size:16px;font-weight:600;color:var(--vert);
               cursor:pointer;font-family:inherit;text-align:left}
   .lien-eleve span{font-weight:400;font-size:13px;color:var(--gris)}
+  .retour{background:none;border:none;color:var(--vert);font-size:14.5px;font-weight:600;
+          cursor:pointer;font-family:inherit;padding:2px 0 12px;display:block}
   .info{text-align:center;color:var(--gris);padding:34px 18px;font-size:15px}
   .erreur{background:#FDECEC;color:#9B2C2C;border-radius:12px;padding:14px;font-size:14.5px}
   .pied{text-align:center;color:var(--gris);font-size:12.5px;padding:8px 0 26px}
@@ -188,6 +190,8 @@ function afficher(d) {
     `<ul class="${cls}">${(items || []).map(x => `<li>${echapper(x)}</li>`).join('')}</ul>`;
 
   $('zone').innerHTML = `
+    <button class="retour" id="retour">‹ Tous les élèves</button>
+
     <div class="chiffres">
       <div class="chiffre"><b>${a.questions ?? 0}</b><span>questions posées</span></div>
       <div class="chiffre"><b>${(d.chapitres || []).length}</b><span>chapitres travaillés</span></div>
@@ -215,6 +219,11 @@ function afficher(d) {
     <div class="carte"><h2>Conseils pour cette semaine</h2>${liste(d.recommandations, 'conseils')}</div>
 
     <div class="pied">Bilan établi à partir de ${a.echanges ?? 0} échanges avec le tuteur.</div>`;
+
+  $('retour').addEventListener('click', () => {
+    $('nom').value = '';
+    proposerEleves();
+  });
 }
 </script>
 </body>
