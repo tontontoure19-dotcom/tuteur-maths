@@ -31,6 +31,8 @@
   .btn{background:var(--vert);color:#fff;border:none;border-radius:14px;padding:15px 28px;
        font-size:17px;font-weight:600;cursor:pointer;width:100%;max-width:300px}
   .btn:disabled{opacity:.5}
+  .lien{background:none;border:none;color:var(--gris);font-size:13.5px;
+        text-decoration:underline;cursor:pointer;font-family:inherit;padding:2px}
 
   /* Choix du niveau : BEPC ou BAC */
   .niveaux{display:flex;gap:8px;width:100%;max-width:300px}
@@ -147,6 +149,7 @@
     <button class="niveau" data-niveau="bac">Terminale<span>BAC</span></button>
   </div>
   <button class="btn" id="commencer" disabled>Commencer</button>
+  <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -224,12 +227,23 @@ if (window.visualViewport) {
 /* Le code d'accès protège la clé API : sans lui, n'importe quel visiteur
    du site pourrait poser des questions aux frais du propriétaire. */
 fetch('/api/config').then(r => r.json()).then(c => {
-  if (c.code_requis && !codeAcces) {
+  if (!c.code_requis) return;
+  if (!codeAcces) {
     $('code').classList.remove('cache');
     $('code').addEventListener('input', majDemarrage);
     majDemarrage();
+  } else {
+    // Ordinateur partagé : le code enregistré est peut-être celui d'un autre.
+    $('changer-code').classList.remove('cache');
   }
 }).catch(() => {});
+
+$('changer-code').addEventListener('click', () => {
+  if (!confirm("Saisir un autre code d'accès ?\n\n" +
+               "Les élèves déjà enregistrés sur cet appareil resteront disponibles.")) return;
+  localStorage.removeItem('code_acces');
+  location.reload();
+});
 
 function majDemarrage() {
   const codeOk = $('code').classList.contains('cache') || $('code').value.trim().length >= 4;
