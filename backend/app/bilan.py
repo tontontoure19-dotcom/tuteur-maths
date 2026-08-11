@@ -111,6 +111,8 @@ Voici les conversations :
 def _transcription(fichier: Path) -> tuple[str, int]:
     """Transforme le journal des échanges en texte lisible pour l'analyse."""
     lignes = [json.loads(l) for l in fichier.read_text(encoding="utf-8").splitlines() if l]
+    # Les marqueurs de nouvelle séance ne sont pas des échanges.
+    lignes = [l for l in lignes if l["role"] != "separateur"]
     recents = lignes[-MAX_ECHANGES_ANALYSES:]
     texte = "\n".join(
         f"{'ÉLÈVE' if l['role'] == 'eleve' else 'TUTEUR'} : {l['texte']}"

@@ -3,8 +3,10 @@
 Le navigateur de l'élève parle à cette API, qui parle à Claude.
 La clé API reste ici, côté serveur : elle n'est jamais exposée à l'élève.
 """
+import hashlib
 import json
 import os
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -36,10 +38,56 @@ DOSSIER_SESSIONS.mkdir(parents=True, exist_ok=True)
 DOSSIER_BILANS.mkdir(parents=True, exist_ok=True)
 
 
-def _identifiant(eleve: str) -> str:
-    """Nom de fichier sûr à partir d'un prénom saisi librement."""
+def _nom_normalise(eleve: str) -> str:
+    """« Touré », « toure », « TOURÉ » doivent désigner le même élève.
+
+    Sans cette normalisation, un accent oublié en tapant son prénom fait
+    repartir l'élève de zéro, avec un historique vide.
+    """
+    sans_accent = unicodedata.normalize("NFD", eleve.lower().strip())
+    sans_accent = "".join(c for c in sans_accent if unicodedata.category(c) != "Mn")
+    propre = "".join(c for c in sans_accent if c.isalnum() or c in " -_")
+    return propre.replace(" ", "_")[:40] or "eleve"
+
+
+def _identifiant(eleve: str, code: str | None = None) -> str:
+    """Identifie un élève par son abonnement (le code) ET son prénom.
+
+    C'est ce qui permet à l'élève de retrouver son travail sur n'importe
+    quel appareil — téléphone puis ordinateur — tout en gardant des
+    historiques séparés quand deux personnes se partagent un téléphone.
+    Le code n'apparaît jamais en clair : seule son empreinte est utilisée.
+    """
+    nom = _nom_normalise(eleve)
+    if not code:
+        return nom
+    empreinte = hashlib.sha256(code.encode("utf-8")).hexdigest()[:10]
+    return f"{empreinte}_{nom}"
+
+
+def _identifiant_ancien(eleve: str) -> str:
+    """Ancien nommage, avant que l'historique suive l'abonnement."""
     propre = "".join(c for c in eleve.lower().strip() if c.isalnum() or c in " -_")
     return propre.replace(" ", "_")[:40] or "eleve"
+
+
+def _fichier_session(eleve: str, code: str | None = None) -> Path:
+    """Journal de l'élève, en récupérant au passage ses anciennes données."""
+    fichier = DOSSIER_SESSIONS / f"{_identifiant(eleve, code)}.jsonl"
+    if fichier.exists():
+        return fichier
+
+    # Conversations enregistrées avant ce changement : on les rattache à
+    # l'abonnement plutôt que de les perdre.
+    for ancien_nom in (_identifiant_ancien(eleve), _nom_normalise(eleve)):
+        ancien = DOSSIER_SESSIONS / f"{ancien_nom}.jsonl"
+        if ancien.exists() and ancien != fichier:
+            ancien.rename(fichier)
+            ancien_bilan = DOSSIER_BILANS / f"{ancien_nom}.json"
+            if ancien_bilan.exists():
+                ancien_bilan.rename(DOSSIER_BILANS / f"{_identifiant(eleve, code)}.json")
+            break
+    return fichier
 
 app = FastAPI(title="Tuteur BEPC — Maths", version="0.1.0")
 
@@ -136,12 +184,15 @@ def _enregistrer(eleve: str, role: str, texte: str, avec_photo: bool = False,
                  cout_gnf: float | None = None, niveau: str | None = None,
                  code: str | None = None) -> None:
     """Journalise un échange — matière première du rapport au parent."""
-    fichier = DOSSIER_SESSIONS / f"{_identifiant(eleve)}.jsonl"
+    fichier = _fichier_session(eleve, code)
     ligne = {
         "horodatage": datetime.now(timezone.utc).isoformat(),
         "role": role,
         "texte": texte,
         "photo": avec_photo,
+        # Prénom tel que l'élève l'a écrit : le nom du fichier est normalisé,
+        # mais la page parent doit afficher l'orthographe d'origine.
+        "eleve": eleve,
     }
     if cout_gnf is not None:
         ligne["cout_gnf"] = round(cout_gnf, 2)
@@ -208,20 +259,71 @@ def chat(demande: DemandeChat):
             yield f"data: {json.dumps({'erreur': f'Erreur technique : {erreur}'}, ensure_ascii=False)}\n\n"
             return
 
-        _enregistrer(demande.eleve, "tuteur", "".join(morceaux), cout_gnf=cout)
+        _enregistrer(demande.eleve, "tuteur", "".join(morceaux), cout_gnf=cout,
+                     code=code_utilise)
         yield f"data: {json.dumps({'fin': True})}\n\n"
 
     return StreamingResponse(flux(), media_type="text/event-stream")
 
 
+# Au-delà, ce n'est plus la même séance de travail : inutile de tout renvoyer.
+MAX_MESSAGES_REPRIS = 40
+
+
+@app.get("/api/conversation/{eleve}")
+def conversation(eleve: str, code: str | None = None):
+    """Rend à l'élève sa conversation, quel que soit l'appareil.
+
+    L'historique était jusqu'ici enregistré dans le téléphone : passer sur un
+    ordinateur donnait une conversation vide. Le serveur, lui, a tout gardé.
+    """
+    _verifier_code(code)
+    fichier = _fichier_session(eleve, code)
+    if not fichier.exists():
+        return {"messages": []}
+
+    lignes = [json.loads(l) for l in fichier.read_text(encoding="utf-8").splitlines() if l]
+    for i in range(len(lignes) - 1, -1, -1):
+        if lignes[i]["role"] == "separateur":
+            lignes = lignes[i + 1:]
+            break
+    return {"messages": [
+        {
+            "role": "user" if l["role"] == "eleve" else "assistant",
+            "content": l["texte"],
+            "photo": bool(l.get("photo")),
+        }
+        for l in lignes[-MAX_MESSAGES_REPRIS:]
+    ]}
+
+
+class DemandeSeance(BaseModel):
+    eleve: str = Field(..., max_length=60)
+    code: str | None = Field(default=None, max_length=60)
+
+
+@app.post("/api/nouvelle-seance")
+def nouvelle_seance(demande: DemandeSeance):
+    """L'élève repart sur un autre exercice : on marque la coupure.
+
+    Le marqueur vit sur le serveur, pas dans le téléphone : la nouvelle
+    séance commence donc aussi sur les autres appareils de l'élève.
+    """
+    code_utilise = _verifier_code(demande.code)
+    if _fichier_session(demande.eleve, code_utilise).exists():
+        _enregistrer(demande.eleve, "separateur", "", code=code_utilise)
+    return {"ok": True}
+
+
 @app.get("/api/rapport/{eleve}")
-def rapport(eleve: str):
+def rapport(eleve: str, code: str | None = None):
     """Résumé d'activité d'un élève — base du rapport hebdomadaire au parent."""
-    fichier = DOSSIER_SESSIONS / f"{_identifiant(eleve)}.jsonl"
+    fichier = _fichier_session(eleve, code)
     if not fichier.exists():
         return {"eleve": eleve, "echanges": 0, "questions": 0, "photos": 0}
 
     lignes = [json.loads(l) for l in fichier.read_text(encoding="utf-8").splitlines() if l]
+    lignes = [l for l in lignes if l["role"] != "separateur"]
     questions = [l for l in lignes if l["role"] == "eleve"]
     cout_total = sum(l.get("cout_gnf", 0) for l in lignes)
     return {
@@ -251,11 +353,15 @@ def liste_eleves(code: str | None = None):
         lignes = [l for l in fichier.read_text(encoding="utf-8").splitlines() if l]
         if not lignes:
             continue
+        derniere = json.loads(lignes[-1])
+        # Le nom du fichier est normalisé (accents retirés) et préfixé par
+        # l'empreinte de l'abonnement : on affiche le prénom tel qu'écrit.
+        nom = derniere.get("eleve") or fichier.stem.split("_", 1)[-1].replace("_", " ").title()
         eleves.append({
             "identifiant": fichier.stem,
-            "nom": fichier.stem.replace("_", " ").title(),
+            "nom": nom,
             "questions": sum(1 for l in lignes if json.loads(l)["role"] == "eleve"),
-            "derniere_activite": json.loads(lignes[-1])["horodatage"],
+            "derniere_activite": derniere["horodatage"],
         })
     eleves.sort(key=lambda e: e["derniere_activite"], reverse=True)
     return {"eleves": eleves}
@@ -290,17 +396,17 @@ def usage_codes(code: str | None = None):
     _verifier_code(code)
     par_code: dict[str, dict] = {}
     for fichier in DOSSIER_SESSIONS.glob("*.jsonl"):
-        nom = fichier.stem.replace("_", " ").title()
+        nom = fichier.stem.split("_", 1)[-1].replace("_", " ").title()
         for ligne in fichier.read_text(encoding="utf-8").splitlines():
             if not ligne:
                 continue
             entree = json.loads(ligne)
             utilise = entree.get("code")
-            if not utilise:
+            if not utilise or entree["role"] != "eleve":
                 continue
             fiche = par_code.setdefault(utilise, {"code": utilise, "eleves": set(),
                                                   "questions": 0, "derniere_activite": ""})
-            fiche["eleves"].add(nom)
+            fiche["eleves"].add(entree.get("eleve") or nom)
             fiche["questions"] += 1
             fiche["derniere_activite"] = max(fiche["derniere_activite"], entree["horodatage"])
 
@@ -327,11 +433,10 @@ def bilan_eleve(eleve: str, code: str | None = None):
         raise HTTPException(status_code=503,
                             detail="Clé API absente : impossible de générer le bilan.")
 
-    identifiant = _identifiant(eleve)
     try:
         resultat = module_bilan.generer(
-            DOSSIER_SESSIONS / f"{identifiant}.jsonl",
-            DOSSIER_BILANS / f"{identifiant}.json",
+            _fichier_session(eleve, code),
+            DOSSIER_BILANS / f"{_identifiant(eleve, code)}.json",
             client,
             _cout_gnf,
         )
@@ -344,7 +449,7 @@ def bilan_eleve(eleve: str, code: str | None = None):
     # On complète le bilan avec les chiffres bruts d'activité.
     resultat = dict(resultat)
     resultat["eleve"] = eleve
-    resultat["activite"] = rapport(eleve)
+    resultat["activite"] = rapport(eleve, code)
     return resultat
 
 

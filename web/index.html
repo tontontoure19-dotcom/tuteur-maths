@@ -313,7 +313,7 @@ function restaurer() {
   }
 }
 
-function nouvelExercice() {
+async function nouvelExercice() {
   if (occupe) return;
   if (historique.length && !confirm('Effacer cette conversation et repartir sur un nouvel exercice ?')) return;
   historique = [];
@@ -321,6 +321,15 @@ function nouvelExercice() {
   $('fil').innerHTML = '';
   afficher('tuteur', 'On repart à zéro. Quel exercice tu veux travailler ?');
   $('texte').focus();
+  // La coupure est enregistrée sur le serveur, sinon l'ancienne conversation
+  // reviendrait au prochain démarrage — ou sur un autre appareil.
+  try {
+    await fetch(API + '/api/nouvelle-seance', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ eleve, code: codeAcces || null }),
+    });
+  } catch (e) { /* hors ligne : la coupure locale suffit pour l'instant */ }
 }
 
 /* ---------- Démarrage ---------- */
@@ -353,14 +362,41 @@ function ouvrirChat() {
   ['entete', 'fil', 'barre'].forEach(id => $(id).classList.remove('cache'));
   $('salut').textContent = 'Salut ' + eleve + ' 👋 · ' +
     (niveau === 'bac' ? 'Terminale' : '10ᵉ année');
-  // On récupère la conversation en cours ; sinon on accueille l'élève.
-  if (!restaurer()) {
+  // Ce qui est dans le téléphone s'affiche tout de suite, sans attendre le
+  // réseau ; le serveur, lui, a l'historique complet et prend le relais.
+  const local = restaurer();
+  if (!local) {
     afficher('tuteur',
       'Salut ' + eleve + ' ! Sur quoi tu travailles aujourd\'hui ?\n\n' +
       'Tu peux m\'écrire ta question, ou photographier ton exercice avec le bouton 📷.');
   }
   $('fil').scrollTop = $('fil').scrollHeight;
   $('texte').focus();
+  reprendreDuServeur(local);
+}
+
+/* L'élève change d'appareil (téléphone puis ordinateur) : son travail est
+   sur le serveur, pas dans le téléphone. On le récupère au démarrage. */
+async function reprendreDuServeur(dejaAffiche) {
+  const pour = eleve;   // l'élève peut changer pendant la requête
+  try {
+    const r = await fetch(API + '/api/conversation/' + encodeURIComponent(pour) +
+                          (codeAcces ? '?code=' + encodeURIComponent(codeAcces) : ''));
+    if (!r.ok) return;
+    const { messages } = await r.json();
+    if (pour !== eleve || occupe) return;
+    // Rien de plus que ce qui est déjà à l'écran : on ne touche à rien.
+    if (!messages.length || messages.length <= historique.length) return;
+
+    historique = messages.map(m => ({ role: m.role, content: m.content }));
+    $('fil').innerHTML = '';
+    messages.forEach(m => afficher(m.role === 'user' ? 'eleve' : 'tuteur', m.content));
+    if (!dejaAffiche) {
+      afficher('tuteur', 'Je t\'ai retrouvé ton travail. On continue ?');
+    }
+    sauvegarder();
+    $('fil').scrollTop = $('fil').scrollHeight;
+  } catch (e) { /* hors ligne : la conversation du téléphone suffit */ }
 }
 
 // Reprise automatique du dernier élève actif sur ce téléphone.
