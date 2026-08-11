@@ -217,7 +217,13 @@ l'accès à une seule personne, et de voir si un code circule.
 envoyé sur GitHub) et l'ouvre dans le Bloc-notes. Écrivez à côté de chaque
 code le nom de la personne à qui vous l'avez donné.
 
+Les codes sont **ajoutés à la fin** du fichier : relancer `CODES.bat` ne
+détruit jamais ceux déjà distribués, ni vos annotations. Le fichier indique
+alors la liste à **ajouter** à `CODE_ACCES`, sans remplacer l'existante —
+remplacer déconnecterait tous les testeurs en cours.
+
 Pour un autre nombre : `CODES.bat BEPC BEPC BAC` fabrique 3 codes.
+Pour votre code de responsable : `CODES.bat ADMIN`.
 
 **Les activer** — copiez la dernière ligne du fichier (tous les codes séparés
 par des virgules) dans Render → *Environment* → `CODE_ACCES`.
