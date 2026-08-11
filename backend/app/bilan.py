@@ -26,11 +26,19 @@ MAX_ECHANGES_ANALYSES = 200
 # moins fraîche.
 ECHANGES_AVANT_RECALCUL = 20
 
+# À incrémenter dès que la consigne d'analyse change : les bilans enregistrés
+# avec l'ancienne version sont alors refaits, au lieu d'être resservis tels quels.
+VERSION_ANALYSE = 2
+
 
 class Chapitre(BaseModel):
     """Un chapitre du programme travaillé par l'élève."""
     nom: str = Field(description="Nom du chapitre, ex : 'Théorème de Pythagore'")
-    questions: int = Field(description="Nombre de questions posées sur ce chapitre")
+    questions: int = Field(
+        description="Nombre de questions de l'élève portant sur ce chapitre. "
+                    "Le total de tous les chapitres ne doit JAMAIS dépasser le "
+                    "nombre de questions réellement posées, indiqué plus bas."
+    )
     niveau: Literal["acquis", "en cours", "difficulté"] = Field(
         description="acquis = il sait faire seul ; en cours = il y arrive avec de "
                     "l'aide ; difficulté = il bloque encore"
@@ -47,7 +55,12 @@ class Bilan(BaseModel):
     perseverance: Literal["excellente", "bonne", "irrégulière", "faible"] = Field(
         description="L'élève persévère-t-il quand c'est difficile, ou abandonne-t-il vite ?"
     )
-    commentaire_perseverance: str = Field(description="Une phrase justifiant l'évaluation")
+    commentaire_perseverance: str = Field(
+        description="Une phrase justifiant l'évaluation. INTERDIT d'écrire "
+                    "« il » ou « elle » : le genre de l'élève est inconnu. "
+                    "Écris « votre enfant », ou tourne la phrase sans sujet "
+                    "(« a demandé un croquis, puis repris ses calculs »)."
+    )
     chapitres: list[Chapitre] = Field(description="Chapitres travaillés, du plus au moins traité")
     points_forts: list[str] = Field(description="2 à 4 réussites concrètes de l'élève")
     points_a_travailler: list[str] = Field(description="2 à 4 difficultés précises à reprendre")
@@ -87,10 +100,17 @@ tact mais clairement — un parent qui paie a droit à la vérité.
 - Reste encourageant : signale toujours ce qui va bien, même quand le bilan est faible.
 - Vocabulaire scolaire guinéen : 10e année, Terminale. Jamais « 3e » ni « seconde ».
 - Les recommandations doivent être concrètes et faisables en une semaine.
-- **Tu ne connais pas le genre de l'élève.** N'écris jamais « il » ni « elle » : \
-dis « votre enfant », ou tourne la phrase autrement (« Pythagore est acquis », \
-« bonne maîtrise des calculs »). Un parent qui lit le mauvais pronom perd \
-immédiatement confiance dans le bilan.
+- **Tu ne connais pas le genre de l'élève.** N'écris JAMAIS « il », « elle », \
+« lui ». Un parent qui lit le mauvais pronom perd immédiatement confiance dans \
+tout le bilan. Relis chaque phrase avant de la rendre.
+  - INTERDIT : « il a demandé un croquis », « elle n'a pas abandonné »
+  - CORRECT : « votre enfant a demandé un croquis », « a demandé un croquis, \
+puis repris ses calculs », « Pythagore est acquis »
+- **Les nombres doivent s'additionner.** Le nombre de questions que tu donnes \
+pour chaque chapitre doit correspondre à ce que tu lis dans la conversation, et \
+leur somme ne peut pas dépasser le nombre réel de questions posées par l'élève, \
+qui est exactement de [NB_QUESTIONS]. Un parent qui lit « 21 questions » en haut \
+et « 25 questions » sur un seul chapitre ne croit plus le reste.
 
 Deux champs (« resume_eleve » et « prochaine_etape ») ne sont PAS lus par le \
 parent : l'élève les lit lui-même, sur son téléphone. Pour ceux-là :
@@ -108,7 +128,7 @@ Voici les conversations :
 """
 
 
-def _transcription(fichier: Path) -> tuple[str, int]:
+def _transcription(fichier: Path) -> tuple[str, int, int]:
     """Transforme le journal des échanges en texte lisible pour l'analyse."""
     lignes = [json.loads(l) for l in fichier.read_text(encoding="utf-8").splitlines() if l]
     # Les marqueurs de nouvelle séance ne sont pas des échanges.
@@ -119,7 +139,8 @@ def _transcription(fichier: Path) -> tuple[str, int]:
         + (" [photo d'exercice envoyée]" if l.get("photo") else "")
         for l in recents
     )
-    return texte, len(lignes)
+    questions = sum(1 for l in lignes if l["role"] == "eleve")
+    return texte, len(lignes), questions
 
 
 def generer(fichier_session: Path, fichier_cache: Path,
@@ -128,7 +149,7 @@ def generer(fichier_session: Path, fichier_cache: Path,
     if not fichier_session.exists():
         return None
 
-    transcription, nb_echanges = _transcription(fichier_session)
+    transcription, nb_echanges, nb_questions = _transcription(fichier_session)
     if nb_echanges < 4:
         return {"pas_assez_de_donnees": True, "echanges": nb_echanges}
 
@@ -137,9 +158,8 @@ def generer(fichier_session: Path, fichier_cache: Path,
         try:
             cache = json.loads(fichier_cache.read_text(encoding="utf-8"))
             depuis = nb_echanges - cache.get("_echanges", -10_000)
-            # « resume_eleve » : un bilan enregistré avant l'ajout de la page
-            # de progression de l'élève ne le contient pas — on le refait.
-            if 0 <= depuis < ECHANGES_AVANT_RECALCUL and "resume_eleve" in cache:
+            if (0 <= depuis < ECHANGES_AVANT_RECALCUL
+                    and cache.get("_version") == VERSION_ANALYSE):
                 return cache
         except (json.JSONDecodeError, OSError):
             pass
@@ -147,7 +167,8 @@ def generer(fichier_session: Path, fichier_cache: Path,
     reponse = client.messages.parse(
         model=MODELE_ANALYSE,
         max_tokens=4000,
-        messages=[{"role": "user", "content": CONSIGNE + transcription}],
+        messages=[{"role": "user", "content":
+                   CONSIGNE.replace("[NB_QUESTIONS]", str(nb_questions)) + transcription}],
         output_format=Bilan,
     )
     bilan = reponse.parsed_output
@@ -156,6 +177,7 @@ def generer(fichier_session: Path, fichier_cache: Path,
 
     resultat = bilan.model_dump()
     resultat["_echanges"] = nb_echanges
+    resultat["_version"] = VERSION_ANALYSE
     resultat["_cout_gnf"] = round(cout_gnf(reponse.usage), 2)
     fichier_cache.write_text(
         json.dumps(resultat, ensure_ascii=False, indent=1), encoding="utf-8"
