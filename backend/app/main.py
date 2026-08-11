@@ -261,6 +261,26 @@ def liste_eleves(code: str | None = None):
     return {"eleves": eleves}
 
 
+@app.get("/api/progres/{eleve}")
+def progres_eleve(eleve: str, code: str | None = None):
+    """Ce que l'élève voit de sa propre progression.
+
+    Beaucoup de ces élèves n'ont personne qui suit leur travail : voir leurs
+    chapitres passer au vert est leur seule raison de revenir demain. On ne
+    leur montre donc pas le bilan du parent, mais une version qui leur parle.
+    """
+    complet = bilan_eleve(eleve, code)
+    if complet.get("pas_assez_de_donnees"):
+        return complet
+    return {
+        "eleve": eleve,
+        "resume": complet.get("resume_eleve", ""),
+        "prochaine_etape": complet.get("prochaine_etape", ""),
+        "chapitres": complet.get("chapitres", []),
+        "activite": complet.get("activite", {}),
+    }
+
+
 @app.get("/api/codes")
 def usage_codes(code: str | None = None):
     """Qui utilise quel code — sert à repérer un code qui a été partagé.

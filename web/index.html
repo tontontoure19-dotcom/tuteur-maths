@@ -90,6 +90,30 @@
   #apercu img{height:64px;border-radius:10px;border:2px solid var(--vert)}
   #apercu button{position:absolute;top:-4px;left:64px;background:#17211D;color:#fff;border:none;
                  border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:13px}
+  /* ---- Ma progression ---- */
+  #progres{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+  #progres .bloc{background:#fff;border:1px solid #E8E4DE;border-radius:16px;padding:16px}
+  #progres .bloc h2{font-size:13px;text-transform:uppercase;letter-spacing:.5px;
+                    color:var(--gris);margin-bottom:9px}
+  #progres .resume{font-size:16.5px;line-height:1.5}
+  #progres .compteurs{display:flex;gap:10px}
+  #progres .compteur{flex:1;background:#fff;border:1px solid #E8E4DE;border-radius:14px;
+                     padding:13px 8px;text-align:center}
+  #progres .compteur b{display:block;font-size:23px;color:var(--vert)}
+  #progres .compteur span{font-size:11.5px;color:var(--gris)}
+  #progres .chap{display:flex;align-items:flex-start;gap:11px;padding:10px 0;
+                 border-bottom:1px solid #EFEBE5}
+  #progres .chap:last-child{border-bottom:none}
+  #progres .pastille{width:11px;height:11px;border-radius:50%;flex-shrink:0;margin-top:6px}
+  #progres .acquis{background:var(--vert)}
+  #progres .encours{background:#D68910}
+  #progres .difficulte{background:#C0392B}
+  #progres .chap-nom{font-weight:600}
+  #progres .chap-info{font-size:13.5px;color:var(--gris)}
+  #progres .etape{background:var(--vert-clair);border:1px solid var(--vert);
+                  border-radius:16px;padding:16px;font-size:16px;line-height:1.5;color:var(--vert)}
+  #progres .patience{text-align:center;color:var(--gris);padding:30px 12px;font-size:15px}
+  #progres .btn{margin-top:auto;max-width:none}
   .cache{display:none !important}
 </style>
 </head>
@@ -112,11 +136,18 @@
 <header class="cache" id="entete">
   <div style="font-size:22px">📐</div>
   <div style="flex:1"><div class="t">Tuteur Maths</div><div class="s" id="salut"></div></div>
+  <button id="progres-btn" title="Ma progression">📈</button>
   <button id="changer" title="Changer d'élève">👤</button>
   <button id="nouveau" title="Nouvel exercice">＋</button>
 </header>
 
 <div id="fil" class="cache"></div>
+
+<!-- Ce que l'élève voit de son propre travail : sa raison de revenir. -->
+<div id="progres" class="cache">
+  <div id="progres-contenu"></div>
+  <button class="btn" id="fermer-progres">Retour à mon exercice</button>
+</div>
 
 <div id="apercu" class="cache"><img id="apercu-img"><button id="retirer">✕</button></div>
 
@@ -202,7 +233,7 @@ function changerEleve() {
   $('fil').innerHTML = '';
   $('prenom').value = '';
   $('commencer').disabled = true;
-  ['entete', 'fil', 'barre', 'apercu'].forEach(id => $(id).classList.add('cache'));
+  ['entete', 'fil', 'barre', 'apercu', 'progres'].forEach(id => $(id).classList.add('cache'));
   $('accueil').classList.remove('cache');
   afficherProfils();
 }
@@ -318,6 +349,7 @@ document.querySelectorAll('.niveau').forEach(b => b.addEventListener('click', ()
 
 function ouvrirChat() {
   $('accueil').classList.add('cache');
+  $('progres').classList.add('cache');
   ['entete', 'fil', 'barre'].forEach(id => $(id).classList.remove('cache'));
   $('salut').textContent = 'Salut ' + eleve + ' 👋 · ' +
     (niveau === 'bac' ? 'Terminale' : '10ᵉ année');
@@ -382,6 +414,76 @@ zone.addEventListener('keydown', e => {
 $('envoyer').addEventListener('click', envoyer);
 $('nouveau').addEventListener('click', nouvelExercice);
 $('changer').addEventListener('click', changerEleve);
+
+/* ---------- Ma progression ----------------------------------------------
+   L'élève ne voit pas le bilan destiné au parent : il voit ses chapitres,
+   ce qu'il a réussi, et la seule chose à travailler ensuite. Pour l'élève
+   qui se paie seul sa formation, c'est son unique retour sur son travail. */
+
+$('progres-btn').addEventListener('click', ouvrirProgres);
+$('fermer-progres').addEventListener('click', fermerProgres);
+
+const echapper = t =>
+  String(t ?? '').replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+function fermerProgres() {
+  $('progres').classList.add('cache');
+  ['fil', 'barre'].forEach(id => $(id).classList.remove('cache'));
+}
+
+async function ouvrirProgres() {
+  if (occupe) return;
+  ['fil', 'barre', 'apercu'].forEach(id => $(id).classList.add('cache'));
+  $('progres').classList.remove('cache');
+  $('progres-contenu').innerHTML =
+    '<div class="patience">Je regarde ton travail…<br>Quelques secondes.</div>';
+
+  try {
+    const r = await fetch(API + '/api/progres/' + encodeURIComponent(eleve) +
+                          (codeAcces ? '?code=' + encodeURIComponent(codeAcces) : ''));
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'erreur');
+    if (d.pas_assez_de_donnees) {
+      $('progres-contenu').innerHTML =
+        '<div class="patience">Tu viens juste de commencer.<br><br>' +
+        'Fais quelques exercices : tu verras ici les chapitres que tu maîtrises ' +
+        'passer au vert.</div>';
+      return;
+    }
+    afficherProgres(d);
+  } catch (e) {
+    $('progres-contenu').innerHTML =
+      '<div class="patience">Je n\'arrive pas à charger ta progression maintenant.' +
+      '<br>Réessaie dans un moment.</div>';
+  }
+}
+
+function afficherProgres(d) {
+  const a = d.activite || {};
+  const liste = d.chapitres || [];
+  const acquis = liste.filter(c => c.niveau === 'acquis').length;
+
+  const chapitres = liste.map(c => {
+    const cls = c.niveau === 'acquis' ? 'acquis'
+              : c.niveau === 'en cours' ? 'encours' : 'difficulte';
+    return `<div class="chap"><div class="pastille ${cls}"></div><div>
+        <div class="chap-nom">${echapper(c.nom)}</div>
+        <div class="chap-info">${echapper(c.niveau)} — ${echapper(c.commentaire)}</div>
+      </div></div>`;
+  }).join('');
+
+  $('progres-contenu').innerHTML = `
+    <div class="compteurs">
+      <div class="compteur"><b>${a.questions ?? 0}</b><span>questions posées</span></div>
+      <div class="compteur"><b>${liste.length}</b><span>chapitres travaillés</span></div>
+      <div class="compteur"><b>${acquis}</b><span>chapitres acquis</span></div>
+    </div>
+    <div class="bloc"><h2>Où tu en es</h2>
+      <p class="resume">${echapper(d.resume)}</p></div>
+    <div class="bloc"><h2>Tes chapitres</h2>
+      ${chapitres || '<p style="color:var(--gris)">Aucun chapitre identifié pour l\'instant.</p>'}</div>
+    <div class="etape"><b>Ta prochaine étape</b><br>${echapper(d.prochaine_etape)}</div>`;
+}
 
 function majEnvoyer() {
   $('envoyer').disabled = occupe || (!zone.value.trim() && !photo);

@@ -158,8 +158,28 @@ Il y trouve, généré automatiquement à partir des conversations :
 - **À retravailler** — difficultés précises
 - **Conseils pour cette semaine** — actions faisables en 7 jours
 
-Le bilan n'est recalculé que si l'élève a travaillé depuis la dernière fois :
-un parent qui rafraîchit sa page ne coûte rien.
+Le bilan n'est recalculé qu'après **20 nouveaux échanges** de l'élève. Entre
+deux recalculs on ressert le précédent : la page reste consultable autant qu'on
+veut sans rien coûter, au prix d'un bilan parfois un peu moins frais.
+
+---
+
+## Ma progression (écran élève)
+
+Bouton 📈 dans l'en-tête de l'application. L'élève y voit **son propre travail** :
+
+- **Trois compteurs** — questions posées, chapitres travaillés, chapitres acquis
+- **Où tu en es** — 2-3 phrases qui le tutoient et nomment un progrès précis
+  (« au début tu ne savais pas quel théorème utiliser, à la fin tu expliquais
+  toi-même pourquoi Pythagore marchait ici »)
+- **Tes chapitres** — les mêmes pastilles vert / orange / rouge que le parent
+- **Ta prochaine étape** — une seule chose concrète à travailler ensuite
+
+C'est ce qui donne envie de revenir le lendemain. Il compte double pour l'élève
+qui se finance seul sa formation : personne d'autre ne regarde son travail.
+
+Ces deux textes sont produits **dans le même appel** que le bilan du parent :
+voir sa progression ne coûte donc rien de plus.
 
 ### Coûts mesurés en réel
 
@@ -167,7 +187,7 @@ un parent qui rafraîchit sa page ne coûte rien.
 |---|---|
 | Une question posée au tuteur | ~50-75 GNF |
 | Une séance complète (7 questions) | ~340 GNF |
-| Un bilan parent | ~445 GNF |
+| Un bilan (parent + progression élève) | ~500 GNF, au plus tous les 20 échanges |
 | **Un élève actif sur un mois** | **~5 000 à 15 000 GNF** |
 
 À comparer aux 75 000 GNF/mois d'abonnement visés.

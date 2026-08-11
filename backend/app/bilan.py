@@ -19,6 +19,13 @@ MODELE_ANALYSE = "claude-opus-5"
 # Nombre d'échanges au-delà duquel on ne remonte plus (les plus récents comptent).
 MAX_ECHANGES_ANALYSES = 200
 
+# Une analyse coûte environ 500 GNF. Sans ce seuil, un élève qui ouvre sa
+# progression après chaque question la ferait recalculer à chaque fois et
+# mangerait la marge de l'abonnement. Entre deux recalculs, on ressert le
+# bilan précédent : la progression reste visible, elle est juste un peu
+# moins fraîche.
+ECHANGES_AVANT_RECALCUL = 20
+
 
 class Chapitre(BaseModel):
     """Un chapitre du programme travaillé par l'élève."""
@@ -49,6 +56,22 @@ class Bilan(BaseModel):
                     "pour l'élève et compréhensibles par le parent"
     )
 
+    # --- Ce que l'élève lit lui-même -------------------------------------
+    # Produit dans le même appel que le reste : voir l'élève progresser ne
+    # coûte donc rien de plus. C'est ce qui lui donne envie de revenir,
+    # surtout quand aucun parent ne suit son travail.
+    resume_eleve: str = Field(
+        description="2 à 3 phrases adressées DIRECTEMENT à l'élève, en le "
+                    "tutoyant. Ce qu'il a réussi depuis le début, en nommant "
+                    "un progrès précis. Honnête mais jamais décourageant."
+    )
+    prochaine_etape: str = Field(
+        description="UNE seule chose concrète à travailler ensuite, adressée à "
+                    "l'élève en le tutoyant, faisable en une séance. "
+                    "Ex : « Reprends les équations à deux inconnues : tu poses "
+                    "bien le système, c'est la résolution qui coince encore. »"
+    )
+
 
 CONSIGNE = """Tu analyses les conversations entre un élève guinéen de 10e année \
 (qui prépare le BEPC) et son tuteur de mathématiques.
@@ -68,6 +91,17 @@ tact mais clairement — un parent qui paie a droit à la vérité.
 dis « votre enfant », ou tourne la phrase autrement (« Pythagore est acquis », \
 « bonne maîtrise des calculs »). Un parent qui lit le mauvais pronom perd \
 immédiatement confiance dans le bilan.
+
+Deux champs (« resume_eleve » et « prochaine_etape ») ne sont PAS lus par le \
+parent : l'élève les lit lui-même, sur son téléphone. Pour ceux-là :
+- Tutoie-le, parle-lui directement.
+- Nomme un progrès précis qu'il a réellement fait — pas « tu progresses bien », \
+mais « au début tu ne voyais pas quand utiliser Pythagore, maintenant tu le \
+repères seul ». C'est ce qui donne envie de continuer.
+- Si son travail est faible, reste honnête sans l'accabler : montre-lui la \
+plus petite marche qu'il peut franchir tout de suite.
+- Beaucoup de ces élèves n'ont personne derrière eux pour les encourager. \
+Ce texte est parfois le seul retour qu'ils reçoivent sur leur travail.
 
 Voici les conversations :
 
@@ -100,7 +134,10 @@ def generer(fichier_session: Path, fichier_cache: Path,
     if fichier_cache.exists():
         try:
             cache = json.loads(fichier_cache.read_text(encoding="utf-8"))
-            if cache.get("_echanges") == nb_echanges:
+            depuis = nb_echanges - cache.get("_echanges", -10_000)
+            # « resume_eleve » : un bilan enregistré avant l'ajout de la page
+            # de progression de l'élève ne le contient pas — on le refait.
+            if 0 <= depuis < ECHANGES_AVANT_RECALCUL and "resume_eleve" in cache:
                 return cache
         except (json.JSONDecodeError, OSError):
             pass
