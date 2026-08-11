@@ -223,7 +223,7 @@ alors la liste à **ajouter** à `CODE_ACCES`, sans remplacer l'existante —
 remplacer déconnecterait tous les testeurs en cours.
 
 Pour un autre nombre : `CODES.bat BEPC BEPC BAC` fabrique 3 codes.
-Pour votre code de responsable : `CODES.bat ADMIN`.
+Pour votre code de responsable : double-cliquez sur **`CODE-ADMIN.bat`**.
 
 **Les activer** — copiez la dernière ligne du fichier (tous les codes séparés
 par des virgules) dans Render → *Environment* → `CODE_ACCES`.
