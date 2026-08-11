@@ -31,6 +31,8 @@
   .btn{background:var(--vert);color:#fff;border:none;border-radius:14px;padding:15px 28px;
        font-size:17px;font-weight:600;cursor:pointer;width:100%;max-width:300px}
   .btn:disabled{opacity:.5}
+  #accueil-erreur{background:#FDECEC;color:#9B2C2C;border-radius:12px;padding:13px 15px;
+                  font-size:14.5px;line-height:1.45;max-width:300px;text-align:left}
   .lien{background:none;border:none;color:var(--gris);font-size:13.5px;
         text-decoration:underline;cursor:pointer;font-family:inherit;padding:2px}
 
@@ -150,6 +152,7 @@
   </div>
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
+  <div id="accueil-erreur" class="cache"></div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -315,10 +318,9 @@ async function proposerProfilsDuCode() {
 
     zone.querySelectorAll('.profil.distant').forEach(el =>
       el.addEventListener('click', () => {
-        eleve = el.dataset.nom;
+        $('prenom').value = el.dataset.nom;
         niveau = el.dataset.niveau === 'bac' ? 'bac' : 'bepc';
-        enregistrerProfil(eleve, niveau);
-        ouvrirChat();
+        demarrer();
       }));
   } catch (e) { /* hors ligne : l'élève saisit son prénom comme avant */ }
 }
@@ -338,9 +340,8 @@ function afficherProfils() {
     el.addEventListener('click', ev => {
       if (ev.target.classList.contains('suppr')) return;
       const p = lireProfils().find(x => x.nom === nom);
-      eleve = p.nom; niveau = p.niveau || 'bepc';
-      enregistrerProfil(eleve, niveau);
-      ouvrirChat();
+      $('prenom').value = p.nom; niveau = p.niveau || 'bepc';
+      demarrer();
     });
     el.querySelector('.suppr').addEventListener('click', ev => {
       ev.stopPropagation();
@@ -502,7 +503,7 @@ $('prenom').addEventListener('keydown', e => {
 });
 $('commencer').addEventListener('click', demarrer);
 
-function demarrer() {
+async function demarrer() {
   if (!$('code').classList.contains('cache')) {
     codeAcces = $('code').value.trim();
     localStorage.setItem('code_acces', codeAcces);
@@ -516,6 +517,34 @@ function demarrer() {
     $('prenom').value = ''; $('commencer').disabled = true; $('prenom').focus();
     return;
   }
+
+  // Le serveur décide qui a le droit d'entrer : un abonnement ne porte qu'un
+  // nombre limité d'élèves. On refuse ici plutôt qu'à la première question.
+  $('accueil-erreur').classList.add('cache');
+  $('commencer').disabled = true;
+  $('commencer').textContent = 'Un instant…';
+  try {
+    const r = await fetch(API + '/api/verifier-eleve?' + parametres({ eleve }));
+    if (r.status === 409 || r.status === 429) {
+      const { detail } = await r.json().catch(() => ({}));
+      $('accueil-erreur').textContent = detail || 'Cet abonnement a atteint sa limite.';
+      $('accueil-erreur').classList.remove('cache');
+      return;
+    }
+    if (r.status === 403) {
+      $('accueil-erreur').textContent = "Ce code d'accès n'est pas reconnu. " +
+        'Vérifie-le auprès de la personne qui te l\'a donné.';
+      $('accueil-erreur').classList.remove('cache');
+      localStorage.removeItem('code_acces');
+      return;
+    }
+  } catch (e) {
+    // Hors ligne : on laisse entrer, le serveur tranchera à la première question.
+  } finally {
+    $('commencer').textContent = 'Commencer';
+    $('commencer').disabled = false;
+  }
+
   enregistrerProfil(eleve, niveau);
   ouvrirChat();
 }

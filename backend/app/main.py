@@ -424,6 +424,19 @@ def conversation(eleve: str, code: str | None = None, seance: int | None = None)
     }
 
 
+@app.get("/api/verifier-eleve")
+def verifier_eleve(eleve: str, code: str | None = None):
+    """Dit à l'écran d'accueil si cet élève a le droit de commencer.
+
+    Sans ce contrôle, la conversation s'ouvrait et c'est la première
+    question qui était refusée : l'élève se croyait entré, puis se faisait
+    rejeter. Le refus doit arriver avant, sur l'écran d'accueil.
+    """
+    code_utilise = _verifier_code(code)
+    _verifier_quota(eleve, code_utilise)
+    return {"autorise": True}
+
+
 @app.get("/api/profils")
 def profils(code: str | None = None):
     """Élèves déjà rattachés à cet abonnement.
