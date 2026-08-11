@@ -84,6 +84,14 @@ def _identifiant_ancien(eleve: str) -> str:
 
 def _fichier_session(eleve: str, code: str | None = None) -> Path:
     """Journal de l'élève, en récupérant au passage ses anciennes données."""
+    if _est_admin(code):
+        # Le responsable consulte n'importe quel élève, quel que soit son code.
+        suffixe = f"_{_nom_normalise(eleve)}.jsonl"
+        correspondants = sorted(DOSSIER_SESSIONS.glob(f"*{suffixe}"))
+        if correspondants:
+            return correspondants[0]
+        return DOSSIER_SESSIONS / f"{_nom_normalise(eleve)}.jsonl"
+
     fichier = DOSSIER_SESSIONS / f"{_identifiant(eleve, code)}.jsonl"
     if fichier.exists():
         return fichier
@@ -178,12 +186,22 @@ MAX_ELEVES_PAR_CODE = int(os.getenv("MAX_ELEVES_PAR_CODE", "2"))
 MAX_QUESTIONS_PAR_JOUR = int(os.getenv("MAX_QUESTIONS_PAR_JOUR", "40"))
 
 
+# Code du responsable du service : lui seul voit tous les élèves, tous
+# abonnements confondus. Sans lui, chaque code ne voit que ses propres élèves
+# — un parent n'a rien à savoir des enfants des autres familles.
+CODE_ADMIN = (os.getenv("CODE_ADMIN") or "").strip()
+
+
+def _est_admin(code: str | None) -> bool:
+    return bool(CODE_ADMIN) and (code or "").strip() == CODE_ADMIN
+
+
 def _verifier_code(code: str | None) -> str | None:
     """Refuse les inconnus quand des codes sont configurés."""
-    if not CODES_ACCES:
+    if not CODES_ACCES and not CODE_ADMIN:
         return None
     propre = (code or "").strip()
-    if propre not in CODES_ACCES:
+    if propre not in CODES_ACCES and not _est_admin(propre):
         raise HTTPException(status_code=403, detail="Code d'accès invalide.")
     return propre
 
@@ -597,10 +615,20 @@ def config():
 
 @app.get("/api/eleves")
 def liste_eleves(code: str | None = None):
-    """Élèves ayant déjà travaillé — évite au parent de deviner l'orthographe."""
-    _verifier_code(code)
+    """Élèves ayant déjà travaillé — évite au parent de deviner l'orthographe.
+
+    Un parent ne voit que les élèves de SON abonnement : les prénoms des
+    enfants des autres familles ne le regardent pas. Seul le responsable du
+    service, avec CODE_ADMIN, voit tout le monde.
+    """
+    code_utilise = _verifier_code(code)
+    if _est_admin(code_utilise) or not code_utilise:
+        fichiers = DOSSIER_SESSIONS.glob("*.jsonl")
+    else:
+        fichiers = _fichiers_du_code(code_utilise)
+
     eleves = []
-    for fichier in DOSSIER_SESSIONS.glob("*.jsonl"):
+    for fichier in fichiers:
         lignes = [l for l in fichier.read_text(encoding="utf-8").splitlines() if l]
         if not lignes:
             continue
@@ -684,10 +712,13 @@ def bilan_eleve(eleve: str, code: str | None = None):
         raise HTTPException(status_code=503,
                             detail="Clé API absente : impossible de générer le bilan.")
 
+    # Le bilan est rangé sous le même nom que le journal : le responsable et
+    # le parent consultent alors le même fichier, sans le recalculer deux fois.
+    fichier = _fichier_session(eleve, code)
     try:
         resultat = module_bilan.generer(
-            _fichier_session(eleve, code),
-            DOSSIER_BILANS / f"{_identifiant(eleve, code)}.json",
+            fichier,
+            DOSSIER_BILANS / f"{fichier.stem}.json",
             client,
             _cout_gnf,
         )

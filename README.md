@@ -234,6 +234,11 @@ sinon les élèves abandonnent. Le budget est donc protégé côté serveur :
 Le 3ᵉ prénom sur un code est refusé, en nommant les deux élèves déjà en
 place. Au-delà du plafond du jour, le tuteur invite à revenir demain.
 
+**Voir tous les élèves** — la page parent ne montre que les élèves du code
+saisi : un parent n'a pas à connaître les prénoms des enfants des autres
+familles. Pour tout voir, fabriquez un code de responsable avec
+`CODES.bat ADMIN`, puis renseignez-le dans Render sous `CODE_ADMIN`.
+
 **Surveiller** — https://tuteur-maths.onrender.com/api/codes?code=VOTRE_CODE
 montre, pour chaque code, les prénoms qui l'ont utilisé. Un code avec
 plusieurs prénoms (`"partage": true`) a été transmis à d'autres : retirez-le

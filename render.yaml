@@ -38,6 +38,12 @@ services:
       - key: CODE_ACCES
         sync: false
 
+      # Votre code de responsable : il donne accès à TOUS les élèves sur la
+      # page parent. Sans lui, chaque code ne voit que ses propres élèves.
+      # Fabriquez-le avec : CODES.bat ADMIN
+      - key: CODE_ADMIN
+        sync: false
+
       # Limites d'un abonnement. L'application garde le code enregistré dans
       # l'appareil : c'est ici que le budget est réellement protégé.
       - key: MAX_ELEVES_PAR_CODE
