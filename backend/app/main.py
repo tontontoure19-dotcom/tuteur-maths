@@ -9,6 +9,7 @@ import hashlib
 import json
 import os
 import re
+import time
 import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
@@ -257,6 +258,30 @@ class DemandeChat(BaseModel):
     seance: int | None = None
 
 
+# Une surcharge des serveurs dure quelques secondes : on retente au lieu
+# d'abandonner. L'élève ne voit rien tant qu'aucun mot n'est affiché.
+NB_TENTATIVES = 3
+ATTENTE_AVANT_NOUVEL_ESSAI = 1.5
+
+STATUTS_A_RETENTER = {408, 429, 500, 502, 503, 529}
+
+# L'élève ne doit jamais lire un message technique. Un adolescent qui voit
+# « overloaded_error » croit avoir cassé quelque chose et n'y revient pas.
+def _message_eleve(statut: int | None) -> str:
+    if statut in (429, 529):
+        return ("Beaucoup d'élèves me posent des questions en ce moment. "
+                "Attends quelques secondes et renvoie ta question — ton "
+                "travail est gardé.")
+    if statut in (500, 502, 503, 408):
+        return ("Je n'arrive pas à répondre à l'instant. Renvoie ta question "
+                "dans un moment, rien n'est perdu.")
+    if statut == 401:
+        return ("L'abonnement du tuteur a un souci. Préviens la personne qui "
+                "t'a donné ton code.")
+    return ("Quelque chose s'est mal passé de mon côté. Renvoie ta question — "
+            "ta conversation est gardée.")
+
+
 def _bloc_utilisateur(message: Message) -> list[dict]:
     """Construit le contenu d'un message élève (texte + photo éventuelle)."""
     blocs: list[dict] = []
@@ -353,38 +378,48 @@ def chat(demande: DemandeChat):
 
     def flux():
         morceaux: list[str] = []
+        cout = 0.0
         if not CLE_PRESENTE:
             message = ("Clé API absente : ouvrez le fichier backend/.env "
                        "et collez-y votre clé Anthropic (elle commence par sk-ant-).")
             yield f"data: {json.dumps({'erreur': message}, ensure_ascii=False)}\n\n"
             return
-        try:
-            with client.messages.stream(
-                model=MODELE,
-                max_tokens=2000,  # réponses courtes : c'est une conversation
-                output_config={"effort": EFFORT},
-                system=[{
-                    "type": "text",
-                    "text": construire_systeme(demande.niveau),
-                    # Le programme est identique à chaque appel : on le met en
-                    # cache pour diviser son coût par 10.
-                    "cache_control": {"type": "ephemeral"},
-                }],
-                messages=messages,
-            ) as stream:
-                for texte in stream.text_stream:
-                    morceaux.append(texte)
-                    yield f"data: {json.dumps({'texte': texte}, ensure_ascii=False)}\n\n"
-                cout = _cout_gnf(stream.get_final_message().usage)
-        except anthropic.APIStatusError as erreur:
-            yield f"data: {json.dumps({'erreur': str(erreur.message)}, ensure_ascii=False)}\n\n"
-            return
-        except anthropic.APIConnectionError:
-            yield f"data: {json.dumps({'erreur': 'Connexion perdue. Réessaie.'}, ensure_ascii=False)}\n\n"
-            return
-        except Exception as erreur:  # filet de sécurité : jamais de page blanche
-            yield f"data: {json.dumps({'erreur': f'Erreur technique : {erreur}'}, ensure_ascii=False)}\n\n"
-            return
+
+        for tentative in range(NB_TENTATIVES):
+            try:
+                with client.messages.stream(
+                    model=MODELE,
+                    max_tokens=2000,  # réponses courtes : c'est une conversation
+                    output_config={"effort": EFFORT},
+                    system=[{
+                        "type": "text",
+                        "text": construire_systeme(demande.niveau),
+                        # Le programme est identique à chaque appel : on le met en
+                        # cache pour diviser son coût par 10.
+                        "cache_control": {"type": "ephemeral"},
+                    }],
+                    messages=messages,
+                ) as stream:
+                    for texte in stream.text_stream:
+                        morceaux.append(texte)
+                        yield f"data: {json.dumps({'texte': texte}, ensure_ascii=False)}\n\n"
+                    cout = _cout_gnf(stream.get_final_message().usage)
+                break
+
+            except (anthropic.APIStatusError, anthropic.APIConnectionError) as erreur:
+                statut = getattr(erreur, "status_code", None)
+                # Saturation passagère : on retente sans rien dire à l'élève,
+                # tant qu'aucun mot n'est encore affiché à l'écran.
+                if ((statut in STATUTS_A_RETENTER or statut is None)
+                        and not morceaux and tentative < NB_TENTATIVES - 1):
+                    time.sleep(ATTENTE_AVANT_NOUVEL_ESSAI * (tentative + 1))
+                    continue
+                yield f"data: {json.dumps({'erreur': _message_eleve(statut)}, ensure_ascii=False)}\n\n"
+                return
+
+            except Exception:  # filet de sécurité : jamais de charabia à l'écran
+                yield f"data: {json.dumps({'erreur': _message_eleve(None)}, ensure_ascii=False)}\n\n"
+                return
 
         _enregistrer(demande.eleve, "tuteur", "".join(morceaux), cout_gnf=cout,
                      code=code_utilise, seance=seance)
