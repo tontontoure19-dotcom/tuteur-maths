@@ -3,18 +3,22 @@
 Le navigateur de l'élève parle à cette API, qui parle à Claude.
 La clé API reste ici, côté serveur : elle n'est jamais exposée à l'élève.
 """
+import base64
+import binascii
 import hashlib
 import json
 import os
+import re
 import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
+from uuid import uuid4
 
 import anthropic
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
@@ -34,8 +38,14 @@ EFFORT = "medium"
 DOSSIER_DONNEES = Path(os.getenv("DATA_DIR") or BASE_DIR)
 DOSSIER_SESSIONS = DOSSIER_DONNEES / "sessions"
 DOSSIER_BILANS = DOSSIER_DONNEES / "bilans"
+DOSSIER_PHOTOS = DOSSIER_DONNEES / "photos"
 DOSSIER_SESSIONS.mkdir(parents=True, exist_ok=True)
 DOSSIER_BILANS.mkdir(parents=True, exist_ok=True)
+DOSSIER_PHOTOS.mkdir(parents=True, exist_ok=True)
+
+# Les photos sont déjà réduites par le téléphone (1300 px, JPEG) : au-delà,
+# c'est un envoi anormal, on ne le conserve pas.
+MAX_PHOTO_OCTETS = 3 * 1024 * 1024
 
 
 def _nom_normalise(eleve: str) -> str:
@@ -88,6 +98,53 @@ def _fichier_session(eleve: str, code: str | None = None) -> Path:
                 ancien_bilan.rename(DOSSIER_BILANS / f"{_identifiant(eleve, code)}.json")
             break
     return fichier
+
+def _journal(fichier: Path) -> list[dict]:
+    """Échanges de l'élève, chacun rattaché à sa séance de travail.
+
+    Une séance = un exercice ou un chapitre. L'élève peut en ouvrir une
+    deuxième pour vérifier une information sans perdre son cours en cours.
+    """
+    if not fichier.exists():
+        return []
+    lignes = [json.loads(l) for l in fichier.read_text(encoding="utf-8").splitlines() if l]
+    echanges, courante = [], 1
+    for ligne in lignes:
+        # Ancien marqueur de coupure : il ouvrait simplement la séance suivante.
+        if ligne["role"] == "separateur":
+            courante += 1
+            continue
+        courante = ligne.get("seance", courante)
+        echanges.append({**ligne, "seance": courante})
+    return echanges
+
+
+def _seance_courante(echanges: list[dict]) -> int:
+    """Dernière séance touchée par l'élève."""
+    return echanges[-1]["seance"] if echanges else 1
+
+
+def _titre_seance(echanges: list[dict]) -> str:
+    """Première question de l'élève : c'est elle qui nomme la séance."""
+    for e in echanges:
+        if e["role"] == "eleve" and e["texte"].strip():
+            titre = " ".join(e["texte"].split())
+            return titre[:48] + "…" if len(titre) > 48 else titre
+    return "Exercice photographié" if any(e.get("photo") for e in echanges) else "Séance vide"
+
+
+def _enregistrer_photo(donnees_base64: str, type_media: str | None) -> str | None:
+    """Conserve la photo sur le disque, pour que l'élève la retrouve ailleurs."""
+    try:
+        brut = base64.b64decode(donnees_base64, validate=True)
+    except (binascii.Error, ValueError):
+        return None
+    if not brut or len(brut) > MAX_PHOTO_OCTETS:
+        return None
+    nom = f"{uuid4().hex}.{'png' if 'png' in (type_media or '') else 'jpg'}"
+    (DOSSIER_PHOTOS / nom).write_bytes(brut)
+    return nom
+
 
 app = FastAPI(title="Tuteur BEPC — Maths", version="0.1.0")
 
@@ -143,6 +200,9 @@ class DemandeChat(BaseModel):
     # « bepc » (10e année) ou « bac » (Terminale)
     niveau: str = Field(default=NIVEAU_DEFAUT, max_length=10)
     code: str | None = Field(default=None, max_length=60)
+    # Séance de travail : permet d'ouvrir une question rapide sans perdre
+    # le cours en cours. Absente = on continue la dernière séance.
+    seance: int | None = None
 
 
 def _bloc_utilisateur(message: Message) -> list[dict]:
@@ -182,7 +242,8 @@ def _cout_gnf(usage) -> float:
 
 def _enregistrer(eleve: str, role: str, texte: str, avec_photo: bool = False,
                  cout_gnf: float | None = None, niveau: str | None = None,
-                 code: str | None = None) -> None:
+                 code: str | None = None, seance: int | None = None,
+                 photo_fichier: str | None = None) -> None:
     """Journalise un échange — matière première du rapport au parent."""
     fichier = _fichier_session(eleve, code)
     ligne = {
@@ -200,6 +261,10 @@ def _enregistrer(eleve: str, role: str, texte: str, avec_photo: bool = False,
         ligne["niveau"] = niveau
     if code:
         ligne["code"] = code
+    if seance is not None:
+        ligne["seance"] = seance
+    if photo_fichier:
+        ligne["photo_fichier"] = photo_fichier
     with fichier.open("a", encoding="utf-8") as f:
         f.write(json.dumps(ligne, ensure_ascii=False) + "\n")
 
@@ -219,10 +284,19 @@ def chat(demande: DemandeChat):
         for m in demande.messages
     ]
 
+    # Séance de travail : celle demandée, sinon la dernière ouverte.
+    seance = demande.seance or _seance_courante(
+        _journal(_fichier_session(demande.eleve, code_utilise)))
+
     dernier = demande.messages[-1]
     if dernier.role == "user":
+        # La photo est conservée sur le disque : l'élève doit la revoir
+        # depuis un autre appareil, et le tuteur y revient souvent.
+        fichier_photo = (_enregistrer_photo(dernier.image, dernier.image_type)
+                         if dernier.image else None)
         _enregistrer(demande.eleve, "eleve", dernier.content, bool(dernier.image),
-                     niveau=demande.niveau, code=code_utilise)
+                     niveau=demande.niveau, code=code_utilise, seance=seance,
+                     photo_fichier=fichier_photo)
 
     def flux():
         morceaux: list[str] = []
@@ -260,7 +334,7 @@ def chat(demande: DemandeChat):
             return
 
         _enregistrer(demande.eleve, "tuteur", "".join(morceaux), cout_gnf=cout,
-                     code=code_utilise)
+                     code=code_utilise, seance=seance)
         yield f"data: {json.dumps({'fin': True})}\n\n"
 
     return StreamingResponse(flux(), media_type="text/event-stream")
@@ -271,30 +345,72 @@ MAX_MESSAGES_REPRIS = 40
 
 
 @app.get("/api/conversation/{eleve}")
-def conversation(eleve: str, code: str | None = None):
-    """Rend à l'élève sa conversation, quel que soit l'appareil.
+def conversation(eleve: str, code: str | None = None, seance: int | None = None):
+    """Rend à l'élève une de ses séances, quel que soit l'appareil.
 
     L'historique était jusqu'ici enregistré dans le téléphone : passer sur un
     ordinateur donnait une conversation vide. Le serveur, lui, a tout gardé.
     """
     _verifier_code(code)
-    fichier = _fichier_session(eleve, code)
-    if not fichier.exists():
-        return {"messages": []}
+    echanges = _journal(_fichier_session(eleve, code))
+    if not echanges:
+        return {"messages": [], "seance": 1}
 
-    lignes = [json.loads(l) for l in fichier.read_text(encoding="utf-8").splitlines() if l]
-    for i in range(len(lignes) - 1, -1, -1):
-        if lignes[i]["role"] == "separateur":
-            lignes = lignes[i + 1:]
-            break
-    return {"messages": [
+    numero = seance or _seance_courante(echanges)
+    retenus = [e for e in echanges if e["seance"] == numero]
+    return {
+        "seance": numero,
+        "messages": [
+            {
+                "role": "user" if e["role"] == "eleve" else "assistant",
+                "content": e["texte"],
+                "photo": (f"/api/photo/{e['photo_fichier']}" if e.get("photo_fichier") else None),
+            }
+            for e in retenus[-MAX_MESSAGES_REPRIS:]
+        ],
+    }
+
+
+@app.get("/api/seances/{eleve}")
+def liste_seances(eleve: str, code: str | None = None):
+    """Toutes les séances de l'élève, la plus récente en premier.
+
+    C'est ce qui lui permet de vérifier une information dans une nouvelle
+    discussion puis de revenir exactement où il en était dans son cours.
+    """
+    _verifier_code(code)
+    echanges = _journal(_fichier_session(eleve, code))
+
+    groupes: dict[int, list[dict]] = {}
+    for e in echanges:
+        groupes.setdefault(e["seance"], []).append(e)
+
+    seances = [
         {
-            "role": "user" if l["role"] == "eleve" else "assistant",
-            "content": l["texte"],
-            "photo": bool(l.get("photo")),
+            "numero": numero,
+            "titre": _titre_seance(lignes),
+            "questions": sum(1 for l in lignes if l["role"] == "eleve"),
+            "derniere_activite": lignes[-1]["horodatage"],
         }
-        for l in lignes[-MAX_MESSAGES_REPRIS:]
-    ]}
+        for numero, lignes in groupes.items()
+    ]
+    seances.sort(key=lambda s: s["derniere_activite"], reverse=True)
+    return {"seances": seances, "courante": _seance_courante(echanges)}
+
+
+@app.get("/api/photo/{nom}")
+def photo(nom: str, code: str | None = None):
+    """Sert une photo d'exercice conservée sur le disque."""
+    _verifier_code(code)
+    # Le nom est fabriqué par le serveur : tout ce qui s'en écarte est rejeté,
+    # un chemin bricolé ne peut donc pas remonter dans les dossiers.
+    if not re.fullmatch(r"[0-9a-f]{32}\.(jpg|png)", nom):
+        raise HTTPException(status_code=404, detail="Photo introuvable.")
+    chemin = DOSSIER_PHOTOS / nom
+    if not chemin.exists():
+        raise HTTPException(status_code=404, detail="Photo introuvable.")
+    return FileResponse(chemin,
+                        media_type="image/png" if nom.endswith(".png") else "image/jpeg")
 
 
 class DemandeSeance(BaseModel):
@@ -304,15 +420,15 @@ class DemandeSeance(BaseModel):
 
 @app.post("/api/nouvelle-seance")
 def nouvelle_seance(demande: DemandeSeance):
-    """L'élève repart sur un autre exercice : on marque la coupure.
+    """Ouvre une séance de plus, sans toucher aux précédentes.
 
-    Le marqueur vit sur le serveur, pas dans le téléphone : la nouvelle
-    séance commence donc aussi sur les autres appareils de l'élève.
+    L'élève en plein chapitre peut poser une question rapide à côté, puis
+    revenir à son cours : rien n'est effacé, tout reste consultable.
     """
     code_utilise = _verifier_code(demande.code)
-    if _fichier_session(demande.eleve, code_utilise).exists():
-        _enregistrer(demande.eleve, "separateur", "", code=code_utilise)
-    return {"ok": True}
+    echanges = _journal(_fichier_session(demande.eleve, code_utilise))
+    numero = (max((e["seance"] for e in echanges), default=0) + 1)
+    return {"seance": numero}
 
 
 @app.get("/api/rapport/{eleve}")

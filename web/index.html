@@ -90,6 +90,20 @@
   #apercu img{height:64px;border-radius:10px;border:2px solid var(--vert)}
   #apercu button{position:absolute;top:-4px;left:64px;background:#17211D;color:#fff;border:none;
                  border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:13px}
+  /* ---- Mes discussions ---- */
+  #seances{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:9px}
+  #seances .titre{font-size:13px;text-transform:uppercase;letter-spacing:.5px;
+                  color:var(--gris);margin-bottom:3px}
+  .seance{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;
+          background:#fff;border:1px solid #E8E4DE;border-radius:14px;padding:13px 15px;
+          font-size:15.5px;cursor:pointer;font-family:inherit;color:var(--texte);text-align:left}
+  .seance.actuelle{border-color:var(--vert);background:var(--vert-clair)}
+  .seance b{font-weight:600;display:block}
+  .seance small{color:var(--gris);font-size:12.5px;font-weight:400}
+  .seance .fleche{color:var(--gris);flex-shrink:0}
+  #seances .patience{text-align:center;color:var(--gris);padding:30px 12px;font-size:15px}
+  #seances .btn{margin-top:auto;max-width:none}
+
   /* ---- Ma progression ---- */
   #progres{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
   #progres .bloc{background:#fff;border:1px solid #E8E4DE;border-radius:16px;padding:16px}
@@ -136,12 +150,20 @@
 <header class="cache" id="entete">
   <div style="font-size:22px">📐</div>
   <div style="flex:1"><div class="t">Tuteur Maths</div><div class="s" id="salut"></div></div>
+  <button id="seances-btn" title="Mes discussions">☰</button>
   <button id="progres-btn" title="Ma progression">📈</button>
   <button id="changer" title="Changer d'élève">👤</button>
   <button id="nouveau" title="Nouvel exercice">＋</button>
 </header>
 
 <div id="fil" class="cache"></div>
+
+<!-- Les discussions de l'élève : son cours reste là pendant qu'il vérifie
+     autre chose à côté. -->
+<div id="seances" class="cache">
+  <div id="seances-liste"></div>
+  <button class="btn" id="fermer-seances">Retour</button>
+</div>
 
 <!-- Ce que l'élève voit de son propre travail : sa raison de revenir. -->
 <div id="progres" class="cache">
@@ -167,8 +189,21 @@ let historique = [];      // conversation envoyée à l'IA
 let photo = null;         // {data, type} de la photo en attente
 let occupe = false;
 let codeAcces = localStorage.getItem('code_acces') || '';
+// Séance de travail en cours. L'élève peut en ouvrir une deuxième pour une
+// question rapide, puis revenir à son cours : chacune garde son fil.
+let seanceActive = null;
 
 const $ = id => document.getElementById(id);
+
+/* Le code d'accès accompagne chaque appel au serveur, photos comprises. */
+const parametres = (extra = {}) => {
+  const p = new URLSearchParams();
+  if (codeAcces) p.set('code', codeAcces);
+  Object.entries(extra).forEach(([c, v]) => { if (v != null) p.set(c, v); });
+  return p.toString();
+};
+const urlServeur = chemin =>
+  chemin ? API + chemin + (codeAcces ? '?' + parametres() : '') : null;
 
 /* Clavier Android : sur les navigateurs qui ignorent « interactive-widget »,
    on mesure nous-mêmes la hauteur réellement visible. Sans ça, l'en-tête et
@@ -233,7 +268,8 @@ function changerEleve() {
   $('fil').innerHTML = '';
   $('prenom').value = '';
   $('commencer').disabled = true;
-  ['entete', 'fil', 'barre', 'apercu', 'progres'].forEach(id => $(id).classList.add('cache'));
+  seanceActive = null;
+  ['entete', 'fil', 'barre', 'apercu', 'progres', 'seances'].forEach(id => $(id).classList.add('cache'));
   $('accueil').classList.remove('cache');
   afficherProfils();
 }
@@ -313,23 +349,100 @@ function restaurer() {
   }
 }
 
+/* Ouvre une discussion de plus. Rien n'est effacé : le cours en cours reste
+   dans la liste ☰, l'élève y revient quand il veut. */
 async function nouvelExercice() {
   if (occupe) return;
-  if (historique.length && !confirm('Effacer cette conversation et repartir sur un nouvel exercice ?')) return;
-  historique = [];
-  localStorage.removeItem(cleConversation());
-  $('fil').innerHTML = '';
-  afficher('tuteur', 'On repart à zéro. Quel exercice tu veux travailler ?');
-  $('texte').focus();
-  // La coupure est enregistrée sur le serveur, sinon l'ancienne conversation
-  // reviendrait au prochain démarrage — ou sur un autre appareil.
   try {
-    await fetch(API + '/api/nouvelle-seance', {
+    const r = await fetch(API + '/api/nouvelle-seance', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ eleve, code: codeAcces || null }),
     });
-  } catch (e) { /* hors ligne : la coupure locale suffit pour l'instant */ }
+    if (!r.ok) throw new Error('serveur');
+    seanceActive = (await r.json()).seance;
+  } catch (e) {
+    // Hors ligne : on avance quand même d'une séance, le serveur suivra.
+    seanceActive = (seanceActive || 1) + 1;
+  }
+  memoriserSeance();
+  historique = [];
+  localStorage.removeItem(cleConversation());
+  fermerPanneaux();
+  $('fil').innerHTML = '';
+  afficher('tuteur', 'Nouvelle discussion. Qu\'est-ce que tu veux vérifier ?\n\n' +
+                     'Ton cours précédent t\'attend dans le bouton ☰.');
+  $('texte').focus();
+}
+
+/* ---------- Mes discussions ---------- */
+$('seances-btn').addEventListener('click', ouvrirSeances);
+$('fermer-seances').addEventListener('click', fermerPanneaux);
+
+function memoriserSeance() {
+  if (seanceActive) localStorage.setItem('seance_' + identifiantDe(eleve), seanceActive);
+}
+
+function fermerPanneaux() {
+  ['seances', 'progres'].forEach(id => $(id).classList.add('cache'));
+  ['fil', 'barre'].forEach(id => $(id).classList.remove('cache'));
+}
+
+async function ouvrirSeances() {
+  if (occupe) return;
+  ['fil', 'barre', 'apercu', 'progres'].forEach(id => $(id).classList.add('cache'));
+  $('seances').classList.remove('cache');
+  $('seances-liste').innerHTML = '<div class="patience">Je retrouve tes discussions…</div>';
+
+  try {
+    const r = await fetch(API + '/api/seances/' + encodeURIComponent(eleve) +
+                          '?' + parametres());
+    const { seances } = await r.json();
+    if (!r.ok) throw new Error('serveur');
+    if (!seances.length) {
+      $('seances-liste').innerHTML =
+        '<div class="patience">Tu n\'as pas encore de discussion enregistrée.</div>';
+      return;
+    }
+    $('seances-liste').innerHTML =
+      '<div class="titre">Tes discussions</div>' +
+      seances.map(s => `
+        <button class="seance ${s.numero === seanceActive ? 'actuelle' : ''}"
+                data-seance="${s.numero}">
+          <span><b>${echapper(s.titre)}</b>
+            <small>${s.questions} question(s)${s.numero === seanceActive ? ' · en cours' : ''}</small>
+          </span>
+          <span class="fleche">›</span>
+        </button>`).join('');
+    document.querySelectorAll('.seance').forEach(b =>
+      b.addEventListener('click', () => reprendreSeance(Number(b.dataset.seance))));
+  } catch (e) {
+    $('seances-liste').innerHTML =
+      '<div class="patience">Je n\'arrive pas à charger tes discussions.</div>';
+  }
+}
+
+/** L'élève retourne dans un cours qu'il avait laissé en plan. */
+async function reprendreSeance(numero) {
+  $('seances-liste').innerHTML = '<div class="patience">Je rouvre ta discussion…</div>';
+  try {
+    const r = await fetch(API + '/api/conversation/' + encodeURIComponent(eleve) +
+                          '?' + parametres({ seance: numero }));
+    const { messages } = await r.json();
+    if (!r.ok) throw new Error('serveur');
+    seanceActive = numero;
+    memoriserSeance();
+    historique = messages.map(m => ({ role: m.role, content: m.content }));
+    $('fil').innerHTML = '';
+    messages.forEach(m => afficher(m.role === 'user' ? 'eleve' : 'tuteur',
+                                   m.content, urlServeur(m.photo)));
+    sauvegarder();
+    fermerPanneaux();
+    $('fil').scrollTop = $('fil').scrollHeight;
+  } catch (e) {
+    $('seances-liste').innerHTML =
+      '<div class="patience">Je n\'arrive pas à rouvrir cette discussion.</div>';
+  }
 }
 
 /* ---------- Démarrage ---------- */
@@ -358,7 +471,8 @@ document.querySelectorAll('.niveau').forEach(b => b.addEventListener('click', ()
 
 function ouvrirChat() {
   $('accueil').classList.add('cache');
-  $('progres').classList.add('cache');
+  ['progres', 'seances'].forEach(id => $(id).classList.add('cache'));
+  seanceActive = Number(localStorage.getItem('seance_' + identifiantDe(eleve))) || null;
   ['entete', 'fil', 'barre'].forEach(id => $(id).classList.remove('cache'));
   $('salut').textContent = 'Salut ' + eleve + ' 👋 · ' +
     (niveau === 'bac' ? 'Terminale' : '10ᵉ année');
@@ -381,16 +495,19 @@ async function reprendreDuServeur(dejaAffiche) {
   const pour = eleve;   // l'élève peut changer pendant la requête
   try {
     const r = await fetch(API + '/api/conversation/' + encodeURIComponent(pour) +
-                          (codeAcces ? '?code=' + encodeURIComponent(codeAcces) : ''));
+                          '?' + parametres({ seance: seanceActive }));
     if (!r.ok) return;
-    const { messages } = await r.json();
+    const { messages, seance } = await r.json();
     if (pour !== eleve || occupe) return;
     // Rien de plus que ce qui est déjà à l'écran : on ne touche à rien.
     if (!messages.length || messages.length <= historique.length) return;
 
+    seanceActive = seance;
+    memoriserSeance();
     historique = messages.map(m => ({ role: m.role, content: m.content }));
     $('fil').innerHTML = '';
-    messages.forEach(m => afficher(m.role === 'user' ? 'eleve' : 'tuteur', m.content));
+    messages.forEach(m => afficher(m.role === 'user' ? 'eleve' : 'tuteur',
+                                   m.content, urlServeur(m.photo)));
     if (!dejaAffiche) {
       afficher('tuteur', 'Je t\'ai retrouvé ton travail. On continue ?');
     }
@@ -469,7 +586,7 @@ function fermerProgres() {
 
 async function ouvrirProgres() {
   if (occupe) return;
-  ['fil', 'barre', 'apercu'].forEach(id => $(id).classList.add('cache'));
+  ['fil', 'barre', 'apercu', 'seances'].forEach(id => $(id).classList.add('cache'));
   $('progres').classList.remove('cache');
   $('progres-contenu').innerHTML =
     '<div class="patience">Je regarde ton travail…<br>Quelques secondes.</div>';
@@ -568,7 +685,7 @@ async function envoyer() {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       // On n'envoie que les échanges récents : au-delà, l'élève travaille
       // sur un autre exercice et l'historique ferait grimper le coût.
-      body: JSON.stringify({ eleve, niveau, code: codeAcces,
+      body: JSON.stringify({ eleve, niveau, code: codeAcces, seance: seanceActive,
                              messages: historique.slice(-MAX_MESSAGES) })
     });
 
