@@ -143,7 +143,7 @@
 <div id="accueil">
   <div class="logo">📐</div>
   <h1>Répétiteur Maths</h1>
-  <p>Bloqué sur un exercice ? Envoie-le-moi.<br>On le résout ensemble, et tu sauras le refaire seul le jour du BEPC.</p>
+  <p id="promesse">Bloqué sur un exercice ? Envoie-le-moi.<br>On le résout ensemble, et tu sauras le refaire seul le jour du BEPC.</p>
   <input id="code" class="cache" placeholder="Code d'accès" autocomplete="off">
   <input id="prenom" placeholder="Ton prénom" autocomplete="given-name">
   <div class="niveaux">
@@ -289,6 +289,10 @@ function changerEleve() {
   $('prenom').value = '';
   $('commencer').disabled = true;
   seanceActive = null;
+  niveau = 'bepc';
+  document.querySelectorAll('.niveau').forEach(x =>
+    x.classList.toggle('actif', x.dataset.niveau === niveau));
+  majPromesse();
   ['entete', 'fil', 'barre', 'apercu', 'progres', 'seances'].forEach(id => $(id).classList.add('cache'));
   $('accueil').classList.remove('cache');
   afficherProfils();
@@ -550,10 +554,23 @@ async function demarrer() {
 }
 
 // Choix du niveau sur l'écran d'accueil
+// L'examen visé n'est pas le même selon le niveau : la promesse d'accueil
+// doit nommer CELUI de l'élève, sinon la moitié des visiteurs se sent
+// étrangère à l'application dès la première phrase.
+const EXAMENS = { bepc: 'BEPC', bac: 'BAC' };
+
+function majPromesse() {
+  $('promesse').innerHTML =
+    'Bloqué sur un exercice ? Envoie-le-moi.<br>' +
+    'On le résout ensemble, et tu sauras le refaire seul le jour du ' +
+    (EXAMENS[niveau] || 'examen') + '.';
+}
+
 document.querySelectorAll('.niveau').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('.niveau').forEach(x => x.classList.remove('actif'));
   b.classList.add('actif');
   niveau = b.dataset.niveau;
+  majPromesse();
 }));
 
 function ouvrirChat() {
