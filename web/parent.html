@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0B6E4F">
-<title>Suivi de votre enfant — Tuteur Maths</title>
+<title>Espace parent ou tuteur — Répétiteur Maths</title>
 <link rel="icon" href="icone.svg">
 <style>
   :root{--vert:#0B6E4F;--vert-clair:#E6F2EE;--jaune:#FCD116;--rouge:#C0392B;
@@ -69,8 +69,8 @@
 <body>
 
 <header>
-  <h1>📊 Suivi de votre enfant</h1>
-  <p>Ce que votre enfant a travaillé, et où il en est.</p>
+  <h1>📊 Espace parent ou tuteur</h1>
+  <p>Ce que votre élève a travaillé, et où il en est.</p>
 </header>
 
 <main>
@@ -229,7 +229,7 @@ function afficher(d) {
     <div class="carte"><h2>À retravailler</h2>${liste(d.points_a_travailler, 'faibles')}</div>
     <div class="carte"><h2>Conseils pour cette semaine</h2>${liste(d.recommandations, 'conseils')}</div>
 
-    <div class="pied">Bilan établi à partir de ${a.echanges ?? 0} échanges avec le tuteur.</div>`;
+    <div class="pied">Bilan établi à partir de ${a.echanges ?? 0} échanges avec le répétiteur.</div>`;
 
   brancherRetour();
 }

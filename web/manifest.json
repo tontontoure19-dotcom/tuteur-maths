@@ -1,7 +1,7 @@
 {
-  "name": "Tuteur Maths — BEPC",
-  "short_name": "Tuteur Maths",
-  "description": "Ton tuteur de mathématiques pour préparer le BEPC.",
+  "name": "Répétiteur Maths — BEPC",
+  "short_name": "Répétiteur Maths",
+  "description": "Ton répétiteur de mathématiques pour préparer le BEPC.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",

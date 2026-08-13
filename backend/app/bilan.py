@@ -28,7 +28,7 @@ ECHANGES_AVANT_RECALCUL = 20
 
 # À incrémenter dès que la consigne d'analyse change : les bilans enregistrés
 # avec l'ancienne version sont alors refaits, au lieu d'être resservis tels quels.
-VERSION_ANALYSE = 2
+VERSION_ANALYSE = 3
 
 
 class Chapitre(BaseModel):
@@ -87,7 +87,7 @@ class Bilan(BaseModel):
 
 
 CONSIGNE = """Tu analyses les conversations entre un élève guinéen de 10e année \
-(qui prépare le BEPC) et son tuteur de mathématiques.
+(qui prépare le BEPC) et son répétiteur de mathématiques.
 
 Tu produis un bilan destiné à SON PARENT. Le parent n'est pas mathématicien : il \
 veut savoir si son enfant travaille, s'il progresse, et ce qu'il doit retravailler.
@@ -135,7 +135,7 @@ def _transcription(fichier: Path) -> tuple[str, int, int]:
     lignes = [l for l in lignes if l["role"] != "separateur"]
     recents = lignes[-MAX_ECHANGES_ANALYSES:]
     texte = "\n".join(
-        f"{'ÉLÈVE' if l['role'] == 'eleve' else 'TUTEUR'} : {l['texte']}"
+        f"{'ÉLÈVE' if l['role'] == 'eleve' else 'RÉPÉTITEUR'} : {l['texte']}"
         + (" [photo d'exercice envoyée]" if l.get("photo") else "")
         for l in recents
     )

@@ -1,7 +1,7 @@
-"""Le cœur du produit : la personnalité et la pédagogie du tuteur.
+"""Le cœur du produit : la personnalité et la pédagogie du répétiteur.
 
 C'est ce fichier qui fait la différence avec une IA gratuite. Il définit
-un tuteur qui REFUSE de donner la réponse et fait travailler l'élève.
+un répétiteur qui REFUSE de donner la réponse et fait travailler l'élève.
 """
 
 # ⚠️ À FAIRE VÉRIFIER par le porteur du projet (professionnel de l'éducation) :
@@ -100,7 +100,7 @@ NIVEAUX = {
 }
 NIVEAU_DEFAUT = "bepc"
 
-SYSTEME_TUTEUR = """Tu es un tuteur de mathématiques pour des élèves guinéens de {classe} qui préparent le {examen}.
+SYSTEME_TUTEUR = """Tu es un répétiteur de mathématiques pour des élèves guinéens de {classe} qui préparent le {examen}.
 
 # Ta règle absolue
 
