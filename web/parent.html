@@ -157,8 +157,10 @@ async function charger() {
     const d = await r.json();
     if (!r.ok) throw new Error(d.detail || 'Erreur');
     if (d.pas_assez_de_donnees) {
-      $('zone').innerHTML = '<div class="info">Votre enfant vient de commencer' +
+      $('zone').innerHTML = boutonRetour() +
+        '<div class="info">Votre enfant vient de commencer' +
         ' (' + d.echanges + ' échanges).<br>Le bilan sera disponible après quelques exercices.</div>';
+      brancherRetour();
       return;
     }
     afficher(d);
@@ -168,6 +170,15 @@ async function charger() {
   } finally {
     $('voir').disabled = false;
   }
+}
+
+/* Présent sur TOUS les écrans qui suivent un choix d'élève : sans lui, il
+   faut retaper un prénom au caractère près pour changer d'enfant. */
+const boutonRetour = () => '<button class="retour" id="retour">‹ Tous les élèves</button>';
+
+function brancherRetour() {
+  const b = $('retour');
+  if (b) b.addEventListener('click', () => { $('nom').value = ''; proposerEleves(); });
 }
 
 function afficher(d) {
@@ -190,7 +201,7 @@ function afficher(d) {
     `<ul class="${cls}">${(items || []).map(x => `<li>${echapper(x)}</li>`).join('')}</ul>`;
 
   $('zone').innerHTML = `
-    <button class="retour" id="retour">‹ Tous les élèves</button>
+    ${boutonRetour()}
 
     <div class="chiffres">
       <div class="chiffre"><b>${a.questions ?? 0}</b><span>questions posées</span></div>
@@ -220,10 +231,7 @@ function afficher(d) {
 
     <div class="pied">Bilan établi à partir de ${a.echanges ?? 0} échanges avec le tuteur.</div>`;
 
-  $('retour').addEventListener('click', () => {
-    $('nom').value = '';
-    proposerEleves();
-  });
+  brancherRetour();
 }
 </script>
 </body>
