@@ -528,7 +528,7 @@ async function demarrer() {
   $('commencer').disabled = true;
   $('commencer').textContent = 'Un instant…';
   try {
-    const r = await fetch(API + '/api/verifier-eleve?' + parametres({ eleve }));
+    const r = await fetch(API + '/api/verifier-eleve?' + parametres({ eleve, niveau }));
     if (r.status === 409 || r.status === 429) {
       const { detail } = await r.json().catch(() => ({}));
       $('accueil-erreur').textContent = detail || 'Cet abonnement a atteint sa limite.';

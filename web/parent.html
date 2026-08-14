@@ -139,7 +139,9 @@ async function proposerEleves(message) {
     const liens = eleves.map(e =>
       `<div class="ligne-eleve">
          <button class="lien-eleve" data-nom="${echapper(e.nom)}">
-           ${echapper(e.nom)} <span>${e.questions} question(s)</span>
+           ${echapper(e.nom)} <span>${e.niveau === 'bac' ? 'Terminale · ' :
+                                       e.niveau === 'bepc' ? '10ᵉ année · ' : ''}${
+             e.questions ? e.questions + ' question(s)' : 'inscrit, pas encore de question'}</span>
          </button>
          ${admin ? `<button class="effacer" data-nom="${echapper(e.nom)}"
                             data-questions="${e.questions}" title="Supprimer">✕</button>` : ''}

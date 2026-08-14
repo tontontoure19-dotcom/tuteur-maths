@@ -108,6 +108,9 @@ def _fichier_session(eleve: str, code: str | None = None) -> Path:
             break
     return fichier
 
+ROLES_ECHANGE = ("eleve", "tuteur")
+
+
 def _journal(fichier: Path) -> list[dict]:
     """Échanges de l'élève, chacun rattaché à sa séance de travail.
 
@@ -122,6 +125,8 @@ def _journal(fichier: Path) -> list[dict]:
         # Ancien marqueur de coupure : il ouvrait simplement la séance suivante.
         if ligne["role"] == "separateur":
             courante += 1
+            continue
+        if ligne["role"] not in ROLES_ECHANGE:
             continue
         courante = ligne.get("seance", courante)
         echanges.append({**ligne, "seance": courante})
@@ -478,7 +483,8 @@ def conversation(eleve: str, code: str | None = None, seance: int | None = None)
 
 
 @app.get("/api/verifier-eleve")
-def verifier_eleve(eleve: str, code: str | None = None):
+def verifier_eleve(eleve: str, code: str | None = None,
+                   niveau: str = NIVEAU_DEFAUT):
     """Dit à l'écran d'accueil si cet élève a le droit de commencer.
 
     Sans ce contrôle, la conversation s'ouvrait et c'est la première
@@ -487,6 +493,8 @@ def verifier_eleve(eleve: str, code: str | None = None):
     """
     code_utilise = _verifier_code(code)
     _verifier_quota(eleve, code_utilise)
+    if not _fichier_session(eleve, code_utilise).exists():
+        _enregistrer(eleve, "inscription", "", code=code_utilise, niveau=niveau)
     return {"autorise": True}
 
 
@@ -592,7 +600,7 @@ def rapport(eleve: str, code: str | None = None):
         return {"eleve": eleve, "echanges": 0, "questions": 0, "photos": 0}
 
     lignes = [json.loads(l) for l in fichier.read_text(encoding="utf-8").splitlines() if l]
-    lignes = [l for l in lignes if l["role"] != "separateur"]
+    lignes = [l for l in lignes if l["role"] in ROLES_ECHANGE]
     questions = [l for l in lignes if l["role"] == "eleve"]
     cout_total = sum(l.get("cout_gnf", 0) for l in lignes)
     return {
@@ -636,10 +644,12 @@ def liste_eleves(code: str | None = None):
         # Le nom du fichier est normalisé (accents retirés) et préfixé par
         # l'empreinte de l'abonnement : on affiche le prénom tel qu'écrit.
         nom = derniere.get("eleve") or fichier.stem.split("_", 1)[-1].replace("_", " ").title()
+        entrees = [json.loads(l) for l in lignes]
         eleves.append({
             "identifiant": fichier.stem,
             "nom": nom,
-            "questions": sum(1 for l in lignes if json.loads(l)["role"] == "eleve"),
+            "questions": sum(1 for e in entrees if e["role"] == "eleve"),
+            "niveau": next((e["niveau"] for e in reversed(entrees) if e.get("niveau")), None),
             "derniere_activite": derniere["horodatage"],
         })
     eleves.sort(key=lambda e: e["derniere_activite"], reverse=True)
