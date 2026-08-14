@@ -159,11 +159,9 @@ async function proposerEleves(message) {
 /* Suppression définitive, réservée au responsable : sert à nettoyer les
    essais laissés pendant la mise au point. */
 async function supprimer(nom, questions) {
-  if (!confirm('Supprimer définitivement « ' + nom + ' » et ses ' + questions +
-               ' question(s) ?
-
-Cette action est irréversible : conversations, ' +
-               'bilan et photos seront effacés.')) return;
+  if (!confirm("Supprimer définitivement « " + nom + " » et ses " + questions +
+               " question(s) ?\n\nCette action est irréversible : conversations, " +
+               "bilan et photos seront effacés.")) return;
   try {
     const r = await recuperer('/api/eleve/' + encodeURIComponent(nom), { method: 'DELETE' });
     const d = await r.json();
