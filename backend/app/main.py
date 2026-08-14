@@ -643,7 +643,40 @@ def liste_eleves(code: str | None = None):
             "derniere_activite": derniere["horodatage"],
         })
     eleves.sort(key=lambda e: e["derniere_activite"], reverse=True)
-    return {"eleves": eleves}
+    # « admin » dit à la page de suivi s'il faut proposer la suppression :
+    # un parent ne doit jamais pouvoir effacer le travail d'un élève.
+    return {"eleves": eleves, "admin": _est_admin(code_utilise)}
+
+
+@app.delete("/api/eleve/{eleve}")
+def supprimer_eleve(eleve: str, code: str | None = None):
+    """Efface définitivement le travail d'un élève. Réservé au responsable.
+
+    Sert à nettoyer les essais laissés pendant la mise au point. La
+    suppression est irréversible : conversations, bilan et photos partent
+    ensemble, sinon des images d'exercices resteraient sur le disque sans
+    plus aucun moyen de savoir à qui elles appartiennent.
+    """
+    code_utilise = _verifier_code(code)
+    if not _est_admin(code_utilise):
+        raise HTTPException(status_code=403,
+                            detail="Seul le responsable peut supprimer un élève.")
+
+    fichier = _fichier_session(eleve, code_utilise)
+    if not fichier.exists():
+        raise HTTPException(status_code=404, detail="Aucun élève de ce nom.")
+
+    photos = 0
+    for entree in _journal(fichier):
+        nom_photo = entree.get("photo_fichier")
+        if nom_photo and (DOSSIER_PHOTOS / nom_photo).exists():
+            (DOSSIER_PHOTOS / nom_photo).unlink()
+            photos += 1
+
+    echanges = len(_journal(fichier))
+    fichier.unlink()
+    (DOSSIER_BILANS / f"{fichier.stem}.json").unlink(missing_ok=True)
+    return {"supprime": eleve, "echanges": echanges, "photos": photos}
 
 
 @app.get("/api/progres/{eleve}")

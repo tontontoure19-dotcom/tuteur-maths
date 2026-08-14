@@ -58,6 +58,11 @@
               margin-bottom:8px;font-size:16px;font-weight:600;color:var(--vert);
               cursor:pointer;font-family:inherit;text-align:left}
   .lien-eleve span{font-weight:400;font-size:13px;color:var(--gris)}
+  .ligne-eleve{display:flex;align-items:center;gap:8px}
+  .ligne-eleve .lien-eleve{margin-bottom:0;flex:1}
+  .effacer{background:none;border:1px solid var(--bord);border-radius:10px;color:var(--rouge);
+           font-size:16px;cursor:pointer;padding:11px 13px;line-height:1;font-family:inherit}
+  .effacer:hover{background:#FDECEC}
   .retour{background:none;border:none;color:var(--vert);font-size:14.5px;font-weight:600;
           cursor:pointer;font-family:inherit;padding:2px 0 12px;display:block}
   .info{text-align:center;color:var(--gris);padding:34px 18px;font-size:15px}
@@ -91,8 +96,8 @@ const avecCode = url => codeAcces ? url + (url.includes('?') ? '&' : '?') +
 
 /* Code refusé — le plus souvent parce qu'il a changé. On le redemande sur
    place, sinon le parent tombe sur « aucun élève » sans comprendre pourquoi. */
-async function recuperer(url) {
-  let r = await fetch(avecCode(url));
+async function recuperer(url, options = {}) {
+  let r = await fetch(avecCode(url), options);
   if (r.status !== 403) return r;
   localStorage.removeItem('code_acces');
   codeAcces = '';
@@ -100,7 +105,7 @@ async function recuperer(url) {
   if (!saisi || !saisi.trim()) return r;
   codeAcces = saisi.trim();
   localStorage.setItem('code_acces', codeAcces);
-  r = await fetch(avecCode(url));
+  r = await fetch(avecCode(url), options);
   if (r.status === 403) { localStorage.removeItem('code_acces'); codeAcces = ''; }
   return r;
 }
@@ -125,23 +130,47 @@ if (depuisLien) { $('nom').value = depuisLien; charger(); } else { proposerEleve
 async function proposerEleves(message) {
   try {
     const r = await recuperer('/api/eleves');
-    const { eleves } = await r.json();
+    const { eleves, admin } = await r.json();
     if (!eleves.length) {
       $('zone').innerHTML = '<div class="info">Aucun élève n\'a encore utilisé le tuteur.<br>' +
         'Le suivi apparaîtra dès les premiers exercices.</div>';
       return;
     }
     const liens = eleves.map(e =>
-      `<button class="lien-eleve" data-nom="${echapper(e.nom)}">
-         ${echapper(e.nom)} <span>${e.questions} question(s)</span>
-       </button>`).join('');
+      `<div class="ligne-eleve">
+         <button class="lien-eleve" data-nom="${echapper(e.nom)}">
+           ${echapper(e.nom)} <span>${e.questions} question(s)</span>
+         </button>
+         ${admin ? `<button class="effacer" data-nom="${echapper(e.nom)}"
+                            data-questions="${e.questions}" title="Supprimer">✕</button>` : ''}
+       </div>`).join('');
     $('zone').innerHTML =
       (message ? `<div class="erreur" style="margin-bottom:14px">${echapper(message)}</div>` : '') +
       `<div class="carte"><h2>Choisissez un élève</h2>${liens}</div>`;
     document.querySelectorAll('.lien-eleve').forEach(b =>
       b.addEventListener('click', () => { $('nom').value = b.dataset.nom; charger(); }));
+    document.querySelectorAll('.effacer').forEach(b =>
+      b.addEventListener('click', () => supprimer(b.dataset.nom, b.dataset.questions)));
   } catch (e) {
     $('zone').innerHTML = '<div class="erreur">Impossible de contacter le serveur.</div>';
+  }
+}
+
+/* Suppression définitive, réservée au responsable : sert à nettoyer les
+   essais laissés pendant la mise au point. */
+async function supprimer(nom, questions) {
+  if (!confirm('Supprimer définitivement « ' + nom + ' » et ses ' + questions +
+               ' question(s) ?
+
+Cette action est irréversible : conversations, ' +
+               'bilan et photos seront effacés.')) return;
+  try {
+    const r = await recuperer('/api/eleve/' + encodeURIComponent(nom), { method: 'DELETE' });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'Erreur');
+    proposerEleves('« ' + nom + ' » a été supprimé (' + d.echanges + ' échanges).');
+  } catch (e) {
+    proposerEleves('Suppression impossible : ' + e.message);
   }
 }
 
