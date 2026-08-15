@@ -633,27 +633,59 @@ $('retirer').addEventListener('click', () => {
   photo = null; $('apercu').classList.add('cache'); majEnvoyer();
 });
 
+/* Trois choses peuvent échouer ici, et aucune n'était signalée : l'élève
+   appuyait, prenait sa photo, et rien ne bougeait à l'écran. */
+function echecPhoto(raison) {
+  photo = null;
+  $('apercu').classList.add('cache');
+  majEnvoyer();
+  afficher('erreur', raison);
+}
+
 $('fichier').addEventListener('change', e => {
   const f = e.target.files[0];
   if (!f) return;
+
   const lecteur = new FileReader();
+  lecteur.onerror = () => echecPhoto(
+    "Je n'arrive pas à ouvrir cette photo. Reprends-la, ou écris-moi l'exercice.");
+
   lecteur.onload = ev => {
     const img = new Image();
+    // Beaucoup de téléphones Android enregistrent en HEIC, que le navigateur
+    // ne sait pas ouvrir. Sans ce garde-fou, l'échec était totalement muet.
+    img.onerror = () => echecPhoto(
+      "Je n'arrive pas à lire cette photo — ton téléphone l'a peut-être " +
+      "enregistrée dans un format que je ne comprends pas.\n\n" +
+      "Essaie ceci : dans les réglages de l'appareil photo, choisis le format " +
+      "JPEG au lieu de HEIC. Ou écris-moi simplement l'exercice, ça marche aussi bien.");
+
     img.onload = () => {
-      // On réduit la photo : moins de données consommées, réponse plus rapide.
-      const max = 1300;
-      const ech = Math.min(1, max / Math.max(img.width, img.height));
-      const c = document.createElement('canvas');
-      c.width = img.width * ech; c.height = img.height * ech;
-      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
-      const url = c.toDataURL('image/jpeg', 0.82);
-      photo = { data: url.split(',')[1], type: 'image/jpeg', url };
-      $('apercu-img').src = url;
-      $('apercu').classList.remove('cache');
-      majEnvoyer();
+      try {
+        // On réduit la photo : moins de données consommées, réponse plus rapide.
+        const max = 1300;
+        const ech = Math.min(1, max / Math.max(img.width, img.height));
+        const c = document.createElement('canvas');
+        c.width = Math.round(img.width * ech);
+        c.height = Math.round(img.height * ech);
+        if (!c.width || !c.height) throw new Error('image vide');
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        const url = c.toDataURL('image/jpeg', 0.82);
+        // Un téléphone à court de mémoire rend une image blanche minuscule.
+        if (url.length < 2000) throw new Error('image illisible');
+
+        photo = { data: url.split(',')[1], type: 'image/jpeg', url };
+        $('apercu-img').src = url;
+        $('apercu').classList.remove('cache');
+        majEnvoyer();
+      } catch (err) {
+        echecPhoto("Cette photo est trop lourde pour ton téléphone. " +
+                   "Reprends-la d'un peu plus loin, ou écris-moi l'exercice.");
+      }
     };
     img.src = ev.target.result;
   };
+
   lecteur.readAsDataURL(f);
   e.target.value = '';
 });
