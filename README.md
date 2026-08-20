@@ -222,7 +222,11 @@ détruit jamais ceux déjà distribués, ni vos annotations. Le fichier indique
 alors la liste à **ajouter** à `CODE_ACCES`, sans remplacer l'existante —
 remplacer déconnecterait tous les testeurs en cours.
 
-Pour un autre nombre : `CODES.bat BEPC BEPC BAC` fabrique 3 codes.
+**Ajouter un testeur** — double-cliquez sur **`AJOUTER-CODE.bat`**. Il
+demande le niveau (BEPC ou BAC) et le prénom de la personne, fabrique un
+code et l'écrit avec le nom à côté. Puis, dans Render, **ajoutez** ce code
+à la fin de `CODE_ACCES`, précédé d'une virgule — sans effacer les autres.
+
 Pour votre code de responsable : double-cliquez sur **`CODE-ADMIN.bat`**.
 
 **Les activer** — copiez la dernière ligne du fichier (tous les codes séparés

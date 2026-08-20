@@ -32,15 +32,21 @@ def fabriquer(prefixe: str) -> str:
 
 
 def main() -> None:
-    # Par défaut : les 5 candidats BEPC et les 5 candidats BAC du test.
-    demandes = [p.upper() for p in sys.argv[1:]] or ["BEPC"] * 5 + ["BAC"] * 5
-    codes = [fabriquer(p) for p in demandes]
+    # « BAC=Aissatou » fabrique un code déjà attribué : le nom est écrit à
+    # côté, pour ne pas dépendre d'une note prise après coup.
+    demandes = sys.argv[1:] or ["BEPC"] * 5 + ["BAC"] * 5
+    attributions = []
+    for demande in demandes:
+        prefixe, _, pour = demande.partition("=")
+        attributions.append((fabriquer(prefixe.upper()), pour.strip()))
+
+    codes = [code for code, _ in attributions]
     admin = [c for c in codes if c.startswith("ADMIN-")]
     testeurs = [c for c in codes if not c.startswith("ADMIN-")]
 
     bloc = [""] if FICHIER.exists() else [ENTETE]
     bloc.append(f"--- Ajoutés le {date.today():%d/%m/%Y} ---")
-    bloc += [f"{code}   →  ................................" for code in codes]
+    bloc += [f"{code}   →  {pour or '.' * 32}" for code, pour in attributions]
 
     if testeurs:
         bloc += ["",
