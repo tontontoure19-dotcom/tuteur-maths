@@ -23,6 +23,7 @@ from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
+from . import annales_store
 from . import bilan as module_bilan
 from .prompts import NIVEAU_DEFAUT, NIVEAUX, construire_systeme
 
@@ -220,6 +221,37 @@ if not CLE_PRESENTE:
     )
 
 
+def _annale_utile(message: str, niveau: str) -> str:
+    """Un sujet d'examen portant sur ce dont l'élève vient de parler.
+
+    On ne cherche que pour le BEPC : la réserve du BAC n'existe pas encore.
+    Rien trouvé = rien ajouté, et le répétiteur travaille comme avant.
+    """
+    if niveau != "bepc" or len(message.strip()) < 8:
+        return ""
+
+    trouves = annales_store.chercher(message, examen="bepc", matiere="maths", limite=1)
+    if not trouves:
+        return ""
+
+    ex = trouves[0]
+    return (
+        "# Un vrai sujet d'examen est disponible\n\n"
+        f"Exercice tombé au BEPC {ex['session']}, épreuve d'{ex['partie']} :\n\n"
+        f"{ex['enonce']}\n\n"
+        f"Résultat attendu (POUR TOI SEUL, jamais pour l'élève) : {ex['reponse']}\n\n"
+        "Quand le proposer : seulement si l'élève vient de terminer un chapitre, "
+        "demande à s'entraîner, ou tourne en rond sur un exercice inventé. "
+        "Ne l'impose jamais au milieu d'un raisonnement en cours.\n\n"
+        "Comment le proposer : dis d'où il vient. « Celui-ci est tombé au BEPC "
+        f"{ex['session']} — tu veux essayer ? » Un élève qui résout un vrai sujet "
+        "d'examen sait enfin où il en est.\n\n"
+        "Le résultat attendu te sert UNIQUEMENT à vérifier l'élève. Tu ne le "
+        "donnes jamais : la règle du répétiteur ne change pas parce que "
+        "l'exercice vient d'un examen."
+    )
+
+
 def _fichiers_du_code(code: str) -> list[Path]:
     """Journaux des élèves rattachés à cet abonnement."""
     empreinte = hashlib.sha256(code.encode("utf-8")).hexdigest()[:10]
@@ -399,6 +431,12 @@ def chat(demande: DemandeChat):
                      niveau=demande.niveau, code=code_utilise, seance=seance,
                      photo_fichier=fichier_photo)
 
+    # Un vrai sujet d'examen sur le chapitre dont parle l'élève, s'il en
+    # existe un. C'est ce qui permet au répétiteur de dire « cet exercice est
+    # tombé au BEPC 2010 » — l'argument qu'aucun concurrent ne peut copier.
+    annale = _annale_utile(dernier.content if dernier.role == "user" else "",
+                           demande.niveau)
+
     def flux():
         morceaux: list[str] = []
         cout = 0.0
@@ -414,11 +452,19 @@ def chat(demande: DemandeChat):
                     model=MODELE,
                     max_tokens=2000,  # réponses courtes : c'est une conversation
                     output_config={"effort": EFFORT},
-                    system=[{
+                    # Le programme est identique à chaque appel : il est mis en
+                    # cache. L'annale, elle, change d'un message à l'autre —
+                    # elle vient donc APRÈS le marqueur, sans casser le cache.
+                    system=[
+                        {
+                            "type": "text",
+                            "text": construire_systeme(demande.niveau),
+                            "cache_control": {"type": "ephemeral"},
+                        },
+                        {"type": "text", "text": annale},
+                    ] if annale else [{
                         "type": "text",
                         "text": construire_systeme(demande.niveau),
-                        # Le programme est identique à chaque appel : on le met en
-                        # cache pour diviser son coût par 10.
                         "cache_control": {"type": "ephemeral"},
                     }],
                     messages=messages,

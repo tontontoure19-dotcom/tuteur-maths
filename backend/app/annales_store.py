@@ -33,13 +33,33 @@ MOTS_VIDES = {"les", "des", "une", "aux", "deux", "sur", "dans", "pour", "avec"}
 
 
 def _mots(texte: str) -> set[str]:
-    """Mots utiles d'une expression, au singulier.
-
-    « racine carrée » et « racines carrées » doivent se retrouver : un élève
-    n'écrira jamais le chapitre exactement comme il est enregistré.
-    """
+    """Mots utiles d'une expression, au singulier."""
     bruts = re.split(r"[^a-z0-9]+", _sans_accent(texte))
     return {m.rstrip("s") for m in bruts if len(m) > 2 and m not in MOTS_VIDES}
+
+
+# Racine commune suffisante pour dire que deux mots parlent de la même chose.
+LONGUEUR_RACINE = 5
+
+
+def _voisins(a: str, b: str) -> bool:
+    """« factorise » et « factorisation » désignent la même notion.
+
+    L'élève écrit des verbes (« comment on factorise »), le programme des
+    noms (« factorisation ») : sans ce rapprochement, il ne trouve rien.
+    """
+    if a == b:
+        return True
+    court, long_ = sorted((a, b), key=len)
+    return len(court) >= LONGUEUR_RACINE and long_.startswith(court[:LONGUEUR_RACINE])
+
+
+def _proximite(demande: set[str], reference: set[str]) -> float:
+    """Part des mots du chapitre que l'élève a effectivement employés."""
+    if not demande or not reference:
+        return 0.0
+    communs = sum(1 for r in reference if any(_voisins(d, r) for d in demande))
+    return communs / len(reference)
 
 
 def chercher(chapitre: str, examen: str = "bepc", matiere: str = "maths",
@@ -55,10 +75,7 @@ def chercher(chapitre: str, examen: str = "bepc", matiere: str = "maths",
 
     par_chapitre, par_enonce = [], []
     for ex in charger(examen, matiere):
-        proximite = max(
-            (len(besoin & _mots(c)) / len(besoin | _mots(c)) for c in ex["chapitres"]),
-            default=0.0,
-        )
+        proximite = max((_proximite(besoin, _mots(c)) for c in ex["chapitres"]), default=0.0)
         if proximite >= 0.5:
             par_chapitre.append((proximite, ex))
         elif besoin <= _mots(ex["enonce"]):
