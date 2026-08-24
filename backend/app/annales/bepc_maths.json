@@ -199,6 +199,43 @@
       "enonce": "1) Construire un triangle ABC rectangle en A tel que AB = 3 cm et BC = 6 cm.\nSoit D le symétrique de B par rapport à la droite (AC). Prouver que BD est égal à 6 cm et CD égale à 6 cm.\n2) Soit M un point qui se déplace sur le segment [BD]. On appelle x la longueur du segment [DM].\n   a) Entre quelles valeurs peut varier x ?\n   b) Exprimer BM en fonction de x.\n3) On projette M sur le segment [CD], parallèlement à la droite (BC). Prouver que DI est égal à x.",
       "reponse": "AC = 3√3 cm ; BD = 6 cm ; CD = 6 cm ; x ∈ [0 ; 6] ; BM = 6 − x ; DI = x",
       "correction_du_livre": "Le livre calcule AC = √(6² − 3²) = √(36 − 9) puis écrit « = √25 = 5 ». C'est une faute de calcul : 36 − 9 = 27, donc AC = 3√3 ≈ 5,2 cm."
+    },
+
+    {
+      "id": "bepc-maths-2010-num-1",
+      "session": 2010,
+      "partie": "Activités Numériques",
+      "numero": "I.1",
+      "chapitres": ["équations du premier degré", "fractions", "identités remarquables"],
+      "enonce": "Résoudre dans ℝ les équations suivantes :\na) (x + 3)/2 + (4x − 3)/3 = 1 + (5x − 12)/6\nb) (2x + 3)² − (2x + 5) = 4x(x − 4) + 4",
+      "reponse": "a) x = −3/2  b) x = 0"
+    },
+    {
+      "id": "bepc-maths-2010-num-2",
+      "session": 2010,
+      "partie": "Activités Numériques",
+      "numero": "I.2",
+      "chapitres": ["racines carrées", "nombres inverses", "quantité conjuguée"],
+      "enonce": "Soit les réels a et b tels que : a = (√3 − 1)/√2 et b = (√3 + 1)/√2.\na) Calculer le produit a × b. Que peut-on déduire pour les nombres a et b ?\nb) Calculer les réels a² et a/b (mettre les réponses sous la forme la plus simple possible). Que constate-t-on ?",
+      "reponse": "a × b = 1, donc a et b sont inverses l'un de l'autre ; a² = 2 − √3 et a/b = 2 − √3, on constate que a² = a/b"
+    },
+    {
+      "id": "bepc-maths-2010-num-3",
+      "session": 2010,
+      "partie": "Activités Numériques",
+      "numero": "II",
+      "chapitres": ["systèmes de deux équations", "application affine", "proportionnalité", "problème concret"],
+      "enonce": "Le prix à payer pour un trajet en taxi comprend une prise en charge et une somme proportionnelle au nombre de kilomètres parcourus.\nUne personne A a payé 500 FG pour un trajet de 4 km ; une autre personne B a payé 725 FG pour un trajet de 8,5 km.\n1) Déterminer le prix au kilomètre et le montant de la prise en charge.\n2) Déterminer l'application affine qui définit la somme à payer en fonction du nombre de kilomètres parcourus.",
+      "reponse": "Prix au kilomètre = 50 GNF ; prise en charge = 300 GNF ; y = 50x + 300"
+    },
+    {
+      "id": "bepc-maths-2010-geo",
+      "session": 2010,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": ["théorème de Pythagore", "réciproque de Pythagore", "droites parallèles", "théorème de Thalès", "construction géométrique"],
+      "enonce": "ABC est un triangle tel que AB = 3, AC = 4 et BC = 5.\nSur la demi-droite (AB), on place le point D tel que AD est égal à 4.\nLa parallèle à la droite (BC) passant par le point D coupe la droite (AC) en E ; la perpendiculaire en D à la droite (AB) coupe (CB) en F.\n1) Faire une figure exacte (unité 2 cm).\n2) Montrer que ABC est un triangle rectangle et préciser en quel point.",
+      "reponse": "AB² + AC² = 9 + 16 = 25 = BC², donc ABC est rectangle en A"
     }
   ]
 }
