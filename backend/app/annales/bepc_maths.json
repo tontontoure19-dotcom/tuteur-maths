@@ -236,6 +236,53 @@
       "chapitres": ["théorème de Pythagore", "réciproque de Pythagore", "droites parallèles", "théorème de Thalès", "construction géométrique"],
       "enonce": "ABC est un triangle tel que AB = 3, AC = 4 et BC = 5.\nSur la demi-droite (AB), on place le point D tel que AD est égal à 4.\nLa parallèle à la droite (BC) passant par le point D coupe la droite (AC) en E ; la perpendiculaire en D à la droite (AB) coupe (CB) en F.\n1) Faire une figure exacte (unité 2 cm).\n2) Montrer que ABC est un triangle rectangle et préciser en quel point.",
       "reponse": "AB² + AC² = 9 + 16 = 25 = BC², donc ABC est rectangle en A"
+    },
+
+    {
+      "id": "bepc-maths-2011-num-1",
+      "session": 2011,
+      "partie": "Activités Numériques",
+      "numero": "I",
+      "chapitres": ["systèmes de trois équations", "fractions", "partage proportionnel", "problème concret"],
+      "enonce": "Trois personnes se partagent 5 250 GNF.\nLa part de la deuxième personne est égale à 2/5 de celle de la première personne, et la part de la troisième personne est égale à la demi-somme de celles des deux autres.\nQuelles sont les trois parts ?",
+      "reponse": "Première part : 2 500 GNF ; deuxième : 1 000 GNF ; troisième : 1 750 GNF",
+      "correction_du_livre": "L'énoncé imprime « la part de la 3ᵉ personne N'est égale à la demi-somme » ; le « n' » est une coquille, le corrigé lit bien « est égale »."
+    },
+    {
+      "id": "bepc-maths-2011-num-2",
+      "session": 2011,
+      "partie": "Activités Numériques",
+      "numero": "II.1",
+      "chapitres": ["racines carrées", "simplification de radicaux"],
+      "enonce": "Écrire sous la forme x√n chacune des sommes suivantes (x et n sont des entiers positifs) :\nA = √20 + √125 − √245 + √5\nB = 3√18 − 2√98 + 5√242",
+      "reponse": "A = √5 (x = 1, n = 5) ; B = 50√2 (x = 50, n = 2)"
+    },
+    {
+      "id": "bepc-maths-2011-num-3",
+      "session": 2011,
+      "partie": "Activités Numériques",
+      "numero": "II.2",
+      "chapitres": ["racines carrées", "quantité conjuguée", "nombres opposés"],
+      "enonce": "On pose P = 2 − (3√2)/2 et Q = 1/(3√2 + 4).\nMontrer que les nombres P et Q sont opposés.",
+      "reponse": "P + Q = 0, donc P et Q sont bien opposés"
+    },
+    {
+      "id": "bepc-maths-2011-num-4",
+      "session": 2011,
+      "partie": "Activités Numériques",
+      "numero": "III",
+      "chapitres": ["application affine", "équations du premier degré", "inéquations du premier degré"],
+      "enonce": "On considère les applications f et g définies par : f(x) = 7 − 2x et g(x) = (4/5)x − 5.\n1) Calculer f(1/2) et g(−7/3).\n2) Résoudre l'équation f(x) = g(x) et l'inéquation f(x) ≤ g(x).",
+      "reponse": "f(1/2) = 6 ; g(−7/3) = −103/15 ; f(x) = g(x) pour x = 30/7 ; f(x) ≤ g(x) pour x ≥ 30/7, soit x ∈ [30/7 ; +∞["
+    },
+    {
+      "id": "bepc-maths-2011-geo",
+      "session": 2011,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": ["repère orthonormé", "distance entre deux points", "réciproque de Pythagore", "cercle circonscrit", "médiatrice"],
+      "enonce": "Placer dans un plan muni d'un repère orthonormal (O, I, J) les points A(−1 ; 5), B(−3 ; 1) et C(−5 ; 2).\na) Calculer les distances AC, AB et BC. En déduire la nature du triangle ABC.\nb) Tracer le cercle circonscrit (C) au triangle ABC. Préciser les coordonnées de son centre K et calculer son rayon.\nc) Soit x un réel différent de −5 et M(x ; 2). Calculer x pour que le point M appartienne au cercle (C). Démontrer que, pour le point M ainsi trouvé, la droite (BK) est la médiatrice du segment [CM].",
+      "reponse": "AB = 2√5 ; AC = 5 ; BC = √5 ; AC² = AB² + BC² donc ABC est rectangle en B. Le centre K est le milieu de l'hypoténuse [AC] : K(−3 ; 7/2), rayon = 5/2 = 2,5. Pour M : x = −1, soit M(−1 ; 2)"
     }
   ]
 }
