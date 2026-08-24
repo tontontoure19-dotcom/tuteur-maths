@@ -93,6 +93,112 @@
       "chapitres": ["repère orthonormé", "distance entre deux points", "théorème de Pythagore", "symétrie centrale", "rectangle", "translation", "cercle circonscrit", "tangente au cercle", "équation de droite"],
       "enonce": "Le plan est muni d'un repère (O ; I ; J). L'unité de longueur est le centimètre.\nOn donne les points A(7 ; 1), B(8 ; 4) et C(−1 ; 7).\n1) a) Faire une figure, à compléter au fur et à mesure des questions.\n   b) Calculer les distances AB, BC et AC.\n   c) Démontrer que le triangle ABC est rectangle.\n2) M est le milieu du segment [AC] et D le symétrique de B par rapport à M.\n   a) Déterminer le couple de coordonnées du point M.\n   b) Démontrer que le quadrilatère ABCD est un rectangle.\n3) P est l'image de O par la translation de vecteur AC. Déterminer le couple de coordonnées du point P.\n4) (C) est le cercle circonscrit au triangle ABC.\n   a) Préciser le centre et le rayon du cercle (C).\n   b) Justifier que les points D et O appartiennent au cercle (C).\n   c) Démontrer que la droite (OP) est la tangente au cercle (C).\n   d) Déterminer une équation de la droite (OP).",
       "reponse": "AB = √10 ; BC = 3√10 ; AC = 10 ; AB² + BC² = AC² donc rectangle en B ; M(3 ; 4) ; D(−2 ; 4) ; P(−8 ; 6) ; centre M(3 ; 4), rayon 5 cm ; équation de (OP) : 3x + 4y = 0"
+    },
+
+    {
+      "id": "bepc-maths-2008-num-1",
+      "session": 2008,
+      "partie": "Activités Numériques",
+      "numero": "I",
+      "chapitres": ["racines carrées", "identités remarquables", "calcul exact"],
+      "enonce": "On donne A = 3√2 − 4 et B = 3√2 + 4.\nCalculer les valeurs exactes de A + B, A − B, A² et A × B.",
+      "reponse": "A + B = 6√2 ; A − B = −8 ; A² = 34 − 24√2 ; A × B = 2"
+    },
+    {
+      "id": "bepc-maths-2008-num-2",
+      "session": 2008,
+      "partie": "Activités Numériques",
+      "numero": "I (suite)",
+      "chapitres": ["fractions", "priorités opératoires"],
+      "enonce": "Calculer et donner les résultats sous la forme la plus simple :\nC = 7/4 − (3/4 × 8/9)\nD = (1 − 2/3) : (1 + 2/3)",
+      "reponse": "C = 13/12 ; D = 1/5"
+    },
+    {
+      "id": "bepc-maths-2008-num-3",
+      "session": 2008,
+      "partie": "Activités Numériques",
+      "numero": "II.1",
+      "chapitres": ["développement et factorisation", "inéquations du premier degré"],
+      "enonce": "On considère l'expression E = (3x − 1)² − (x − 1)(9x + 6).\na) Développer et réduire E.\nb) Résoudre l'inéquation −3x + 7 < 1.",
+      "reponse": "E = −3x + 7 ; x > 2, soit x ∈ ]2 ; +∞["
+    },
+    {
+      "id": "bepc-maths-2008-num-4",
+      "session": 2008,
+      "partie": "Activités Numériques",
+      "numero": "II.2",
+      "chapitres": ["identités remarquables", "développement et factorisation", "équation produit"],
+      "enonce": "On considère l'expression E = (3x − 2)² − 9.\na) Factoriser E.\nb) Résoudre l'équation (3x − 5)(3x + 1) = 0.",
+      "reponse": "E = (3x − 5)(3x + 1) ; x = 5/3 ou x = −1/3"
+    },
+    {
+      "id": "bepc-maths-2008-num-5",
+      "session": 2008,
+      "partie": "Activités Numériques",
+      "numero": "III",
+      "chapitres": ["fractions", "périmètre", "aires", "problème concret"],
+      "enonce": "Un jardin a pour longueur 4/5 hm et pour largeur 1/4 hm.\na) Calculer son périmètre en hm.\nb) Calculer son aire en hectomètres carrés. On donnera les résultats sous forme fractionnaire, puis sous forme décimale.",
+      "reponse": "Périmètre = 21/10 hm = 2,1 hm ; aire = 1/5 hm² = 0,2 hm²",
+      "correction_du_livre": "Le livre imprime « longueur 4/3 hm » dans l'énoncé, mais tout son corrigé calcule avec 4/5 — et seul 4/5 donne l'aire décimale exacte que la question b) réclame (0,2 hm²). L'énoncé retenu est donc 4/5."
+    },
+    {
+      "id": "bepc-maths-2008-geo",
+      "session": 2008,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": ["repère orthonormé", "vecteurs", "distance entre deux points", "parallélogramme", "symétrie centrale", "centre de gravité", "médianes"],
+      "enonce": "Tracer un repère (O, I, J) et placer les points A(−4 ; −1), B(−2 ; 3), C(8 ; 5) et D(6 ; 1).\nOn appelle M le milieu du segment [BD].\na) Démontrer que le quadrilatère ABCD est un parallélogramme.\nb) L est le symétrique de A par rapport à B. Démontrer que le quadrilatère BLCD est un parallélogramme.\nc) Les droites (LM) et (BC) se coupent en G. Que représente G pour le triangle LAC ?\nd) (AG) coupe (LC) en P. Calculer les coordonnées de P. Justifier soigneusement.",
+      "reponse": "AB = CD = 2√5 ; BC = AD = 2√26 ; L(0 ; 7) ; G est le centre de gravité du triangle LAC ; P(4 ; 6)",
+      "correction_du_livre": "Le livre écrit BD = 2√26 : c'est faux. B(−2 ; 3) et D(6 ; 1) donnent BD = √(8² + 2²) = √68 = 2√17. Le raisonnement reste juste, seul ce nombre est erroné."
+    },
+
+    {
+      "id": "bepc-maths-2009-num-1",
+      "session": 2009,
+      "partie": "Activités Numériques",
+      "numero": "I",
+      "chapitres": ["systèmes de deux équations", "aires", "problème concret"],
+      "enonce": "Trouver les dimensions d'un champ rectangulaire sachant que :\n— si l'on augmente la longueur et la largeur de 2 m, l'aire du champ augmente de 84 m² ;\n— si l'on augmente la largeur de 3 m et diminue la longueur de 5 m, l'aire diminue de 31 m².",
+      "reponse": "Longueur = 23 m, largeur = 17 m",
+      "correction_du_livre": "Le livre imprime « augmente la longueur et la largeur de 2 cm » alors que tout le corrigé, et la cohérence avec des aires en m², imposent 2 m."
+    },
+    {
+      "id": "bepc-maths-2009-num-2",
+      "session": 2009,
+      "partie": "Activités Numériques",
+      "numero": "II",
+      "chapitres": ["racines carrées", "quantité conjuguée", "nombres opposés"],
+      "enonce": "On donne les réels a et b tels que : a = (3 − √2)/5 et b = −1/(3 + √2).\na) Calculer a² et 1 + b.\nb) Montrer que les réels a et b sont opposés.",
+      "reponse": "a² = (11 − 6√2)/25 ; 1 + b = (4 + √2)/7. En réalité a + b ≠ 0 : a et b NE SONT PAS opposés — c'est la conclusion du corrigé lui-même, alors que la question affirme le contraire.",
+      "correction_du_livre": "Le livre imprime a = (3 − √3)/5 dans l'énoncé mais calcule partout avec √2. Et la question b) demande de montrer que a et b sont opposés, alors que le corrigé démontre qu'ils ne le sont pas."
+    },
+    {
+      "id": "bepc-maths-2009-num-3",
+      "session": 2009,
+      "partie": "Activités Numériques",
+      "numero": "II (suite)",
+      "chapitres": ["puissances", "fractions"],
+      "enonce": "Écrire le plus simplement possible les réels a, b et c :\na = (2² × 2² × 3²) / (2³ × 2 × 3⁴)\nb = (2 + 1/3) : (14/5)\nc = a × b",
+      "reponse": "a = 1/9 ; b = 5/6 ; c = 5/54"
+    },
+    {
+      "id": "bepc-maths-2009-num-4",
+      "session": 2009,
+      "partie": "Activités Numériques",
+      "numero": "III",
+      "chapitres": ["développement et factorisation", "identités remarquables", "facteur commun"],
+      "enonce": "On donne les expressions suivantes :\nA = x² − 4 + (x − 2)(2x − 1) + (x − 2)²\nB = (2x − 5)² − (4x − 10)(3x + 2)\na) Développer, réduire et ordonner A et B.\nb) Décomposer A et B en produit de facteurs du premier degré.",
+      "reponse": "A = 4x² − 9x + 2 = (x − 2)(4x − 1) ; B = −8x² + 2x + 45 = (2x − 5)(−4x − 9)"
+    },
+    {
+      "id": "bepc-maths-2009-geo",
+      "session": 2009,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": ["théorème de Pythagore", "symétrie axiale", "triangle équilatéral", "expression littérale", "droites parallèles"],
+      "enonce": "1) Construire un triangle ABC rectangle en A tel que AB = 3 cm et BC = 6 cm.\nSoit D le symétrique de B par rapport à la droite (AC). Prouver que BD est égal à 6 cm et CD égale à 6 cm.\n2) Soit M un point qui se déplace sur le segment [BD]. On appelle x la longueur du segment [DM].\n   a) Entre quelles valeurs peut varier x ?\n   b) Exprimer BM en fonction de x.\n3) On projette M sur le segment [CD], parallèlement à la droite (BC). Prouver que DI est égal à x.",
+      "reponse": "AC = 3√3 cm ; BD = 6 cm ; CD = 6 cm ; x ∈ [0 ; 6] ; BM = 6 − x ; DI = x",
+      "correction_du_livre": "Le livre calcule AC = √(6² − 3²) = √(36 − 9) puis écrit « = √25 = 5 ». C'est une faute de calcul : 36 − 9 = 27, donc AC = 3√3 ≈ 5,2 cm."
     }
   ]
 }
