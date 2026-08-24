@@ -1,0 +1,98 @@
+{
+  "_source": "Annales officielles du BEPC guinéen (sujets du Ministère), relevées dans « Mon Examen — BEPC Volume 1 », EDAL Guinée.",
+  "_note": "« reponse » sert UNIQUEMENT au répétiteur, pour vérifier qu'un élève arrive au bon résultat. Elle n'est jamais montrée à l'élève.",
+  "exercices": [
+    {
+      "id": "bepc-maths-2005-num-1",
+      "session": 2005,
+      "partie": "Activités Numériques",
+      "numero": "I.1",
+      "chapitres": ["développement et factorisation", "identités remarquables", "équations du premier degré"],
+      "enonce": "Soit f(x) = (2x − 3)² − (1 − 2x)(3 − 2x).\na) Développer, réduire et ordonner f(x) suivant les puissances décroissantes de x.\nb) Factoriser f(x).\nc) Résoudre l'équation f(x) = 0.",
+      "reponse": "a) f(x) = −4x + 6  b) f(x) = 2(3 − 2x)  c) x = 3/2"
+    },
+    {
+      "id": "bepc-maths-2005-num-2",
+      "session": 2005,
+      "partie": "Activités Numériques",
+      "numero": "I.2",
+      "chapitres": ["racines carrées"],
+      "enonce": "Écrire sous la forme a + b√5, a et b étant des entiers :\nA = 2√45 + √225 − √20 + √125",
+      "reponse": "A = 15 + 9√5, donc a = 15 et b = 9"
+    },
+    {
+      "id": "bepc-maths-2005-num-3",
+      "session": 2005,
+      "partie": "Activités Numériques",
+      "numero": "I.3",
+      "chapitres": ["systèmes de deux équations", "identités remarquables", "problème concret"],
+      "enonce": "Deux entiers sont tels que la différence de leur carré est égale à 304 et leur somme est égale à 38. Déterminer ces deux entiers.",
+      "reponse": "23 et 15"
+    },
+    {
+      "id": "bepc-maths-2005-geo",
+      "session": 2005,
+      "partie": "Activités Géométriques",
+      "numero": "A",
+      "chapitres": ["théorème de Pythagore", "trigonométrie", "parallélogramme", "centre de gravité", "médianes", "vecteurs"],
+      "enonce": "ABC est un triangle rectangle en A tel que AB = 8 cm et AC = 6 cm.\nOn désigne par D le milieu du segment [AB], I le milieu du segment [CD], et P l'intersection des droites (BC) et (AI) ; par E le point tel que vecteur CE = vecteur AD.\n1) a) Calculer les longueurs BC et DC.\n   b) Déterminer la tangente de l'angle CDA.\n2) a) Justifier que le point E appartient à la droite (AI).\n   b) Démontrer que le quadrilatère BCDE est un parallélogramme. On notera O son centre.\n3) a) Montrer que le point P est le centre de gravité du triangle CDE.\n   b) Montrer que la droite (DP) passe par le milieu du segment [EC].\n   c) Exprimer EP en fonction de EA.",
+      "reponse": "BC = 10 cm ; DC = 2√13 cm ; tan(CDA) = 3/2 = 1,5 ; BO = OC = 5 cm ; EP = (1/3) EA"
+    },
+
+    {
+      "id": "bepc-maths-2006-num-1",
+      "session": 2006,
+      "partie": "Activités Numériques",
+      "numero": "I",
+      "chapitres": ["pourcentages", "équations du premier degré", "problème concret"],
+      "enonce": "Pour un poste radio, j'ai obtenu une réduction de 10 % sur le prix réel et j'ai payé 57 600 francs.\n1) On appelle P le prix réel. Écrire une équation correspondant au problème.\n2) Quel était le prix réel de cet appareil ?",
+      "reponse": "P − (1/10)P = 57 600 ; P = 64 000 GNF"
+    },
+    {
+      "id": "bepc-maths-2006-num-2",
+      "session": 2006,
+      "partie": "Activités Numériques",
+      "numero": "II",
+      "chapitres": ["identités remarquables", "développement et factorisation", "équation produit"],
+      "enonce": "On considère D = (3x − 7)² − 81.\n1) Développer D.\n2) Factoriser D.\n3) Résoudre l'équation (3x − 16)(3x + 2) = 0.",
+      "reponse": "D = 9x² − 42x − 32 ; D = (3x − 16)(3x + 2) ; x = 16/3 ou x = −2/3"
+    },
+    {
+      "id": "bepc-maths-2006-geo",
+      "session": 2006,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": ["repère orthonormé", "vecteurs", "distance entre deux points", "théorème de Pythagore", "symétrie centrale", "rectangle", "aires"],
+      "enonce": "(O, i, j) est un repère orthonormé avec OI = OJ = 1 cm.\n1) a) Placer les points A(−2 ; −1), B(−5 ; 3) et C(3 ; 9).\n   b) Donner les coordonnées des vecteurs AB et BC, puis vérifier par le calcul que AB = 5 et BC = 10.\n2) Calculer les coordonnées du vecteur AC et en déduire la longueur AC (on l'écrira sous la forme a√5 où a est un entier naturel).\n3) Démontrer que le triangle ABC est rectangle en B.\n4) Calculer les coordonnées du milieu K du segment [AC].\n5) a) Placer le point D symétrique de B par rapport à K.\n   b) Démontrer que ABCD est un rectangle.\n   c) Calculer son aire, puis celle du triangle ABC.",
+      "reponse": "AB(−3 ; 4), BC(8 ; 6), AC(5 ; 10) ; AC = 5√5 cm ; K(1/2 ; 4) ; D(6 ; 5) ; aire ABCD = 50 cm² ; aire ABC = 25 cm²"
+    },
+
+    {
+      "id": "bepc-maths-2007-num-1",
+      "session": 2007,
+      "partie": "Activités Numériques",
+      "numero": "I",
+      "chapitres": ["identités remarquables", "développement et factorisation", "équation produit"],
+      "enonce": "On pose B = 4x² − 25 − (2x + 5)(3x − 7).\n1) Développer et réduire B.\n2) a) Factoriser 4x² − 25.\n   b) En déduire une factorisation de B.\n3) Résoudre l'équation (2x + 5)(2 − x) = 0.",
+      "reponse": "B = −2x² − x + 10 ; 4x² − 25 = (2x − 5)(2x + 5) ; B = (2x + 5)(−x + 2) ; x = −5/2 ou x = 2"
+    },
+    {
+      "id": "bepc-maths-2007-num-2",
+      "session": 2007,
+      "partie": "Activités Numériques",
+      "numero": "II",
+      "chapitres": ["systèmes de deux équations", "périmètre", "problème concret"],
+      "enonce": "Le périmètre d'un rectangle de longueur x et de largeur y est 140 mm. En doublant la largeur initiale et en retranchant 7 mm de la longueur initiale, on obtient un nouveau rectangle dont le périmètre est égal à 176 mm.\nQuelles sont les dimensions x et y du rectangle initial ?",
+      "reponse": "x + y = 70 et x + 2y = 95 ; longueur x = 45 mm, largeur y = 25 mm"
+    },
+    {
+      "id": "bepc-maths-2007-geo",
+      "session": 2007,
+      "partie": "Activités Géométriques",
+      "numero": "A",
+      "chapitres": ["repère orthonormé", "distance entre deux points", "théorème de Pythagore", "symétrie centrale", "rectangle", "translation", "cercle circonscrit", "tangente au cercle", "équation de droite"],
+      "enonce": "Le plan est muni d'un repère (O ; I ; J). L'unité de longueur est le centimètre.\nOn donne les points A(7 ; 1), B(8 ; 4) et C(−1 ; 7).\n1) a) Faire une figure, à compléter au fur et à mesure des questions.\n   b) Calculer les distances AB, BC et AC.\n   c) Démontrer que le triangle ABC est rectangle.\n2) M est le milieu du segment [AC] et D le symétrique de B par rapport à M.\n   a) Déterminer le couple de coordonnées du point M.\n   b) Démontrer que le quadrilatère ABCD est un rectangle.\n3) P est l'image de O par la translation de vecteur AC. Déterminer le couple de coordonnées du point P.\n4) (C) est le cercle circonscrit au triangle ABC.\n   a) Préciser le centre et le rayon du cercle (C).\n   b) Justifier que les points D et O appartiennent au cercle (C).\n   c) Démontrer que la droite (OP) est la tangente au cercle (C).\n   d) Déterminer une équation de la droite (OP).",
+      "reponse": "AB = √10 ; BC = 3√10 ; AC = 10 ; AB² + BC² = AC² donc rectangle en B ; M(3 ; 4) ; D(−2 ; 4) ; P(−8 ; 6) ; centre M(3 ; 4), rayon 5 cm ; équation de (OP) : 3x + 4y = 0"
+    }
+  ]
+}

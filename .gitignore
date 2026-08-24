@@ -15,3 +15,7 @@ backend/photos/
 __pycache__/
 *.pyc
 .venv/
+
+# Photos des annales (volumineuses, et gardées en local)
+Anal BEPC/
+Anal-BEPC/
