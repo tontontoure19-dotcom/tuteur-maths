@@ -7,7 +7,11 @@
       "session": 2005,
       "partie": "Activités Numériques",
       "numero": "I.1",
-      "chapitres": ["développement et factorisation", "identités remarquables", "équations du premier degré"],
+      "chapitres": [
+        "développement et factorisation",
+        "identités remarquables",
+        "équations du premier degré"
+      ],
       "enonce": "Soit f(x) = (2x − 3)² − (1 − 2x)(3 − 2x).\na) Développer, réduire et ordonner f(x) suivant les puissances décroissantes de x.\nb) Factoriser f(x).\nc) Résoudre l'équation f(x) = 0.",
       "reponse": "a) f(x) = −4x + 6  b) f(x) = 2(3 − 2x)  c) x = 3/2"
     },
@@ -16,7 +20,9 @@
       "session": 2005,
       "partie": "Activités Numériques",
       "numero": "I.2",
-      "chapitres": ["racines carrées"],
+      "chapitres": [
+        "racines carrées"
+      ],
       "enonce": "Écrire sous la forme a + b√5, a et b étant des entiers :\nA = 2√45 + √225 − √20 + √125",
       "reponse": "A = 15 + 9√5, donc a = 15 et b = 9"
     },
@@ -25,7 +31,11 @@
       "session": 2005,
       "partie": "Activités Numériques",
       "numero": "I.3",
-      "chapitres": ["systèmes de deux équations", "identités remarquables", "problème concret"],
+      "chapitres": [
+        "systèmes de deux équations",
+        "identités remarquables",
+        "problème concret"
+      ],
       "enonce": "Deux entiers sont tels que la différence de leur carré est égale à 304 et leur somme est égale à 38. Déterminer ces deux entiers.",
       "reponse": "23 et 15"
     },
@@ -34,17 +44,27 @@
       "session": 2005,
       "partie": "Activités Géométriques",
       "numero": "A",
-      "chapitres": ["théorème de Pythagore", "trigonométrie", "parallélogramme", "centre de gravité", "médianes", "vecteurs"],
+      "chapitres": [
+        "théorème de Pythagore",
+        "trigonométrie",
+        "parallélogramme",
+        "centre de gravité",
+        "médianes",
+        "vecteurs"
+      ],
       "enonce": "ABC est un triangle rectangle en A tel que AB = 8 cm et AC = 6 cm.\nOn désigne par D le milieu du segment [AB], I le milieu du segment [CD], et P l'intersection des droites (BC) et (AI) ; par E le point tel que vecteur CE = vecteur AD.\n1) a) Calculer les longueurs BC et DC.\n   b) Déterminer la tangente de l'angle CDA.\n2) a) Justifier que le point E appartient à la droite (AI).\n   b) Démontrer que le quadrilatère BCDE est un parallélogramme. On notera O son centre.\n3) a) Montrer que le point P est le centre de gravité du triangle CDE.\n   b) Montrer que la droite (DP) passe par le milieu du segment [EC].\n   c) Exprimer EP en fonction de EA.",
       "reponse": "BC = 10 cm ; DC = 2√13 cm ; tan(CDA) = 3/2 = 1,5 ; BO = OC = 5 cm ; EP = (1/3) EA"
     },
-
     {
       "id": "bepc-maths-2006-num-1",
       "session": 2006,
       "partie": "Activités Numériques",
       "numero": "I",
-      "chapitres": ["pourcentages", "équations du premier degré", "problème concret"],
+      "chapitres": [
+        "pourcentages",
+        "équations du premier degré",
+        "problème concret"
+      ],
       "enonce": "Pour un poste radio, j'ai obtenu une réduction de 10 % sur le prix réel et j'ai payé 57 600 francs.\n1) On appelle P le prix réel. Écrire une équation correspondant au problème.\n2) Quel était le prix réel de cet appareil ?",
       "reponse": "P − (1/10)P = 57 600 ; P = 64 000 GNF"
     },
@@ -53,7 +73,11 @@
       "session": 2006,
       "partie": "Activités Numériques",
       "numero": "II",
-      "chapitres": ["identités remarquables", "développement et factorisation", "équation produit"],
+      "chapitres": [
+        "identités remarquables",
+        "développement et factorisation",
+        "équation produit"
+      ],
       "enonce": "On considère D = (3x − 7)² − 81.\n1) Développer D.\n2) Factoriser D.\n3) Résoudre l'équation (3x − 16)(3x + 2) = 0.",
       "reponse": "D = 9x² − 42x − 32 ; D = (3x − 16)(3x + 2) ; x = 16/3 ou x = −2/3"
     },
@@ -62,17 +86,28 @@
       "session": 2006,
       "partie": "Activités Géométriques",
       "numero": "B",
-      "chapitres": ["repère orthonormé", "vecteurs", "distance entre deux points", "théorème de Pythagore", "symétrie centrale", "rectangle", "aires"],
+      "chapitres": [
+        "repère orthonormé",
+        "vecteurs",
+        "distance entre deux points",
+        "théorème de Pythagore",
+        "symétrie centrale",
+        "rectangle",
+        "aires"
+      ],
       "enonce": "(O, i, j) est un repère orthonormé avec OI = OJ = 1 cm.\n1) a) Placer les points A(−2 ; −1), B(−5 ; 3) et C(3 ; 9).\n   b) Donner les coordonnées des vecteurs AB et BC, puis vérifier par le calcul que AB = 5 et BC = 10.\n2) Calculer les coordonnées du vecteur AC et en déduire la longueur AC (on l'écrira sous la forme a√5 où a est un entier naturel).\n3) Démontrer que le triangle ABC est rectangle en B.\n4) Calculer les coordonnées du milieu K du segment [AC].\n5) a) Placer le point D symétrique de B par rapport à K.\n   b) Démontrer que ABCD est un rectangle.\n   c) Calculer son aire, puis celle du triangle ABC.",
       "reponse": "AB(−3 ; 4), BC(8 ; 6), AC(5 ; 10) ; AC = 5√5 cm ; K(1/2 ; 4) ; D(6 ; 5) ; aire ABCD = 50 cm² ; aire ABC = 25 cm²"
     },
-
     {
       "id": "bepc-maths-2007-num-1",
       "session": 2007,
       "partie": "Activités Numériques",
       "numero": "I",
-      "chapitres": ["identités remarquables", "développement et factorisation", "équation produit"],
+      "chapitres": [
+        "identités remarquables",
+        "développement et factorisation",
+        "équation produit"
+      ],
       "enonce": "On pose B = 4x² − 25 − (2x + 5)(3x − 7).\n1) Développer et réduire B.\n2) a) Factoriser 4x² − 25.\n   b) En déduire une factorisation de B.\n3) Résoudre l'équation (2x + 5)(2 − x) = 0.",
       "reponse": "B = −2x² − x + 10 ; 4x² − 25 = (2x − 5)(2x + 5) ; B = (2x + 5)(−x + 2) ; x = −5/2 ou x = 2"
     },
@@ -81,7 +116,11 @@
       "session": 2007,
       "partie": "Activités Numériques",
       "numero": "II",
-      "chapitres": ["systèmes de deux équations", "périmètre", "problème concret"],
+      "chapitres": [
+        "systèmes de deux équations",
+        "périmètre",
+        "problème concret"
+      ],
       "enonce": "Le périmètre d'un rectangle de longueur x et de largeur y est 140 mm. En doublant la largeur initiale et en retranchant 7 mm de la longueur initiale, on obtient un nouveau rectangle dont le périmètre est égal à 176 mm.\nQuelles sont les dimensions x et y du rectangle initial ?",
       "reponse": "x + y = 70 et x + 2y = 95 ; longueur x = 45 mm, largeur y = 25 mm"
     },
@@ -90,17 +129,30 @@
       "session": 2007,
       "partie": "Activités Géométriques",
       "numero": "A",
-      "chapitres": ["repère orthonormé", "distance entre deux points", "théorème de Pythagore", "symétrie centrale", "rectangle", "translation", "cercle circonscrit", "tangente au cercle", "équation de droite"],
+      "chapitres": [
+        "repère orthonormé",
+        "distance entre deux points",
+        "théorème de Pythagore",
+        "symétrie centrale",
+        "rectangle",
+        "translation",
+        "cercle circonscrit",
+        "tangente au cercle",
+        "équation de droite"
+      ],
       "enonce": "Le plan est muni d'un repère (O ; I ; J). L'unité de longueur est le centimètre.\nOn donne les points A(7 ; 1), B(8 ; 4) et C(−1 ; 7).\n1) a) Faire une figure, à compléter au fur et à mesure des questions.\n   b) Calculer les distances AB, BC et AC.\n   c) Démontrer que le triangle ABC est rectangle.\n2) M est le milieu du segment [AC] et D le symétrique de B par rapport à M.\n   a) Déterminer le couple de coordonnées du point M.\n   b) Démontrer que le quadrilatère ABCD est un rectangle.\n3) P est l'image de O par la translation de vecteur AC. Déterminer le couple de coordonnées du point P.\n4) (C) est le cercle circonscrit au triangle ABC.\n   a) Préciser le centre et le rayon du cercle (C).\n   b) Justifier que les points D et O appartiennent au cercle (C).\n   c) Démontrer que la droite (OP) est la tangente au cercle (C).\n   d) Déterminer une équation de la droite (OP).",
       "reponse": "AB = √10 ; BC = 3√10 ; AC = 10 ; AB² + BC² = AC² donc rectangle en B ; M(3 ; 4) ; D(−2 ; 4) ; P(−8 ; 6) ; centre M(3 ; 4), rayon 5 cm ; équation de (OP) : 3x + 4y = 0"
     },
-
     {
       "id": "bepc-maths-2008-num-1",
       "session": 2008,
       "partie": "Activités Numériques",
       "numero": "I",
-      "chapitres": ["racines carrées", "identités remarquables", "calcul exact"],
+      "chapitres": [
+        "racines carrées",
+        "identités remarquables",
+        "calcul exact"
+      ],
       "enonce": "On donne A = 3√2 − 4 et B = 3√2 + 4.\nCalculer les valeurs exactes de A + B, A − B, A² et A × B.",
       "reponse": "A + B = 6√2 ; A − B = −8 ; A² = 34 − 24√2 ; A × B = 2"
     },
@@ -109,7 +161,10 @@
       "session": 2008,
       "partie": "Activités Numériques",
       "numero": "I (suite)",
-      "chapitres": ["fractions", "priorités opératoires"],
+      "chapitres": [
+        "fractions",
+        "priorités opératoires"
+      ],
       "enonce": "Calculer et donner les résultats sous la forme la plus simple :\nC = 7/4 − (3/4 × 8/9)\nD = (1 − 2/3) : (1 + 2/3)",
       "reponse": "C = 13/12 ; D = 1/5"
     },
@@ -118,7 +173,10 @@
       "session": 2008,
       "partie": "Activités Numériques",
       "numero": "II.1",
-      "chapitres": ["développement et factorisation", "inéquations du premier degré"],
+      "chapitres": [
+        "développement et factorisation",
+        "inéquations du premier degré"
+      ],
       "enonce": "On considère l'expression E = (3x − 1)² − (x − 1)(9x + 6).\na) Développer et réduire E.\nb) Résoudre l'inéquation −3x + 7 < 1.",
       "reponse": "E = −3x + 7 ; x > 2, soit x ∈ ]2 ; +∞["
     },
@@ -127,7 +185,11 @@
       "session": 2008,
       "partie": "Activités Numériques",
       "numero": "II.2",
-      "chapitres": ["identités remarquables", "développement et factorisation", "équation produit"],
+      "chapitres": [
+        "identités remarquables",
+        "développement et factorisation",
+        "équation produit"
+      ],
       "enonce": "On considère l'expression E = (3x − 2)² − 9.\na) Factoriser E.\nb) Résoudre l'équation (3x − 5)(3x + 1) = 0.",
       "reponse": "E = (3x − 5)(3x + 1) ; x = 5/3 ou x = −1/3"
     },
@@ -136,7 +198,12 @@
       "session": 2008,
       "partie": "Activités Numériques",
       "numero": "III",
-      "chapitres": ["fractions", "périmètre", "aires", "problème concret"],
+      "chapitres": [
+        "fractions",
+        "périmètre",
+        "aires",
+        "problème concret"
+      ],
       "enonce": "Un jardin a pour longueur 4/5 hm et pour largeur 1/4 hm.\na) Calculer son périmètre en hm.\nb) Calculer son aire en hectomètres carrés. On donnera les résultats sous forme fractionnaire, puis sous forme décimale.",
       "reponse": "Périmètre = 21/10 hm = 2,1 hm ; aire = 1/5 hm² = 0,2 hm²",
       "correction_du_livre": "Le livre imprime « longueur 4/3 hm » dans l'énoncé, mais tout son corrigé calcule avec 4/5 — et seul 4/5 donne l'aire décimale exacte que la question b) réclame (0,2 hm²). L'énoncé retenu est donc 4/5."
@@ -146,18 +213,29 @@
       "session": 2008,
       "partie": "Activités Géométriques",
       "numero": "B",
-      "chapitres": ["repère orthonormé", "vecteurs", "distance entre deux points", "parallélogramme", "symétrie centrale", "centre de gravité", "médianes"],
+      "chapitres": [
+        "repère orthonormé",
+        "vecteurs",
+        "distance entre deux points",
+        "parallélogramme",
+        "symétrie centrale",
+        "centre de gravité",
+        "médianes"
+      ],
       "enonce": "Tracer un repère (O, I, J) et placer les points A(−4 ; −1), B(−2 ; 3), C(8 ; 5) et D(6 ; 1).\nOn appelle M le milieu du segment [BD].\na) Démontrer que le quadrilatère ABCD est un parallélogramme.\nb) L est le symétrique de A par rapport à B. Démontrer que le quadrilatère BLCD est un parallélogramme.\nc) Les droites (LM) et (BC) se coupent en G. Que représente G pour le triangle LAC ?\nd) (AG) coupe (LC) en P. Calculer les coordonnées de P. Justifier soigneusement.",
       "reponse": "AB = CD = 2√5 ; BC = AD = 2√26 ; L(0 ; 7) ; G est le centre de gravité du triangle LAC ; P(4 ; 6)",
       "correction_du_livre": "Le livre écrit BD = 2√26 : c'est faux. B(−2 ; 3) et D(6 ; 1) donnent BD = √(8² + 2²) = √68 = 2√17. Le raisonnement reste juste, seul ce nombre est erroné."
     },
-
     {
       "id": "bepc-maths-2009-num-1",
       "session": 2009,
       "partie": "Activités Numériques",
       "numero": "I",
-      "chapitres": ["systèmes de deux équations", "aires", "problème concret"],
+      "chapitres": [
+        "systèmes de deux équations",
+        "aires",
+        "problème concret"
+      ],
       "enonce": "Trouver les dimensions d'un champ rectangulaire sachant que :\n— si l'on augmente la longueur et la largeur de 2 m, l'aire du champ augmente de 84 m² ;\n— si l'on augmente la largeur de 3 m et diminue la longueur de 5 m, l'aire diminue de 31 m².",
       "reponse": "Longueur = 23 m, largeur = 17 m",
       "correction_du_livre": "Le livre imprime « augmente la longueur et la largeur de 2 cm » alors que tout le corrigé, et la cohérence avec des aires en m², imposent 2 m."
@@ -167,7 +245,11 @@
       "session": 2009,
       "partie": "Activités Numériques",
       "numero": "II",
-      "chapitres": ["racines carrées", "quantité conjuguée", "nombres opposés"],
+      "chapitres": [
+        "racines carrées",
+        "quantité conjuguée",
+        "nombres opposés"
+      ],
       "enonce": "On donne les réels a et b tels que : a = (3 − √2)/5 et b = −1/(3 + √2).\na) Calculer a² et 1 + b.\nb) Montrer que les réels a et b sont opposés.",
       "reponse": "a² = (11 − 6√2)/25 ; 1 + b = (4 + √2)/7. En réalité a + b ≠ 0 : a et b NE SONT PAS opposés — c'est la conclusion du corrigé lui-même, alors que la question affirme le contraire.",
       "correction_du_livre": "Le livre imprime a = (3 − √3)/5 dans l'énoncé mais calcule partout avec √2. Et la question b) demande de montrer que a et b sont opposés, alors que le corrigé démontre qu'ils ne le sont pas."
@@ -177,7 +259,10 @@
       "session": 2009,
       "partie": "Activités Numériques",
       "numero": "II (suite)",
-      "chapitres": ["puissances", "fractions"],
+      "chapitres": [
+        "puissances",
+        "fractions"
+      ],
       "enonce": "Écrire le plus simplement possible les réels a, b et c :\na = (2² × 2² × 3²) / (2³ × 2 × 3⁴)\nb = (2 + 1/3) : (14/5)\nc = a × b",
       "reponse": "a = 1/9 ; b = 5/6 ; c = 5/54"
     },
@@ -186,7 +271,11 @@
       "session": 2009,
       "partie": "Activités Numériques",
       "numero": "III",
-      "chapitres": ["développement et factorisation", "identités remarquables", "facteur commun"],
+      "chapitres": [
+        "développement et factorisation",
+        "identités remarquables",
+        "facteur commun"
+      ],
       "enonce": "On donne les expressions suivantes :\nA = x² − 4 + (x − 2)(2x − 1) + (x − 2)²\nB = (2x − 5)² − (4x − 10)(3x + 2)\na) Développer, réduire et ordonner A et B.\nb) Décomposer A et B en produit de facteurs du premier degré.",
       "reponse": "A = 4x² − 9x + 2 = (x − 2)(4x − 1) ; B = −8x² + 2x + 45 = (2x − 5)(−4x − 9)"
     },
@@ -195,18 +284,27 @@
       "session": 2009,
       "partie": "Activités Géométriques",
       "numero": "B",
-      "chapitres": ["théorème de Pythagore", "symétrie axiale", "triangle équilatéral", "expression littérale", "droites parallèles"],
+      "chapitres": [
+        "théorème de Pythagore",
+        "symétrie axiale",
+        "triangle équilatéral",
+        "expression littérale",
+        "droites parallèles"
+      ],
       "enonce": "1) Construire un triangle ABC rectangle en A tel que AB = 3 cm et BC = 6 cm.\nSoit D le symétrique de B par rapport à la droite (AC). Prouver que BD est égal à 6 cm et CD égale à 6 cm.\n2) Soit M un point qui se déplace sur le segment [BD]. On appelle x la longueur du segment [DM].\n   a) Entre quelles valeurs peut varier x ?\n   b) Exprimer BM en fonction de x.\n3) On projette M sur le segment [CD], parallèlement à la droite (BC). Prouver que DI est égal à x.",
       "reponse": "AC = 3√3 cm ; BD = 6 cm ; CD = 6 cm ; x ∈ [0 ; 6] ; BM = 6 − x ; DI = x",
       "correction_du_livre": "Le livre calcule AC = √(6² − 3²) = √(36 − 9) puis écrit « = √25 = 5 ». C'est une faute de calcul : 36 − 9 = 27, donc AC = 3√3 ≈ 5,2 cm."
     },
-
     {
       "id": "bepc-maths-2010-num-1",
       "session": 2010,
       "partie": "Activités Numériques",
       "numero": "I.1",
-      "chapitres": ["équations du premier degré", "fractions", "identités remarquables"],
+      "chapitres": [
+        "équations du premier degré",
+        "fractions",
+        "identités remarquables"
+      ],
       "enonce": "Résoudre dans ℝ les équations suivantes :\na) (x + 3)/2 + (4x − 3)/3 = 1 + (5x − 12)/6\nb) (2x + 3)² − (2x + 5) = 4x(x − 4) + 4",
       "reponse": "a) x = −3/2  b) x = 0"
     },
@@ -215,7 +313,11 @@
       "session": 2010,
       "partie": "Activités Numériques",
       "numero": "I.2",
-      "chapitres": ["racines carrées", "nombres inverses", "quantité conjuguée"],
+      "chapitres": [
+        "racines carrées",
+        "nombres inverses",
+        "quantité conjuguée"
+      ],
       "enonce": "Soit les réels a et b tels que : a = (√3 − 1)/√2 et b = (√3 + 1)/√2.\na) Calculer le produit a × b. Que peut-on déduire pour les nombres a et b ?\nb) Calculer les réels a² et a/b (mettre les réponses sous la forme la plus simple possible). Que constate-t-on ?",
       "reponse": "a × b = 1, donc a et b sont inverses l'un de l'autre ; a² = 2 − √3 et a/b = 2 − √3, on constate que a² = a/b"
     },
@@ -224,7 +326,12 @@
       "session": 2010,
       "partie": "Activités Numériques",
       "numero": "II",
-      "chapitres": ["systèmes de deux équations", "application affine", "proportionnalité", "problème concret"],
+      "chapitres": [
+        "systèmes de deux équations",
+        "application affine",
+        "proportionnalité",
+        "problème concret"
+      ],
       "enonce": "Le prix à payer pour un trajet en taxi comprend une prise en charge et une somme proportionnelle au nombre de kilomètres parcourus.\nUne personne A a payé 500 FG pour un trajet de 4 km ; une autre personne B a payé 725 FG pour un trajet de 8,5 km.\n1) Déterminer le prix au kilomètre et le montant de la prise en charge.\n2) Déterminer l'application affine qui définit la somme à payer en fonction du nombre de kilomètres parcourus.",
       "reponse": "Prix au kilomètre = 50 GNF ; prise en charge = 300 GNF ; y = 50x + 300"
     },
@@ -233,17 +340,27 @@
       "session": 2010,
       "partie": "Activités Géométriques",
       "numero": "B",
-      "chapitres": ["théorème de Pythagore", "réciproque de Pythagore", "droites parallèles", "théorème de Thalès", "construction géométrique"],
+      "chapitres": [
+        "théorème de Pythagore",
+        "réciproque de Pythagore",
+        "droites parallèles",
+        "théorème de Thalès",
+        "construction géométrique"
+      ],
       "enonce": "ABC est un triangle tel que AB = 3, AC = 4 et BC = 5.\nSur la demi-droite (AB), on place le point D tel que AD est égal à 4.\nLa parallèle à la droite (BC) passant par le point D coupe la droite (AC) en E ; la perpendiculaire en D à la droite (AB) coupe (CB) en F.\n1) Faire une figure exacte (unité 2 cm).\n2) Montrer que ABC est un triangle rectangle et préciser en quel point.",
       "reponse": "AB² + AC² = 9 + 16 = 25 = BC², donc ABC est rectangle en A"
     },
-
     {
       "id": "bepc-maths-2011-num-1",
       "session": 2011,
       "partie": "Activités Numériques",
       "numero": "I",
-      "chapitres": ["systèmes de trois équations", "fractions", "partage proportionnel", "problème concret"],
+      "chapitres": [
+        "systèmes de trois équations",
+        "fractions",
+        "partage proportionnel",
+        "problème concret"
+      ],
       "enonce": "Trois personnes se partagent 5 250 GNF.\nLa part de la deuxième personne est égale à 2/5 de celle de la première personne, et la part de la troisième personne est égale à la demi-somme de celles des deux autres.\nQuelles sont les trois parts ?",
       "reponse": "Première part : 2 500 GNF ; deuxième : 1 000 GNF ; troisième : 1 750 GNF",
       "correction_du_livre": "L'énoncé imprime « la part de la 3ᵉ personne N'est égale à la demi-somme » ; le « n' » est une coquille, le corrigé lit bien « est égale »."
@@ -253,7 +370,10 @@
       "session": 2011,
       "partie": "Activités Numériques",
       "numero": "II.1",
-      "chapitres": ["racines carrées", "simplification de radicaux"],
+      "chapitres": [
+        "racines carrées",
+        "simplification de radicaux"
+      ],
       "enonce": "Écrire sous la forme x√n chacune des sommes suivantes (x et n sont des entiers positifs) :\nA = √20 + √125 − √245 + √5\nB = 3√18 − 2√98 + 5√242",
       "reponse": "A = √5 (x = 1, n = 5) ; B = 50√2 (x = 50, n = 2)"
     },
@@ -262,7 +382,11 @@
       "session": 2011,
       "partie": "Activités Numériques",
       "numero": "II.2",
-      "chapitres": ["racines carrées", "quantité conjuguée", "nombres opposés"],
+      "chapitres": [
+        "racines carrées",
+        "quantité conjuguée",
+        "nombres opposés"
+      ],
       "enonce": "On pose P = 2 − (3√2)/2 et Q = 1/(3√2 + 4).\nMontrer que les nombres P et Q sont opposés.",
       "reponse": "P + Q = 0, donc P et Q sont bien opposés"
     },
@@ -271,7 +395,11 @@
       "session": 2011,
       "partie": "Activités Numériques",
       "numero": "III",
-      "chapitres": ["application affine", "équations du premier degré", "inéquations du premier degré"],
+      "chapitres": [
+        "application affine",
+        "équations du premier degré",
+        "inéquations du premier degré"
+      ],
       "enonce": "On considère les applications f et g définies par : f(x) = 7 − 2x et g(x) = (4/5)x − 5.\n1) Calculer f(1/2) et g(−7/3).\n2) Résoudre l'équation f(x) = g(x) et l'inéquation f(x) ≤ g(x).",
       "reponse": "f(1/2) = 6 ; g(−7/3) = −103/15 ; f(x) = g(x) pour x = 30/7 ; f(x) ≤ g(x) pour x ≥ 30/7, soit x ∈ [30/7 ; +∞["
     },
@@ -280,9 +408,118 @@
       "session": 2011,
       "partie": "Activités Géométriques",
       "numero": "B",
-      "chapitres": ["repère orthonormé", "distance entre deux points", "réciproque de Pythagore", "cercle circonscrit", "médiatrice"],
+      "chapitres": [
+        "repère orthonormé",
+        "distance entre deux points",
+        "réciproque de Pythagore",
+        "cercle circonscrit",
+        "médiatrice"
+      ],
       "enonce": "Placer dans un plan muni d'un repère orthonormal (O, I, J) les points A(−1 ; 5), B(−3 ; 1) et C(−5 ; 2).\na) Calculer les distances AC, AB et BC. En déduire la nature du triangle ABC.\nb) Tracer le cercle circonscrit (C) au triangle ABC. Préciser les coordonnées de son centre K et calculer son rayon.\nc) Soit x un réel différent de −5 et M(x ; 2). Calculer x pour que le point M appartienne au cercle (C). Démontrer que, pour le point M ainsi trouvé, la droite (BK) est la médiatrice du segment [CM].",
       "reponse": "AB = 2√5 ; AC = 5 ; BC = √5 ; AC² = AB² + BC² donc ABC est rectangle en B. Le centre K est le milieu de l'hypoténuse [AC] : K(−3 ; 7/2), rayon = 5/2 = 2,5. Pour M : x = −1, soit M(−1 ; 2)"
+    },
+    {
+      "id": "bepc-maths-2012-num-1",
+      "session": 2012,
+      "partie": "Activités Numériques",
+      "numero": "I",
+      "chapitres": [
+        "racines carrées",
+        "quantité conjuguée",
+        "nombres opposés"
+      ],
+      "enonce": "On donne les nombres X et Y tels que : X = a / (√3 − √2) et Y = √3 + √2, où a est un nombre réel.\nCalculer a pour que X et Y soient opposés.",
+      "reponse": "a = −1"
+    },
+    {
+      "id": "bepc-maths-2012-num-2",
+      "session": 2012,
+      "partie": "Activités Numériques",
+      "numero": "II",
+      "chapitres": [
+        "application affine",
+        "sens de variation",
+        "comparaison de réels",
+        "racines carrées"
+      ],
+      "enonce": "f est l'application affine définie par f(x) = (4√2 − 6)x + √27.\na) Comparer 4√2 et 6.\nb) f est-elle croissante ou décroissante ?\nc) Ranger par ordre croissant f(3/2) ; f(2/5) ; f(2/3) et f(2).",
+      "reponse": "4√2 < 6 (car 32 < 36) ; f est strictement décroissante ; f(2) < f(3/2) < f(2/3) < f(2/5)"
+    },
+    {
+      "id": "bepc-maths-2012-num-3",
+      "session": 2012,
+      "partie": "Activités Numériques",
+      "numero": "III",
+      "chapitres": [
+        "encadrement",
+        "systèmes de deux équations",
+        "problème concret"
+      ],
+      "enonce": "Un marchand de volaille achète cent (100) pintades, dont certaines coûtent 300 F l'unité et d'autres 400 F l'unité.\n1) Quelle somme minimale pourrait-il dépenser ?\n2) Quelle somme maximale pourrait-il dépenser ?\n3) Soit S la somme effectivement dépensée. Écrire un encadrement de S.\n4) Quelle est l'amplitude de cet encadrement ?\n5) Sachant que la somme effectivement dépensée est 34 000 F, donner le nombre de pintades à 300 F et le nombre de pintades à 400 F achetées.",
+      "reponse": "Minimum 30 000 F ; maximum 40 000 F ; 30 000 < S < 40 000 ; amplitude 10 000 ; 60 pintades à 300 F et 40 pintades à 400 F"
+    },
+    {
+      "id": "bepc-maths-2012-geo",
+      "session": 2012,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": [
+        "repère orthonormé",
+        "vecteurs",
+        "orthogonalité",
+        "distance entre deux points",
+        "triangle rectangle isocèle",
+        "cercle circonscrit",
+        "trigonométrie"
+      ],
+      "enonce": "Dans un plan muni d'un repère orthonormal, on donne les points A, B et C de coordonnées respectives (6 ; −1), (2 ; −2) et (5 ; 3).\n1) Placer les points A, B et C.\n2) Montrer que les vecteurs AB et AC sont orthogonaux.\n3) Calculer les distances AB, AC et BC. Quelle est la nature du triangle ABC ?\n4) Soit (C) le cercle circonscrit au triangle ABC. Déterminer les coordonnées du point K, centre de ce cercle. Calculer son rayon.\n5) Calculer le sinus, le cosinus et la tangente de l'angle ABC.",
+      "reponse": "AB(−4 ; −1) et AC(−1 ; 4) : produit scalaire nul, donc orthogonaux ; AB = AC = √17 et BC = √34 ; triangle rectangle et isocèle en A ; K(7/2 ; 1/2), rayon √34/2 ; cos(ABC) = sin(ABC) = √2/2 et tan(ABC) = 1"
+    },
+    {
+      "id": "bepc-maths-2013-num-1",
+      "session": 2013,
+      "partie": "Activités Numériques",
+      "numero": "I",
+      "chapitres": [
+        "racines carrées",
+        "quantité conjuguée",
+        "encadrement",
+        "nombre d'or"
+      ],
+      "enonce": "On considère le nombre a = (1 + √5)/2, et 2,236 < √5 < 2,237.\n1) Écrire l'inverse de a sans radical au dénominateur, puis comparer l'inverse de a et a − 1.\n2) En utilisant la réponse précédente, démontrer que a² = a + 1.\n3) Donner un encadrement de l'inverse de a par deux nombres décimaux consécutifs d'ordre 2.\n4) Donner un encadrement du carré de a par deux nombres décimaux consécutifs d'ordre 2.",
+      "reponse": "1/a = (√5 − 1)/2 = a − 1 ; a² = a + 1 ; 0,61 < 1/a < 0,62 ; 2,61 < a² < 2,62"
+    },
+    {
+      "id": "bepc-maths-2013-num-2",
+      "session": 2013,
+      "partie": "Activités Numériques",
+      "numero": "II",
+      "chapitres": [
+        "statistiques",
+        "pourcentages",
+        "diagramme circulaire",
+        "fréquences"
+      ],
+      "enonce": "Une enquête menée dans une classe de 10ᵉ année de 60 élèves, pour connaître leur année de naissance, donne les résultats suivants :\n4 élèves sont nés en 1993 ; 24 élèves sont nés en 1994 ; 20 élèves sont nés en 1995 ; 12 élèves sont nés en 1996.\n1) Quel est le pourcentage d'élèves nés en 1994 ?\n2) a) Justifier que la mesure de l'angle au centre qui représente le nombre d'élèves nés en 1993, sur un diagramme circulaire de cette série statistique, est 24°.\n   b) Construire le diagramme circulaire de cette série statistique.",
+      "reponse": "40 % d'élèves nés en 1994 ; angle 1993 = 4 × 360/60 = 24° ; secteurs : 24°, 144°, 120° et 72° (total 360°) ; fréquences : 6,7 %, 40 %, 33,3 % et 20 %",
+      "correction_du_livre": "L'énoncé imprimé oublie les 12 élèves nés en 1996 : sans eux le total ne fait que 48 élèves au lieu de 60, et la question devient insoluble. Le corrigé, lui, les fait apparaître dans son tableau."
+    },
+    {
+      "id": "bepc-maths-2013-geo",
+      "session": 2013,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": [
+        "trigonométrie",
+        "théorème de Pythagore",
+        "cercle",
+        "angle inscrit",
+        "théorème de Thalès",
+        "triangle équilatéral"
+      ],
+      "enonce": "ABC est un triangle rectangle en A tel que AC = 4 et BC = 8.\n1) Calculer cos(ACB), en déduire la mesure de l'angle ACB, puis calculer AB.\n2) Dans le triangle ABC, le point H est tel que la droite (AH) est perpendiculaire à la droite (BC). Le point I est le centre du cercle (C) de diamètre [AC]. Démontrer que le point H appartient à (C).\n3) La parallèle à la droite (BC) passant par A coupe le cercle (C) en P. Démontrer que mes(APH) = 60°.\n4) La parallèle à la droite (AC) passant par H coupe la droite (AB) au point N. Calculer NH sachant que BH = 6.",
+      "reponse": "cos(ACB) = 4/8 = 1/2 donc ACB = 60° et AB = 4√3 ; AH = 2√3, CH = 2, IA = IC = IH = 2 donc H appartient au cercle ; mes(APH) = 60° ; NH = (BH × AC)/BC = 24/8 = 3",
+      "correction_du_livre": "L'énoncé imprimé demande cos(ABC), alors que tout le corrigé calcule cos(ACB) — c'est bien l'angle en C qui vaut 60°."
     }
   ]
 }
