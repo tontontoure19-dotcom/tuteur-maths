@@ -662,6 +662,42 @@
       ],
       "enonce": "(C) est un cercle de centre K et de diamètre [AB]. N est un point de (C) tel que mes(AKN) = 60°.\nLa tangente en N au cercle (C) coupe la droite (AB) en T.\n1) Faire une esquisse de la figure et donner la nature des triangles ANK, TNK et ANT. En utilisant uniquement le compas et la règle graduée, réaliser la figure à l'échelle 1/4, sachant que [AB] est un segment de 10 cm.\n2) Calculer TN.\n3) Construire l'image L du point K par la translation de vecteur AN. Justifier que le point L appartient au cercle (C).\n4) Démontrer que le quadrilatère ANLK est un losange.",
       "reponse": "KA = KN = 5 cm (rayons) et l'angle AKN vaut 60° : ANK est équilatéral, donc AN = 5 cm.\nLa tangente en N est perpendiculaire au rayon [KN] : TNK est rectangle en N, avec l'angle NKT = 60°, donc TN = 5 × tan(60°) = 5√3 ≈ 8,66 cm.\nDans ANT, les angles en T et en N valent 30° : ANT est isocèle en A, avec AT = AN = 5 cm.\nL = K + vecteur AN, donc KL = AN = 5 cm = rayon : L appartient bien à (C).\nANLK a ses quatre côtés égaux à 5 cm : c'est un losange."
+    },
+    {
+      "id": "bepc-maths-2017-num",
+      "session": 2017,
+      "partie": "Activités Numériques",
+      "numero": "A",
+      "chapitres": [
+        "identités remarquables",
+        "développement et factorisation",
+        "facteur commun",
+        "fonction rationnelle",
+        "condition d'existence",
+        "quantité conjuguée",
+        "encadrement",
+        "racines carrées"
+      ],
+      "enonce": "On considère les polynômes suivants :\nf(x) = 49x² − 25\ng(x) = (7x − 5)(3 − 2x) − 14x + 10 − 5(5 − 7x)\n1) Développer, réduire et ordonner g(x) suivant les puissances décroissantes de x.\n2) Factoriser f(x) et g(x).\nOn pose h(x) = f(x) / g(x).\n3) a) Déterminer la condition d'existence d'une valeur numérique de h.\n   b) Simplifier h(x).\n4) a) Parmi les nombres réels 0 ; √3 et 5/7, quels sont ceux qui ont une image par h ? Justifier.\n   b) Calculer l'image, lorsqu'elle existe, de chacun de ces nombres.\n5) Donner un encadrement de h(√3) par deux nombres décimaux consécutifs d'ordre 2, sachant que 1,732 < √3 < 1,733.",
+      "reponse": "g(x) = −14x² + 52x − 30 ; f(x) = (7x + 5)(7x − 5) et g(x) = 2(7x − 5)(3 − x).\nh existe si et seulement si x ≠ 5/7 et x ≠ 3 ; h(x) = (7x + 5) / (6 − 2x).\n0 et √3 ont une image, 5/7 n'en a pas.\nh(0) = 5/6 ; h(√3) = (13√3)/6 + 3 ≈ 6,7528.\nEncadrement : 6,75 < h(√3) < 6,76."
+    },
+    {
+      "id": "bepc-maths-2017-geo",
+      "session": 2017,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": [
+        "repère orthonormé",
+        "symétrie centrale",
+        "distance entre deux points",
+        "triangle rectangle isocèle",
+        "médiatrice",
+        "cercle circonscrit",
+        "tangente au cercle",
+        "équation de droite"
+      ],
+      "enonce": "Dans le plan muni d'un repère orthonormé (O, I, J), on donne les points B(2 ; 2) et C(−4 ; 0).\n1) Placer les points B et C.\n2) Calculer les coordonnées du point A, image de B par la symétrie de centre I.\n3) Montrer que le triangle ABC est rectangle et isocèle.\n4) La médiatrice (Δ) de [AC] coupe la droite (AC) en K et la droite (BC) en P.\n   a) Montrer que le point P est le milieu du segment [BC].\n   b) Calculer les coordonnées de P.\n5) a) Construire la droite (Δ') d'équation −x + 3y + 6 = 0.\n   b) Montrer que la droite (Δ') est tangente en A au cercle circonscrit au triangle ABC.",
+      "reponse": "A(0 ; −2) ; AB = AC = 2√5 et BC = 2√10, avec AB² + AC² = BC² : ABC est rectangle et isocèle en A.\nP est le milieu de [BC] : P(−1 ; 1).\nLe cercle circonscrit a pour centre le milieu de l'hypoténuse, soit P(−1 ; 1), et pour rayon √10.\nA vérifie −0 + 3(−2) + 6 = 0, donc A appartient à (Δ') ; le vecteur PA(1 ; −3) est orthogonal au vecteur directeur (3 ; 1) de (Δ') : la droite est bien tangente en A."
     }
   ]
 }
