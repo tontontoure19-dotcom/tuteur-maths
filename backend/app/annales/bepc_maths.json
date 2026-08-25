@@ -569,9 +569,9 @@
     },
     {
       "id": "bepc-maths-2014b-num-1",
-      "session": 2014,
+      "session": 2015,
       "partie": "Activités Numériques",
-      "numero": "Partie A (2ᵉ sujet)",
+      "numero": "Partie A",
       "chapitres": [
         "vrai ou faux",
         "nombres relatifs",
@@ -584,26 +584,26 @@
       ],
       "enonce": "Recopier chacune des affirmations ci-dessous. Dire si elle est vraie (V) ou fausse (F), puis justifier :\n1) Si x est un réel négatif, alors −(−x) est positif.\n2) Si le triangle ABC est rectangle en B, alors sin  = sin Ĉ.\n3) √15 = √60 / 2\n4) (555555)² + (333333)² = (888888)²\n5) La droite d'équation y = 2x + 3 passe par le point A(1 ; 5).\n6) Si les vecteurs BC et AD sont égaux, alors les segments [AC] et [BD] ont le même milieu.",
       "reponse": "1) FAUX : si x < 0 alors −(−x) = x < 0.\n2) FAUX : dans un triangle rectangle en B, Â et Ĉ sont complémentaires, donc sin  = cos Ĉ. L'égalité sin  = sin Ĉ n'aurait lieu que si  = Ĉ = 45°.\n3) VRAI : √60/2 = √(4×15)/2 = 2√15/2 = √15.\n4) FAUX : a² + b² ≠ (a + b)².\n5) VRAI : 2(1) + 3 = 5.\n6) VRAI : ABCD est alors un parallélogramme, et ses diagonales se coupent en leur milieu.",
-      "correction_du_livre": "Le livre répond VRAI à l'affirmation 2 en justifiant que « Â et Ĉ sont complémentaires » — or c'est précisément ce qui rend l'égalité fausse : complémentaires donne sin  = cos Ĉ, pas sin  = sin Ĉ. La bonne réponse est FAUX. C'est l'erreur la plus grave relevée dans ce livre : elle enseigne un résultat de trigonométrie inexact. Le livre imprime « BEPC SESSION 2014 » une seconde fois (page 37), avec un sujet entièrement différent de celui de la page 33. L'un des deux est mal daté — il s'agit probablement de la session 2015, mais seul le porteur du projet peut trancher. L'année affichée reste celle du livre en attendant."
+      "correction_du_livre": "Le livre répond VRAI à l'affirmation 2 en justifiant que « Â et Ĉ sont complémentaires » — or c'est précisément ce qui rend l'égalité fausse : complémentaires donne sin  = cos Ĉ, pas sin  = sin Ĉ. La bonne réponse est FAUX. C'est l'erreur la plus grave relevée dans ce livre : elle enseigne un résultat de trigonométrie inexact. Le livre imprime « SESSION 2014 » sur ce sujet, mais l'ordre des pages le place entre 2014 (p.33) et 2016 (p.41) : c'est la session 2015. À confirmer par le porteur du projet."
     },
     {
       "id": "bepc-maths-2014b-num-2",
-      "session": 2014,
+      "session": 2015,
       "partie": "Activités Numériques",
-      "numero": "Partie B (2ᵉ sujet)",
+      "numero": "Partie B",
       "chapitres": [
         "systèmes de deux équations",
         "problème concret"
       ],
       "enonce": "À l'occasion de l'anniversaire d'un collège, le comité de coordination propose des jus de fruit à 3 500 francs la bouteille et des limonades à 5 000 francs la bouteille.\nLa recette a été de 1 450 000 francs pour 350 bouteilles vendues.\nCombien de bouteilles de chaque sorte ont été vendues ?",
       "reponse": "200 bouteilles de jus de fruit et 150 bouteilles de limonade",
-      "correction_du_livre": "Le livre imprime « BEPC SESSION 2014 » une seconde fois (page 37), avec un sujet entièrement différent de celui de la page 33. L'un des deux est mal daté — il s'agit probablement de la session 2015, mais seul le porteur du projet peut trancher. L'année affichée reste celle du livre en attendant."
+      "correction_du_livre": "Le livre imprime « SESSION 2014 » sur ce sujet, mais l'ordre des pages le place entre 2014 (p.33) et 2016 (p.41) : c'est la session 2015. À confirmer par le porteur du projet."
     },
     {
       "id": "bepc-maths-2014b-geo-1",
-      "session": 2014,
+      "session": 2015,
       "partie": "Activités Géométriques",
-      "numero": "Exercice 1 (2ᵉ sujet)",
+      "numero": "Exercice 1",
       "chapitres": [
         "théorème de Pythagore",
         "trigonométrie",
@@ -612,13 +612,13 @@
       ],
       "enonce": "1) Construire un triangle rectangle en A dont les dimensions sont les suivantes : AB = 8 cm et AC = 6 cm. Calculer BC puis cos(ABC).\n2) Placer le point M tel que AM = (1/3) AB. La parallèle à (BC) passant par M coupe (AC) en N.\nComparer les rapports AM/AB et AN/AC, puis en déduire que AN = (1/3) AC.",
       "reponse": "BC = 10 cm ; cos(ABC) = AB/BC = 8/10 = 4/5 ; d'après Thalès AM/AB = AN/AC = 1/3, donc AN = (1/3) AC = 2 cm",
-      "correction_du_livre": "Le livre imprime « BEPC SESSION 2014 » une seconde fois (page 37), avec un sujet entièrement différent de celui de la page 33. L'un des deux est mal daté — il s'agit probablement de la session 2015, mais seul le porteur du projet peut trancher. L'année affichée reste celle du livre en attendant."
+      "correction_du_livre": "Le livre imprime « SESSION 2014 » sur ce sujet, mais l'ordre des pages le place entre 2014 (p.33) et 2016 (p.41) : c'est la session 2015. À confirmer par le porteur du projet."
     },
     {
       "id": "bepc-maths-2014b-geo-2",
-      "session": 2014,
+      "session": 2015,
       "partie": "Activités Géométriques",
-      "numero": "Exercice 2 (2ᵉ sujet)",
+      "numero": "Exercice 2",
       "chapitres": [
         "repère orthonormé",
         "vecteurs",
@@ -629,7 +629,39 @@
       ],
       "enonce": "Dans le plan muni d'un repère orthonormé (O, I, J), on donne les points A(−4 ; 2) et B(2 ; 4).\n1) Placer les points A et B, puis les exprimer en fonction des vecteurs OI et OJ.\n2) Déterminer les coordonnées du point C tel que le quadrilatère OACB soit un parallélogramme. Calculer les coordonnées du point M, milieu de [AB].\n3) Calculer les distances OA et OB, puis en déduire la nature du triangle AOB.\n4) Déterminer une équation de la droite (AB).",
       "reponse": "C(−2 ; 6) ; M(−1 ; 3) ; OA = OB = 2√5 et les vecteurs OA et OB sont orthogonaux (−4×2 + 2×4 = 0), donc AOB est rectangle et isocèle en O ; équation de (AB) : x − 3y + 10 = 0",
-      "correction_du_livre": "Le livre imprime « BEPC SESSION 2014 » une seconde fois (page 37), avec un sujet entièrement différent de celui de la page 33. L'un des deux est mal daté — il s'agit probablement de la session 2015, mais seul le porteur du projet peut trancher. L'année affichée reste celle du livre en attendant."
+      "correction_du_livre": "Le livre imprime « SESSION 2014 » sur ce sujet, mais l'ordre des pages le place entre 2014 (p.33) et 2016 (p.41) : c'est la session 2015. À confirmer par le porteur du projet."
+    },
+    {
+      "id": "bepc-maths-2016-num",
+      "session": 2016,
+      "partie": "Activités Numériques",
+      "numero": "A",
+      "chapitres": [
+        "statistiques",
+        "moyenne",
+        "pourcentages",
+        "diagramme circulaire",
+        "effectifs cumulés"
+      ],
+      "enonce": "Le tableau ci-dessous représente la répartition des notes de mathématiques lors d'un test de niveau, où la note moyenne est 12,5 :\n\nNotes sur 20 :      6 | 8 | 9 | 12 | 15 | x\nNombre d'élèves :   6 | 9 | 15 | 9 | 15 | 18\n\n1) Calculer x, la meilleure note attribuée lors de ce test.\n2) Combien d'élèves ont une note au moins égale à 12 ?\n3) Quel est le pourcentage des élèves qui ont au plus 15 ?\n4) Construire le diagramme circulaire de la série.",
+      "reponse": "Effectif total 72. (576 + 18x)/72 = 12,5 donne x = 18.\nNotes ≥ 12 : 9 + 15 + 18 = 42 élèves.\nNotes ≤ 15 : 54 élèves sur 72, soit 75 %.\nAngles du diagramme : 30°, 45°, 75°, 45°, 75°, 90° (total 360°)."
+    },
+    {
+      "id": "bepc-maths-2016-geo",
+      "session": 2016,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": [
+        "cercle",
+        "tangente au cercle",
+        "triangle équilatéral",
+        "trigonométrie",
+        "translation",
+        "losange",
+        "construction géométrique"
+      ],
+      "enonce": "(C) est un cercle de centre K et de diamètre [AB]. N est un point de (C) tel que mes(AKN) = 60°.\nLa tangente en N au cercle (C) coupe la droite (AB) en T.\n1) Faire une esquisse de la figure et donner la nature des triangles ANK, TNK et ANT. En utilisant uniquement le compas et la règle graduée, réaliser la figure à l'échelle 1/4, sachant que [AB] est un segment de 10 cm.\n2) Calculer TN.\n3) Construire l'image L du point K par la translation de vecteur AN. Justifier que le point L appartient au cercle (C).\n4) Démontrer que le quadrilatère ANLK est un losange.",
+      "reponse": "KA = KN = 5 cm (rayons) et l'angle AKN vaut 60° : ANK est équilatéral, donc AN = 5 cm.\nLa tangente en N est perpendiculaire au rayon [KN] : TNK est rectangle en N, avec l'angle NKT = 60°, donc TN = 5 × tan(60°) = 5√3 ≈ 8,66 cm.\nDans ANT, les angles en T et en N valent 30° : ANT est isocèle en A, avec AT = AN = 5 cm.\nL = K + vecteur AN, donc KL = AN = 5 cm = rayon : L appartient bien à (C).\nANLK a ses quatre côtés égaux à 5 cm : c'est un losange."
     }
   ]
 }
