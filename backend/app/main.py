@@ -663,8 +663,19 @@ def rapport(eleve: str, code: str | None = None):
 
 @app.get("/api/config")
 def config():
-    """Dit à l'application si un code d'accès est exigé."""
-    return {"code_requis": bool(CODES_ACCES)}
+    """Dit à l'application si un code d'accès est exigé.
+
+    Renseigne aussi l'état de la réserve d'annales : c'est le seul moyen de
+    vérifier de l'extérieur qu'un changement du serveur est bien en ligne,
+    quand il ne touche aucun fichier de l'application.
+    """
+    return {
+        "code_requis": bool(CODES_ACCES),
+        "annales": {
+            "sessions": annales_store.sessions_disponibles(),
+            "exercices": len(annales_store.charger()),
+        },
+    }
 
 
 @app.get("/api/eleves")
