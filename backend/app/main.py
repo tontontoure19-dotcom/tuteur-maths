@@ -224,6 +224,50 @@ if not CLE_PRESENTE:
     )
 
 
+# En dessous, ce n'est pas une absence : l'élève travaille simplement le
+# lendemain ou le surlendemain, ce qui est le rythme normal.
+JOURS_AVANT_ABSENCE = 2
+
+
+def _retour_apres_absence(eleve: str, code: str | None) -> str:
+    """Signale au répétiteur qu'un élève revient après plusieurs jours.
+
+    Un vrai répétiteur remarque une absence — sans la reprocher. Beaucoup de
+    ces élèves partagent un téléphone, aident à la maison, ou suivent déjà
+    des cours ailleurs : ils ne sont pas paresseux, ils sont occupés.
+    """
+    echanges = _journal(_fichier_session(eleve, code))
+    if not echanges:
+        return ""
+
+    try:
+        dernier = datetime.fromisoformat(echanges[-1]["horodatage"])
+    except ValueError:
+        return ""
+    jours = (datetime.now(timezone.utc) - dernier).days
+    if jours < JOURS_AVANT_ABSENCE:
+        return ""
+
+    derniere_seance = [e for e in echanges if e["seance"] == echanges[-1]["seance"]]
+    sujet = _titre_seance(derniere_seance)
+
+    return (
+        f"# L'élève revient après {jours} jours sans travailler\n\n"
+        f"La dernière fois, il travaillait sur : « {sujet} »\n\n"
+        "Remarque-le en une phrase, chaleureusement, AVANT de répondre à sa "
+        "question. Puis propose de reprendre où il s'était arrêté — s'il "
+        "préfère autre chose, tu suis.\n\n"
+        "**Jamais de reproche.** Ni « tu as disparu », ni « il faut être "
+        "régulier », ni aucune leçon de morale. Beaucoup de ces élèves "
+        "partagent le téléphone de la famille, aident à la maison, ou "
+        "suivent déjà des cours ailleurs : ils ne sont pas paresseux, ils "
+        "sont occupés. Un reproche, et ils ne reviennent pas du tout.\n\n"
+        "Exemple du ton juste : « Content de te revoir ! On avait laissé "
+        "Pythagore en route — tu veux qu'on le reprenne, ou tu as autre "
+        "chose aujourd'hui ? »"
+    )
+
+
 def _annale_utile(message: str, niveau: str) -> str:
     """Un sujet d'examen portant sur ce dont l'élève vient de parler.
 
@@ -429,6 +473,10 @@ def chat(demande: DemandeChat):
     seance = demande.seance or _seance_courante(
         _journal(_fichier_session(demande.eleve, code_utilise)))
 
+    # Se calcule AVANT d'enregistrer le message : sinon la dernière trace
+    # aurait une seconde d'âge et l'absence deviendrait invisible.
+    retour = _retour_apres_absence(demande.eleve, code_utilise)
+
     dernier = demande.messages[-1]
     if dernier.role == "user":
         # La photo est conservée sur le disque : l'élève doit la revoir
@@ -463,18 +511,19 @@ def chat(demande: DemandeChat):
                     # Le programme est identique à chaque appel : il est mis en
                     # cache. L'annale, elle, change d'un message à l'autre —
                     # elle vient donc APRÈS le marqueur, sans casser le cache.
+                    # Le programme est identique à chaque appel : il est mis
+                    # en cache. Ce qui change d'un message à l'autre — une
+                    # annale, un retour après absence — vient après, hors
+                    # du cache.
                     system=[
                         {
                             "type": "text",
                             "text": construire_systeme(demande.niveau),
                             "cache_control": {"type": "ephemeral"},
                         },
-                        {"type": "text", "text": annale},
-                    ] if annale else [{
-                        "type": "text",
-                        "text": construire_systeme(demande.niveau),
-                        "cache_control": {"type": "ephemeral"},
-                    }],
+                        *({"type": "text", "text": bloc}
+                          for bloc in (retour, annale) if bloc),
+                    ],
                     messages=messages,
                 ) as stream:
                     for texte in stream.text_stream:
