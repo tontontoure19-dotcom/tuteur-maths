@@ -673,6 +673,9 @@ def config():
     """
     return {
         "code_requis": bool(CODES_ACCES),
+        # Render expose le commit déployé : c'est la seule façon fiable de
+        # savoir quelle version tourne réellement en ligne.
+        "version": (os.getenv("RENDER_GIT_COMMIT") or "locale")[:7],
         "annales": {
             "sessions": annales_store.sessions_disponibles(),
             "exercices": len(annales_store.charger()),
