@@ -47,7 +47,7 @@ services:
       # Limites d'un abonnement. L'application garde le code enregistré dans
       # l'appareil : c'est ici que le budget est réellement protégé.
       - key: MAX_ELEVES_PAR_CODE
-        value: "2"
+        value: "1"
       - key: MAX_QUESTIONS_PAR_JOUR
         value: "40"
 

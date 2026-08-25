@@ -182,9 +182,12 @@ CLE_PRESENTE = _cle.startswith("sk-ant-")
 CODES_ACCES = {c.strip() for c in (os.getenv("CODE_ACCES") or "").split(",") if c.strip()}
 
 
-# Un abonnement = un élève, ou deux quand des frères et sœurs partagent un
-# téléphone. Au-delà, le code circule : on refuse le troisième prénom.
-MAX_ELEVES_PAR_CODE = int(os.getenv("MAX_ELEVES_PAR_CODE", "2"))
+# Un abonnement = UN élève (décision du porteur du projet, 25/08/2026).
+# Un deuxième enfant de la famille prend son propre abonnement — sinon un
+# parent paie une fois et fait travailler deux enfants.
+# Les élèves déjà rattachés à un code gardent leur accès : la limite ne
+# refuse qu'un prénom nouveau.
+MAX_ELEVES_PAR_CODE = int(os.getenv("MAX_ELEVES_PAR_CODE", "1"))
 
 # Plafond de questions par jour et par abonnement. C'est la vraie protection
 # du budget : un code enregistré dans un appareil prêté ne peut pas être
@@ -275,9 +278,12 @@ def _verifier_quota(eleve: str, code: str | None) -> None:
     if _identifiant(eleve, code) not in connus and len(connus) >= MAX_ELEVES_PAR_CODE:
         raise HTTPException(
             status_code=409,
-            detail=f"Ce code est déjà utilisé par {len(connus)} élèves "
-                   f"({', '.join(sorted(n.split('_', 1)[-1].title() for n in connus))}). "
-                   "Chaque élève a besoin de son propre code.",
+            detail=(
+                "Ce code est déjà utilisé par "
+                + ("l'élève " if len(connus) == 1 else f"{len(connus)} élèves ")
+                + ", ".join(sorted(n.split("_", 1)[-1].title() for n in connus))
+                + ". Chaque élève a besoin de son propre code."
+            ),
         )
 
     aujourdhui = datetime.now(timezone.utc).date().isoformat()
