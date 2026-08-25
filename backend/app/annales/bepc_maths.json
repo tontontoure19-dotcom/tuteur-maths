@@ -566,6 +566,70 @@
       "enonce": "Le plan est muni d'un repère (O ; I ; J). L'unité de longueur est le centimètre.\nOn donne les points A(7 ; 1), B(8 ; 4) et C(−1 ; 7).\n1) a) Faire une figure, à compléter au fur et à mesure des questions.\n   b) Calculer les distances AB, BC et AC.\n   c) Démontrer que le triangle ABC est rectangle.\n2) M est le milieu du segment [AC] et D le symétrique de B par rapport à M.\n   a) Déterminer le couple de coordonnées du point M.\n   b) Démontrer que le quadrilatère ABCD est un rectangle.\n3) P est l'image de O par la translation de vecteur AC. Déterminer le couple de coordonnées du point P.\n4) (C) est le cercle circonscrit au triangle ABC.\n   a) Préciser le centre et le rayon du cercle (C).\n   b) Justifier que les points D et O appartiennent au cercle (C).\n   c) Démontrer que la droite (OP) est la tangente au cercle (C).\n   d) Déterminer une équation de la droite (OP).",
       "reponse": "AB = √10 ; BC = 3√10 ; AC = 10 ; AB² + BC² = AC² donc rectangle EN B ; M(3 ; 4) ; D(−2 ; 4) ; P(−8 ; 6) ; centre M(3 ; 4), rayon 5 cm ; équation de (OP) : 3x + 4y = 0",
       "correction_du_livre": "Deux fautes dans le corrigé 2014 : il conclut « rectangle en A » alors que l'angle droit est en B (l'hypoténuse est [AC]) ; et il calcule correctement xD = −2 et yD = 4 puis écrit « D(3 ; 4) », qui sont les coordonnées de M. Le corrigé de la session 2007, où le même sujet est tombé, donne les bonnes valeurs."
+    },
+    {
+      "id": "bepc-maths-2014b-num-1",
+      "session": 2014,
+      "partie": "Activités Numériques",
+      "numero": "Partie A (2ᵉ sujet)",
+      "chapitres": [
+        "vrai ou faux",
+        "nombres relatifs",
+        "trigonométrie",
+        "racines carrées",
+        "identités remarquables",
+        "équation de droite",
+        "vecteurs",
+        "parallélogramme"
+      ],
+      "enonce": "Recopier chacune des affirmations ci-dessous. Dire si elle est vraie (V) ou fausse (F), puis justifier :\n1) Si x est un réel négatif, alors −(−x) est positif.\n2) Si le triangle ABC est rectangle en B, alors sin  = sin Ĉ.\n3) √15 = √60 / 2\n4) (555555)² + (333333)² = (888888)²\n5) La droite d'équation y = 2x + 3 passe par le point A(1 ; 5).\n6) Si les vecteurs BC et AD sont égaux, alors les segments [AC] et [BD] ont le même milieu.",
+      "reponse": "1) FAUX : si x < 0 alors −(−x) = x < 0.\n2) FAUX : dans un triangle rectangle en B, Â et Ĉ sont complémentaires, donc sin  = cos Ĉ. L'égalité sin  = sin Ĉ n'aurait lieu que si  = Ĉ = 45°.\n3) VRAI : √60/2 = √(4×15)/2 = 2√15/2 = √15.\n4) FAUX : a² + b² ≠ (a + b)².\n5) VRAI : 2(1) + 3 = 5.\n6) VRAI : ABCD est alors un parallélogramme, et ses diagonales se coupent en leur milieu.",
+      "correction_du_livre": "Le livre répond VRAI à l'affirmation 2 en justifiant que « Â et Ĉ sont complémentaires » — or c'est précisément ce qui rend l'égalité fausse : complémentaires donne sin  = cos Ĉ, pas sin  = sin Ĉ. La bonne réponse est FAUX. C'est l'erreur la plus grave relevée dans ce livre : elle enseigne un résultat de trigonométrie inexact. Le livre imprime « BEPC SESSION 2014 » une seconde fois (page 37), avec un sujet entièrement différent de celui de la page 33. L'un des deux est mal daté — il s'agit probablement de la session 2015, mais seul le porteur du projet peut trancher. L'année affichée reste celle du livre en attendant."
+    },
+    {
+      "id": "bepc-maths-2014b-num-2",
+      "session": 2014,
+      "partie": "Activités Numériques",
+      "numero": "Partie B (2ᵉ sujet)",
+      "chapitres": [
+        "systèmes de deux équations",
+        "problème concret"
+      ],
+      "enonce": "À l'occasion de l'anniversaire d'un collège, le comité de coordination propose des jus de fruit à 3 500 francs la bouteille et des limonades à 5 000 francs la bouteille.\nLa recette a été de 1 450 000 francs pour 350 bouteilles vendues.\nCombien de bouteilles de chaque sorte ont été vendues ?",
+      "reponse": "200 bouteilles de jus de fruit et 150 bouteilles de limonade",
+      "correction_du_livre": "Le livre imprime « BEPC SESSION 2014 » une seconde fois (page 37), avec un sujet entièrement différent de celui de la page 33. L'un des deux est mal daté — il s'agit probablement de la session 2015, mais seul le porteur du projet peut trancher. L'année affichée reste celle du livre en attendant."
+    },
+    {
+      "id": "bepc-maths-2014b-geo-1",
+      "session": 2014,
+      "partie": "Activités Géométriques",
+      "numero": "Exercice 1 (2ᵉ sujet)",
+      "chapitres": [
+        "théorème de Pythagore",
+        "trigonométrie",
+        "théorème de Thalès",
+        "droites parallèles"
+      ],
+      "enonce": "1) Construire un triangle rectangle en A dont les dimensions sont les suivantes : AB = 8 cm et AC = 6 cm. Calculer BC puis cos(ABC).\n2) Placer le point M tel que AM = (1/3) AB. La parallèle à (BC) passant par M coupe (AC) en N.\nComparer les rapports AM/AB et AN/AC, puis en déduire que AN = (1/3) AC.",
+      "reponse": "BC = 10 cm ; cos(ABC) = AB/BC = 8/10 = 4/5 ; d'après Thalès AM/AB = AN/AC = 1/3, donc AN = (1/3) AC = 2 cm",
+      "correction_du_livre": "Le livre imprime « BEPC SESSION 2014 » une seconde fois (page 37), avec un sujet entièrement différent de celui de la page 33. L'un des deux est mal daté — il s'agit probablement de la session 2015, mais seul le porteur du projet peut trancher. L'année affichée reste celle du livre en attendant."
+    },
+    {
+      "id": "bepc-maths-2014b-geo-2",
+      "session": 2014,
+      "partie": "Activités Géométriques",
+      "numero": "Exercice 2 (2ᵉ sujet)",
+      "chapitres": [
+        "repère orthonormé",
+        "vecteurs",
+        "parallélogramme",
+        "distance entre deux points",
+        "triangle rectangle isocèle",
+        "équation de droite"
+      ],
+      "enonce": "Dans le plan muni d'un repère orthonormé (O, I, J), on donne les points A(−4 ; 2) et B(2 ; 4).\n1) Placer les points A et B, puis les exprimer en fonction des vecteurs OI et OJ.\n2) Déterminer les coordonnées du point C tel que le quadrilatère OACB soit un parallélogramme. Calculer les coordonnées du point M, milieu de [AB].\n3) Calculer les distances OA et OB, puis en déduire la nature du triangle AOB.\n4) Déterminer une équation de la droite (AB).",
+      "reponse": "C(−2 ; 6) ; M(−1 ; 3) ; OA = OB = 2√5 et les vecteurs OA et OB sont orthogonaux (−4×2 + 2×4 = 0), donc AOB est rectangle et isocèle en O ; équation de (AB) : x − 3y + 10 = 0",
+      "correction_du_livre": "Le livre imprime « BEPC SESSION 2014 » une seconde fois (page 37), avec un sujet entièrement différent de celui de la page 33. L'un des deux est mal daté — il s'agit probablement de la session 2015, mais seul le porteur du projet peut trancher. L'année affichée reste celle du livre en attendant."
     }
   ]
 }
