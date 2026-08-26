@@ -879,14 +879,53 @@ def creer_abonnement(demande: NouvelAbonnement, code: str | None = None):
                              demande.formule, demande.telephone)
 
 
+def _activite_du_code(code_abonne: str) -> dict:
+    """Ce que l'élève a réellement fait avec son abonnement.
+
+    Sans cette information, un essai gratuit où personne ne se connecte
+    ressemble à un essai qui se passe bien — et on ne s'en aperçoit qu'au
+    dernier jour, quand il est trop tard pour relancer.
+    """
+    eleves, questions, derniere = [], 0, ""
+    for fichier in _fichiers_du_code(code_abonne):
+        echanges = _journal(fichier)
+        if not echanges:
+            continue
+        eleves.append(echanges[-1].get("eleve")
+                      or fichier.stem.split("_", 1)[-1].replace("_", " ").title())
+        questions += sum(1 for e in echanges if e["role"] == "eleve")
+        derniere = max(derniere, echanges[-1]["horodatage"])
+
+    jours = None
+    if derniere:
+        try:
+            jours = (datetime.now(timezone.utc)
+                     - datetime.fromisoformat(derniere)).days
+        except ValueError:
+            jours = None
+
+    return {
+        "eleves": eleves,
+        "questions": questions,
+        "derniere_activite": derniere or None,
+        "jours_sans_travailler": jours,
+        # Le signal qui compte : un code distribué que personne n'a ouvert.
+        "jamais_commence": questions == 0,
+    }
+
+
 @app.get("/api/admin/abonnements")
 def liste_abonnements(code: str | None = None):
     """Tous les abonnements, les plus proches de l'expiration en premier."""
     _exiger_admin(code)
-    abonnements = ABONNEMENTS.tous()
+    abonnements = [{**a, **_activite_du_code(a["code"])} for a in ABONNEMENTS.tous()]
+    encore_actifs = [a for a in abonnements if a["actif"] and not a["expire"]]
     return {
         "abonnements": abonnements,
-        "actifs": sum(1 for a in abonnements if a["actif"] and not a["expire"]),
+        "actifs": len(encore_actifs),
+        # Ceux qu'il faut relancer aujourd'hui : ils ont un accès valable et
+        # n'ont jamais posé la moindre question.
+        "a_relancer": sum(1 for a in encore_actifs if a["jamais_commence"]),
         # Les codes hérités des testeurs vivent encore dans Render : ils
         # n'ont pas de date de fin et n'apparaissent pas dans le registre.
         "codes_testeurs": len(CODES_ACCES),

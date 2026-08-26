@@ -28,7 +28,7 @@
        font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;width:100%}
   .btn:disabled{opacity:.5;cursor:wait}
 
-  .chiffres{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+  .chiffres{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
   .chiffre{background:#fff;border:1px solid var(--bord);border-radius:14px;padding:14px 10px;text-align:center}
   .chiffre b{display:block;font-size:22px;color:var(--vert)}
   .chiffre span{font-size:11.5px;color:var(--gris)}
@@ -39,6 +39,13 @@
   .abonne .nom{font-weight:600}
   .abonne .code{font-family:ui-monospace,Consolas,monospace;font-size:13.5px;color:var(--vert)}
   .abonne .detail{font-size:13px;color:var(--gris)}
+  .abonne .travail{font-size:13px;margin-top:2px}
+  .travail .travaille{color:var(--vert)}
+  .travail .travaille.silence{color:var(--orange)}
+  .travail .jamais{color:var(--rouge);font-weight:600}
+  .travail .muet{color:var(--gris)}
+  .chiffre.alerte{border-color:var(--rouge)}
+  .chiffre.alerte b{color:var(--rouge)}
   .abonne .actions{display:flex;gap:6px;flex-shrink:0}
   .abonne button{border:1px solid var(--bord);background:#fff;border-radius:10px;
                  padding:9px 11px;font-size:13px;cursor:pointer;font-family:inherit}
@@ -59,7 +66,7 @@
   .erreur{background:#FDECEC;color:#9B2C2C;border-radius:12px;padding:14px;font-size:14.5px;margin-bottom:14px}
   .info{text-align:center;color:var(--gris);padding:28px 18px;font-size:15px}
   .cache{display:none !important}
-  @media (max-width:520px){ .champs{grid-template-columns:1fr} }
+  @media (max-width:520px){ .champs,.chiffres{grid-template-columns:1fr 1fr} }
 </style>
 
 <header>
@@ -216,6 +223,7 @@ async function charger() {
     $('chiffres').classList.remove('cache');
     $('chiffres').innerHTML = `
       <div class="chiffre"><b>${d.actifs}</b><span>abonnements actifs</span></div>
+      <div class="chiffre ${d.a_relancer ? 'alerte' : ''}"><b>${d.a_relancer}</b><span>à relancer</span></div>
       <div class="chiffre"><b>${expirant}</b><span>expirent sous 3 jours</span></div>
       <div class="chiffre"><b>${d.codes_testeurs}</b><span>codes testeurs</span></div>`;
 
@@ -237,6 +245,7 @@ async function charger() {
           <div class="detail">${a.niveau === 'bac' ? 'Terminale' : '10ᵉ année'} ·
             ${echapper(a.formule)} · jusqu'au ${dateLisible(a.expire_le)}
             ${a.telephone ? '· ' + echapper(a.telephone) : ''}</div>
+          <div class="travail">${activite(a)}</div>
         </div>
         <div class="actions">
           <button class="vert" data-prolonger="${echapper(a.code)}" title="Ajouter un mois">+ mois</button>
@@ -255,6 +264,21 @@ async function charger() {
   } catch (e) {
     $('liste').innerHTML = `<div class="erreur">${echapper(e.message)}</div>`;
   }
+}
+
+/* Ce que l'élève a fait de son accès. Un code distribué que personne n'a
+   ouvert est le signal le plus important de la période d'essai. */
+function activite(a) {
+  if (a.jamais_commence) {
+    return a.actif && !a.expire
+      ? "<span class=\"jamais\">⚠ n'a jamais commencé</span>"
+      : "<span class=\"muet\">n'a jamais commencé</span>";
+  }
+  const qui = a.eleves.length ? echapper(a.eleves.join(', ')) + ' · ' : '';
+  const j = a.jours_sans_travailler;
+  const quand = j === 0 ? "aujourd'hui" : j === 1 ? 'hier' : `il y a ${j} jours`;
+  const froid = j !== null && j >= 3 ? ' silence' : '';
+  return `<span class="travaille${froid}">${qui}${a.questions} question(s) · ${quand}</span>`;
 }
 
 function brancher(action, faire) {
