@@ -747,7 +747,8 @@
         "fractions"
       ],
       "enonce": "a et b étant deux nombres réels non nuls, on pose :\nA = (ab)² × (1/b)⁴   et   B = a² × (b/a)² × (1/b²)\n1) Simplifier A et B.\n2) Calculer la valeur numérique de A × B et de A/B pour a = 4 × 10⁻³ et b = 2 × 10⁻².",
-      "reponse": "A = a²/b² et B = 1.\nDonc A × B = A/B = a²/b² = (a/b)². Avec a/b = (4 × 10⁻³)/(2 × 10⁻²) = 0,2, on obtient A × B = A/B = 0,04 = 4 × 10⁻²."
+      "reponse": "A = a²/b² et B = 1.\nDonc A × B = A/B = a²/b² = (a/b)². Avec a/b = (4 × 10⁻³)/(2 × 10⁻²) = 0,2, on obtient A × B = A/B = 0,04 = 4 × 10⁻².",
+      "correction_du_livre": "Le corrigé simplifie B en b/a. C'est faux pour l'énoncé imprimé, que j'ai relu à la loupe : a² × (b/a)² × (1/b²) = a² × b²/a² × 1/b² = 1. Le livre écrit d'ailleurs cette ligne juste, puis conclut b/a. Ses deux résultats numériques en découlent et sont donc faux : il donne A×B = 2×10⁻¹ et A/B = 8×10⁻³, au lieu de 4×10⁻² pour les deux.\nRéserve honnête : que les deux réponses soient identiques est inhabituel pour un sujet d'examen. Il se peut que le livre ait mal recopié l'énoncé officiel — avec (b/a)³ on retrouverait exactement ses résultats. À faire vérifier sur le sujet officiel. En attendant, la réponse retenue est celle qui découle de l'énoncé tel qu'il est imprimé, puisque c'est celui que l'élève a sous les yeux."
     },
     {
       "id": "bepc-maths-2019-num-2",
