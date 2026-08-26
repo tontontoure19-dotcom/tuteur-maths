@@ -529,7 +529,7 @@ async function demarrer() {
   $('commencer').textContent = 'Un instant…';
   try {
     const r = await fetch(API + '/api/verifier-eleve?' + parametres({ eleve, niveau }));
-    if (r.status === 409 || r.status === 429) {
+    if (r.status === 402 || r.status === 409 || r.status === 429) {
       const { detail } = await r.json().catch(() => ({}));
       $('accueil-erreur').textContent = detail || 'Cet abonnement a atteint sa limite.';
       $('accueil-erreur').classList.remove('cache');
@@ -843,9 +843,10 @@ async function envoyer() {
         throw new Error("Ce code n'est pas reconnu. Vérifie-le auprès de la personne qui te l'a donné.");
       }
     }
-    /* Limites de l'abonnement (trop d'élèves sur un code, plafond du jour) :
-       le serveur explique lui-même la raison, on la montre telle quelle. */
-    if (r.status === 409 || r.status === 429) {
+    /* Limites de l'abonnement — abonnement terminé, trop d'élèves sur un
+       code, plafond du jour. Le serveur explique lui-même la raison, et
+       redemander le code n'y changerait rien : on la montre telle quelle. */
+    if (r.status === 402 || r.status === 409 || r.status === 429) {
       const { detail } = await r.json().catch(() => ({}));
       throw new Error(detail || "Cet abonnement a atteint sa limite.");
     }

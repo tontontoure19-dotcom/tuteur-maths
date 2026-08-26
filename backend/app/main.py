@@ -24,6 +24,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from . import annales_store
+from .abonnements import Abonnements
 from . import bilan as module_bilan
 from .prompts import NIVEAU_DEFAUT, NIVEAUX, construire_systeme
 
@@ -48,6 +49,10 @@ DOSSIER_PHOTOS.mkdir(parents=True, exist_ok=True)
 # Les photos sont déjà réduites par le téléphone (1300 px, JPEG) : au-delà,
 # c'est un envoi anormal, on ne le conserve pas.
 MAX_PHOTO_OCTETS = 3 * 1024 * 1024
+
+# Registre des abonnements : créer ou couper un accès ne demande plus de
+# redéployer le service.
+ABONNEMENTS = Abonnements(DOSSIER_DONNEES / "abonnements.json")
 
 
 def _nom_normalise(eleve: str) -> str:
@@ -206,13 +211,28 @@ def _est_admin(code: str | None) -> bool:
 
 
 def _verifier_code(code: str | None) -> str | None:
-    """Refuse les inconnus quand des codes sont configurés."""
+    """Refuse les inconnus quand des codes sont configurés.
+
+    Trois sortes de codes ouvrent l'accès : ceux de la variable
+    d'environnement (les testeurs, sans limite de durée), le code du
+    responsable, et les abonnements du registre, tant qu'ils n'ont pas expiré.
+    """
     if not CODES_ACCES and not CODE_ADMIN:
         return None
     propre = (code or "").strip()
-    if propre not in CODES_ACCES and not _est_admin(propre):
-        raise HTTPException(status_code=403, detail="Code d'accès invalide.")
-    return propre
+    if propre in CODES_ACCES or _est_admin(propre) or ABONNEMENTS.valide(propre):
+        return propre
+
+    # Un abonnement fini n'est pas un code faux : le parent doit savoir
+    # qu'il faut renouveler, et non croire qu'il a mal recopié.
+    fini = ABONNEMENTS.details(propre)
+    if fini:
+        raise HTTPException(
+            status_code=402,
+            detail=("Ton abonnement a pris fin. Demande à la personne qui te suit "
+                    "de le renouveler — ton travail et tes progrès sont conservés."),
+        )
+    raise HTTPException(status_code=403, detail="Code d'accès invalide.")
 
 client = anthropic.Anthropic()  # lit ANTHROPIC_API_KEY dans l'environnement
 
@@ -824,6 +844,75 @@ def progres_eleve(eleve: str, code: str | None = None):
         "chapitres": complet.get("chapitres", []),
         "activite": complet.get("activite", {}),
     }
+
+
+def _exiger_admin(code: str | None) -> str:
+    """Réservé au responsable du service."""
+    propre = (code or "").strip()
+    if not _est_admin(propre):
+        raise HTTPException(status_code=403,
+                            detail="Réservé au responsable du service.")
+    return propre
+
+
+class NouvelAbonnement(BaseModel):
+    nom: str = Field(..., max_length=60)
+    niveau: str = Field(default=NIVEAU_DEFAUT, max_length=10)
+    formule: str = Field(default="essai", max_length=10)
+    telephone: str = Field(default="", max_length=30)
+
+
+@app.post("/api/admin/abonnement")
+def creer_abonnement(demande: NouvelAbonnement, code: str | None = None):
+    """Ouvre un abonnement et rend le code à envoyer à l'élève.
+
+    C'est ce qui remplace la modification d'une variable dans Render suivie
+    d'un redéploiement : un parent qui paie reçoit son code dans la minute.
+    """
+    _exiger_admin(code)
+    if demande.formule not in ("essai", "semaine", "mois"):
+        raise HTTPException(status_code=400, detail="Formule inconnue.")
+    if not demande.nom.strip():
+        raise HTTPException(status_code=400, detail="Il faut le nom de l'abonné.")
+
+    return ABONNEMENTS.creer(demande.nom, demande.niveau,
+                             demande.formule, demande.telephone)
+
+
+@app.get("/api/admin/abonnements")
+def liste_abonnements(code: str | None = None):
+    """Tous les abonnements, les plus proches de l'expiration en premier."""
+    _exiger_admin(code)
+    abonnements = ABONNEMENTS.tous()
+    return {
+        "abonnements": abonnements,
+        "actifs": sum(1 for a in abonnements if a["actif"] and not a["expire"]),
+        # Les codes hérités des testeurs vivent encore dans Render : ils
+        # n'ont pas de date de fin et n'apparaissent pas dans le registre.
+        "codes_testeurs": len(CODES_ACCES),
+    }
+
+
+@app.post("/api/admin/abonnement/{abonne}/prolonger")
+def prolonger_abonnement(abonne: str, formule: str = "mois", code: str | None = None):
+    """Renouvellement après paiement."""
+    _exiger_admin(code)
+    if formule not in ("semaine", "mois"):
+        raise HTTPException(status_code=400, detail="Formule inconnue.")
+    resultat = ABONNEMENTS.prolonger(abonne, formule)
+    if resultat is None:
+        raise HTTPException(status_code=404, detail="Abonnement introuvable.")
+    return resultat
+
+
+@app.post("/api/admin/abonnement/{abonne}/couper")
+def couper_abonnement(abonne: str, code: str | None = None):
+    """Suspend un accès sans effacer le travail de l'élève."""
+    _exiger_admin(code)
+    resultat = ABONNEMENTS.couper(abonne)
+    if resultat is None:
+        raise HTTPException(status_code=404, detail="Abonnement introuvable.")
+    return resultat
 
 
 @app.get("/api/codes")

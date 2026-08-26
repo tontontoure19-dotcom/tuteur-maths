@@ -98,6 +98,7 @@ const avecCode = url => codeAcces ? url + (url.includes('?') ? '&' : '?') +
    place, sinon le parent tombe sur « aucun élève » sans comprendre pourquoi. */
 async function recuperer(url, options = {}) {
   let r = await fetch(avecCode(url), options);
+  // 402 : l'abonnement a pris fin. Redemander le code serait absurde.
   if (r.status !== 403) return r;
   localStorage.removeItem('code_acces');
   codeAcces = '';
