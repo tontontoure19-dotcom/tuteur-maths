@@ -919,15 +919,38 @@ def liste_abonnements(code: str | None = None):
     """Tous les abonnements, les plus proches de l'expiration en premier."""
     _exiger_admin(code)
     abonnements = [{**a, **_activite_du_code(a["code"])} for a in ABONNEMENTS.tous()]
-    encore_actifs = [a for a in abonnements if a["actif"] and not a["expire"]]
+
+    # Les codes des testeurs vivent encore dans Render, sans date de fin. On
+    # les affiche quand même : sinon leur travail reste invisible, alors que
+    # c'est justement eux qu'on observe en ce moment.
+    connus = {a["code"] for a in abonnements}
+    for code_testeur in sorted(CODES_ACCES - connus):
+        activite = _activite_du_code(code_testeur)
+        abonnements.append({
+            "code": code_testeur,
+            "nom": ", ".join(activite["eleves"]) or "—",
+            "niveau": None,
+            "formule": "testeur",
+            "expire_le": None,
+            "jours_restants": None,
+            "actif": True,
+            "expire": False,
+            "testeur": True,
+            **activite,
+        })
+
+    # « Actifs » ne compte que les vrais abonnements : mêler les testeurs
+    # gonflerait le chiffre sans qu'un franc soit entré.
+    encore_actifs = [a for a in abonnements
+                     if a["actif"] and not a["expire"] and not a.get("testeur")]
     return {
         "abonnements": abonnements,
         "actifs": len(encore_actifs),
-        # Ceux qu'il faut relancer aujourd'hui : ils ont un accès valable et
-        # n'ont jamais posé la moindre question.
-        "a_relancer": sum(1 for a in encore_actifs if a["jamais_commence"]),
-        # Les codes hérités des testeurs vivent encore dans Render : ils
-        # n'ont pas de date de fin et n'apparaissent pas dans le registre.
+        # Ceux qu'il faut relancer aujourd'hui : un accès valable, et pas
+        # une seule question posée. Les testeurs comptent aussi — un code
+        # distribué que personne n'ouvre est le même problème.
+        "a_relancer": sum(1 for a in abonnements
+                          if a["actif"] and not a["expire"] and a["jamais_commence"]),
         "codes_testeurs": len(CODES_ACCES),
     }
 

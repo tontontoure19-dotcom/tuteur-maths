@@ -56,6 +56,7 @@
   .e-ok{background:var(--vert-clair);color:var(--vert)}
   .e-bientot{background:#FDF3E0;color:var(--orange)}
   .e-fini{background:#FDECEC;color:var(--rouge)}
+  .e-testeur{background:#EDF0FA;color:#3B4A8C}
 
   .succes{background:var(--vert-clair);border:1px solid var(--vert);border-radius:14px;
           padding:16px;margin-bottom:14px}
@@ -234,7 +235,8 @@ async function charger() {
     }
 
     $('liste').innerHTML = d.abonnements.map(a => {
-      const etat = !a.actif ? '<span class="etat e-fini">coupé</span>'
+      const etat = a.testeur ? '<span class="etat e-testeur">testeur</span>'
+                 : !a.actif ? '<span class="etat e-fini">coupé</span>'
                  : a.expire ? '<span class="etat e-fini">expiré</span>'
                  : a.jours_restants <= 3 ? `<span class="etat e-bientot">${a.jours_restants} j</span>`
                  : `<span class="etat e-ok">${a.jours_restants} j</span>`;
@@ -242,15 +244,18 @@ async function charger() {
         <div class="infos">
           <div class="nom">${echapper(a.nom)} ${etat}</div>
           <div class="code">${echapper(a.code)}</div>
-          <div class="detail">${a.niveau === 'bac' ? 'Terminale' : '10ᵉ année'} ·
-            ${echapper(a.formule)} · jusqu'au ${dateLisible(a.expire_le)}
-            ${a.telephone ? '· ' + echapper(a.telephone) : ''}</div>
+          <div class="detail">${a.testeur
+              ? 'sans date de fin · géré dans Render'
+              : `${a.niveau === 'bac' ? 'Terminale' : '10ᵉ année'} · ${echapper(a.formule)}
+                 · jusqu'au ${dateLisible(a.expire_le)}
+                 ${a.telephone ? '· ' + echapper(a.telephone) : ''}`}</div>
           <div class="travail">${activite(a)}</div>
         </div>
         <div class="actions">
-          <button class="vert" data-prolonger="${echapper(a.code)}" title="Ajouter un mois">+ mois</button>
-          <button data-semaine="${echapper(a.code)}" title="Ajouter une semaine">+ sem.</button>
-          ${a.actif ? `<button class="rouge" data-couper="${echapper(a.code)}" title="Couper l'accès">✕</button>` : ''}
+          ${a.testeur ? '' : `
+            <button class="vert" data-prolonger="${echapper(a.code)}" title="Ajouter un mois">+ mois</button>
+            <button data-semaine="${echapper(a.code)}" title="Ajouter une semaine">+ sem.</button>
+            ${a.actif ? `<button class="rouge" data-couper="${echapper(a.code)}" title="Couper l'accès">✕</button>` : ''}`}
         </div>
       </div>`;
     }).join('');
