@@ -732,7 +732,55 @@
         "trigonométrie"
       ],
       "enonce": "Dans le plan muni d'un repère orthonormé (O, I, J), on donne les points A(−2 ; −3), B(−4 ; −1) et C(2 ; 1).\n1) Placer les points A, B et C dans le repère.\n2) Montrer que les vecteurs AB et AC sont orthogonaux, en déduire la nature du triangle ABC.\n3) E est le milieu du segment [AC]. Calculer le couple de coordonnées de E, et donner l'équation de la droite (D), médiatrice de [AC].\n4) La droite passant par E parallèlement à (AB) coupe (BC) en F.\n   a) Calculer AB, AC, BC et AE.\n   b) Calculer de deux façons différentes EF.\n5) Calculer sin B, cos B et tan B.",
-      "reponse": "AB(−2 ; 2) et AC(4 ; 4) : le produit −2(4) + 2(4) = 0, donc ABC est rectangle en A.\nE(0 ; −1) ; médiatrice (D) de [AC] : x + y + 1 = 0.\nAB = 2√2 ; AC = 4√2 ; BC = 2√10 ; AE = 2√2.\nEF = √2, par deux chemins : le théorème des milieux (EF = AB/2, F étant le milieu de [BC]), ou le calcul direct avec F(−1 ; 0).\nsin B = AC/BC = 2√5/5 ; cos B = AB/BC = √5/5 ; tan B = AC/AB = 2."
+      "reponse": "AB(−2 ; 2) et AC(4 ; 4) : le produit −2(4) + 2(4) = 0, donc ABC est rectangle en A.\nE(0 ; −1) ; médiatrice (D) de [AC] : x + y + 1 = 0.\nAB = 2√2 ; AC = 4√2 ; BC = 2√10 ; AE = 2√2.\nEF = √2, par deux chemins : le théorème des milieux (EF = AB/2, F étant le milieu de [BC]), ou le calcul direct avec F(−1 ; 0).\nsin B = AC/BC = 2√5/5 ; cos B = AB/BC = √5/5 ; tan B = AC/AB = 2.",
+      "correction_du_livre": "Le corrigé calcule BC = √((2+4)² + (1+3)²) = 2√13 : il a pris l'ordonnée de A au lieu de celle de B. Or yC − yB = 1 − (−1) = 2, donc BC = √(36 + 4) = 2√10. Sa propre vérification de Pythagore le contredit : AB² + AC² = 8 + 32 = 40, et 40 ≠ 52. L'erreur se propage à sin B et cos B, que le livre donne à 2√26/13 et √26/13 au lieu de 2√5/5 et √5/5. Seul tan B = 2 reste juste, parce qu'il ne fait pas intervenir BC."
+    },
+    {
+      "id": "bepc-maths-2019-num-1",
+      "session": 2019,
+      "partie": "Activités Numériques",
+      "numero": "Exercice 1",
+      "chapitres": [
+        "puissances",
+        "calcul littéral",
+        "notation scientifique",
+        "fractions"
+      ],
+      "enonce": "a et b étant deux nombres réels non nuls, on pose :\nA = (ab)² × (1/b)⁴   et   B = a² × (b/a)² × (1/b²)\n1) Simplifier A et B.\n2) Calculer la valeur numérique de A × B et de A/B pour a = 4 × 10⁻³ et b = 2 × 10⁻².",
+      "reponse": "A = a²/b² et B = 1.\nDonc A × B = A/B = a²/b² = (a/b)². Avec a/b = (4 × 10⁻³)/(2 × 10⁻²) = 0,2, on obtient A × B = A/B = 0,04 = 4 × 10⁻²."
+    },
+    {
+      "id": "bepc-maths-2019-num-2",
+      "session": 2019,
+      "partie": "Activités Numériques",
+      "numero": "Exercice 2",
+      "chapitres": [
+        "fonction affine",
+        "vecteur directeur",
+        "sens de variation",
+        "comparaison de réels",
+        "équation de droite"
+      ],
+      "enonce": "1) a) Trouver la fonction affine f dont la représentation graphique (D) dans le repère (O, I, J) a pour vecteur directeur u(−1 ; 5) et passe par le point A(−1 ; 2).\n   b) Faire la figure.\n2) f est-elle croissante ou décroissante ? Pourquoi ?\n3) Ranger par ordre croissant : f(1/3) ; f(1/4) ; f(22/7) et f(−1/2).",
+      "reponse": "Le coefficient directeur vaut 5/(−1) = −5, et f(−1) = 2 donne f(x) = −5x − 3.\nf est décroissante, car son coefficient directeur est négatif.\nComme −1/2 < 1/4 < 1/3 < 22/7 et que f renverse l'ordre :\nf(22/7) < f(1/3) < f(1/4) < f(−1/2)."
+    },
+    {
+      "id": "bepc-maths-2019-geo",
+      "session": 2019,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": [
+        "repère orthonormé",
+        "vecteurs",
+        "orthogonalité",
+        "symétrie centrale",
+        "rectangle",
+        "théorème de Thalès",
+        "équation de droite",
+        "distance entre deux points"
+      ],
+      "enonce": "Dans un repère (O, I, J), on donne les points A(2 ; 1), B(−2 ; 3) et C(5 ; 7).\n1) a) Placer ces points. Démontrer que le triangle ABC est rectangle en A.\n   b) Calculer les coordonnées du milieu K du segment [BC], puis celles de D, symétrique de A par rapport à K. Quelle est la nature du quadrilatère ABDC ?\n2) Placer le point E tel que AE = (1/3) AC. La parallèle à (BC) passant par E coupe (AB) en F. Calculer AF.\n3) Déterminer une équation de la droite (BC) et calculer les coordonnées du point G, intersection de (BC) avec l'axe des abscisses.",
+      "reponse": "AB(−4 ; 2) et AC(3 ; 6) : le produit −4(3) + 2(6) = 0, donc ABC est rectangle en A.\nK(3/2 ; 5) et D(1 ; 9). Les diagonales [AD] et [BC] se coupent en leur milieu K, et l'angle en A est droit : ABDC est un rectangle.\nE(3 ; 3). D'après Thalès, AF/AB = AE/AC = 1/3, et AB = 2√5, donc AF = (2√5)/3.\nÉquation de (BC) : 4x − 7y + 29 = 0. Sur l'axe des abscisses, y = 0 donne G(−29/4 ; 0)."
     }
   ]
 }
