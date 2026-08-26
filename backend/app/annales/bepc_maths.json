@@ -782,6 +782,55 @@
       ],
       "enonce": "Dans un repère (O, I, J), on donne les points A(2 ; 1), B(−2 ; 3) et C(5 ; 7).\n1) a) Placer ces points. Démontrer que le triangle ABC est rectangle en A.\n   b) Calculer les coordonnées du milieu K du segment [BC], puis celles de D, symétrique de A par rapport à K. Quelle est la nature du quadrilatère ABDC ?\n2) Placer le point E tel que AE = (1/3) AC. La parallèle à (BC) passant par E coupe (AB) en F. Calculer AF.\n3) Déterminer une équation de la droite (BC) et calculer les coordonnées du point G, intersection de (BC) avec l'axe des abscisses.",
       "reponse": "AB(−4 ; 2) et AC(3 ; 6) : le produit −4(3) + 2(6) = 0, donc ABC est rectangle en A.\nK(3/2 ; 5) et D(1 ; 9). Les diagonales [AD] et [BC] se coupent en leur milieu K, et l'angle en A est droit : ABDC est un rectangle.\nE(3 ; 3). D'après Thalès, AF/AB = AE/AC = 1/3, et AB = 2√5, donc AF = (2√5)/3.\nÉquation de (BC) : 4x − 7y + 29 = 0. Sur l'axe des abscisses, y = 0 donne G(−29/4 ; 0)."
+    },
+    {
+      "id": "bepc-maths-2020-num-1",
+      "session": 2020,
+      "partie": "Activités Numériques",
+      "numero": "Partie A",
+      "chapitres": [
+        "développement et factorisation",
+        "identités remarquables",
+        "facteur commun",
+        "équation produit",
+        "racines carrées",
+        "valeur absolue",
+        "comparaison de réels",
+        "encadrement"
+      ],
+      "enonce": "On considère l'expression E = (2x − 6)(1 − x) + (x² − 9).\n1) Factoriser l'expression E.\n2) Développer, réduire et ordonner E. En déduire les solutions des équations E = −15 et E = 1.\n3) a) Calculer la valeur numérique de E pour x = √5. Noter M le nombre obtenu.\n   b) Comparer les réels 20 et 8√5. Justifier.\n   c) En déduire le signe de M et donner sa valeur absolue.\n   d) Sachant que 2,236 < √5 < 2,237, donner un encadrement de 20 − 8√5 par deux décimaux consécutifs d'ordre 1.",
+      "reponse": "E = (x − 3)(5 − x) ; forme développée E = −x² + 8x − 15.\nE = −15 donne x(8 − x) = 0, donc S = {0 ; 8}.\nE = 1 donne (x − 4)² = 0, donc S = {4}.\nM = 8√5 − 20. Comme (8√5)² = 320 < 400 = 20², on a 8√5 < 20, donc M < 0 et |M| = 20 − 8√5.\nEncadrement : 2,1 < 20 − 8√5 < 2,2.",
+      "correction_du_livre": "Pour E = −15, le corrigé factorise correctement x(−x + 8) = 0 puis conclut S = {−8 ; 0}. C'est faux : −x + 8 = 0 donne x = 8, pas x = −8. Vérification immédiate — pour x = −8, E vaut −143 et non −15. La bonne réponse est S = {0 ; 8}.\nAilleurs, le corrigé de la Partie B recopie « = xy + 212 » à la place de « = xy + 135,75 » dans la deuxième mise en équation, mais poursuit avec la bonne valeur : le résultat final n'est pas touché."
+    },
+    {
+      "id": "bepc-maths-2020-num-2",
+      "session": 2020,
+      "partie": "Activités Numériques",
+      "numero": "Partie B",
+      "chapitres": [
+        "systèmes de deux équations",
+        "aires",
+        "problème concret"
+      ],
+      "enonce": "Un champ rectangulaire a des dimensions telles que :\n— si l'on augmentait sa longueur de 2 m et sa largeur de 4 m, son aire augmenterait de 212 m² ;\n— si l'on augmentait sa longueur de 1,5 m et sa largeur de 2,5 m, son aire augmenterait de 135,75 m².\nCalculer les dimensions de ce champ rectangulaire.",
+      "reponse": "Le système 2x + y = 102 et 5x + 3y = 264 donne x = 42 et y = 18.\nLongueur 42 m, largeur 18 m. Vérification : 44 × 22 − 42 × 18 = 212 et 43,5 × 20,5 − 756 = 135,75."
+    },
+    {
+      "id": "bepc-maths-2020-geo",
+      "session": 2020,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": [
+        "théorème de Pythagore",
+        "relations métriques",
+        "projeté orthogonal",
+        "symétrie axiale",
+        "triangle équilatéral",
+        "trigonométrie",
+        "construction géométrique"
+      ],
+      "enonce": "Faire une figure soignée en prenant le cm pour unité.\nABC est un triangle rectangle en A tel que AB = 2 et BC = 4.\n1) Calculer AC.\n2) Soit H le projeté orthogonal de A sur (BC). Calculer CH.\n3) Soit B' l'image de B par la symétrie orthogonale d'axe (CA). Quelle est la nature du triangle BB'C ? Justifier. En déduire la mesure en degrés de l'angle ACB.\n4) Construire le point D tel que le vecteur CD = 3 CA, puis construire le point E, projeté orthogonal de D sur la droite (CB). Calculer CD et CE.",
+      "reponse": "AC = √(16 − 4) = 2√3.\nCH = AC²/BC = 12/4 = 3.\nC appartient à l'axe (CA), donc CB' = CB = 4 ; et BB' = 2 AB = 4 : le triangle BB'C a ses trois côtés égaux à 4, il est équilatéral. L'angle BCB' vaut donc 60°, et (CA) en est l'axe de symétrie : l'angle ACB = 30°.\nCD = 3 AC = 6√3 ; CE = CD × cos(30°) = 6√3 × (√3/2) = 9."
     }
   ]
 }
