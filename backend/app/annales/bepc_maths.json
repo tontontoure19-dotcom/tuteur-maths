@@ -831,6 +831,52 @@
       ],
       "enonce": "Faire une figure soignée en prenant le cm pour unité.\nABC est un triangle rectangle en A tel que AB = 2 et BC = 4.\n1) Calculer AC.\n2) Soit H le projeté orthogonal de A sur (BC). Calculer CH.\n3) Soit B' l'image de B par la symétrie orthogonale d'axe (CA). Quelle est la nature du triangle BB'C ? Justifier. En déduire la mesure en degrés de l'angle ACB.\n4) Construire le point D tel que le vecteur CD = 3 CA, puis construire le point E, projeté orthogonal de D sur la droite (CB). Calculer CD et CE.",
       "reponse": "AC = √(16 − 4) = 2√3.\nCH = AC²/BC = 12/4 = 3.\nC appartient à l'axe (CA), donc CB' = CB = 4 ; et BB' = 2 AB = 4 : le triangle BB'C a ses trois côtés égaux à 4, il est équilatéral. L'angle BCB' vaut donc 60°, et (CA) en est l'axe de symétrie : l'angle ACB = 30°.\nCD = 3 AC = 6√3 ; CE = CD × cos(30°) = 6√3 × (√3/2) = 9."
+    },
+    {
+      "id": "bepc-maths-2021-num-1",
+      "session": 2021,
+      "partie": "Activités Numériques",
+      "numero": "A",
+      "chapitres": [
+        "identités remarquables",
+        "application affine",
+        "sens de variation",
+        "composition de fonctions",
+        "condition d'existence",
+        "racines carrées",
+        "encadrement"
+      ],
+      "enonce": "Soit l'application f de ℝ dans ℝ définie par : f(x) = (3x − 1/2)² − (3x + 3/2)².\nDémontrer que f est une application affine. Est-elle croissante ou décroissante ? Expliquer pourquoi.\n1) On considère une application g de ℝ dans ℝ définie par g(x) = ax + b.\n   a) Calculer a et b sachant que g(0) = 1 et g(b) = 7.\n   b) Vérifier que f(x) = −2 g(x).\n2) On considère les applications h et k telles que h(x) = f(x) × g(x) et k(x) = g(x)/f(x).\n   a) Calculer h(x) et k(x), et préciser la condition d'existence de k(x).\n   b) Calculer h(√2/2).\n   c) Sachant que 1,414 < √2 < 1,415, trouver un encadrement de h(√2/2) par deux nombres décimaux consécutifs d'ordre 2.",
+      "reponse": "Par différence de deux carrés : f(x) = (−2)(6x + 1) = −12x − 2. C'est une application affine, décroissante car son coefficient directeur −12 est négatif.\ng(0) = 1 donne b = 1, puis g(1) = a + 1 = 7 donne a = 6 : g(x) = 6x + 1. On vérifie bien f(x) = −2(6x + 1).\nh(x) = −2(6x + 1)² ; k(x) = −1/2, définie pour x ≠ −1/6.\nh(√2/2) = −2(3√2 + 1)² = −2(19 + 6√2) = −38 − 12√2 ≈ −54,97.\nEncadrement attendu : −54,98 < h(√2/2) < −54,97 (deux décimaux consécutifs d'ordre 2).",
+      "correction_du_livre": "Rigueur, pas erreur : à partir de 1,414 < √2 < 1,415, on obtient seulement −54,98 < h < −54,968, dont on ne peut pas déduire h < −54,97. Le livre franchit ce pas sans le justifier. Sa conclusion reste vraie — la valeur exacte est −38 − 12√2 ≈ −54,9706 — mais il aurait fallu un encadrement de √2 plus fin pour l'établir. À signaler si un élève bute là-dessus : il a raison de trouver la démonstration incomplète."
+    },
+    {
+      "id": "bepc-maths-2021-num-2",
+      "session": 2021,
+      "partie": "Activités Numériques",
+      "numero": "B",
+      "chapitres": [
+        "systèmes de deux équations",
+        "fractions",
+        "problème concret"
+      ],
+      "enonce": "Deux frères ont ensemble 6 460 F. Le premier dépense 1/3 et le second dépense 1/4 de leur avoir respectif. Il leur reste en tout 4 610 F.\nCombien chacun avait-il ?",
+      "reponse": "Le système x + y = 6 460 et (2/3)x + (3/4)y = 4 610 donne x = 2 820 F pour le premier et y = 3 640 F pour le second.\nVérification : 1 880 + 2 730 = 4 610 F."
+    },
+    {
+      "id": "bepc-maths-2021-geo",
+      "session": 2021,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": [
+        "théorème de Pythagore",
+        "trigonométrie",
+        "théorème de Thalès",
+        "droites perpendiculaires",
+        "construction géométrique"
+      ],
+      "enonce": "On considère le triangle ABC tel que AC = 4,8 cm ; AB = 6,4 cm et BC = 8 cm.\n1) Construire le triangle ABC.\n2) Démontrer que le triangle ABC est rectangle en A.\n3) Tracer la droite (D) perpendiculaire en C à la droite (BC) ; cette droite (D) coupe la droite (AB) en un point E.\n4) a) Exprimer tan B dans le triangle ABC, puis dans le triangle BCE.\n   b) En déduire que EC = 6 cm.\n5) Sur le segment [CE], on marque le point M tel que CM = 4,2 cm. La parallèle à (BE) passant par M coupe [BC] en N. Calculer les longueurs CN et MN.\n6) Calculer cos B et sin B.",
+      "reponse": "AB² + AC² = 40,96 + 23,04 = 64 = BC² : le triangle est rectangle en A (réciproque de Pythagore).\ntan B = AC/AB = 4,8/6,4 = 3/4 dans ABC, et tan B = EC/BC = EC/8 dans BCE, d'où EC = 6 cm.\nDans le triangle CEB, MN ∥ EB donne CM/CE = CN/CB = MN/EB, avec le rapport 4,2/6 = 0,7.\nDonc CN = 0,7 × 8 = 5,6 cm, et comme EB = √(64 + 36) = 10 cm, MN = 0,7 × 10 = 7 cm.\ncos B = AB/BC = 0,8 et sin B = AC/BC = 0,6."
     }
   ]
 }
