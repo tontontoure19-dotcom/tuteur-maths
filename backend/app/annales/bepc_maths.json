@@ -877,6 +877,67 @@
       ],
       "enonce": "On considère le triangle ABC tel que AC = 4,8 cm ; AB = 6,4 cm et BC = 8 cm.\n1) Construire le triangle ABC.\n2) Démontrer que le triangle ABC est rectangle en A.\n3) Tracer la droite (D) perpendiculaire en C à la droite (BC) ; cette droite (D) coupe la droite (AB) en un point E.\n4) a) Exprimer tan B dans le triangle ABC, puis dans le triangle BCE.\n   b) En déduire que EC = 6 cm.\n5) Sur le segment [CE], on marque le point M tel que CM = 4,2 cm. La parallèle à (BE) passant par M coupe [BC] en N. Calculer les longueurs CN et MN.\n6) Calculer cos B et sin B.",
       "reponse": "AB² + AC² = 40,96 + 23,04 = 64 = BC² : le triangle est rectangle en A (réciproque de Pythagore).\ntan B = AC/AB = 4,8/6,4 = 3/4 dans ABC, et tan B = EC/BC = EC/8 dans BCE, d'où EC = 6 cm.\nDans le triangle CEB, MN ∥ EB donne CM/CE = CN/CB = MN/EB, avec le rapport 4,2/6 = 0,7.\nDonc CN = 0,7 × 8 = 5,6 cm, et comme EB = √(64 + 36) = 10 cm, MN = 0,7 × 10 = 7 cm.\ncos B = AB/BC = 0,8 et sin B = AC/BC = 0,6."
+    },
+    {
+      "id": "bepc-maths-2022-num-1",
+      "session": 2022,
+      "partie": "Activités Numériques",
+      "numero": "Exercice 1",
+      "chapitres": [
+        "programme de calcul",
+        "expression littérale",
+        "parité",
+        "signe d'une expression",
+        "racines carrées",
+        "raisonnement"
+      ],
+      "enonce": "On considère le programme de calcul :\n— Choisir un nombre ;\n— Calculer le carré de ce nombre ;\n— Multiplier par 10 ;\n— Ajouter 25 ;\n— Écrire le résultat.\n1) Saran a choisi 2 comme nombre de départ et elle a obtenu 65. Vérifier par un calcul que son résultat est exact.\n2) On choisit √2 comme nombre de départ. Que trouve-t-on comme résultat ?\n3) Kadiatou affirme que si le nombre de départ est un nombre pair, alors le résultat est pair. A-t-elle raison ? Justifier.\n4) Bintou affirme que le résultat est toujours positif, quel que soit le nombre choisi au départ. A-t-elle raison ? Justifier.",
+      "reponse": "Le programme calcule 10x² + 25.\n1) Pour x = 2 : 10 × 4 + 25 = 65. Saran a raison.\n2) Pour x = √2 : 10 × 2 + 25 = 45.\n3) Kadiatou a TORT. Pour tout entier x, 10x² est pair et 25 est impair, donc le résultat est toujours IMPAIR — que le nombre de départ soit pair ou non.\n4) Bintou a raison : 10x² ≥ 0 pour tout réel x, donc 10x² + 25 ≥ 25 > 0."
+    },
+    {
+      "id": "bepc-maths-2022-num-2",
+      "session": 2022,
+      "partie": "Activités Numériques",
+      "numero": "Exercice 2",
+      "chapitres": [
+        "identités remarquables",
+        "développement et factorisation",
+        "équation produit",
+        "aires",
+        "problème concret"
+      ],
+      "enonce": "1) a désigne un nombre.\n   a) Développer, réduire et ordonner : (a + 3)² − 64.\n   b) Factoriser : a² + 6a − 55.\n   c) Résoudre l'équation : a² + 6a − 55 = 0.\n2) On considère un rectangle dont la longueur a 6 cm de plus que sa largeur.\n   Pour quelle(s) valeur(s) de la largeur ce rectangle a-t-il une aire de 55 cm² ?",
+      "reponse": "(a + 3)² − 64 = a² + 6a − 55.\nFactorisation par différence de deux carrés : a² + 6a − 55 = (a + 3)² − 8² = (a − 5)(a + 11).\nL'équation donne a = 5 ou a = −11.\nPour le rectangle, la largeur l vérifie l(l + 6) = 55, soit la même équation : l = 5 ou l = −11. Une largeur étant positive, la largeur est 5 cm (et la longueur 11 cm)."
+    },
+    {
+      "id": "bepc-maths-2022-geo-1",
+      "session": 2022,
+      "partie": "Activités Géométriques",
+      "numero": "Partie A",
+      "chapitres": [
+        "théorème de Thalès",
+        "droites parallèles",
+        "rapports de longueurs"
+      ],
+      "enonce": "Soit ABC un triangle tel que AB = 6 cm et BC = 9 cm. M est un point du segment [AB] tel que AM = 2 cm. La parallèle à (BC) passant par M coupe [AC] en N.\n1) Calculer MN.\n2) Donner la valeur du quotient AN/AC.\n3) On suppose que NC = 2,5 cm. Calculer AC et AN.",
+      "reponse": "D'après Thalès, AM/AB = MN/BC = AN/AC = 2/6 = 1/3.\nMN = 9/3 = 3 cm.\nAN/AC = 1/3.\nComme NC = AC − AN = (2/3) AC = 2,5, on obtient AC = 3,75 cm et AN = 1,25 cm."
+    },
+    {
+      "id": "bepc-maths-2022-geo-2",
+      "session": 2022,
+      "partie": "Activités Géométriques",
+      "numero": "Partie B",
+      "chapitres": [
+        "repère orthonormé",
+        "vecteurs",
+        "orthogonalité",
+        "translation",
+        "losange",
+        "équation de droite",
+        "distance entre deux points"
+      ],
+      "enonce": "Soit (O, I, J) un repère orthonormé. On donne A(0 ; 4) ; B(2 ; 8) et C(4 ; 4).\n1) Placer les points A, B et C, puis compléter la figure au fur et à mesure.\n2) Calculer les coordonnées de M, milieu du segment [AC].\n3) Montrer que les droites (AC) et (BM) sont perpendiculaires.\n4) Calculer les coordonnées de D, image de A par la translation de vecteur BC, puis en déduire et justifier la nature du quadrilatère ABCD.\n5) Donner une équation de la droite (AB). Soit K le point de la droite (AB) dont l'ordonnée est nulle. Calculer son abscisse.",
+      "reponse": "M(2 ; 4).\nLe vecteur AC(4 ; 0) et le vecteur BM(0 ; −4) : leur produit 4 × 0 + 0 × (−4) = 0, donc (AC) ⊥ (BM).\nLe vecteur BC(2 ; −4) donne D(2 ; 0).\nABCD est un losange : ses quatre côtés valent 2√5, et ses diagonales [AC] et [BD] sont perpendiculaires. Ce n'est pas un carré, car AC = 4 et BD = 8.\nÉquation de (AB) : y = 2x + 4. Pour y = 0, K(−2 ; 0)."
     }
   ]
 }
