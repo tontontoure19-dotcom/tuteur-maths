@@ -1,0 +1,278 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B6E4F">
+<title>Espace responsable — Répétiteur Maths</title>
+<link rel="icon" href="icone.svg">
+<style>
+  :root{--vert:#0B6E4F;--vert-clair:#E6F2EE;--rouge:#C0392B;--orange:#D68910;
+        --fond:#F7F6F3;--texte:#17211D;--gris:#6B7671;--bord:#E8E4DE}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--fond);
+       color:var(--texte);line-height:1.55}
+  header{background:var(--vert);color:#fff;padding:calc(env(safe-area-inset-top) + 18px) 18px 18px}
+  header h1{font-size:19px;font-weight:700}
+  header p{font-size:13px;opacity:.85;margin-top:2px}
+  main{max-width:720px;margin:0 auto;padding:18px}
+
+  .carte{background:#fff;border:1px solid var(--bord);border-radius:16px;padding:18px;margin-bottom:14px}
+  .carte h2{font-size:14px;text-transform:uppercase;letter-spacing:.5px;color:var(--gris);
+            margin-bottom:12px;font-weight:700}
+
+  label{display:block;font-size:13px;color:var(--gris);margin-bottom:4px}
+  input,select{width:100%;padding:12px 14px;border:1px solid var(--bord);border-radius:12px;
+               font-size:16px;background:#fff;font-family:inherit;color:var(--texte)}
+  input:focus,select:focus{outline:none;border-color:var(--vert)}
+  .champs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  .champs .large{grid-column:1 / -1}
+  .btn{background:var(--vert);color:#fff;border:none;border-radius:12px;padding:13px 22px;
+       font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;width:100%}
+  .btn:disabled{opacity:.5;cursor:wait}
+
+  .chiffres{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+  .chiffre{background:#fff;border:1px solid var(--bord);border-radius:14px;padding:14px 10px;text-align:center}
+  .chiffre b{display:block;font-size:22px;color:var(--vert)}
+  .chiffre span{font-size:11.5px;color:var(--gris)}
+
+  .abonne{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--bord)}
+  .abonne:last-child{border-bottom:none}
+  .abonne .infos{flex:1;min-width:0}
+  .abonne .nom{font-weight:600}
+  .abonne .code{font-family:ui-monospace,Consolas,monospace;font-size:13.5px;color:var(--vert)}
+  .abonne .detail{font-size:13px;color:var(--gris)}
+  .abonne .actions{display:flex;gap:6px;flex-shrink:0}
+  .abonne button{border:1px solid var(--bord);background:#fff;border-radius:10px;
+                 padding:9px 11px;font-size:13px;cursor:pointer;font-family:inherit}
+  .abonne button.vert{color:var(--vert);border-color:var(--vert)}
+  .abonne button.rouge{color:var(--rouge)}
+
+  .etat{display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:600}
+  .e-ok{background:var(--vert-clair);color:var(--vert)}
+  .e-bientot{background:#FDF3E0;color:var(--orange)}
+  .e-fini{background:#FDECEC;color:var(--rouge)}
+
+  .succes{background:var(--vert-clair);border:1px solid var(--vert);border-radius:14px;
+          padding:16px;margin-bottom:14px}
+  .succes .code{font-family:ui-monospace,Consolas,monospace;font-size:21px;font-weight:700;
+                color:var(--vert);letter-spacing:1px;display:block;margin:8px 0}
+  .succes button{background:var(--vert);color:#fff;border:none;border-radius:10px;
+                 padding:10px 16px;font-size:14px;cursor:pointer;font-family:inherit}
+  .erreur{background:#FDECEC;color:#9B2C2C;border-radius:12px;padding:14px;font-size:14.5px;margin-bottom:14px}
+  .info{text-align:center;color:var(--gris);padding:28px 18px;font-size:15px}
+  .cache{display:none !important}
+  @media (max-width:520px){ .champs{grid-template-columns:1fr} }
+</style>
+
+<header>
+  <h1>🔑 Espace responsable</h1>
+  <p>Créer, prolonger et couper les abonnements.</p>
+</header>
+
+<main>
+  <div id="message"></div>
+
+  <div class="carte">
+    <h2>Nouvel abonné</h2>
+    <div class="champs">
+      <div class="large">
+        <label for="nom">Nom de l'élève</label>
+        <input id="nom" placeholder="Aminata Diallo" autocomplete="off">
+      </div>
+      <div>
+        <label for="niveau">Niveau</label>
+        <select id="niveau">
+          <option value="bepc">10ᵉ année (BEPC)</option>
+          <option value="bac">Terminale (BAC)</option>
+        </select>
+      </div>
+      <div>
+        <label for="formule">Formule</label>
+        <select id="formule">
+          <option value="essai">Essai gratuit — 10 jours</option>
+          <option value="semaine">Semaine — 20 000 GNF</option>
+          <option value="mois">Mois — 75 000 GNF</option>
+        </select>
+      </div>
+      <div class="large">
+        <label for="telephone">Téléphone du parent (pour le rapport WhatsApp)</label>
+        <input id="telephone" placeholder="+224 6.. .. .. .." autocomplete="off">
+      </div>
+    </div>
+    <button class="btn" id="creer">Créer l'abonnement</button>
+  </div>
+
+  <div id="chiffres" class="chiffres cache"></div>
+
+  <div class="carte">
+    <h2>Les abonnements</h2>
+    <div id="liste"><div class="info">Chargement…</div></div>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const echapper = t => String(t ?? '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+/* Le code responsable ne se range pas au même endroit que celui d'un élève :
+   sur un ordinateur partagé, on ne veut pas qu'il ouvre l'application élève. */
+let codeAdmin = sessionStorage.getItem('code_admin') || '';
+const avecCode = url => url + (url.includes('?') ? '&' : '?') + 'code=' + encodeURIComponent(codeAdmin);
+
+function demanderCode() {
+  const saisi = prompt("Votre code de responsable (ADMIN-…) :");
+  if (!saisi || !saisi.trim()) return false;
+  codeAdmin = saisi.trim();
+  sessionStorage.setItem('code_admin', codeAdmin);
+  return true;
+}
+
+async function appeler(url, options = {}) {
+  if (!codeAdmin && !demanderCode()) throw new Error("Il faut le code de responsable.");
+  let r = await fetch(avecCode(url), options);
+  if (r.status === 403) {
+    sessionStorage.removeItem('code_admin');
+    codeAdmin = '';
+    if (!demanderCode()) throw new Error("Il faut le code de responsable.");
+    r = await fetch(avecCode(url), options);
+    if (r.status === 403) {
+      sessionStorage.removeItem('code_admin');
+      codeAdmin = '';
+      throw new Error("Ce code n'est pas celui du responsable.");
+    }
+  }
+  return r;
+}
+
+function afficherErreur(texte) {
+  $('message').innerHTML = `<div class="erreur">${echapper(texte)}</div>`;
+}
+
+/* ---------- Créer un abonnement ---------- */
+$('creer').addEventListener('click', creer);
+
+async function creer() {
+  const nom = $('nom').value.trim();
+  if (!nom) { afficherErreur("Il faut le nom de l'élève."); return; }
+
+  $('creer').disabled = true;
+  $('creer').textContent = 'Un instant…';
+  try {
+    const r = await appeler('/api/admin/abonnement', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nom, niveau: $('niveau').value, formule: $('formule').value,
+        telephone: $('telephone').value.trim(),
+      }),
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'Création impossible.');
+
+    // Le code est montré en grand : c'est ce qu'il faut recopier dans WhatsApp.
+    $('message').innerHTML = `
+      <div class="succes">
+        Abonnement ouvert pour <b>${echapper(d.nom)}</b>, jusqu'au ${dateLisible(d.expire_le)}.
+        <span class="code">${echapper(d.code)}</span>
+        <button id="copier">Copier le message pour WhatsApp</button>
+      </div>`;
+    $('copier').addEventListener('click', () => copierMessage(d));
+    $('nom').value = ''; $('telephone').value = '';
+    charger();
+  } catch (e) {
+    afficherErreur(e.message);
+  } finally {
+    $('creer').disabled = false;
+    $('creer').textContent = "Créer l'abonnement";
+  }
+}
+
+/* Le message tout prêt évite de le réécrire à chaque nouvel abonné. */
+function copierMessage(d) {
+  const texte =
+    `Bonjour ! Voici l'accès au Répétiteur Maths pour ${d.nom}.\n\n` +
+    `Le lien : ${location.origin}\n` +
+    `Le code : ${d.code}\n\n` +
+    `On ouvre le lien sur le téléphone, on saisit le code une seule fois, puis le prénom de l'élève.\n` +
+    `Il peut ensuite photographier un exercice qui le bloque.\n\n` +
+    `⚠️ Le répétiteur ne donne jamais la réponse : il fait chercher. C'est fait exprès.\n\n` +
+    `Accès valable jusqu'au ${dateLisible(d.expire_le)}.`;
+  navigator.clipboard.writeText(texte)
+    .then(() => { $('copier').textContent = 'Message copié ✓'; })
+    .catch(() => { $('copier').textContent = 'Copie impossible — sélectionnez le code'; });
+}
+
+/* ---------- La liste ---------- */
+const dateLisible = iso => {
+  const [a, m, j] = iso.split('-');
+  return `${j}/${m}/${a}`;
+};
+
+async function charger() {
+  try {
+    const r = await appeler('/api/admin/abonnements');
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'Chargement impossible.');
+
+    const expirant = d.abonnements.filter(a => a.actif && !a.expire && a.jours_restants <= 3).length;
+    $('chiffres').classList.remove('cache');
+    $('chiffres').innerHTML = `
+      <div class="chiffre"><b>${d.actifs}</b><span>abonnements actifs</span></div>
+      <div class="chiffre"><b>${expirant}</b><span>expirent sous 3 jours</span></div>
+      <div class="chiffre"><b>${d.codes_testeurs}</b><span>codes testeurs</span></div>`;
+
+    if (!d.abonnements.length) {
+      $('liste').innerHTML = '<div class="info">Aucun abonnement pour l\'instant.<br>' +
+        'Les codes de vos testeurs restent gérés dans Render.</div>';
+      return;
+    }
+
+    $('liste').innerHTML = d.abonnements.map(a => {
+      const etat = !a.actif ? '<span class="etat e-fini">coupé</span>'
+                 : a.expire ? '<span class="etat e-fini">expiré</span>'
+                 : a.jours_restants <= 3 ? `<span class="etat e-bientot">${a.jours_restants} j</span>`
+                 : `<span class="etat e-ok">${a.jours_restants} j</span>`;
+      return `<div class="abonne">
+        <div class="infos">
+          <div class="nom">${echapper(a.nom)} ${etat}</div>
+          <div class="code">${echapper(a.code)}</div>
+          <div class="detail">${a.niveau === 'bac' ? 'Terminale' : '10ᵉ année'} ·
+            ${echapper(a.formule)} · jusqu'au ${dateLisible(a.expire_le)}
+            ${a.telephone ? '· ' + echapper(a.telephone) : ''}</div>
+        </div>
+        <div class="actions">
+          <button class="vert" data-prolonger="${echapper(a.code)}" title="Ajouter un mois">+ mois</button>
+          <button data-semaine="${echapper(a.code)}" title="Ajouter une semaine">+ sem.</button>
+          ${a.actif ? `<button class="rouge" data-couper="${echapper(a.code)}" title="Couper l'accès">✕</button>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+
+    brancher('prolonger', c => agir(`/api/admin/abonnement/${encodeURIComponent(c)}/prolonger?formule=mois`));
+    brancher('semaine', c => agir(`/api/admin/abonnement/${encodeURIComponent(c)}/prolonger?formule=semaine`));
+    brancher('couper', c => {
+      if (confirm(`Couper l'accès de ${c} ?\n\nLe travail de l'élève est conservé.`))
+        agir(`/api/admin/abonnement/${encodeURIComponent(c)}/couper`);
+    });
+  } catch (e) {
+    $('liste').innerHTML = `<div class="erreur">${echapper(e.message)}</div>`;
+  }
+}
+
+function brancher(action, faire) {
+  document.querySelectorAll(`[data-${action}]`).forEach(b =>
+    b.addEventListener('click', () => faire(b.dataset[action])));
+}
+
+async function agir(url) {
+  try {
+    const r = await appeler(url, { method: 'POST' });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'Action impossible.');
+    $('message').innerHTML = '';
+    charger();
+  } catch (e) {
+    afficherErreur(e.message);
+  }
+}
+
+charger();
+</script>
