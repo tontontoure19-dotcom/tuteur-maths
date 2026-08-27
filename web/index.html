@@ -798,6 +798,11 @@ function afficher(qui, texte, urlPhoto) {
   return d;
 }
 
+/* Message écrit par le serveur, donc destiné à l'élève. Tout le reste —
+   « Load failed » d'un iPhone, « NetworkError » d'Android — ne doit jamais
+   s'afficher : ce sont des mots d'ingénieur, pas des mots d'élève. */
+class ErreurServeur extends Error {}
+
 /* ---------- Envoi et réponse en direct ---------- */
 async function envoyer() {
   const texte = zone.value.trim();
@@ -833,14 +838,14 @@ async function envoyer() {
       localStorage.removeItem('code_acces');
       codeAcces = '';
       const saisi = prompt("Ton code d'accès n'est plus valable.\nSaisis ton nouveau code :");
-      if (!saisi || !saisi.trim()) throw new Error("Il me faut ton code d'accès pour continuer.");
+      if (!saisi || !saisi.trim()) throw new ErreurServeur("Il me faut ton code d'accès pour continuer.");
       codeAcces = saisi.trim();
       localStorage.setItem('code_acces', codeAcces);
       r = await appelChat();
       if (r.status === 403) {
         localStorage.removeItem('code_acces');
         codeAcces = '';
-        throw new Error("Ce code n'est pas reconnu. Vérifie-le auprès de la personne qui te l'a donné.");
+        throw new ErreurServeur("Ce code n'est pas reconnu. Vérifie-le auprès de la personne qui te l'a donné.");
       }
     }
     /* Limites de l'abonnement — abonnement terminé, trop d'élèves sur un
@@ -848,7 +853,7 @@ async function envoyer() {
        redemander le code n'y changerait rien : on la montre telle quelle. */
     if (r.status === 402 || r.status === 409 || r.status === 429) {
       const { detail } = await r.json().catch(() => ({}));
-      throw new Error(detail || "Cet abonnement a atteint sa limite.");
+      throw new ErreurServeur(detail || "Cet abonnement a atteint sa limite.");
     }
     if (!r.ok) throw new Error('serveur');
 
@@ -863,7 +868,7 @@ async function envoyer() {
       for (const ligne of lignes) {
         if (!ligne.startsWith('data: ')) continue;
         const ev = JSON.parse(ligne.slice(6));
-        if (ev.erreur) throw new Error(ev.erreur);
+        if (ev.erreur) throw new ErreurServeur(ev.erreur);
         if (ev.texte) {
           if (premier) { bulle.corps.innerHTML = ''; premier = false; }
           reponse += ev.texte;
@@ -876,12 +881,12 @@ async function envoyer() {
     sauvegarder();
   } catch (err) {
     bulle.remove();
-    // On affiche la vraie cause quand le serveur nous l'a donnée : sans ça,
-    // impossible de diagnostiquer un problème pendant les tests.
-    const cause = (err && err.message && err.message !== 'serveur')
+    // Seuls les messages écrits par le serveur sont montrés tels quels :
+    // ils sont en français et disent quoi faire. Une panne de réseau donne
+    // « Load failed » sur iPhone — l'élève n'a rien à faire de ça.
+    afficher('erreur', err instanceof ErreurServeur
       ? err.message
-      : 'Connexion interrompue. Vérifie ton réseau et réessaie.';
-    afficher('erreur', cause);
+      : "Ta connexion s'est interrompue. Renvoie ta question — ton travail est gardé.");
     historique.pop();
     sauvegarder();
   } finally {

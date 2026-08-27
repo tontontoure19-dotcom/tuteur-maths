@@ -249,6 +249,32 @@ if not CLE_PRESENTE:
 JOURS_AVANT_ABSENCE = 2
 
 
+def _qui_est_l_eleve(eleve: str) -> str:
+    """Dit au répétiteur à qui il parle.
+
+    Le prénom n'était envoyé nulle part : le « Salut Makhissa » de l'écran
+    vient de l'application, pas du modèle. Faute de le savoir, le répétiteur
+    inventait un prénom — et appeler un élève par le nom d'un autre détruit
+    la confiance en une phrase.
+
+    Ce bloc reste hors du prompt mis en cache : le prénom change d'un élève
+    à l'autre et ferait tomber le cache à chaque message.
+    """
+    prenom = eleve.strip().split()[0] if eleve.strip() else ""
+    if not prenom:
+        return ""
+    return (
+        "# À qui tu parles\n\n"
+        f"L'élève s'appelle **{prenom}**.\n\n"
+        "Utilise ce prénom de temps en temps — pour l'encourager, pour le "
+        "saluer, pour le retenir quand il veut abandonner. Pas à chaque "
+        "phrase, ça sonnerait faux.\n\n"
+        "**Ne l'appelle JAMAIS autrement.** Tu n'inventes pas un prénom, tu "
+        "n'en devines pas un à partir de ce qu'il écrit. Si tu as un doute, "
+        "tu ne mets pas de prénom du tout."
+    )
+
+
 def _retour_apres_absence(eleve: str, code: str | None) -> str:
     """Signale au répétiteur qu'un élève revient après plusieurs jours.
 
@@ -496,6 +522,7 @@ def chat(demande: DemandeChat):
     # Se calcule AVANT d'enregistrer le message : sinon la dernière trace
     # aurait une seconde d'âge et l'absence deviendrait invisible.
     retour = _retour_apres_absence(demande.eleve, code_utilise)
+    qui = _qui_est_l_eleve(demande.eleve)
 
     dernier = demande.messages[-1]
     if dernier.role == "user":
@@ -542,7 +569,7 @@ def chat(demande: DemandeChat):
                             "cache_control": {"type": "ephemeral"},
                         },
                         *({"type": "text", "text": bloc}
-                          for bloc in (retour, annale) if bloc),
+                          for bloc in (qui, retour, annale) if bloc),
                     ],
                     messages=messages,
                 ) as stream:
