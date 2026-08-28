@@ -220,7 +220,8 @@ async function charger() {
     const d = await r.json();
     if (!r.ok) throw new Error(d.detail || 'Chargement impossible.');
 
-    const expirant = d.abonnements.filter(a => a.actif && !a.expire && a.jours_restants <= 3).length;
+    const expirant = d.abonnements.filter(a => a.actif && !a.expire && !a.testeur
+                                            && a.jours_restants <= 3).length;
     $('chiffres').classList.remove('cache');
     $('chiffres').innerHTML = `
       <div class="chiffre"><b>${d.actifs}</b><span>abonnements actifs</span></div>
