@@ -69,6 +69,16 @@
                  padding:10px 16px;font-size:14px;cursor:pointer;font-family:inherit}
   .erreur{background:#FDECEC;color:#9B2C2C;border-radius:12px;padding:14px;font-size:14.5px;margin-bottom:14px}
   .info{text-align:center;color:var(--gris);padding:28px 18px;font-size:15px}
+  .sommes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+  .somme{border:1px solid var(--bord);border-radius:14px;padding:13px 10px;text-align:center}
+  .somme b{display:block;font-size:19px;color:var(--vert)}
+  .somme span{font-size:11.5px;color:var(--gris)}
+  .cout{display:flex;justify-content:space-between;padding:8px 0;
+        border-bottom:1px solid var(--bord);font-size:14.5px}
+  .cout:last-child{border-bottom:none}
+  .cout b{color:var(--vert);font-weight:600}
+  .note{font-size:13px;color:var(--gris);margin-top:12px;line-height:1.5}
+  .note a{color:var(--vert)}
   .cache{display:none !important}
   @media (max-width:520px){ .champs,.chiffres{grid-template-columns:1fr 1fr} }
 </style>
@@ -112,6 +122,11 @@
   </div>
 
   <div id="chiffres" class="chiffres cache"></div>
+
+  <div class="carte" id="carte-depenses">
+    <h2>Ce que ça vous coûte</h2>
+    <div id="depenses"><div class="info">Chargement…</div></div>
+  </div>
 
   <div class="carte">
     <h2>Les abonnements</h2>
@@ -333,5 +348,35 @@ async function agir(url) {
   }
 }
 
+/* La dépense réelle de l'application. Le SOLDE restant, lui, ne se lit que
+   dans la console Anthropic : l'API ne le donne pas à sa propre clé. */
+async function chargerDepenses() {
+  try {
+    const r = await appeler('/api/admin/depenses');
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'Dépenses indisponibles.');
+
+    const gnf = n => n.toLocaleString('fr-FR') + ' GNF';
+    const lignes = d.par_eleve.length
+      ? d.par_eleve.map(e =>
+          `<div class="cout"><span>${echapper(e.nom)}</span><b>${gnf(e.gnf)}</b></div>`).join('')
+      : '<div class="info">Aucune dépense enregistrée.</div>';
+
+    $('depenses').innerHTML = `
+      <div class="sommes">
+        <div class="somme"><b>${gnf(d.semaine_gnf)}</b><span>ces 7 jours</span></div>
+        <div class="somme"><b>${gnf(d.mois_gnf)}</b><span>ce mois-ci</span></div>
+        <div class="somme"><b>${gnf(d.total_gnf)}</b><span>depuis le début</span></div>
+      </div>
+      ${lignes}
+      <div class="note">Ceci est ce que l'application a consommé, pas votre solde.
+        Le solde restant se lit dans
+        <a href="${d.console}" target="_blank" rel="noopener">la console Anthropic</a>.</div>`;
+  } catch (e) {
+    $('depenses').innerHTML = `<div class="erreur">${echapper(e.message)}</div>`;
+  }
+}
+
 charger();
+chargerDepenses();
 </script>

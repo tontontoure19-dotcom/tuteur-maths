@@ -999,6 +999,84 @@ def message_hebdomadaire(eleve: str, code: str | None = None):
     }
 
 
+@app.get("/api/admin/depenses")
+def depenses(code: str | None = None):
+    """Ce que l'application a réellement consommé, en francs guinéens.
+
+    Attention : c'est la CONSOMMATION, pas le solde restant. Anthropic
+    n'expose pas le solde d'un compte à sa clé API — il ne se lit que dans
+    la console. Ici on additionne ce que chaque échange a coûté, ce qui
+    donne la dépense du mois et le coût réel de chaque abonné.
+    """
+    _exiger_admin(code)
+
+    debut_mois = datetime.now(timezone.utc).replace(day=1, hour=0, minute=0,
+                                                    second=0, microsecond=0)
+    debut_semaine = datetime.now(timezone.utc) - timedelta(days=7)
+
+    total, mois, semaine = 0.0, 0.0, 0.0
+    par_eleve: dict[str, dict] = {}
+
+    for fichier in DOSSIER_SESSIONS.glob("*.jsonl"):
+        nom = None
+        for ligne in fichier.read_text(encoding="utf-8").splitlines():
+            if not ligne:
+                continue
+            entree = json.loads(ligne)
+            nom = entree.get("eleve") or nom
+            cout = entree.get("cout_gnf")
+            if not cout:
+                continue
+            total += cout
+            try:
+                quand = datetime.fromisoformat(entree["horodatage"])
+            except ValueError:
+                continue
+            if quand >= debut_mois:
+                mois += cout
+            if quand >= debut_semaine:
+                semaine += cout
+
+        # Les bilans sont facturés à part : leur coût vit dans leur cache.
+        cache = DOSSIER_BILANS / f"{fichier.stem}.json"
+        cout_bilan = 0.0
+        if cache.exists():
+            try:
+                cout_bilan = json.loads(cache.read_text(encoding="utf-8")).get("_cout_gnf", 0)
+            except (json.JSONDecodeError, OSError):
+                cout_bilan = 0.0
+        total += cout_bilan
+        mois += cout_bilan
+
+        etiquette = nom or fichier.stem.split("_", 1)[-1].replace("_", " ").title()
+        fiche = par_eleve.setdefault(etiquette, {"nom": etiquette, "gnf": 0.0})
+        fiche["gnf"] += cout_bilan
+
+    # Réattribue à chaque élève ce que ses échanges ont coûté.
+    for fichier in DOSSIER_SESSIONS.glob("*.jsonl"):
+        nom = None
+        somme = 0.0
+        for ligne in fichier.read_text(encoding="utf-8").splitlines():
+            if not ligne:
+                continue
+            entree = json.loads(ligne)
+            nom = entree.get("eleve") or nom
+            somme += entree.get("cout_gnf") or 0
+        etiquette = nom or fichier.stem.split("_", 1)[-1].replace("_", " ").title()
+        par_eleve.setdefault(etiquette, {"nom": etiquette, "gnf": 0.0})["gnf"] += somme
+
+    classement = sorted(par_eleve.values(), key=lambda e: -e["gnf"])
+    return {
+        "total_gnf": round(total),
+        "mois_gnf": round(mois),
+        "semaine_gnf": round(semaine),
+        "par_eleve": [{"nom": e["nom"], "gnf": round(e["gnf"])}
+                      for e in classement if e["gnf"] >= 1],
+        # Le solde ne se lit que dans la console Anthropic.
+        "console": "https://console.anthropic.com/settings/billing",
+    }
+
+
 def _activite_du_code(code_abonne: str) -> dict:
     """Ce que l'élève a réellement fait avec son abonnement.
 
