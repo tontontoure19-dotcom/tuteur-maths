@@ -11,8 +11,9 @@ import os
 import re
 import time
 import unicodedata
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import quote
 from uuid import uuid4
 
 import anthropic
@@ -53,6 +54,10 @@ MAX_PHOTO_OCTETS = 3 * 1024 * 1024
 # Registre des abonnements : créer ou couper un accès ne demande plus de
 # redéployer le service.
 ABONNEMENTS = Abonnements(DOSSIER_DONNEES / "abonnements.json")
+
+# Adresse à laquelle le parent recevra le lien de suivi.
+ADRESSE_PUBLIQUE = (os.getenv("ADRESSE_PUBLIQUE")
+                    or "https://tuteur-maths.onrender.com").rstrip("/")
 
 
 def _nom_normalise(eleve: str) -> str:
@@ -904,6 +909,94 @@ def creer_abonnement(demande: NouvelAbonnement, code: str | None = None):
 
     return ABONNEMENTS.creer(demande.nom, demande.niveau,
                              demande.formule, demande.telephone)
+
+
+JOURS_SEMAINE_RAPPORT = 7
+
+
+def _semaine_de_l_eleve(eleve: str, code: str | None) -> dict:
+    """Ce que l'élève a fait ces sept derniers jours.
+
+    Les chiffres sont comptés ici, pas demandés à l'IA : un parent qui lit
+    « 12 questions » doit pouvoir compter 12 questions.
+    """
+    depuis = datetime.now(timezone.utc) - timedelta(days=JOURS_SEMAINE_RAPPORT)
+    questions, jours = 0, set()
+    for e in _journal(_fichier_session(eleve, code)):
+        if e["role"] != "eleve":
+            continue
+        try:
+            quand = datetime.fromisoformat(e["horodatage"])
+        except ValueError:
+            continue
+        if quand >= depuis:
+            questions += 1
+            jours.add(quand.date())
+    return {"questions": questions, "jours_actifs": len(jours)}
+
+
+def _message_hebdomadaire(eleve: str, code: str | None) -> str:
+    """Le message WhatsApp à envoyer au parent, prêt à copier.
+
+    Court par nécessité : un parent le lit sur son téléphone, entre deux
+    choses. S'il fait dix lignes, il n'est pas lu — et c'est précisément ce
+    message qui décide du renouvellement de l'abonnement.
+    """
+    prenom = eleve.strip().split()[0] if eleve.strip() else eleve
+    semaine = _semaine_de_l_eleve(eleve, code)
+    lien = f"{ADRESSE_PUBLIQUE}/parent.html?eleve={quote(eleve)}"
+
+    if semaine["questions"] == 0:
+        return (
+            f"Bonjour ! Cette semaine, {prenom} n'a pas travaillé avec le "
+            "répétiteur.\n\n"
+            "Ça arrive — un téléphone occupé, une semaine chargée. Un seul "
+            "exercice suffit pour repartir : une photo d'un devoir difficile, "
+            "et le répétiteur prend le relais.\n\n"
+            f"Le suivi : {lien}"
+        )
+
+    # Le qualitatif vient du bilan déjà calculé : aucun appel de plus.
+    fichier = _fichier_session(eleve, code)
+    bilan = None
+    if CLE_PRESENTE and fichier.exists():
+        try:
+            bilan = module_bilan.generer(fichier, DOSSIER_BILANS / f"{fichier.stem}.json",
+                                         client, _cout_gnf)
+        except anthropic.APIStatusError:
+            bilan = None
+
+    lignes = [f"Bonjour ! Voici le point de la semaine pour {prenom}.", ""]
+    jours = semaine["jours_actifs"]
+    lignes.append(f"📚 {semaine['questions']} question(s) posée(s), "
+                  f"sur {jours} jour{'s' if jours > 1 else ''} de travail")
+
+    if bilan and not bilan.get("pas_assez_de_donnees"):
+        acquis = [c["nom"] for c in bilan.get("chapitres", []) if c["niveau"] == "acquis"]
+        a_revoir = [c["nom"] for c in bilan.get("chapitres", [])
+                    if c["niveau"] in ("en cours", "difficulté")]
+        if acquis:
+            lignes.append(f"✅ Acquis : {', '.join(acquis[:2])}")
+        if a_revoir:
+            lignes.append(f"📌 À retravailler : {', '.join(a_revoir[:2])}")
+        conseils = bilan.get("recommandations") or []
+        if conseils:
+            lignes += ["", f"Le conseil de la semaine : {conseils[0]}"]
+
+    lignes += ["", f"Le détail : {lien}"]
+    return "\n".join(lignes)
+
+
+@app.get("/api/admin/message-hebdo/{eleve}")
+def message_hebdomadaire(eleve: str, code: str | None = None):
+    """Le message de la semaine, prêt à coller dans WhatsApp."""
+    code_utilise = _exiger_admin(code)
+    # Le responsable consulte n'importe quel élève : _fichier_session le sait.
+    return {
+        "eleve": eleve,
+        "message": _message_hebdomadaire(eleve, code_utilise),
+        **_semaine_de_l_eleve(eleve, code_utilise),
+    }
 
 
 def _activite_du_code(code_abonne: str) -> dict:

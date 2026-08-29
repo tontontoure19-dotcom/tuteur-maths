@@ -62,6 +62,9 @@
           padding:16px;margin-bottom:14px}
   .succes .code{font-family:ui-monospace,Consolas,monospace;font-size:21px;font-weight:700;
                 color:var(--vert);letter-spacing:1px;display:block;margin:8px 0}
+  .succes .apercu{background:#fff;border:1px solid var(--bord);border-radius:12px;
+                  padding:14px;margin:10px 0;font-family:inherit;font-size:14.5px;
+                  line-height:1.5;white-space:pre-wrap;word-wrap:break-word}
   .succes button{background:var(--vert);color:#fff;border:none;border-radius:10px;
                  padding:10px 16px;font-size:14px;cursor:pointer;font-family:inherit}
   .erreur{background:#FDECEC;color:#9B2C2C;border-radius:12px;padding:14px;font-size:14.5px;margin-bottom:14px}
@@ -253,6 +256,7 @@ async function charger() {
           <div class="travail">${activite(a)}</div>
         </div>
         <div class="actions">
+          <button data-message="${echapper(a.nom)}" title="Message de la semaine">📩</button>
           ${a.testeur ? '' : `
             <button class="vert" data-prolonger="${echapper(a.code)}" title="Ajouter un mois">+ mois</button>
             <button data-semaine="${echapper(a.code)}" title="Ajouter une semaine">+ sem.</button>
@@ -261,6 +265,7 @@ async function charger() {
       </div>`;
     }).join('');
 
+    brancher('message', montrerMessage);
     brancher('prolonger', c => agir(`/api/admin/abonnement/${encodeURIComponent(c)}/prolonger?formule=mois`));
     brancher('semaine', c => agir(`/api/admin/abonnement/${encodeURIComponent(c)}/prolonger?formule=semaine`));
     brancher('couper', c => {
@@ -290,6 +295,30 @@ function activite(a) {
 function brancher(action, faire) {
   document.querySelectorAll(`[data-${action}]`).forEach(b =>
     b.addEventListener('click', () => faire(b.dataset[action])));
+}
+
+/* Le message hebdomadaire au parent. C'est lui qui fait renouveler
+   l'abonnement : le parent qui ne reçoit rien oublie qu'il paie. */
+async function montrerMessage(nom) {
+  try {
+    const r = await appeler('/api/admin/message-hebdo/' + encodeURIComponent(nom));
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'Message indisponible.');
+    $('message').innerHTML = `
+      <div class="succes">
+        <b>Message de la semaine — ${echapper(nom)}</b>
+        <pre class="apercu">${echapper(d.message)}</pre>
+        <button id="copier-hebdo">Copier pour WhatsApp</button>
+      </div>`;
+    $('copier-hebdo').addEventListener('click', () => {
+      navigator.clipboard.writeText(d.message)
+        .then(() => { $('copier-hebdo').textContent = 'Message copié ✓'; })
+        .catch(() => { $('copier-hebdo').textContent = 'Copie impossible — sélectionnez le texte'; });
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch (e) {
+    afficherErreur(e.message);
+  }
 }
 
 async function agir(url) {
