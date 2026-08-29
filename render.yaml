@@ -48,8 +48,10 @@ services:
       # l'appareil : c'est ici que le budget est réellement protégé.
       - key: MAX_ELEVES_PAR_CODE
         value: "1"
+      - key: MAX_QUESTIONS_PAR_MOIS
+        value: "400"
       - key: MAX_QUESTIONS_PAR_JOUR
-        value: "40"
+        value: "120"
 
       # Taux de change utilisé pour afficher les coûts en francs guinéens.
       - key: GNF_PAR_DOLLAR

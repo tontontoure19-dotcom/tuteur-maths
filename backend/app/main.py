@@ -199,10 +199,15 @@ CODES_ACCES = {c.strip() for c in (os.getenv("CODE_ACCES") or "").split(",") if 
 # refuse qu'un prénom nouveau.
 MAX_ELEVES_PAR_CODE = int(os.getenv("MAX_ELEVES_PAR_CODE", "1"))
 
-# Plafond de questions par jour et par abonnement. C'est la vraie protection
-# du budget : un code enregistré dans un appareil prêté ne peut pas être
-# utilisé sans fin, même si l'application, elle, ne redemande rien.
-MAX_QUESTIONS_PAR_JOUR = int(os.getenv("MAX_QUESTIONS_PAR_JOUR", "40"))
+# Le budget se protège au MOIS, pas au jour : un plafond journalier coupe un
+# élève en pleine révision le jour où il travaille le mieux — c'est arrivé à
+# une abonnée, en plein cours. 400 questions ≈ 25 000 GNF, soit un tiers d'un
+# abonnement mensuel à 75 000 GNF.
+MAX_QUESTIONS_PAR_MOIS = int(os.getenv("MAX_QUESTIONS_PAR_MOIS", "400"))
+
+# Garde-fou technique seulement : une boucle, ou un code partagé à toute une
+# classe. Très au-dessus d'une journée de révision normale (~30 questions).
+MAX_QUESTIONS_PAR_JOUR = int(os.getenv("MAX_QUESTIONS_PAR_JOUR", "120"))
 
 
 # Code du responsable du service : lui seul voit tous les élèves, tous
@@ -358,6 +363,44 @@ def _fichiers_du_code(code: str) -> list[Path]:
     return list(DOSSIER_SESSIONS.glob(f"{empreinte}_*.jsonl"))
 
 
+def _questions_posees(fichiers: list[Path], depuis: datetime) -> int:
+    """Questions de l'élève depuis une date."""
+    total = 0
+    for f in fichiers:
+        for e in _journal(f):
+            if e["role"] != "eleve":
+                continue
+            try:
+                if datetime.fromisoformat(e["horodatage"]) >= depuis:
+                    total += 1
+            except ValueError:
+                continue
+    return total
+
+
+def _consommation(code: str | None) -> dict:
+    """Où en est l'abonnement de son quota du mois.
+
+    Un quota MENSUEL, pas journalier : un élève qui s'accroche sur un
+    chapitre un dimanche ne doit pas être coupé pour ça. C'est le total du
+    mois qui protège le budget, pas la régularité.
+    """
+    if not code:
+        return {"mois": 0, "reste": MAX_QUESTIONS_PAR_MOIS, "jour": 0}
+
+    maintenant = datetime.now(timezone.utc)
+    fichiers = _fichiers_du_code(code)
+    debut_mois = maintenant.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+    debut_jour = maintenant.replace(hour=0, minute=0, second=0, microsecond=0)
+
+    mois = _questions_posees(fichiers, debut_mois)
+    return {
+        "mois": mois,
+        "reste": max(0, MAX_QUESTIONS_PAR_MOIS - mois),
+        "jour": _questions_posees(fichiers, debut_jour),
+    }
+
+
 def _verifier_quota(eleve: str, code: str | None) -> None:
     """Ce qu'un abonnement a le droit de consommer.
 
@@ -381,20 +424,49 @@ def _verifier_quota(eleve: str, code: str | None) -> None:
             ),
         )
 
-    aujourdhui = datetime.now(timezone.utc).date().isoformat()
-    posees = sum(
-        1
-        for f in fichiers
-        for e in _journal(f)
-        if e["role"] == "eleve" and e["horodatage"].startswith(aujourdhui)
-    )
-    if posees >= MAX_QUESTIONS_PAR_JOUR:
+    etat = _consommation(code)
+
+    # Garde-fou technique : une boucle ou un code partagé à toute une classe.
+    # Volontairement très au-dessus d'une journée de révision normale.
+    if etat["jour"] >= MAX_QUESTIONS_PAR_JOUR:
         raise HTTPException(
             status_code=429,
-            detail=f"Tu as posé {posees} questions aujourd'hui, c'est la limite "
-                   "journalière. Reprends demain — et relis ce qu'on a déjà fait "
-                   "en attendant.",
+            detail=("Tu as beaucoup travaillé aujourd'hui — c'est le maximum que "
+                    "je peux suivre en une journée. Reprends demain, ton travail "
+                    "est gardé."),
         )
+
+    if etat["mois"] >= MAX_QUESTIONS_PAR_MOIS:
+        raise HTTPException(
+            status_code=429,
+            detail=(f"Tu as posé {etat['mois']} questions ce mois-ci, c'est le "
+                    "maximum de ton abonnement. Il repart à zéro le 1er du mois "
+                    "prochain — préviens la personne qui te suit si tu as besoin "
+                    "de plus."),
+        )
+
+
+# Quand il reste si peu de questions, le répétiteur prévient l'élève lui-même,
+# au lieu de le couper sans crier gare en pleine concentration.
+QUESTIONS_AVANT_ALERTE = 15
+
+
+def _alerte_quota(code: str | None) -> str:
+    """Prévient le répétiteur que l'élève approche de sa limite du mois."""
+    if not code:
+        return ""
+    reste = _consommation(code)["reste"]
+    if reste > QUESTIONS_AVANT_ALERTE or reste <= 0:
+        return ""
+    return (
+        f"# Il reste {reste} question(s) à cet élève ce mois-ci\n\n"
+        "Dis-le-lui **à la fin de ta réponse**, en une phrase, sans dramatiser : "
+        f"« Au fait, il te reste {reste} questions ce mois-ci — on les garde pour "
+        "ce qui te bloque vraiment ? »\n\n"
+        "Ne t'arrête pas de l'aider pour autant, et ne le répète pas à chaque "
+        "message. L'important est qu'il ne soit pas coupé par surprise en pleine "
+        "concentration."
+    )
 
 
 class Message(BaseModel):
@@ -528,6 +600,7 @@ def chat(demande: DemandeChat):
     # aurait une seconde d'âge et l'absence deviendrait invisible.
     retour = _retour_apres_absence(demande.eleve, code_utilise)
     qui = _qui_est_l_eleve(demande.eleve)
+    alerte = _alerte_quota(code_utilise)
 
     dernier = demande.messages[-1]
     if dernier.role == "user":
@@ -574,7 +647,7 @@ def chat(demande: DemandeChat):
                             "cache_control": {"type": "ephemeral"},
                         },
                         *({"type": "text", "text": bloc}
-                          for bloc in (qui, retour, annale) if bloc),
+                          for bloc in (qui, alerte, retour, annale) if bloc),
                     ],
                     messages=messages,
                 ) as stream:
