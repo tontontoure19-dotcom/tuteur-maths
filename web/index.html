@@ -82,6 +82,17 @@
   .points span:nth-child(2){animation-delay:.2s}.points span:nth-child(3){animation-delay:.4s}
   @keyframes saute{0%,60%,100%{opacity:.3}30%{opacity:1}}
 
+  /* ---- Symboles mathématiques ---- */
+  /* Défilement horizontal : sur un écran étroit, mieux vaut faire glisser
+     la rangée que rétrécir des touches déjà petites pour un doigt. */
+  #symboles{flex-shrink:0;display:flex;gap:6px;padding:8px 12px 0;
+            overflow-x:auto;background:#fff;-webkit-overflow-scrolling:touch}
+  #symboles::-webkit-scrollbar{display:none}
+  #symboles button{flex-shrink:0;min-width:42px;height:38px;border:1px solid #E8E4DE;
+                   background:var(--fond);border-radius:10px;font-size:17px;
+                   color:var(--texte);cursor:pointer;font-family:inherit}
+  #symboles button:active{background:var(--vert-clair);border-color:var(--vert)}
+
   /* ---- Barre de saisie ---- */
   #barre{flex-shrink:0;background:#fff;border-top:1px solid #E8E4DE;padding:10px 12px;
          padding-bottom:calc(env(safe-area-inset-bottom) + 10px);display:flex;gap:8px;align-items:flex-end}
@@ -181,6 +192,18 @@
 </div>
 
 <div id="apercu" class="cache"><img id="apercu-img"><button id="retirer">✕</button></div>
+
+<div id="symboles" class="cache">
+  <button data-symbole="√">√</button>
+  <button data-symbole="²">x²</button>
+  <button data-symbole="³">x³</button>
+  <button data-symbole="/">/</button>
+  <button data-symbole="×">×</button>
+  <button data-symbole="π">π</button>
+  <button data-symbole="≤">≤</button>
+  <button data-symbole="≥">≥</button>
+  <button data-symbole="°">°</button>
+</div>
 
 <div id="barre" class="cache">
   <input type="file" id="fichier" accept="image/*" capture="environment" hidden>
@@ -293,7 +316,8 @@ function changerEleve() {
   document.querySelectorAll('.niveau').forEach(x =>
     x.classList.toggle('actif', x.dataset.niveau === niveau));
   majPromesse();
-  ['entete', 'fil', 'barre', 'apercu', 'progres', 'seances'].forEach(id => $(id).classList.add('cache'));
+  ['entete', 'fil', 'barre', 'symboles', 'apercu', 'progres', 'seances']
+    .forEach(id => $(id).classList.add('cache'));
   $('accueil').classList.remove('cache');
   afficherProfils();
 }
@@ -440,12 +464,12 @@ function memoriserSeance() {
 
 function fermerPanneaux() {
   ['seances', 'progres'].forEach(id => $(id).classList.add('cache'));
-  ['fil', 'barre'].forEach(id => $(id).classList.remove('cache'));
+  ['fil', 'barre', 'symboles'].forEach(id => $(id).classList.remove('cache'));
 }
 
 async function ouvrirSeances() {
   if (occupe) return;
-  ['fil', 'barre', 'apercu', 'progres'].forEach(id => $(id).classList.add('cache'));
+  ['fil', 'barre', 'symboles', 'apercu', 'progres'].forEach(id => $(id).classList.add('cache'));
   $('seances').classList.remove('cache');
   $('seances-liste').innerHTML = '<div class="patience">Je retrouve tes discussions…</div>';
 
@@ -577,7 +601,7 @@ function ouvrirChat() {
   $('accueil').classList.add('cache');
   ['progres', 'seances'].forEach(id => $(id).classList.add('cache'));
   seanceActive = Number(localStorage.getItem('seance_' + identifiantDe(eleve))) || null;
-  ['entete', 'fil', 'barre'].forEach(id => $(id).classList.remove('cache'));
+  ['entete', 'fil', 'barre', 'symboles'].forEach(id => $(id).classList.remove('cache'));
   $('salut').textContent = 'Salut ' + eleve + ' 👋 · ' +
     (niveau === 'bac' ? 'Terminale' : '10ᵉ année');
   // Ce qui est dans le téléphone s'affiche tout de suite, sans attendre le
@@ -628,6 +652,21 @@ try {
 } catch (e) { afficherProfils(); }
 
 /* ---------- Photo ---------- */
+/* Insère le symbole là où est le curseur, sans faire disparaître le clavier :
+   l'élève enchaîne « 3 » puis √ puis « 29 » sans quitter sa frappe. */
+document.querySelectorAll('#symboles button').forEach(b =>
+  b.addEventListener('mousedown', e => {
+    e.preventDefault();
+    const z = $('texte');
+    const debut = z.selectionStart ?? z.value.length;
+    const fin = z.selectionEnd ?? z.value.length;
+    z.value = z.value.slice(0, debut) + b.dataset.symbole + z.value.slice(fin);
+    const apres = debut + b.dataset.symbole.length;
+    z.setSelectionRange(apres, apres);
+    z.focus();
+    majEnvoyer();
+  }));
+
 $('photo-btn').addEventListener('click', () => $('fichier').click());
 $('retirer').addEventListener('click', () => {
   photo = null; $('apercu').classList.add('cache'); majEnvoyer();
@@ -717,12 +756,12 @@ const echapper = t =>
 
 function fermerProgres() {
   $('progres').classList.add('cache');
-  ['fil', 'barre'].forEach(id => $(id).classList.remove('cache'));
+  ['fil', 'barre', 'symboles'].forEach(id => $(id).classList.remove('cache'));
 }
 
 async function ouvrirProgres() {
   if (occupe) return;
-  ['fil', 'barre', 'apercu', 'seances'].forEach(id => $(id).classList.add('cache'));
+  ['fil', 'barre', 'symboles', 'apercu', 'seances'].forEach(id => $(id).classList.add('cache'));
   $('progres').classList.remove('cache');
   $('progres-contenu').innerHTML =
     '<div class="patience">Je regarde ton travail…<br>Quelques secondes.</div>';
