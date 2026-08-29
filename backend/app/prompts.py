@@ -9,34 +9,78 @@ un répétiteur qui REFUSE de donner la réponse et fait travailler l'élève.
 # officiels guinéens et les sujets d'annales réels.
 
 PROGRAMME_MATHS_10E = """
-# Programme de mathématiques — classe de 10e année (BEPC, Guinée)
+# Programme de mathématiques — 10e année (BEPC, Guinée)
 
-## Algèbre et calcul numérique
-- Nombres relatifs, fractions, puissances, racines carrées
-- Calcul littéral : développement, factorisation, identités remarquables
-  (a+b)², (a−b)², (a+b)(a−b)
-- Équations et inéquations du premier degré à une inconnue
-- Systèmes de deux équations à deux inconnues
-- Proportionnalité, pourcentages, échelles
+Ce programme n'est pas recopié d'un manuel : il est relevé sur les 18
+sessions du BEPC de 2005 à 2022. Le nombre entre parenthèses dit dans
+combien de sessions le chapitre est réellement tombé. Sers-t'en pour
+choisir quoi réviser en priorité quand un élève te demande par où
+commencer.
 
-## Géométrie
-- Théorème de Thalès et sa réciproque
-- Théorème de Pythagore et sa réciproque
-- Trigonométrie dans le triangle rectangle : sinus, cosinus, tangente
-- Angles inscrits, angles au centre
-- Transformations : translation, rotation, symétries
-- Aires et volumes : prisme, cylindre, pyramide, cône, sphère
+## Ce qui tombe presque à chaque session
 
-## Statistiques
-- Effectifs, fréquences, moyenne, médiane, étendue
-- Lecture et construction de diagrammes
+### Activités numériques
+- Racines carrées (14) : écrire sous la forme a + b√n, simplifier des
+  radicaux, comparer deux réels, quantité conjuguée (6) pour supprimer un
+  radical au dénominateur
+- Identités remarquables (13) : (a+b)², (a−b)², (a+b)(a−b) — presque
+  toujours le point de départ d'une factorisation
+- Développement, réduction, factorisation (9), facteur commun (3)
+- Problèmes concrets (13) : prix et réduction, dimensions d'un champ ou
+  d'un rectangle, achats, partage. Ils se ramènent presque toujours à un
+  système ou à une équation.
+- Systèmes de deux équations à deux inconnues (9)
+- Fractions (7) et priorités opératoires
+- Pourcentages (5)
+- Équations produit (5) : (ax+b)(cx+d) = 0
+- Encadrement (5) : encadrer un nombre par deux décimaux consécutifs
+- Équations et inéquations du premier degré (4 et 2)
+- Application affine (4) : sens de variation, ranger des images
+- Puissances et notation scientifique (2)
 
-## Format de l'épreuve du BEPC
-L'épreuve comporte généralement des exercices indépendants (activités
-numériques, activités géométriques) puis un problème. Les questions sont
-souvent guidées : 1) a) b) c). Chaque étape est notée, donc rédiger
-proprement et justifier rapporte des points même si le résultat final
-est faux.
+### Activités géométriques
+- **Repère orthonormé (11)** : c'est l'exercice de géométrie le plus
+  fréquent du BEPC. Placer des points, calculer des coordonnées.
+- **Distance entre deux points (11)** : la formule que l'élève doit savoir
+  écrire sans hésiter.
+- Théorème de Pythagore et sa réciproque (10 et 2) : très souvent pour
+  démontrer qu'un triangle est rectangle à partir de trois longueurs
+- Trigonométrie dans le triangle rectangle (9) : sinus, cosinus, tangente
+- Vecteurs (9) : coordonnées, égalité, colinéarité, orthogonalité (4)
+- Équation d'une droite (9)
+- Symétrie centrale (6), translation (4), symétrie axiale (2)
+- Théorème de Thalès (6), droites parallèles (4)
+- Nature d'un quadrilatère : parallélogramme (4), rectangle (4),
+  losange (2) — presque toujours la question qui suit une symétrie
+- Cercle circonscrit (5) et tangente au cercle (4) : le centre est le
+  milieu de l'hypoténuse quand le triangle est rectangle
+- Aires (5) et périmètres (2)
+- Triangle équilatéral (4), triangle rectangle isocèle (3)
+- Médiatrice (3), médianes et centre de gravité (2)
+
+### Statistiques (4)
+- Effectifs, fréquences en pourcentage, moyenne pondérée, mode
+- Diagramme circulaire : calculer chaque angle au centre
+
+## Ce qui ne tombe presque jamais
+Ne perds pas le temps d'un élève là-dessus s'il prépare l'examen :
+volumes du prisme, du cylindre, du cône, de la pyramide ou de la sphère
+(aucune session sur 18), rotation, étendue, médiane d'une série.
+
+## Ce qui est apparu une seule fois
+Fonction rationnelle et condition d'existence, valeur absolue, relations
+métriques, projeté orthogonal, nombre d'or, programme de calcul et
+raisonnement sur la parité, vrai ou faux à justifier, systèmes de trois
+équations, angle inscrit, théorème des milieux, partage proportionnel.
+Ce sont de vrais sujets d'examen : ne les écarte pas, mais ne commence
+pas par eux.
+
+## Le format de l'épreuve
+Deux parties : **Activités Numériques** puis **Activités Géométriques**,
+souvent suivies d'un problème concret. Les questions sont guidées —
+1) a) b) c) — et chaque étape est notée. Rédiger proprement et justifier
+rapporte des points même quand le résultat final est faux. Dis-le aux
+élèves : beaucoup perdent des points en sautant les justifications.
 """
 
 PROGRAMME_MATHS_TERMINALE = """
