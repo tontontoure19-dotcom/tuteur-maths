@@ -37,10 +37,12 @@
         text-decoration:underline;cursor:pointer;font-family:inherit;padding:2px}
 
   /* Choix du niveau : BEPC ou BAC */
-  .niveaux{display:flex;gap:8px;width:100%;max-width:300px}
-  .niveau{flex:1;background:#fff;border:2px solid #DDD8D0;border-radius:14px;padding:11px 6px;
+  /* Empilés : trois choix ne tiennent pas côte à côte sur un téléphone. */
+  .niveaux{display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px}
+  .niveau{background:#fff;border:2px solid #DDD8D0;border-radius:14px;padding:12px 15px;
           font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--texte);
-          display:flex;flex-direction:column;gap:2px;line-height:1.2}
+          display:flex;flex-direction:row;justify-content:space-between;align-items:center;
+          gap:8px;line-height:1.2}
   .niveau span{font-size:11.5px;font-weight:400;color:var(--gris)}
   .niveau.actif{border-color:var(--vert);background:var(--vert-clair);color:var(--vert)}
   .niveau.actif span{color:var(--vert)}
@@ -158,8 +160,9 @@
   <input id="code" class="cache" placeholder="Code d'accès" autocomplete="off">
   <input id="prenom" placeholder="Ton prénom" autocomplete="given-name">
   <div class="niveaux">
-    <button class="niveau actif" data-niveau="bepc">10ᵉ année<span>BEPC</span></button>
-    <button class="niveau" data-niveau="bac">Terminale<span>BAC</span></button>
+    <button class="niveau actif" data-niveau="bepc">10ᵉ année<span>BEPC · Maths</span></button>
+    <button class="niveau" data-niveau="bepc-physique">10ᵉ année<span>BEPC · Physique</span></button>
+    <button class="niveau" data-niveau="bac">Terminale<span>BAC · Maths</span></button>
   </div>
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
@@ -224,6 +227,8 @@ let codeAcces = localStorage.getItem('code_acces') || '';
 // Séance de travail en cours. L'élève peut en ouvrir une deuxième pour une
 // question rapide, puis revenir à son cours : chacune garde son fil.
 let seanceActive = null;
+// Les niveaux que l'application sait ouvrir.
+const LIBELLES_CONNUS = ['bepc', 'bepc-physique', 'bac'];
 
 const $ = id => document.getElementById(id);
 
@@ -347,7 +352,7 @@ async function proposerProfilsDuCode() {
     zone.querySelectorAll('.profil.distant').forEach(el =>
       el.addEventListener('click', () => {
         $('prenom').value = el.dataset.nom;
-        niveau = el.dataset.niveau === 'bac' ? 'bac' : 'bepc';
+        niveau = LIBELLES_CONNUS.includes(el.dataset.niveau) ? el.dataset.niveau : 'bepc';
         demarrer();
       }));
   } catch (e) { /* hors ligne : l'élève saisit son prénom comme avant */ }
@@ -581,7 +586,7 @@ async function demarrer() {
 // L'examen visé n'est pas le même selon le niveau : la promesse d'accueil
 // doit nommer CELUI de l'élève, sinon la moitié des visiteurs se sent
 // étrangère à l'application dès la première phrase.
-const EXAMENS = { bepc: 'BEPC', bac: 'BAC' };
+const EXAMENS = { bepc: 'BEPC', 'bepc-physique': 'BEPC', bac: 'BAC' };
 
 function majPromesse() {
   $('promesse').innerHTML =
@@ -602,8 +607,10 @@ function ouvrirChat() {
   ['progres', 'seances'].forEach(id => $(id).classList.add('cache'));
   seanceActive = Number(localStorage.getItem('seance_' + identifiantDe(eleve))) || null;
   ['entete', 'fil', 'barre', 'symboles'].forEach(id => $(id).classList.remove('cache'));
-  $('salut').textContent = 'Salut ' + eleve + ' 👋 · ' +
-    (niveau === 'bac' ? 'Terminale' : '10ᵉ année');
+  const LIBELLES = { bepc: '10ᵉ année · Maths',
+                     'bepc-physique': '10ᵉ année · Physique',
+                     bac: 'Terminale · Maths' };
+  $('salut').textContent = 'Salut ' + eleve + ' 👋 · ' + (LIBELLES[niveau] || '10ᵉ année');
   // Ce qui est dans le téléphone s'affiche tout de suite, sans attendre le
   // réseau ; le serveur, lui, a l'historique complet et prend le relais.
   const local = restaurer();

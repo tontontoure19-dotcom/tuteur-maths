@@ -83,6 +83,80 @@ rapporte des points même quand le résultat final est faux. Dis-le aux
 élèves : beaucoup perdent des points en sautant les justifications.
 """
 
+
+PROGRAMME_PHYSIQUE_10E = """
+# Programme de physique — 10e année (BEPC, Guinée)
+
+Relevé sur les sujets réellement tombés, pas sur un manuel. L'épreuve est
+toujours découpée en THÉORIE (questions de cours) puis PRATIQUE (exercices
+chiffrés), parfois suivies d'un PROBLÈME.
+
+## Optique — la partie la plus fréquente
+
+### En théorie
+- Différence entre lentille convergente et lentille divergente (bords minces
+  contre bords épais, distance focale positive contre négative)
+- Les défauts de l'œil : la myopie se corrige avec une lentille DIVERGENTE,
+  l'hypermétropie avec une lentille CONVERGENTE
+- Le principe du retour inverse de la lumière : le chemin suivi par la
+  lumière ne change pas si on inverse son sens de propagation
+- Étude comparée de la réflexion et de la réfraction
+
+### En pratique
+- Formule de conjugaison : 1/p' − 1/p = 1/f, à savoir manipuler dans les
+  deux sens (trouver p', ou trouver f à partir d'un tableau de mesures)
+- Grandissement γ = −p'/p, et A'B' = |γ| × AB
+- Lire la nature de l'image : p' > 0 image réelle et renversée, p' < 0 image
+  virtuelle et droite
+- Construction géométrique de l'image avec les rayons caractéristiques
+
+## Électricité
+
+### En théorie
+- Énoncé de la loi d'Ohm et son expression : U = R × I
+- Définition de l'énergie électrique
+- Le transistor : description, symbole, ses trois bornes (base B, collecteur
+  C, émetteur E), les types NPN et PNP, leurs rôles — interrupteur commandé
+  ou amplificateur de courant
+- Les deux régimes du transistor : linéaire (Ic proportionnel à Ib) et saturé
+- Le relais et ses cas d'utilisation
+
+### En pratique
+- Résistances en SÉRIE : Req = R1 + R2, même intensité partout
+- Résistances en PARALLÈLE : 1/Req = 1/R1 + 1/R2, même tension, I = I1 + I2
+- Calculer l'intensité, puis la tension aux bornes de chaque dipôle
+- Puissance électrique P = U × I = R × I², énergie E = P × t
+- Convertir en kWh — c'est l'unité de la facture
+- Gain en courant d'un transistor : β = Ic / Ib
+
+## Mécanique
+
+### En théorie
+- Définition du travail d'une force, et son expression W = F × d × cos α
+- Travail moteur (la force aide le déplacement) contre travail résistant
+  (elle s'y oppose)
+- Définition et importance d'une poulie fixe
+- Reconnaître les machines simples parmi une liste : poulie, palan, treuil,
+  levier, plan incliné — une balance ou un ampèremètre n'en sont pas
+
+### En pratique
+- Travail et puissance : P = W / t
+- Chute d'eau : P = ρ × d × g × h, avec ρ = 1000 kg/m³ et g = 9,8 N/kg
+- Équilibre d'un levier : F × l = P × r
+- Vitesse et durée : x = V × t, avec les conversions km/h et m/s
+
+## Chaleur
+- Quantité de chaleur reçue par l'eau, avec 4,18 kJ pour élever 1 kg de 1 °C
+- Raisonner par proportionnalité : d'abord pour 1 °C, puis pour Δt, puis pour
+  la masse réelle
+- Relier chaleur reçue et énergie électrique consommée par un appareil
+
+## Le format de l'épreuve
+La THÉORIE se récite : ce sont des définitions et des énoncés à connaître.
+La PRATIQUE se raisonne. Les questions sont numérotées et notées séparément —
+un élève qui traite bien la théorie a déjà des points avant même de calculer.
+"""
+
 PROGRAMME_MATHS_TERMINALE = """
 # Programme de mathématiques — Terminale (Baccalauréat, Guinée)
 
@@ -134,6 +208,13 @@ NIVEAUX = {
         "classe": "10e année",
         "examen": "BEPC",
         "programme": PROGRAMME_MATHS_10E,
+    },
+    "bepc-physique": {
+        "libelle": "10e année — Physique (BEPC)",
+        "classe": "10e année",
+        "examen": "BEPC",
+        "matiere": "physique",
+        "programme": PROGRAMME_PHYSIQUE_10E,
     },
     "bac": {
         "libelle": "Terminale (BAC)",
@@ -253,8 +334,56 @@ Voici le programme officiel sur lequel tu t'appuies :
 """
 
 
+# La physique s'enseigne en deux façons, parce que l'épreuve a deux parties.
+# On ne fait pas deviner une définition — ce serait absurde, et l'élève se
+# sentirait humilié de ne pas trouver ce qui ne s'invente pas. Mais on ne le
+# laisse pas non plus la recopier sans la comprendre.
+REGLE_PHYSIQUE = """
+
+# L'épreuve a deux parties, et elles ne s'enseignent pas pareil
+
+## A. THÉORIE — les questions de cours
+
+« Énoncez le principe du retour inverse de la lumière », « Définir le travail
+d'une force », « Citez les défauts de l'œil ». Ce sont des définitions à
+CONNAÎTRE, pas des raisonnements à retrouver.
+
+Ta méthode, en trois temps :
+
+1. **Une seule question d'abord**, courte : « Ça te dit quelque chose ?
+   Dis-moi ce qui te revient. » Une seule — pas un interrogatoire.
+2. **Puis tu donnes la définition**, quelle que soit sa réponse. Claire,
+   courte, dans les mots du programme. S'il en avait une partie juste, tu
+   pars de là. S'il n'avait rien, tu ne le lui fais pas sentir.
+3. **Puis tu l'ancres** : tu lui fais redire avec ses mots, ou tu lui donnes
+   un moyen de retenir. « Myope = voit mal de LOIN = lentille Divergente. »
+   Un élève qui a une image retient ; un élève qui a lu une phrase oublie.
+
+**Exception qui prime sur tout le reste : s'il te dit qu'il est pressé, que
+l'examen est demain, ou qu'il veut juste la définition — tu la donnes
+immédiatement, sans négocier.** Discuter de pédagogie avec un élève la veille
+de l'épreuve, c'est lui voler le temps qu'il te demande. Tu peux glisser le
+moyen de retenir en une ligne, mais tu ne le fais pas attendre.
+
+## B. PRATIQUE et PROBLÈME — les exercices chiffrés
+
+Là, ta règle absolue s'applique entièrement : **tu ne donnes jamais le
+résultat**. Un calcul de lentille, une intensité, une quantité de chaleur, ça
+se raisonne étape par étape. Tu fais chercher, exactement comme en maths.
+
+Quand tu ne sais pas dans quelle partie tu es : si la question commence par
+« énoncez », « définissez », « citez », « quelle différence », c'est de la
+théorie. Si elle contient des nombres et une unité, c'est de la pratique.
+"""
+
 def construire_systeme(niveau: str = NIVEAU_DEFAUT) -> str:
     """Assemble le prompt système du niveau demandé (mis en cache côté API)."""
     infos = NIVEAUX.get(niveau, NIVEAUX[NIVEAU_DEFAUT])
+    matiere = infos.get("matiere", "mathématiques")
     entete = SYSTEME_TUTEUR.format(classe=infos["classe"], examen=infos["examen"])
-    return entete + infos["programme"]
+    entete = entete.replace("répétiteur de mathématiques", f"répétiteur de {matiere}", 1)
+
+    # La physique a une partie « théorie » qui se récite : la règle « je ne
+    # donne jamais la réponse » ne peut pas s'y appliquer telle quelle.
+    regle = REGLE_PHYSIQUE if matiere == "physique" else ""
+    return entete + regle + infos["programme"]

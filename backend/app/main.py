@@ -481,7 +481,7 @@ class DemandeChat(BaseModel):
     eleve: str = Field(..., max_length=60)
     messages: list[Message]
     # « bepc » (10e année) ou « bac » (Terminale)
-    niveau: str = Field(default=NIVEAU_DEFAUT, max_length=10)
+    niveau: str = Field(default=NIVEAU_DEFAUT, max_length=30)
     code: str | None = Field(default=None, max_length=60)
     # Séance de travail : permet d'ouvrir une question rapide sans perdre
     # le cours en cours. Absente = on continue la dernière séance.
@@ -962,7 +962,7 @@ def _exiger_admin(code: str | None) -> str:
 
 class NouvelAbonnement(BaseModel):
     nom: str = Field(..., max_length=60)
-    niveau: str = Field(default=NIVEAU_DEFAUT, max_length=10)
+    niveau: str = Field(default=NIVEAU_DEFAUT, max_length=30)
     formule: str = Field(default="essai", max_length=10)
     telephone: str = Field(default="", max_length=30)
 
