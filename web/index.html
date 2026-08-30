@@ -229,6 +229,8 @@ let codeAcces = localStorage.getItem('code_acces') || '';
 let seanceActive = null;
 // Les niveaux que l'application sait ouvrir.
 const LIBELLES_CONNUS = ['bepc', 'bepc-physique', 'bac'];
+// Vrai dès que l'élève a lui-même touché un bouton de niveau.
+let niveauChoisiALaMain = false;
 
 const $ = id => document.getElementById(id);
 
@@ -318,6 +320,7 @@ function changerEleve() {
   $('commencer').disabled = true;
   seanceActive = null;
   niveau = 'bepc';
+  niveauChoisiALaMain = false;
   document.querySelectorAll('.niveau').forEach(x =>
     x.classList.toggle('actif', x.dataset.niveau === niveau));
   majPromesse();
@@ -352,7 +355,8 @@ async function proposerProfilsDuCode() {
     zone.querySelectorAll('.profil.distant').forEach(el =>
       el.addEventListener('click', () => {
         $('prenom').value = el.dataset.nom;
-        niveau = LIBELLES_CONNUS.includes(el.dataset.niveau) ? el.dataset.niveau : 'bepc';
+        if (!niveauChoisiALaMain)
+          niveau = LIBELLES_CONNUS.includes(el.dataset.niveau) ? el.dataset.niveau : 'bepc';
         demarrer();
       }));
   } catch (e) { /* hors ligne : l'élève saisit son prénom comme avant */ }
@@ -373,7 +377,8 @@ function afficherProfils() {
     el.addEventListener('click', ev => {
       if (ev.target.classList.contains('suppr')) return;
       const p = lireProfils().find(x => x.nom === nom);
-      $('prenom').value = p.nom; niveau = p.niveau || 'bepc';
+      $('prenom').value = p.nom;
+      if (!niveauChoisiALaMain) niveau = p.niveau || 'bepc';
       demarrer();
     });
     el.querySelector('.suppr').addEventListener('click', ev => {
@@ -480,7 +485,7 @@ async function ouvrirSeances() {
 
   try {
     const r = await fetch(API + '/api/seances/' + encodeURIComponent(eleve) +
-                          '?' + parametres());
+                          '?' + parametres({ niveau }));
     const { seances } = await r.json();
     if (!r.ok) throw new Error('serveur');
     if (!seances.length) {
@@ -511,7 +516,7 @@ async function reprendreSeance(numero) {
   $('seances-liste').innerHTML = '<div class="patience">Je rouvre ta discussion…</div>';
   try {
     const r = await fetch(API + '/api/conversation/' + encodeURIComponent(eleve) +
-                          '?' + parametres({ seance: numero }));
+                          '?' + parametres({ seance: numero, niveau }));
     const { messages } = await r.json();
     if (!r.ok) throw new Error('serveur');
     seanceActive = numero;
@@ -599,6 +604,7 @@ document.querySelectorAll('.niveau').forEach(b => b.addEventListener('click', ()
   document.querySelectorAll('.niveau').forEach(x => x.classList.remove('actif'));
   b.classList.add('actif');
   niveau = b.dataset.niveau;
+  niveauChoisiALaMain = true;
   majPromesse();
 }));
 
@@ -630,7 +636,7 @@ async function reprendreDuServeur(dejaAffiche) {
   const pour = eleve;   // l'élève peut changer pendant la requête
   try {
     const r = await fetch(API + '/api/conversation/' + encodeURIComponent(pour) +
-                          '?' + parametres({ seance: seanceActive }));
+                          '?' + parametres({ seance: seanceActive, niveau }));
     if (!r.ok) return;
     const { messages, seance } = await r.json();
     if (pour !== eleve || occupe) return;

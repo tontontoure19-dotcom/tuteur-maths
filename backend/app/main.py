@@ -149,6 +149,28 @@ def _seance_courante(echanges: list[dict]) -> int:
     return echanges[-1]["seance"] if echanges else 1
 
 
+def _du_niveau(echanges: list[dict], niveau: str | None) -> list[dict]:
+    """Ne garde que les séances de la matière demandée.
+
+    Une séance de maths n'a rien à faire dans le fil d'un élève qui vient
+    d'ouvrir la physique. Les échanges enregistrés avant l'arrivée des
+    matières n'ont pas de niveau : ils appartiennent aux maths du BEPC.
+    """
+    if not niveau:
+        return echanges
+
+    # Seules les lignes de l'élève portent la matière : celles du répétiteur
+    # n'en ont pas. On la fixe donc une fois par séance, sur la première
+    # ligne qui la déclare.
+    matiere_de: dict[int, str] = {}
+    for e in echanges:
+        if e.get("niveau") and e["seance"] not in matiere_de:
+            matiere_de[e["seance"]] = e["niveau"]
+
+    return [e for e in echanges
+            if matiere_de.get(e["seance"], NIVEAU_DEFAUT) == niveau]
+
+
 def _titre_seance(echanges: list[dict]) -> str:
     """Première question de l'élève : c'est elle qui nomme la séance."""
     for e in echanges:
@@ -684,14 +706,15 @@ MAX_MESSAGES_REPRIS = 40
 
 
 @app.get("/api/conversation/{eleve}")
-def conversation(eleve: str, code: str | None = None, seance: int | None = None):
+def conversation(eleve: str, code: str | None = None, seance: int | None = None,
+                 niveau: str | None = None):
     """Rend à l'élève une de ses séances, quel que soit l'appareil.
 
     L'historique était jusqu'ici enregistré dans le téléphone : passer sur un
     ordinateur donnait une conversation vide. Le serveur, lui, a tout gardé.
     """
     _verifier_code(code)
-    echanges = _journal(_fichier_session(eleve, code))
+    echanges = _du_niveau(_journal(_fichier_session(eleve, code)), niveau)
     if not echanges:
         return {"messages": [], "seance": 1}
 
@@ -761,14 +784,14 @@ def profils(code: str | None = None):
 
 
 @app.get("/api/seances/{eleve}")
-def liste_seances(eleve: str, code: str | None = None):
+def liste_seances(eleve: str, code: str | None = None, niveau: str | None = None):
     """Toutes les séances de l'élève, la plus récente en premier.
 
     C'est ce qui lui permet de vérifier une information dans une nouvelle
     discussion puis de revenir exactement où il en était dans son cours.
     """
     _verifier_code(code)
-    echanges = _journal(_fichier_session(eleve, code))
+    echanges = _du_niveau(_journal(_fichier_session(eleve, code)), niveau)
 
     groupes: dict[int, list[dict]] = {}
     for e in echanges:

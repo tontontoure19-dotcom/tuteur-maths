@@ -2,7 +2,7 @@
 // et garde l'interface disponible même avec une connexion faible.
 // Les réponses de l'IA (/api/) ne sont jamais mises en cache.
 // Changer ce numéro force tous les téléphones à récupérer la nouvelle version.
-const CACHE = 'tuteur-v24';
+const CACHE = 'tuteur-v25';
 const FICHIERS = ['./', './index.html', './manifest.json', './icone.svg'];
 
 self.addEventListener('install', e => {
