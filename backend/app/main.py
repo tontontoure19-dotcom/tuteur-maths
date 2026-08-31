@@ -346,23 +346,32 @@ def _retour_apres_absence(eleve: str, code: str | None) -> str:
     )
 
 
+# Chaque niveau va chercher dans SA réserve. Sans cette table, une séance
+# de physique recevait des exercices de maths : l'élève demandait la loi
+# d'Ohm et le répétiteur lui sortait un exercice de géométrie.
+MATIERE_DES_ANNALES = {"bepc": "maths", "bepc-physique": "physique"}
+
+
 def _annale_utile(message: str, niveau: str) -> str:
     """Un sujet d'examen portant sur ce dont l'élève vient de parler.
 
     On ne cherche que pour le BEPC : la réserve du BAC n'existe pas encore.
     Rien trouvé = rien ajouté, et le répétiteur travaille comme avant.
     """
-    if niveau != "bepc" or len(message.strip()) < 8:
+    matiere = MATIERE_DES_ANNALES.get(niveau)
+    if not matiere or len(message.strip()) < 8:
         return ""
 
-    trouves = annales_store.chercher(message, examen="bepc", matiere="maths", limite=1)
+    trouves = annales_store.chercher(message, examen="bepc", matiere=matiere, limite=1)
     if not trouves:
         return ""
 
     ex = trouves[0]
+    # « épreuve d'Activités Numériques » mais « épreuve de Théorie ».
+    liaison = "d'" if ex["partie"][:1].lower() in "aeiouéèê" else "de "
     return (
         "# Un vrai sujet d'examen est disponible\n\n"
-        f"Exercice tombé au BEPC {ex['session']}, épreuve d'{ex['partie']} :\n\n"
+        f"Exercice tombé au BEPC {ex['session']}, épreuve {liaison}{ex['partie']} :\n\n"
         f"{ex['enonce']}\n\n"
         f"Résultat attendu (POUR TOI SEUL, jamais pour l'élève) : {ex['reponse']}\n\n"
         "**Si l'élève demande un exercice, donne CELUI-CI. N'en invente pas.** "
@@ -879,9 +888,14 @@ def config():
         # Render expose le commit déployé : c'est la seule façon fiable de
         # savoir quelle version tourne réellement en ligne.
         "version": (os.getenv("RENDER_GIT_COMMIT") or "locale")[:7],
+        # Une entrée par matière : c'est ce qui dit d'un coup d'œil qu'une
+        # nouvelle réserve est bien arrivée en ligne.
         "annales": {
-            "sessions": annales_store.sessions_disponibles(),
-            "exercices": len(annales_store.charger()),
+            matiere: {
+                "sessions": annales_store.sessions_disponibles(matiere=matiere),
+                "exercices": len(annales_store.charger(matiere=matiere)),
+            }
+            for matiere in sorted(set(MATIERE_DES_ANNALES.values()))
         },
     }
 

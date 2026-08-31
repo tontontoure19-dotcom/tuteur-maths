@@ -85,76 +85,119 @@ rapporte des points même quand le résultat final est faux. Dis-le aux
 
 
 PROGRAMME_PHYSIQUE_10E = """
-# Programme de physique — 10e année (BEPC, Guinée)
+# Programme de physique — 10ᵉ année (BEPC, Guinée)
 
-Relevé sur les sujets réellement tombés, pas sur un manuel. L'épreuve est
-toujours découpée en THÉORIE (questions de cours) puis PRATIQUE (exercices
-chiffrés), parfois suivies d'un PROBLÈME.
+Relevé sur les 20 sessions réellement tombées de 2006 à 2025, pas sur un
+manuel. Les fréquences ci-dessous sont comptées sur ces 20 sujets : elles
+disent où l'élève a le plus à gagner.
 
-## Optique — la partie la plus fréquente
+L'épreuve est toujours découpée en THÉORIE (questions de cours) puis
+PRATIQUE (exercices chiffrés), parfois suivie d'un PROBLÈME.
 
-### En théorie
-- Différence entre lentille convergente et lentille divergente (bords minces
-  contre bords épais, distance focale positive contre négative)
-- Les défauts de l'œil : la myopie se corrige avec une lentille DIVERGENTE,
-  l'hypermétropie avec une lentille CONVERGENTE
-- Le principe du retour inverse de la lumière : le chemin suivi par la
-  lumière ne change pas si on inverse son sens de propagation
-- Étude comparée de la réflexion et de la réfraction
+## Ce qui tombe presque chaque année
 
-### En pratique
-- Formule de conjugaison : 1/p' − 1/p = 1/f, à savoir manipuler dans les
-  deux sens (trouver p', ou trouver f à partir d'un tableau de mesures)
-- Grandissement γ = −p'/p, et A'B' = |γ| × AB
-- Lire la nature de l'image : p' > 0 image réelle et renversée, p' < 0 image
+### Puissance et énergie électriques — 11 sessions sur 20
+La question la plus fréquente de toute l'épreuve.
+- 𝒫 = U × I, et aussi 𝒫 = R × I² ou 𝒫 = U²/R
+- E = 𝒫 × t, puis conversion en kWh — c'est l'unité de la facture
+- Calculer le prix à payer à l'EDG : E en kWh × prix du kWh, en GNF
+- Un compteur de I ampères sous 220 V donne 𝒫max = 220 × I : au-delà, il
+  disjoncte. Question classique : « Peut-il brancher cet appareil ? »
+- Les indications portées sur un appareil (220 V ; 550 W) = tension d'usage
+  et puissance nominale
+
+**Le piège numéro un : la conversion du temps.** 30 min = 1800 s, pas 180.
+1 h 30 = 5400 s. Une erreur ici fausse tout le reste et coûte tous les points.
+
+### Lentilles — 9 sessions sur 20
+- Formule de conjugaison, à manipuler dans les deux sens : trouver P'
+  connaissant f et P, ou trouver f à partir d'un couple (P ; P')
+- P' = f × P / (P − f) et f = P × P' / (P + P')
+- Grandissement γ = −P'/P, puis A'B' = |γ| × AB
+- Lire la nature de l'image : P' > 0 image réelle et renversée ;
+  P' < 0 image virtuelle et droite (la lentille fonctionne en loupe)
+- Vergence C = 1/f, en dioptries (δ), avec f en mètres
+- Construction géométrique avec les rayons caractéristiques
+
+**Le piège : oublier la dernière question.** L'énoncé demande souvent la
+position, PUIS la nature, PUIS le sens, PUIS la grandeur. Beaucoup d'élèves
+s'arrêtent au grandissement sans jamais donner A'B' en centimètres.
+
+### Résistances et loi d'Ohm — 9 sessions sur 20
+- U = R × I, à énoncer par écrit autant qu'à appliquer
+- En SÉRIE : Req = R1 + R2, même intensité partout, U = U1 + U2
+- En PARALLÈLE (on dit aussi en dérivation) : Req = R1 × R2 / (R1 + R2),
+  même tension aux bornes de chacune, I = I1 + I2
+- Diviseur de tension : Us = Ue × R2 / (R1 + R2)
+- Code des couleurs d'un résistor et lecture d'une valeur nominale
+- Méthodes de mesure : ampèremètre et voltmètre, code des couleurs, ohmmètre
+
+### Travail et puissance mécanique — 9 sessions sur 20
+- W = F × d × cos α ; travail moteur si W > 0, résistant si W < 0
+- Travail du poids : W = m × g × h
+- 𝒫 = W / t, et aussi 𝒫 = F × V pour un mouvement à vitesse constante
+- Chute d'eau ou barrage : la masse tombée en une seconde vaut ρ × débit
+
+### L'œil et ses défauts — 8 sessions sur 20
+- La myopie : l'image se forme EN AVANT de la rétine, corrigée par une
+  lentille DIVERGENTE
+- L'hypermétropie : corrigée par une lentille CONVERGENTE
+- Le parallèle œil / appareil photographique : cristallin ↔ objectif,
+  iris ↔ diaphragme, rétine ↔ pellicule
+- L'accommodation = augmentation de la convergence de l'œil
+
+### Machines simples — 8 sessions sur 20
+Treuil, poulie, palan. Toujours la même idée : **égalité des moments**.
+- Treuil : F × (rayon de la manivelle) = P × (rayon du tambour)
+- Attention au diamètre : si l'énoncé donne un diamètre, le rayon est sa
+  moitié. C'est là que se perdent les points.
+- Palan simple (poulie fixe + poulie mobile) : la force motrice vaut la
+  moitié du poids total, et le poids de la poulie mobile compte
+- On gagne en force ce qu'on perd en déplacement : si la force est deux fois
+  plus petite, la corde à tirer est deux fois plus longue
+- Reconnaître les machines simples dans une liste : poulie, palan, treuil,
+  levier, plan incliné. Une balance ou un ampèremètre n'en sont pas.
+
+## Ce qui revient régulièrement
+
+- **Rendement** (6/20) : r = énergie utile / énergie fournie. Toujours entre
+  0 et 1. Un rendement de 80 % veut dire qu'il faut fournir E/0,8.
+- **Cinématique** (6/20) : V = d/t, conversions km/h ↔ m/s (diviser par 3,6),
+  équations horaires x = Vt + x₀ et problèmes de rencontre
+- **Réflexion, réfraction, miroir plan** (5/20) : retour inverse de la
+  lumière ; n1 sin i = n2 sin r ; image dans un miroir plan = symétrique,
   virtuelle et droite
-- Construction géométrique de l'image avec les rayons caractéristiques
+- **Chaleur** (4/20) : Q = m × c × Δt, avec c = 4,18 kJ/kg·°C (parfois 4,2
+  dans le sujet — utiliser la valeur donnée par l'énoncé)
+- **Relais** (4/20) : commutateur actionné par un électro-aimant ; allumage
+  alterné de deux lampes, détecteur d'incendie, détecteur d'obscurité
+- **Liaisons mécaniques** (3/20) : pivot, glissière, pivot-glissant, totale
+- **Énergie cinétique et potentielle** (3/20) : Ec = ½mV², Ep = mgh
 
-## Électricité
+## Le transistor : à connaître, mais il ne tombe plus
 
-### En théorie
-- Énoncé de la loi d'Ohm et son expression : U = R × I
-- Définition de l'énergie électrique
-- Le transistor : description, symbole, ses trois bornes (base B, collecteur
-  C, émetteur E), les types NPN et PNP, leurs rôles — interrupteur commandé
-  ou amplificateur de courant
-- Les deux régimes du transistor : linéaire (Ic proportionnel à Ib) et saturé
-- Le relais et ses cas d'utilisation
+Le transistor est apparu 6 fois entre 2008 et 2017, puis **plus une seule
+fois de 2018 à 2025**. Si l'élève est en retard dans ses révisions, ce n'est
+pas là qu'il faut passer ses dernières heures. À savoir quand même : trois
+bornes (base B, collecteur C, émetteur E), types NPN et PNP, β = Ic / Ib,
+et la loi d'additivité Ie = Ib + Ic.
 
-### En pratique
-- Résistances en SÉRIE : Req = R1 + R2, même intensité partout
-- Résistances en PARALLÈLE : 1/Req = 1/R1 + 1/R2, même tension, I = I1 + I2
-- Calculer l'intensité, puis la tension aux bornes de chaque dipôle
-- Puissance électrique P = U × I = R × I², énergie E = P × t
-- Convertir en kWh — c'est l'unité de la facture
-- Gain en courant d'un transistor : β = Ic / Ib
+## Ce qui ne tombe presque jamais
 
-## Mécanique
-
-### En théorie
-- Définition du travail d'une force, et son expression W = F × d × cos α
-- Travail moteur (la force aide le déplacement) contre travail résistant
-  (elle s'y oppose)
-- Définition et importance d'une poulie fixe
-- Reconnaître les machines simples parmi une liste : poulie, palan, treuil,
-  levier, plan incliné — une balance ou un ampèremètre n'en sont pas
-
-### En pratique
-- Travail et puissance : P = W / t
-- Chute d'eau : P = ρ × d × g × h, avec ρ = 1000 kg/m³ et g = 9,8 N/kg
-- Équilibre d'un levier : F × l = P × r
-- Vitesse et durée : x = V × t, avec les conversions km/h et m/s
-
-## Chaleur
-- Quantité de chaleur reçue par l'eau, avec 4,18 kJ pour élever 1 kg de 1 °C
-- Raisonner par proportionnalité : d'abord pour 1 °C, puis pour Δt, puis pour
-  la masse réelle
-- Relier chaleur reçue et énergie électrique consommée par un appareil
+Ne pas y consacrer de temps si l'élève est pressé : pression et hydrostatique,
+poussée d'Archimède, machines thermiques, électrostatique, magnétisme en
+dehors du relais, ondes et son, radioactivité.
 
 ## Le format de l'épreuve
-La THÉORIE se récite : ce sont des définitions et des énoncés à connaître.
-La PRATIQUE se raisonne. Les questions sont numérotées et notées séparément —
-un élève qui traite bien la théorie a déjà des points avant même de calculer.
+
+La THÉORIE se récite : ce sont des définitions et des énoncés à connaître par
+cœur. La PRATIQUE se raisonne. Les questions sont numérotées et notées
+séparément — depuis 2023 le barème est même imprimé sur le sujet. Un élève
+qui traite bien la théorie a déjà 5 ou 6 points avant même de calculer.
+
+Conseil à donner quand c'est utile : **écrire la formule littérale avant
+l'application numérique**. Les correcteurs donnent des points pour la formule
+juste même quand le calcul se trompe.
 """
 
 PROGRAMME_MATHS_TERMINALE = """
@@ -339,6 +382,13 @@ Voici le programme officiel sur lequel tu t'appuies :
 # sentirait humilié de ne pas trouver ce qui ne s'invente pas. Mais on ne le
 # laisse pas non plus la recopier sans la comprendre.
 REGLE_PHYSIQUE = """
+
+# Les exemples de méthode ci-dessus parlent de maths — transpose-les
+
+Les exemples qui illustrent ta méthode (Pythagore, Thalès) servent à montrer
+le RYTHME d'un échange, pas le sujet. Cet élève travaille la physique : ne
+lui parle jamais de Pythagore ni de Thalès, transpose sur son programme à lui
+— une lentille, une loi d'Ohm, un treuil.
 
 # L'épreuve a deux parties, et elles ne s'enseignent pas pareil
 

@@ -1,0 +1,520 @@
+{
+  "source": "Sujets de physique du BEPC guinéen, sessions 2006 à 2025 (20 sessions relevées).",
+  "note": "Les énoncés sont ceux des sujets d'examen. Les réponses ont été recalculées et vérifiées une à une : on ne recopie jamais un corrigé. Le champ correction_du_livre signale les endroits où le corrigé imprimé est faux ou incomplet.",
+  "exercices": [
+    {
+      "id": "bepc-physique-2006-th",
+      "session": 2006,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["vergence d'une lentille", "dioptrie", "distance focale", "loupe"],
+      "enonce": "L'indication +5 δ (dioptries) est inscrite sur la monture d'une loupe.\n1) Quelle est sa signification ?\n2) Calculez la distance focale de cette lentille.",
+      "reponse": "1) C'est la vergence de la lentille ; positive, donc la lentille est convergente. 2) f = 1/C = 1/5 = 0,2 m = 20 cm"
+    },
+    {
+      "id": "bepc-physique-2006-pr",
+      "session": 2006,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["mouvement rectiligne uniforme", "équations horaires", "vitesse moyenne", "problème de rencontre"],
+      "enonce": "On considère deux véhicules qui partent l'un de Conakry à la vitesse de 90 km/h et l'autre de Coyah à la vitesse de 60 km/h. Les deux véhicules quittent en même temps et se rendent à Mamou.\nSachant que Coyah est à 50 km de Conakry et à 85 km de Kindia, à quelle distance de Kindia le premier véhicule rattrape-t-il le second ?",
+      "reponse": "Équations horaires : x₁ = 90t et x₂ = 60t + 50. Rattrapage quand 90t = 60t + 50, soit t = 5/3 h. Position : x = 90 × 5/3 = 150 km de Conakry. Conakry–Kindia = 50 + 85 = 135 km, donc le rattrapage a lieu à 150 − 135 = 15 km après Kindia."
+    },
+    {
+      "id": "bepc-physique-2007-1",
+      "session": 2007,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["résistances en série", "diviseur de tension", "loi d'Ohm"],
+      "enonce": "Un circuit électrique alimenté par un courant continu renferme deux résistances R₁ et R₂ montées en série. On sait que R₁ = 18 Ω. Calculer la valeur de la résistance R₂, si la tension à l'entrée vaut trois fois la tension mesurée aux bornes de R₂.",
+      "reponse": "Us = Ue × R₂/(R₁+R₂) avec Ue = 3 Us donne R₁ + R₂ = 3 R₂, donc R₁ = 2 R₂ et R₂ = R₁/2 = 9 Ω."
+    },
+    {
+      "id": "bepc-physique-2007-2",
+      "session": 2007,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["treuil", "moment des forces", "travail d'une force", "puissance mécanique", "rendement"],
+      "enonce": "On dispose d'un treuil dont les rayons du tambour et de la manivelle sont respectivement 48 cm et 72 cm. On accroche à l'extrémité de la corde enroulée sur le tambour de ce treuil une charge P = 120 N.\nSachant que le poids de la corde et les frottements sont négligeables, on demande de calculer l'intensité de la force F qu'il faut appliquer à l'extrémité de la manivelle pour maintenir l'équilibre au cours d'un mouvement régulier.\nOn fait monter la charge d'une hauteur de 10 m pendant 3 minutes. Calculez la puissance développée. Quel est le rendement du système ?",
+      "reponse": "Équilibre des moments : F × 0,72 = 120 × 0,48, donc F = 80 N. Travail utile : W = P × h = 120 × 10 = 1200 J en t = 180 s, donc puissance = 1200/180 = 6,67 W. La manivelle parcourt l = 0,72 × 10 / 0,48 = 15 m, travail moteur = 80 × 15 = 1200 J : rendement = 1200/1200 = 1, soit 100 % (frottements négligés)."
+    },
+    {
+      "id": "bepc-physique-2008-th",
+      "session": 2008,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["défauts de l'œil", "myopie", "hypermétropie", "transistor"],
+      "enonce": "1) Citez les principaux défauts de l'œil et dites comment les corrige-t-on.\n2) Expliquez le principe de fonctionnement d'un transistor.",
+      "reponse": "1) La myopie se corrige avec une lentille divergente, l'hypermétropie avec une lentille convergente. 2) Le transistor a trois bornes (base, collecteur, émetteur). En régime linéaire le courant de collecteur est proportionnel au courant de base (Ic = β × Ib) ; en régime saturé Ic reste constant quelle que soit la variation de Ib."
+    },
+    {
+      "id": "bepc-physique-2008-pr",
+      "session": 2008,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["quantité de chaleur", "chaleur massique", "énergie électrique", "puissance électrique"],
+      "enonce": "Pour chauffer du café on utilise une cafetière électrique de 2 litres. En 10 minutes la température de l'eau passe de 20 °C à 80 °C.\na) Sachant que pour élever de 1 °C la température de 1 kg d'eau il faut 4,2 kJ, calculer la quantité de chaleur reçue par les 2 litres d'eau.\nb) Cette quantité de chaleur est égale à l'énergie électrique consommée. Calculer la puissance de l'appareil.",
+      "reponse": "a) Q = m·c·(t₂ − t₁) = 2 × 4200 × 60 = 504 000 J. b) 𝒫 = Q/t = 504 000 / 600 = 840 W."
+    },
+    {
+      "id": "bepc-physique-2009-th",
+      "session": 2009,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["lentille convergente", "lentille divergente", "énergie électrique", "travail d'une force", "relais", "travail moteur", "travail résistant"],
+      "enonce": "1) Quelle différence y a-t-il entre lentille convergente et lentille divergente ?\n2) Définir une énergie électrique.\n3) Définir le travail d'une force.\n4) Quels sont les cas pratiques d'utilisation d'un relais ?\n5) Quelle différence faites-vous entre travail moteur et travail résistant ?",
+      "reponse": "1) Convergente : bords minces, centre épais, f > 0. Divergente : bords épais, centre mince, f < 0. 2) E = 𝒫 × t, produit de la puissance de l'appareil par la durée de fonctionnement. 3) W = F × AB × cos α, produit scalaire de la force par le déplacement. 4) Allumage alterné de deux lampes, détecteur d'obscurité, détecteur d'incendie. 5) Le travail est moteur quand la force favorise le déplacement (W > 0), résistant quand elle s'y oppose (W < 0)."
+    },
+    {
+      "id": "bepc-physique-2009-pr",
+      "session": 2009,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["lentille convergente", "relation de conjugaison", "grandissement", "image réelle", "construction d'image"],
+      "enonce": "Une lentille convergente de 10 cm de distance focale. Un objet AB de 2 cm de hauteur est placé perpendiculairement à l'axe optique, à 30 cm de cette lentille. Déterminez la position, la nature, le sens et la grandeur de l'image obtenue. Que devient cette image si l'objet AB est à 15 cm de la lentille ?",
+      "reponse": "Pour P = 30 cm : P' = fP/(P−f) = 10×30/20 = 15 cm. P' > 0, image réelle ; γ = −P'/P = −1/2, image renversée et deux fois plus petite ; A'B' = 1 cm.\nPour P = 15 cm : P' = 10×15/5 = 30 cm, image encore réelle ; γ = −30/15 = −2, image renversée et deux fois plus grande ; A'B' = 4 cm.",
+      "correction_du_livre": "Le corrigé imprimé ne traite que le premier cas (objet à 30 cm) et laisse sans réponse la seconde question, pourtant posée : « Que devient cette image si l'objet AB est à 15 cm de la lentille ? »"
+    },
+    {
+      "id": "bepc-physique-2010-th",
+      "session": 2010,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["transistor", "réflexion de la lumière", "réfraction de la lumière"],
+      "enonce": "1) Description et symbole d'un transistor.\n2) Faites une étude comparée entre la réflexion et la réfraction de la lumière.",
+      "reponse": "1) Trois bornes : base B, collecteur C, émetteur E ; deux types, NPN et PNP. 2) À la réflexion, la lumière revient dans le milieu de départ et l'angle de réflexion égale l'angle d'incidence. À la réfraction, elle passe dans un second milieu en changeant de direction, selon n₁ sin i = n₂ sin r."
+    },
+    {
+      "id": "bepc-physique-2010-pr",
+      "session": 2010,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["travail du poids", "puissance mécanique", "débit", "masse volumique", "chute d'eau"],
+      "enonce": "Une chute d'eau qui a une hauteur de 15 m débite 3 m³ d'eau par seconde. Calculez le travail que cette chute d'eau peut fournir et sa puissance.\nOn donne : g = 9,8 N/kg, masse volumique de l'eau : ρ = 1000 kg/m³.",
+      "reponse": "En une seconde il tombe m = ρ × V = 1000 × 3 = 3000 kg. Travail : W = mgh = 3000 × 9,8 × 15 = 441 000 J. Puissance : 𝒫 = W/t = 441 000/1 = 441 000 W = 441 kW.",
+      "correction_du_livre": "Le corrigé imprimé ne donne jamais le travail, pourtant demandé en premier ; il passe directement à la puissance. Il écrit aussi « 441 000 kW = 441 kW » : c'est 441 000 W, donc 441 kW."
+    },
+    {
+      "id": "bepc-physique-2011-th",
+      "session": 2011,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["loi d'Ohm", "défauts de l'œil", "poulie fixe", "transistor"],
+      "enonce": "1) Énoncez la loi d'Ohm et donnez son expression mathématique.\n2) Citez les principaux défauts de l'œil et indiquez leurs mesures de correction.\n3) Donnez la définition d'une poulie fixe et indiquez son importance.\n4) Citez les différents types de transistor et indiquez leurs rôles dans un circuit électrique.",
+      "reponse": "1) La tension U aux bornes d'une résistance R est proportionnelle à l'intensité I qui la traverse : U = R × I. 2) Myopie corrigée par une lentille divergente, hypermétropie par une lentille convergente. 3) Une poulie fixe est une roue à gorge mobile autour d'un axe fixe : elle change la direction d'une force sans changer son intensité. 4) NPN et PNP ; ils servent d'interrupteur commandé ou d'amplificateur de courant."
+    },
+    {
+      "id": "bepc-physique-2011-pr",
+      "session": 2011,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["résistances en série", "résistance équivalente", "loi d'Ohm", "tension aux bornes d'un dipôle"],
+      "enonce": "On monte en série deux conducteurs ohmiques de résistances R₁ = 20 Ω et R₂ = 30 Ω. On établit une tension de 20 V aux bornes de l'ensemble.\n1) Calculez la résistance équivalente à l'association.\n2) Calculez la valeur de l'intensité du courant qui parcourt le circuit.\n3) Quelle est la tension aux bornes de chaque dipôle ?",
+      "reponse": "1) Req = R₁ + R₂ = 50 Ω. 2) I = U/Req = 20/50 = 0,4 A = 400 mA. 3) U₁ = 20 × 0,4 = 8 V et U₂ = 30 × 0,4 = 12 V (vérification : 8 + 12 = 20 V)."
+    },
+    {
+      "id": "bepc-physique-2012-th",
+      "session": 2012,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["défauts de l'œil", "retour inverse de la lumière"],
+      "enonce": "1) Citez les principaux défauts de l'œil et dites comment on les corrige.\n2) Énoncez le principe du retour inverse de la lumière.",
+      "reponse": "1) Myopie (lentille divergente) et hypermétropie (lentille convergente). 2) Le chemin suivi par la lumière ne change pas si l'on inverse son sens de propagation."
+    },
+    {
+      "id": "bepc-physique-2012-pr1",
+      "session": 2012,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["vitesse moyenne", "conversion d'unités", "mouvement uniforme", "durée de parcours"],
+      "enonce": "Un automobiliste met 1 min 2 s pour traverser une agglomération longue de 1,2 km et où la vitesse est limitée à 60 km/h.\nCet automobiliste est-il en faute ?\nQuelle durée aurait-il mise s'il avait roulé à 60 km/h ?",
+      "reponse": "1 min 2 s = 62 s = 62/3600 h. V = 1,2 × 3600/62 = 69,67 km/h : supérieur à 60 km/h, il est en faute. À 60 km/h : t = 1,2/60 = 0,02 h = 72 s, soit 1 min 12 s."
+    },
+    {
+      "id": "bepc-physique-2012-pr2",
+      "session": 2012,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["quantité de chaleur", "chaleur massique", "puissance électrique", "intensité efficace"],
+      "enonce": "Une cafetière élève en 5 min de 25 °C à 85 °C la température de 0,6 litre d'eau.\na) Calculer la quantité de chaleur reçue par l'eau. On rappelle qu'une énergie de 4,18 kJ élève de 1 °C la température de 1 kg d'eau.\nb) Calculer la puissance électrique de la cafetière.\nc) La cafetière fonctionne sur le secteur 220 V alternatif. Calculer l'intensité efficace qui traverse la résistance chauffante.",
+      "reponse": "a) Q = 0,6 × 4180 × 60 = 150 480 J = 150,48 kJ. b) 𝒫 = Q/t = 150 480/300 = 501,6 W. c) I = 𝒫/U = 501,6/220 = 2,28 A, soit environ 2,3 A."
+    },
+    {
+      "id": "bepc-physique-2013-th",
+      "session": 2013,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["défauts de l'œil", "énergie cinétique", "énergie potentielle"],
+      "enonce": "1) Citez les principaux défauts de l'œil.\n2) Définir et écrire les formules de l'énergie cinétique et de l'énergie potentielle.",
+      "reponse": "1) La myopie et l'hypermétropie. 2) L'énergie cinétique d'un corps en mouvement est le demi-produit de sa masse par le carré de sa vitesse : Ec = ½ m V². L'énergie potentielle de pesanteur est le produit du poids par l'altitude : Ep = P × h = mgh."
+    },
+    {
+      "id": "bepc-physique-2013-pr1",
+      "session": 2013,
+      "partie": "Pratique",
+      "numero": "A",
+      "chapitres": ["énergie électrique", "kilowattheure", "puissance des appareils", "facture d'électricité"],
+      "enonce": "Une famille, n'ayant pas de compteur individuel, veut évaluer sa consommation moyenne en électricité. Pour cela, elle relève la puissance des appareils et leurs durées moyennes de fonctionnement par jour : 400 W pendant 8 h, 120 W pendant 4,5 h, 2500 W pendant 6 h et 300 W pendant 6 h.\na) Calculer l'énergie électrique consommée pendant une journée, puis en déduire l'énergie consommée par mois.\nb) Quel est le prix moyen à payer à l'EDG pendant trois mois, si le kilowattheure est facturé à 750 GNF ?",
+      "reponse": "a) E = 400×8 + 120×4,5 + 2500×6 + 300×6 = 3200 + 540 + 15 000 + 1800 = 20 540 Wh = 20,54 kWh par jour, soit 30 × 20,54 = 616,2 kWh par mois. b) Sur trois mois : 90 × 20,54 = 1848,6 kWh ; prix = 1848,6 × 750 = 1 386 450 GNF.",
+      "correction_du_livre": "Le corrigé imprimé écrit « 300 × 8 » dans la ligne de calcul mais additionne 1 800 : or 300 × 8 = 2 400. Seule une durée de 6 heures rend la somme 20 540 Wh cohérente ; c'est cette lecture qui est retenue ici."
+    },
+    {
+      "id": "bepc-physique-2013-pr2",
+      "session": 2013,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["treuil", "moment des forces", "poulie", "équilibre"],
+      "enonce": "La poulie intérieure d'un treuil a un rayon de 10 cm ; le rayon de la poulie extérieure vaut 50 cm. On veut, à l'aide de ce treuil, soulever une charge de 200 kg.\nDéterminer la force nécessaire qu'il faut appliquer à cette poulie. On prendra g = 10 N/kg.",
+      "reponse": "Égalité des moments : F × 50 = P × 10 avec P = mg = 200 × 10 = 2000 N. Donc F = 2000 × 10/50 = 400 N."
+    },
+    {
+      "id": "bepc-physique-2014-th",
+      "session": 2014,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["liaisons mécaniques", "guidage d'un mouvement", "vergence d'une lentille", "énergie cinétique"],
+      "enonce": "1) Citer et schématiser les différents types de liaisons que vous connaissez.\n2) Qu'appelle-t-on vergence d'une lentille ? Quelle est son unité ?\n3) Un marteau de masse 1500 g frappe un clou pour l'enfoncer dans une planche de bois avec une vitesse de 10 m/s. Calculez son énergie cinétique (en J et en kJ).",
+      "reponse": "1) Liaison pivot, liaison pivot-glissant, liaison glissière, liaison totale. 2) La vergence est l'inverse de la distance focale, C = 1/f ; elle s'exprime en dioptries (δ). 3) Ec = ½ × 1,5 × 10² = 75 J = 0,075 kJ."
+    },
+    {
+      "id": "bepc-physique-2014-pr1",
+      "session": 2014,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["énergie cinétique", "travail d'une force", "force motrice", "puissance mécanique", "conversion d'unités"],
+      "enonce": "Un camion de masse 1,5 tonne est animé d'un mouvement rectiligne à la vitesse de 54 km/h.\n1. Quelle est la valeur de son énergie cinétique ?\n2. Calculer l'intensité de la force motrice constante qui s'exerce sur ce camion lorsqu'il parcourt une distance de 600 m.\n3. Calculer le temps mis par le camion pour parcourir cette distance à la même vitesse.\n4. Quelle est alors la puissance développée par le moteur au bout de 30 minutes ?",
+      "reponse": "54 km/h = 15 m/s. 1. Ec = ½ × 1500 × 15² = 168 750 J = 168,75 kJ. 2. F = Ec/d = 168 750/600 = 281,25 N. 3. t = 600/15 = 40 s. 4. 𝒫 = Ec/t = 168 750/1800 = 93,75 W."
+    },
+    {
+      "id": "bepc-physique-2014-pr2",
+      "session": 2014,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["transistor", "gain en courant", "loi d'additivité des intensités"],
+      "enonce": "Un transistor a un gain égal à 350. Il produit un courant collecteur de 600 mA lorsqu'il est utilisé en régime linéaire.\n1) Calculer l'intensité du courant de base et l'intensité du courant sortant par l'émetteur du transistor.\n2) Que devient le gain si l'intensité du courant émetteur vaut 700 mA pour le même courant de base calculé en 1 ?",
+      "reponse": "1) Ib = Ic/β = 600/350 = 1,71 mA, arrondi à 2 mA. Ie = Ib + Ic = 2 + 600 = 602 mA. 2) Avec Ib = 2 mA et Ie = 700 mA : Ic = Ie − Ib = 698 mA, donc β = 698/2 = 349.",
+      "correction_du_livre": "Le corrigé imprimé écrit 600/350 = 0,0016 A : la division donne 0,0017 A. L'arrondi à 2 mA, lui, est correct, et c'est cet arrondi qui conduit au gain 349."
+    },
+    {
+      "id": "bepc-physique-2015-th",
+      "session": 2015,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["retour inverse de la lumière", "accommodation", "objet réfléchissant", "puissance électrique"],
+      "enonce": "a) Énoncer la loi du retour inverse de la lumière.\nb) Définir les termes suivants : accommodation, objet réfléchissant.\nc) Définir la puissance électrique en courant continu.",
+      "reponse": "a) Le trajet suivi par la lumière est indépendant de son sens de propagation. b) L'accommodation est l'augmentation de la convergence de l'œil ; un objet réfléchissant renvoie la lumière qu'il reçoit. c) 𝒫 = U × I, produit de la tension par l'intensité."
+    },
+    {
+      "id": "bepc-physique-2015-pr1",
+      "session": 2015,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["lentille convergente", "image virtuelle", "grandissement", "relation de conjugaison", "loupe"],
+      "enonce": "Un objet réel est placé à 7,5 cm d'une lentille convergente de distance focale 10 cm. Trouver la nature et la position de l'image. Quel est le grandissement ?",
+      "reponse": "P' = fP/(P−f) = 10 × 7,5/(7,5−10) = −30 cm. P' < 0 : l'image est virtuelle, située du même côté que l'objet. γ = −P'/P = 30/7,5 = 4 > 0 : image droite et quatre fois plus grande. La lentille fonctionne ici en loupe, l'objet étant entre le foyer et la lentille."
+    },
+    {
+      "id": "bepc-physique-2015-pr2",
+      "session": 2015,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["treuil", "moment des forces", "manivelle", "équilibre"],
+      "enonce": "Calculer la force à exercer sur la manivelle d'un treuil pour soulever une charge de 200 kg. On donne : le diamètre du tambour : 10 cm ; g = 10 N/kg ; la longueur du bras de la manivelle : 0,5 m.",
+      "reponse": "Le rayon du tambour vaut 5 cm = 0,05 m. Équilibre des moments : F × 0,5 = P × 0,05 avec P = 200 × 10 = 2000 N. Donc F = 2000 × 0,05/0,5 = 200 N."
+    },
+    {
+      "id": "bepc-physique-2015-pr3",
+      "session": 2015,
+      "partie": "Pratique",
+      "numero": "III",
+      "chapitres": ["résistances en parallèle", "résistance équivalente", "loi d'Ohm", "puissance électrique", "énergie électrique", "transistor"],
+      "enonce": "Les résistances R₁ = 50 Ω et R₂ = 0,1 kΩ, montées en parallèle, sont branchées aux bornes d'un générateur de 12 volts.\n1. Faire le schéma du montage en indiquant le sens du courant.\n2. Calculer l'intensité du courant parcourant chaque résistance.\n3. Quelle est la valeur de la résistance équivalente ?\n4. Calculer la puissance dissipée et l'énergie électrique consommée en 1 h 30 min.\n5. On insère dans le circuit un transistor qui porte les indications Ic = 150 mA lorsque Ib = 0,75 mA. Calculer le gain en courant du transistor.",
+      "reponse": "2. I₁ = 12/50 = 0,24 A et I₂ = 12/100 = 0,12 A. 3. Req = 50×100/150 = 33,33 Ω. 4. I = 0,24 + 0,12 = 0,36 A ; 𝒫 = U × I = 12 × 0,36 = 4,32 W ; en 1 h 30 = 5400 s, E = 4,32 × 5400 = 23 328 J, soit environ 6,5 Wh. 5. β = Ic/Ib = 150/0,75 = 200.",
+      "correction_du_livre": "Deux remarques. L'énoncé imprimé écrit Ib = 0,75 A, mais le corrigé lit 0,75 mA : c'est la seule lecture qui donne un gain plausible (200). Et la question 4 demande la puissance ET l'énergie consommée en 1 h 30 : le corrigé s'arrête à la puissance et ne calcule jamais l'énergie."
+    },
+    {
+      "id": "bepc-physique-2016-1",
+      "session": 2016,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["résistances en parallèle", "montage en dérivation", "résistance équivalente", "loi des nœuds"],
+      "enonce": "Soit un montage où R₁ et R₂ sont les résistances de deux conducteurs ohmiques, branchés entre les mêmes points A et B, l'ensemble étant soumis à la tension U.\na) Comment sont montés ces deux conducteurs ohmiques ?\nb) Trouver l'expression de la résistance équivalente R.\nc) Un courant d'intensité I arrive en A. Quelle relation existe entre I₁ et I₂ ?",
+      "reponse": "a) En dérivation (en parallèle). b) 1/Req = 1/R₁ + 1/R₂, donc Req = R₁ × R₂/(R₁ + R₂). c) I = I₁ + I₂ (loi des nœuds)."
+    },
+    {
+      "id": "bepc-physique-2016-2",
+      "session": 2016,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["machines simples", "poulie", "treuil", "palan"],
+      "enonce": "Choisir les machines simples parmi les éléments cités ci-dessous : machine à coudre, palan, vélo, balance, treuil, truelle, ampèremètre, téléphone, poulie.",
+      "reponse": "Le palan, le treuil et la poulie."
+    },
+    {
+      "id": "bepc-physique-2016-3",
+      "session": 2016,
+      "partie": "Pratique",
+      "numero": "III",
+      "chapitres": ["lentille convergente", "relation de conjugaison", "distance focale", "lecture d'un tableau de mesures"],
+      "enonce": "En classe, un élève a mesuré P, distance d'un objet à la lentille, et P' distance lentille-image. Les résultats sont inscrits dans le tableau ci-dessous :\nP (cm) : 50 | 40 | 30 | 20 | 10\nP' (cm) : 12,5 | 13 | 15 | 34,8 | 20\na) Deux valeurs ont été inversées dans le relevé des distances lentille-image. Lesquelles ? Justifier votre réponse.\nb) Un objet lumineux AB perpendiculaire à l'axe optique est situé à 40 cm de la lentille. En vous servant des données du tableau, dites à quelle distance de cette lentille est située son image. Calculer dans ce cas la distance focale de la lentille.",
+      "reponse": "a) Ce sont les deux dernières valeurs de la ligne P' : 34,8 et 20. Quand l'objet se rapproche de la lentille, l'image s'en éloigne : P' doit croître régulièrement (12,5 ; 13 ; 15 ; 20 ; 34,8). b) Pour P = 40 cm, le tableau donne P' = 13 cm ; f = P × P'/(P + P') = 40 × 13/53 = 9,81 cm, soit environ 10 cm."
+    },
+    {
+      "id": "bepc-physique-2016-4",
+      "session": 2016,
+      "partie": "Pratique",
+      "numero": "IV",
+      "chapitres": ["puissance électrique", "énergie électrique", "intensité efficace", "conversion d'unités"],
+      "enonce": "Un fer à repasser est parcouru par une intensité de valeur efficace 4,5 A quand il est soumis à une tension de valeur efficace 220 V.\na) Calculer la puissance consommée par ce fer à repasser.\nb) Calculer l'énergie consommée (en kJ) par ce fer à repasser pendant 30 min de fonctionnement.",
+      "reponse": "a) 𝒫 = U × I = 220 × 4,5 = 990 W. b) 30 min = 1800 s, donc E = 990 × 1800 = 1 782 000 J = 1 782 kJ.",
+      "correction_du_livre": "Erreur de conversion dans le corrigé imprimé : il compte 30 minutes comme 180 secondes et annonce E = 178 200 J. Une demi-heure vaut 1 800 secondes ; l'énergie est dix fois plus grande, et la question demandait des kJ : 1 782 kJ."
+    },
+    {
+      "id": "bepc-physique-2017-th",
+      "session": 2017,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["appareil photographique", "profondeur de champ", "diaphragme", "relais", "transistor", "diviseur de tension", "liaisons mécaniques"],
+      "enonce": "1. Pour garder un souvenir de ses camarades, un élève de 10ᵉ année muni d'un appareil photographique veut les photographier en classe.\na) L'élève doit-il rechercher une profondeur de champ grande ou faible ? Justifier.\nb) L'élève doit-il fermer ou ouvrir au maximum le diaphragme de son appareil ? Justifier.\n2. Définir et dire quels sont les cas pratiques d'utilisation des appareils suivants : relais, transistor et diviseur de tension.\n3. Quelles sont les caractéristiques des liaisons dans le guidage d'un mouvement ?",
+      "reponse": "1.a) Une grande profondeur de champ, pour que tous les camarades, au premier comme au dernier rang, soient nets. b) Il doit ouvrir le diaphragme : en classe l'éclairement est faible et il faut laisser entrer assez de lumière. 2. Le relais est un commutateur actionné par un électro-aimant (allumage alterné, détecteur d'incendie, détecteur d'obscurité). Le transistor a trois bornes et sert d'interrupteur commandé ou d'amplificateur. Le diviseur de tension a trois bornes et fournit une tension réglable à partir d'une tension constante."
+    },
+    {
+      "id": "bepc-physique-2017-pr1",
+      "session": 2017,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["travail d'une force", "puissance mécanique", "force motrice", "travail moteur", "travail résistant", "angle entre force et déplacement"],
+      "enonce": "Un véhicule roule sur une voie horizontale à une vitesse constante de 144 km/h. La puissance du moteur est 70 kW.\n1) Calculer la force déployée par le moteur.\n2) Calculer le travail fourni par le moteur lorsque le véhicule a parcouru 10 km.\n3) Que devient la valeur du travail lorsque la force déployée et le mouvement font entre eux un angle de 45° ? un angle de 120° ? Quelle est la nature de chacun de ces travaux ?",
+      "reponse": "144 km/h = 40 m/s. 1) F = 𝒫/V = 70 000/40 = 1750 N. 2) W = F × l = 1750 × 10 000 = 17 500 000 J = 17 500 kJ. 3) À 45° : W = 17 500 000 × 0,707 = 12 374 369 J, environ 12 374 kJ, positif donc travail moteur. À 120° : W = 17 500 000 × (−0,5) = −8 750 000 J = −8 750 kJ, négatif donc travail résistant."
+    },
+    {
+      "id": "bepc-physique-2017-pr2",
+      "session": 2017,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["quantité de chaleur", "chaleur massique", "rendement", "énergie électrique", "kilowattheure", "facture d'électricité"],
+      "enonce": "Un chauffe-eau qui consomme en moyenne 2,5 kW a une capacité de 180 litres et son rendement est de 75 %.\n1) Combien de temps faut-il pour porter l'eau contenue dans ce chauffe-eau de 20 °C à 75 °C ?\n2) Le kWh coûtant 59 GNF, quel prix faut-il payer pour ce chauffage ?\nOn donne : masse volumique de l'eau 1 kg/l ; chaleur massique de l'eau 4,2 kJ/kg·°C.",
+      "reponse": "1) Q = 180 × 4,2 × 55 = 41 580 kJ. Avec un rendement de 75 %, l'énergie consommée vaut E = 41 580/0,75 = 55 440 kJ = 15,4 kWh. Durée : t = 55 440 000/2500 = 22 176 s, soit 6 h 9 min 36 s. 2) Prix = 15,4 × 59 = 908,6 GNF."
+    },
+    {
+      "id": "bepc-physique-2017-pr3",
+      "session": 2017,
+      "partie": "Pratique",
+      "numero": "III",
+      "chapitres": ["lentille convergente", "relation de conjugaison", "grandissement", "distance focale", "vergence"],
+      "enonce": "Un écran est placé à 2 m d'une flèche lumineuse AB de hauteur 8 cm. Une lentille convergente placée entre l'objet et l'écran donne sur cet écran une image A'B' nette 4 fois plus petite que l'objet. Déterminer :\na) les positions exactes de la lentille ;\nb) la distance focale de la lentille ;\nc) la grandeur A'B' de l'image.",
+      "reponse": "a) On a P + P' = 200 cm et P = 4 P' (image 4 fois plus petite). Donc 5P' = 200, P' = 40 cm et P = 160 cm : la lentille est à 160 cm de l'objet et à 40 cm de l'écran. b) f = P × P'/(P + P') = 160 × 40/200 = 32 cm, soit une vergence C = 1/0,32 = 3,125 δ. c) A'B' = 8/4 = 2 cm."
+    },
+    {
+      "id": "bepc-physique-2018-pr1",
+      "session": 2018,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["résistances en parallèle", "montage en dérivation", "résistance équivalente", "loi d'Ohm", "courant principal"],
+      "enonce": "On monte en dérivation deux lampes de résistances R₁ = 18 Ω et R₂ = 25 Ω. À l'aide d'un générateur on impose une tension de 12 V aux bornes de l'association.\n1. Faites le schéma du montage et indiquer le sens du courant.\n2. Calculer : a) la résistance équivalente de l'association et le courant principal ; b) les courants qui alimentent chaque lampe.",
+      "reponse": "2.a) Req = 18×25/43 = 10,5 Ω ; courant principal Ip = 12/10,5 = 1,14 A, arrondi à 1,1 A. b) I₁ = 12/18 = 0,6 A et I₂ = 12/25 = 0,48 A (vérification : 0,6 + 0,48 = 1,08 A, soit bien Ip)."
+    },
+    {
+      "id": "bepc-physique-2018-pr2",
+      "session": 2018,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["travail du poids", "puissance mécanique", "rendement", "énergie perdue", "effet Joule"],
+      "enonce": "Lors de la construction d'un immeuble, KONATE utilise une machine pour remonter une charge de 360 kg d'une hauteur de 40 m. Cette opération a duré 2 minutes.\n1. Quel est le travail mécanique produit au cours de la montée ?\n2. Calculer la puissance mécanique de la machine, sachant que son rendement est de 60 %.\n3. Calculer l'énergie perdue à cause des frottements. On prendra g = 10 N/kg.",
+      "reponse": "1. W = mgh = 360 × 10 × 40 = 144 000 J = 144 kJ. 2. Puissance utile = 0,6 × 144 000/120 = 720 W. 3. Énergie perdue = 144 000 − 0,6 × 144 000 = 57 600 J, soit 57,6 kJ.",
+      "correction_du_livre": "Le corrigé imprimé conclut « −57 kJ » alors que le calcul qui précède donne −57 600 J : c'est −57,6 kJ."
+    },
+    {
+      "id": "bepc-physique-2019-th",
+      "session": 2019,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["lentille convergente", "lentille divergente", "distance focale"],
+      "enonce": "Dans un tableau, faites une étude comparative entre une lentille convergente et une lentille divergente.",
+      "reponse": "Convergente : bords minces et centre épais ; foyer image réel après la lentille ; distance focale f > 0. Divergente : bords épais et centre mince ; foyer image virtuel avant la lentille ; distance focale f < 0."
+    },
+    {
+      "id": "bepc-physique-2019-pr1",
+      "session": 2019,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["puissance électrique", "compteur électrique", "énergie électrique", "kilowattheure", "facture d'électricité"],
+      "enonce": "L'appartement de Mamadou est alimenté à partir d'un compteur de 5 A par l'EDG ; la tension de distribution est de 220 V.\na) De quelle puissance électrique maximale dispose-t-il dans son appartement ?\nb) Mamadou possède un réchaud électrique de puissance maximale 1,5 kW. Il désire l'utiliser pour faire cuire du poisson. Le peut-il ? Justifier la réponse.\nc) Mamadou branche un aspirateur de 800 W. Combien de lampes de 60 W peut-il utiliser simultanément ?\nd) Quel est le coût d'une heure de nettoyage avec l'aspirateur si le prix du kWh est de 500 GNF ?",
+      "reponse": "a) 𝒫 = U × I = 220 × 5 = 1100 W = 1,1 kW. b) Non : 1,5 kW dépasse les 1,1 kW disponibles, le compteur disjoncterait. c) Il reste 1100 − 800 = 300 W, donc 300/60 = 5 lampes. d) E = 800 W × 1 h = 0,8 kWh ; coût = 0,8 × 500 = 400 GNF."
+    },
+    {
+      "id": "bepc-physique-2019-pr2",
+      "session": 2019,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["poids", "travail du poids", "travail moteur", "puissance mécanique"],
+      "enonce": "Un ascenseur dessert les différents étages d'un immeuble. Sa masse à vide est M = 200 kg, il contient trois personnes de masse moyenne m = 70 kg chacune, lors d'une descente de 24 m.\n1. Quel est le poids de cet ascenseur charge comprise ?\n2. Quel est le travail effectué par le poids de l'ascenseur au cours de la descente ? Ce travail est-il moteur ou résistant ? Justifier la réponse.\n3. L'ascenseur descend à une vitesse régulière de 3 m/s. Calculer la puissance fournie par le moteur de l'ascenseur. On prendra g = 10 N/kg.",
+      "reponse": "1. P = (200 + 3×70) × 10 = 4100 N. 2. W = P × h = 4100 × 24 = 98 400 J = 98,4 kJ ; le travail est moteur car le poids est dirigé dans le sens de la descente, donc W > 0. 3. 𝒫 = P × V = 4100 × 3 = 12 300 W = 12,3 kW."
+    },
+    {
+      "id": "bepc-physique-2020-th",
+      "session": 2020,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["défauts de l'œil", "myopie", "lentille divergente", "mesure d'une résistance", "ohmmètre", "code des couleurs"],
+      "enonce": "1. Mohamed est victime d'une anomalie visuelle, se rend chez un ophtalmologue. Ce dernier, après consultation, fait son diagnostic. Il relève que l'image se forme devant la rétine du patient.\na) Aidez Mohamed à retrouver la nature de l'anomalie dont il souffre et sa correction nécessaire.\nb) Représentez le schéma optique de la vision de Mohamed.\n2. Citez les méthodes de mesure de la résistance d'un conducteur ohmique.",
+      "reponse": "1.a) L'image se forme en avant de la rétine : c'est la myopie ; on la corrige avec une lentille divergente. 2. Méthode de l'ampèremètre et du voltmètre (R = U/I) ; lecture du code des couleurs ; mesure directe à l'ohmmètre."
+    },
+    {
+      "id": "bepc-physique-2020-pr1",
+      "session": 2020,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["diviseur de tension", "résistances en série", "loi d'Ohm", "pont diviseur"],
+      "enonce": "On se propose de construire un pont de diviseur de tension avec deux conducteurs ohmiques montés en série, de résistance R₁ = 47 Ω et R₂ = 94 Ω ; l'ensemble est alimenté par une pile de tension Ue = 9 V.\n1. Sachant que la tension de sortie peut être prise indifféremment aux bornes de R₁ ou R₂, faire le schéma de deux montages possibles.\n2. Donner l'expression de Us dans chacun des deux cas de figure.\n3.a) Calculer les rapports R₂/R₁ et U₂/U₁. b) Exprimer R₂ en fonction de R₁ et U₂ en fonction de U₁.\n4. On veut une tension de sortie égale au tiers de la tension d'entrée Ue = 9 V. Aux bornes de quel résistor va-t-on la prélever ? Dites pourquoi.",
+      "reponse": "2. Aux bornes de R₂ : U₂ = Ue × R₂/(R₁+R₂) = 9 × 94/141 = 6 V. Aux bornes de R₁ : U₁ = 9 × 47/141 = 3 V. 3.a) R₂/R₁ = 94/47 = 2 et U₂/U₁ = 6/3 = 2. b) R₂ = 2 R₁ et U₂ = 2 U₁. 4. Aux bornes de R₁, car U₁ = 3 V = 9/3, soit exactement le tiers de la tension d'entrée."
+    },
+    {
+      "id": "bepc-physique-2020-pr2",
+      "session": 2020,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["lentille convergente", "vergence", "relation de conjugaison", "grandissement", "construction d'image"],
+      "enonce": "Une lentille convergente L donne d'un objet lumineux de hauteur 8 cm une image. L'objet est centré sur l'axe optique et situé à 16 cm de la lentille.\n1) Faire la figure à l'échelle ¼ sur la copie d'examen.\n2) Calculer la distance focale de la lentille L, sachant que sa vergence est 10 dioptries.\n3) Placer les foyers F et F' sur l'axe optique.\n4) Construire l'image A'B' de AB.\n5) Donner la hauteur réelle de cette image.",
+      "reponse": "2) f = 1/C = 1/10 = 0,1 m = 10 cm. Position : P' = fP/(P−f) = 10×16/6 = 26,67 cm ; P' > 0, l'image est réelle. Sens : γ = −P'/P = −26,67/16 = −5/3, négatif, l'image est renversée. 5) Hauteur : A'B' = (5/3) × 8 = 13,33 cm.",
+      "correction_du_livre": "La question 5 demande la hauteur réelle de l'image. Le corrigé imprimé s'arrête au grandissement γ = −5/3 et ne donne jamais la hauteur A'B' = 13,33 cm."
+    },
+    {
+      "id": "bepc-physique-2021-th",
+      "session": 2021,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["réfraction de la lumière", "indice de réfraction", "liaisons mécaniques", "guidage d'un mouvement"],
+      "enonce": "1. Énoncez la deuxième loi de réfraction de la lumière.\n2. En vous servant du guidage d'un mouvement, indiquez les différents types de liaison et précisez les différences qui les caractérisent en donnant des exemples concrets.",
+      "reponse": "1. n₁ sin i = n₂ sin r, où n₁ et n₂ sont les indices des deux milieux, i l'angle d'incidence et r l'angle de réfraction. 2. Liaison pivot : rotation seule (exemple : la poulie). Liaison glissière : translation seule (chariot d'une machine à écrire). Liaison pivot-glissant : translation et rotation (bâton de colle). Liaison totale : aucun mouvement relatif (la vis)."
+    },
+    {
+      "id": "bepc-physique-2021-pr1",
+      "session": 2021,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["masse volumique", "débit", "énergie potentielle", "barrage hydroélectrique"],
+      "enonce": "Dans le cadre de leurs activités éducatives, les élèves du club scientifique visitent les installations d'un barrage hydro-électrique. La hauteur de chute est de 60 m et l'eau qui tombe fait tourner les turbines. Le débit de l'eau est de 160 m³/s. La masse volumique de l'eau est ρ = 1000 kg/m³ et l'intensité de pesanteur est 10 N/kg.\n1) Déterminer la masse d'eau qui tombe en une seconde.\n2) Donner la forme d'énergie que cette eau possède avant la chute.\n3) Déterminer la valeur E de cette énergie.",
+      "reponse": "1) m = ρ × débit × t = 1000 × 160 × 1 = 160 000 kg. 2) De l'énergie potentielle de pesanteur. 3) E = mgh = 160 000 × 10 × 60 = 96 000 000 J = 96 MJ."
+    },
+    {
+      "id": "bepc-physique-2021-pr2",
+      "session": 2021,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["indications d'un appareil", "montage en parallèle", "puissance électrique", "résistance d'une lampe", "intensité du courant"],
+      "enonce": "Un appartement dispose d'un compteur électrique qui ne peut être traversé par un courant d'intensité supérieur à 10 A. La tension de distribution est de 220 V. L'installation comprend les appareils suivants : une bouilloire électrique marquée (220 V ; 550 W), un fer à repasser marqué (220 V ; 650 W), 20 lampes marquées chacune (220 V ; 60 W).\n1. Que signifient les indications portées sur les appareils ?\n2. Ces appareils doivent-ils être branchés en série ou en parallèle ? Justifier la réponse.\n3. Quelle est la résistance d'une lampe dans les conditions normales de fonctionnement ?\n4. La bouilloire et le fer à repasser seuls fonctionnent. Quelle est l'intensité du courant qui traverse le compteur ?",
+      "reponse": "1. Ce sont la tension d'usage et la puissance nominale : sous 220 V, l'appareil consomme la puissance indiquée. 2. En parallèle : chaque appareil reçoit alors les 220 V pour lesquels il est conçu, et chacun fonctionne indépendamment des autres. 3. 𝒫 = U²/R, donc R = 220²/60 = 806,67 Ω. 4. I₁ = 550/220 = 2,5 A, I₂ = 650/220 = 2,95 A, total I = 5,45 A (inférieur aux 10 A du compteur)."
+    },
+    {
+      "id": "bepc-physique-2022-th",
+      "session": 2022,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["production d'énergie électrique", "conversion d'énergie", "lentille convergente", "image virtuelle", "loupe"],
+      "enonce": "1) Citer trois modes de production de l'énergie électrique et indiquer trois utilisations courantes de cette énergie.\n2) Pour une lentille convergente, lorsque l'objet est réel et l'image est virtuelle, l'image est renversée par rapport à l'objet. Cette affirmation est-elle vraie ? Justifier brièvement la réponse à l'aide d'un schéma.",
+      "reponse": "1) La pile (énergie chimique → électrique), la centrale hydraulique (énergie mécanique → électrique), la centrale nucléaire (énergie nucléaire → électrique). Utilisations : éclairage, chauffage électrique, moteurs électriques. 2) L'affirmation est fausse. Quand l'image d'un objet réel est virtuelle, la lentille convergente fonctionne en loupe (objet entre le foyer et la lentille) et l'image est droite, non renversée, et plus grande."
+    },
+    {
+      "id": "bepc-physique-2022-pr1",
+      "session": 2022,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["code des couleurs", "valeur nominale d'une résistance", "résistances en série", "résistance équivalente"],
+      "enonce": "Un résistor a les anneaux de couleurs ci-après : orange, bleu, marron.\na) Quelle est la valeur nominale de la résistance R₁ de ce résistor ?\nb) La résistance R₁ et une résistance R₂ = 60 Ω sont montées dans un circuit électrique. La valeur de la résistance équivalente Req = 420 Ω. Ces résistances sont-elles montées en série ou en parallèle ? Justifier la réponse.",
+      "reponse": "a) Orange = 3, bleu = 6, marron = multiplicateur 10¹ : R₁ = 36 × 10 = 360 Ω. b) En série : 360 + 60 = 420 Ω, exactement la valeur donnée. En parallèle la résistance équivalente serait plus petite que la plus petite des deux."
+    },
+    {
+      "id": "bepc-physique-2022-pr2",
+      "session": 2022,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["treuil", "moment des forces", "manivelle", "nombre de tours", "circonférence"],
+      "enonce": "Un treuil d'un cylindre est utilisé pour tirer l'eau d'un puits de profondeur 30 m. Le diamètre du cylindre sur lequel s'enroule la corde est d = 20 cm. Le treuil est actionné par une manivelle de longueur L = 50 cm. On applique à l'extrémité de la manivelle une force F qui lui est perpendiculaire. Le seau utilisé pour cette opération a une masse à vide de 1 kg et il contient 19 litres d'eau.\n1°) Calculer l'intensité de la force exercée sur la manivelle pour remonter à vitesse constante un seau d'eau. On donne : g = 10 N/kg.\n2°) Quel est le nombre de tours de la manivelle pour remonter ce seau ?",
+      "reponse": "1°) Masse totale = 1 + 19 = 20 kg, donc P = 200 N. Égalité des moments : F × L = P × d/2, soit F = 200 × 10/50 = 40 N. 2°) À chaque tour la corde s'enroule d'une circonférence : π × d = 3,14 × 0,20 = 0,628 m. Nombre de tours n = 30/0,628 = 47,8, soit environ 48 tours."
+    },
+    {
+      "id": "bepc-physique-2023-th",
+      "session": 2023,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["œil", "appareil photographique", "cristallin", "iris", "rétine", "relais"],
+      "enonce": "1. Complète le tableau ci-dessous en indiquant les constituants ayant le même rôle. Précise le rôle de chacun d'eux : œil / appareil photographique / rôle, avec les entrées manquantes en face de « objectif », « iris » et « pellicule ». (3 points)\n2. Donne trois cas d'utilisation pratique d'un relais. (2 points)",
+      "reponse": "1. Cristallin – objectif : il forme l'image sur la rétine (la pellicule). Iris – diaphragme : il limite la quantité de lumière qui pénètre dans l'œil (l'appareil). Rétine – pellicule : elle joue le rôle de l'écran sensible sur lequel se forme l'image. 2. Allumage alterné de deux lampes ; détecteur de chaleur (thermistance dans le circuit de commande) ; détecteur d'obscurité (photorésistance dans le circuit de commande)."
+    },
+    {
+      "id": "bepc-physique-2023-pr1",
+      "session": 2023,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["puissance électrique", "quantité de chaleur", "chaleur massique", "rendement", "durée de chauffage"],
+      "enonce": "Un réchaud électrique a une puissance de 800 W. Il est branché sous une tension de 220 V. Le réchaud est utilisé pour chauffer 2 litres d'eau dont la température initiale est de 20 °C. On veut porter cette eau à une température finale de 100 °C.\n1. Calcule l'intensité du courant qui traverse le réchaud électrique en fonctionnement. (2 points)\n2. Quelle est la durée nécessaire au chauffage si l'on suppose que toute l'énergie électrique est communiquée à l'eau sous forme d'énergie thermique ? (2 points)\n3. En réalité les pertes sont évaluées à 20 % de l'énergie électrique produite. Calcule la durée réelle du chauffage. (4 points)\nDonnée : il faut 4,18 kJ pour élever de 1 °C la température de 1 kg d'eau.",
+      "reponse": "1. I = 𝒫/U = 800/220 = 3,63 A. 2. Q = 2 × 4180 × 80 = 668 800 J ; t = Q/𝒫 = 668 800/800 = 836 s, soit 13 min 56 s. 3. Le rendement est de 80 % : t = 836/0,8 = 1045 s, soit 17 min 25 s."
+    },
+    {
+      "id": "bepc-physique-2023-pr2",
+      "session": 2023,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["poulie à deux gorges", "moment des forces", "gain en force", "machines simples"],
+      "enonce": "Pour soulever une charge de poids P = 750 N, on utilise une poulie à deux gorges de rayons respectifs R₁ = 10 cm et R₂ = 30 cm.\n1. Sur quel fil doit-on accrocher la charge ? Pourquoi ? (2 points)\n2. De combien faut-il tirer l'autre fil pour soulever de 50 cm ? (3 points)\n3. Calcule l'intensité de la force motrice qu'il faut exercer à l'entrée du dispositif pour accomplir cette opération. (2 points)",
+      "reponse": "1. Sur la petite gorge (R₁ = 10 cm) : on gagne en force ce qu'on perd en déplacement. 2. Les deux gorges tournent ensemble : L = h × R₂/R₁ = 0,5 × 30/10 = 1,5 m. 3. Égalité des moments : F × R₂ = P × R₁, donc F = 750 × 10/30 = 250 N."
+    },
+    {
+      "id": "bepc-physique-2024-th",
+      "session": 2024,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["lentille convergente", "construction d'image", "grandissement", "image réelle", "image virtuelle", "types de mouvements"],
+      "enonce": "1. Construis et donne les caractéristiques (nature et sens) de l'image A'B' d'un objet réel AB placé perpendiculairement à l'axe principal d'une lentille convergente dans les cas suivants : P > f ; P < f et P = f. (4,5 points)\n2. Dans le déplacement d'un objet, cite les différents types de mouvements. (1,5 point)",
+      "reponse": "1. Si P > f : P' > 0, l'image est réelle et renversée ; elle est plus petite que l'objet lorsque P > 2f, plus grande lorsque f < P < 2f. Si P < f : P' < 0, l'image est virtuelle, droite et plus grande que l'objet (fonctionnement en loupe). Si P = f : les rayons émergent parallèles, l'image se forme à l'infini. 2. Mouvement de translation rectiligne, mouvement de translation circulaire, mouvement de rotation autour d'un axe fixe.",
+      "correction_du_livre": "Pour le cas P > f, le corrigé imprimé écrit à la fois « γ < −1 » et « l'image est plus petite que l'objet » : les deux ne peuvent pas être vrais ensemble. Si γ < −1 l'image est plus grande ; elle n'est plus petite que lorsque −1 < γ < 0, c'est-à-dire quand P > 2f."
+    },
+    {
+      "id": "bepc-physique-2024-pr1",
+      "session": 2024,
+      "partie": "Pratique",
+      "numero": "Exercice 1",
+      "chapitres": ["travail du poids", "rendement", "puissance mécanique", "débit", "masse volumique", "pompe"],
+      "enonce": "Un regroupement agricole de jeunes entrepreneurs utilise une pompe qui sert à élever l'eau à une hauteur de 4 m. Le rendement de l'installation de la pompe est de 80 %.\n1. Calcule le travail nécessaire pour élever 2 m³ d'eau et en déduis le travail fourni par le moteur. On donne : g = 10 N/kg. (4 points)\n2. La pompe tombe en panne et elle est immédiatement remplacée par une autre de puissance 1,5 kW et de 90 % de rendement pour élever l'eau à la même hauteur.\na) Quel est, en litre par seconde, le débit de la nouvelle pompe ? (3 points)\nb) Détermine la durée nécessaire pour remplir une cuve de 3000 litres.",
+      "reponse": "1. m = 1000 × 2 = 2000 kg ; travail utile Wu = mgh = 2000 × 10 × 4 = 80 000 J = 80 kJ ; travail moteur Wm = 80 000/0,8 = 100 000 J = 100 kJ. 2.a) En une seconde le moteur fournit 1500 J, dont 90 % utiles : 1350 J. La masse élevée est m = 1350/(10 × 4) = 33,75 kg, soit 33,75 litres : le débit est de 33,75 L/s. b) t = 3000/33,75 = 88,9 s, soit environ 1 min 29 s."
+    },
+    {
+      "id": "bepc-physique-2024-pr2",
+      "session": 2024,
+      "partie": "Pratique",
+      "numero": "Exercice 2",
+      "chapitres": ["puissance électrique", "puissance souscrite", "installation électrique", "abonnement"],
+      "enonce": "Un atelier de couture emploie 10 ouvriers. Chaque machine à coudre a une puissance nominale de 150 W. Chaque poste de travail est occupé par un ouvrier et il est éclairé par une ampoule de puissance nominale de 100 W.\n1. Détermine la puissance de l'installation de l'atelier. (1,5 point)\n2. Le propriétaire de l'atelier a souscrit à un abonnement où l'intensité du courant est égale à 15 A et la tension du secteur est 220 V. Calcule la puissance souscrite dans l'atelier de couture. (1,5 point)\n3. Peut-on installer des postes de travail supplémentaires ? Si oui, de combien ? (2 points)",
+      "reponse": "1. 𝒫 = 10 × (150 + 100) = 2500 W = 2,5 kW. 2. 𝒫 souscrite = U × I = 220 × 15 = 3300 W = 3,3 kW. 3. Puissance disponible = 3300 − 2500 = 800 W. Un poste consomme 250 W, donc 800/250 = 3,2 : on peut installer 3 postes supplémentaires. Les 50 W restants ne suffisent pas à alimenter un quatrième poste."
+    },
+    {
+      "id": "bepc-physique-2025-th",
+      "session": 2025,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["miroir plan", "image dans un miroir", "relais"],
+      "enonce": "a) Un faisceau lumineux issu d'un point S de l'objet tombe sur un miroir plan M. L'image de l'objet est observée par un œil situé du même côté que l'objet. Construis l'image S' de l'objet S et donne deux applications courantes du miroir plan.\nb) Cite deux applications pratiques du relais. (5 points au total)",
+      "reponse": "a) L'image S' est le symétrique de S par rapport au plan du miroir : elle est virtuelle, droite, de même taille et située derrière le miroir à la même distance. Applications courantes : le rétroviseur d'un véhicule, le périscope, le miroir de toilette. b) L'allumage alterné de deux lampes ; le détecteur d'incendie ou le détecteur d'obscurité.",
+      "correction_du_livre": "Comme applications du miroir plan, le corrigé imprimé cite « l'appareil photographique » et « la lunette astronomique » : ce sont des instruments à lentilles, pas des applications du miroir plan. Les vraies applications sont le rétroviseur, le périscope, le miroir de toilette."
+    },
+    {
+      "id": "bepc-physique-2025-pr1",
+      "session": 2025,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["palan", "poulie mobile", "poulie fixe", "force motrice", "rendement", "travail d'une force", "puissance mécanique"],
+      "enonce": "On considère un palan simple constitué d'une poulie fixe et d'une poulie mobile et utilisé à la montée verticale d'une caisse de poids Pc = 770 N. La poulie mobile a une masse m = 3000 g. Le poids de la corde et tous les frottements sont négligeables. On donne g = 10 N/kg.\n1) Fais le schéma d'un palan simple constitué d'une poulie fixe et d'une poulie mobile et représente les forces appliquées. (1 point)\n2) Détermine l'intensité de la force motrice capable d'équilibrer la charge totale. (2 points)\n3) En réalité, les frottements ne sont pas négligeables ; le rendement de ce palan simple est R = 0,8. Calcule pour une montée à vitesse constante de la charge d'une hauteur h = 4 m en une minute :\na) le travail de l'ensemble poulie plus charge ; (2 points)\nb) le travail moteur ; (2 points)\nc) la puissance fournie. (1 point)",
+      "reponse": "2) Poids total = 770 + 3 × 10 = 800 N ; avec une poulie mobile la force motrice vaut la moitié : F = 800/2 = 400 N. 3.a) Travail résistant = 800 × 4 = 3200 J = 3,2 kJ. b) Travail moteur = 3200/0,8 = 4000 J = 4 kJ. c) 𝒫 = 4000/60 = 66,7 W."
+    },
+    {
+      "id": "bepc-physique-2025-pr2",
+      "session": 2025,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["vitesse moyenne", "durée de parcours", "conversion d'unités", "mouvement uniforme"],
+      "enonce": "Un enseignant part d'habitude de son domicile à 7 h 35 min pour se rendre à l'école sur sa moto. La montée des couleurs à l'école est prévue à 7 h 45 min. Le domicile se trouve à 6 km de son école.\n1°) Quelle doit être la vitesse moyenne de sa moto pour qu'il assiste à la montée des couleurs ? (3 points)\n2°) Le dernier jour de ses cours à l'école, l'enseignant accuse un retard à domicile et il quitte à 7 h 50 min. Peut-il arriver à 8 h, l'heure prévue pour le démarrage des cours, lorsqu'il roule à la même vitesse moyenne calculée dans la question 1° ? Justifie la réponse. (3 points + 1 point)",
+      "reponse": "1°) La durée disponible est 7 h 45 − 7 h 35 = 10 min = 600 s ; V = 6000/600 = 10 m/s, soit 36 km/h. 2°) De 7 h 50 à 8 h il dispose encore de 10 min = 600 s. À 10 m/s il parcourt d = 10 × 600 = 6000 m = 6 km, exactement la distance du trajet : oui, il arrive juste à 8 h."
+    }
+  ]
+}
