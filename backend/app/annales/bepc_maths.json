@@ -3,6 +3,22 @@
   "_note": "« reponse » sert UNIQUEMENT au répétiteur, pour vérifier qu'un élève arrive au bon résultat. Elle n'est jamais montrée à l'élève.",
   "exercices": [
     {
+      "id": "bepc-maths-2005-geo",
+      "session": 2005,
+      "partie": "Activités Géométriques",
+      "numero": "A",
+      "chapitres": [
+        "théorème de Pythagore",
+        "trigonométrie",
+        "parallélogramme",
+        "centre de gravité",
+        "médianes",
+        "vecteurs"
+      ],
+      "enonce": "ABC est un triangle rectangle en A tel que AB = 8 cm et AC = 6 cm.\nOn désigne par D le milieu du segment [AB], I le milieu du segment [CD], et P l'intersection des droites (BC) et (AI) ; par E le point tel que vecteur CE = vecteur AD.\n1) a) Calculer les longueurs BC et DC.\n   b) Déterminer la tangente de l'angle CDA.\n2) a) Justifier que le point E appartient à la droite (AI).\n   b) Démontrer que le quadrilatère BCDE est un parallélogramme. On notera O son centre.\n3) a) Montrer que le point P est le centre de gravité du triangle CDE.\n   b) Montrer que la droite (DP) passe par le milieu du segment [EC].\n   c) Exprimer EP en fonction de EA.",
+      "reponse": "BC = 10 cm ; DC = 2√13 cm ; tan(CDA) = 3/2 = 1,5 ; BO = OC = 5 cm ; EP = (1/3) EA"
+    },
+    {
       "id": "bepc-maths-2005-num-1",
       "session": 2005,
       "partie": "Activités Numériques",
@@ -40,20 +56,21 @@
       "reponse": "23 et 15"
     },
     {
-      "id": "bepc-maths-2005-geo",
-      "session": 2005,
+      "id": "bepc-maths-2006-geo",
+      "session": 2006,
       "partie": "Activités Géométriques",
-      "numero": "A",
+      "numero": "B",
       "chapitres": [
+        "repère orthonormé",
+        "vecteurs",
+        "distance entre deux points",
         "théorème de Pythagore",
-        "trigonométrie",
-        "parallélogramme",
-        "centre de gravité",
-        "médianes",
-        "vecteurs"
+        "symétrie centrale",
+        "rectangle",
+        "aires"
       ],
-      "enonce": "ABC est un triangle rectangle en A tel que AB = 8 cm et AC = 6 cm.\nOn désigne par D le milieu du segment [AB], I le milieu du segment [CD], et P l'intersection des droites (BC) et (AI) ; par E le point tel que vecteur CE = vecteur AD.\n1) a) Calculer les longueurs BC et DC.\n   b) Déterminer la tangente de l'angle CDA.\n2) a) Justifier que le point E appartient à la droite (AI).\n   b) Démontrer que le quadrilatère BCDE est un parallélogramme. On notera O son centre.\n3) a) Montrer que le point P est le centre de gravité du triangle CDE.\n   b) Montrer que la droite (DP) passe par le milieu du segment [EC].\n   c) Exprimer EP en fonction de EA.",
-      "reponse": "BC = 10 cm ; DC = 2√13 cm ; tan(CDA) = 3/2 = 1,5 ; BO = OC = 5 cm ; EP = (1/3) EA"
+      "enonce": "(O, i, j) est un repère orthonormé avec OI = OJ = 1 cm.\n1) a) Placer les points A(−2 ; −1), B(−5 ; 3) et C(3 ; 9).\n   b) Donner les coordonnées des vecteurs AB et BC, puis vérifier par le calcul que AB = 5 et BC = 10.\n2) Calculer les coordonnées du vecteur AC et en déduire la longueur AC (on l'écrira sous la forme a√5 où a est un entier naturel).\n3) Démontrer que le triangle ABC est rectangle en B.\n4) Calculer les coordonnées du milieu K du segment [AC].\n5) a) Placer le point D symétrique de B par rapport à K.\n   b) Démontrer que ABCD est un rectangle.\n   c) Calculer son aire, puis celle du triangle ABC.",
+      "reponse": "AB(−3 ; 4), BC(8 ; 6), AC(5 ; 10) ; AC = 5√5 cm ; K(1/2 ; 4) ; D(6 ; 5) ; aire ABCD = 50 cm² ; aire ABC = 25 cm²"
     },
     {
       "id": "bepc-maths-2006-num-1",
@@ -82,21 +99,23 @@
       "reponse": "D = 9x² − 42x − 32 ; D = (3x − 16)(3x + 2) ; x = 16/3 ou x = −2/3"
     },
     {
-      "id": "bepc-maths-2006-geo",
-      "session": 2006,
+      "id": "bepc-maths-2007-geo",
+      "session": 2007,
       "partie": "Activités Géométriques",
-      "numero": "B",
+      "numero": "A",
       "chapitres": [
         "repère orthonormé",
-        "vecteurs",
         "distance entre deux points",
         "théorème de Pythagore",
         "symétrie centrale",
         "rectangle",
-        "aires"
+        "translation",
+        "cercle circonscrit",
+        "tangente au cercle",
+        "équation de droite"
       ],
-      "enonce": "(O, i, j) est un repère orthonormé avec OI = OJ = 1 cm.\n1) a) Placer les points A(−2 ; −1), B(−5 ; 3) et C(3 ; 9).\n   b) Donner les coordonnées des vecteurs AB et BC, puis vérifier par le calcul que AB = 5 et BC = 10.\n2) Calculer les coordonnées du vecteur AC et en déduire la longueur AC (on l'écrira sous la forme a√5 où a est un entier naturel).\n3) Démontrer que le triangle ABC est rectangle en B.\n4) Calculer les coordonnées du milieu K du segment [AC].\n5) a) Placer le point D symétrique de B par rapport à K.\n   b) Démontrer que ABCD est un rectangle.\n   c) Calculer son aire, puis celle du triangle ABC.",
-      "reponse": "AB(−3 ; 4), BC(8 ; 6), AC(5 ; 10) ; AC = 5√5 cm ; K(1/2 ; 4) ; D(6 ; 5) ; aire ABCD = 50 cm² ; aire ABC = 25 cm²"
+      "enonce": "Le plan est muni d'un repère (O ; I ; J). L'unité de longueur est le centimètre.\nOn donne les points A(7 ; 1), B(8 ; 4) et C(−1 ; 7).\n1) a) Faire une figure, à compléter au fur et à mesure des questions.\n   b) Calculer les distances AB, BC et AC.\n   c) Démontrer que le triangle ABC est rectangle.\n2) M est le milieu du segment [AC] et D le symétrique de B par rapport à M.\n   a) Déterminer le couple de coordonnées du point M.\n   b) Démontrer que le quadrilatère ABCD est un rectangle.\n3) P est l'image de O par la translation de vecteur AC. Déterminer le couple de coordonnées du point P.\n4) (C) est le cercle circonscrit au triangle ABC.\n   a) Préciser le centre et le rayon du cercle (C).\n   b) Justifier que les points D et O appartiennent au cercle (C).\n   c) Démontrer que la droite (OP) est la tangente au cercle (C).\n   d) Déterminer une équation de la droite (OP).",
+      "reponse": "AB = √10 ; BC = 3√10 ; AC = 10 ; AB² + BC² = AC² donc rectangle en B ; M(3 ; 4) ; D(−2 ; 4) ; P(−8 ; 6) ; centre M(3 ; 4), rayon 5 cm ; équation de (OP) : 3x + 4y = 0"
     },
     {
       "id": "bepc-maths-2007-num-1",
@@ -125,23 +144,22 @@
       "reponse": "x + y = 70 et x + 2y = 95 ; longueur x = 45 mm, largeur y = 25 mm"
     },
     {
-      "id": "bepc-maths-2007-geo",
-      "session": 2007,
+      "id": "bepc-maths-2008-geo",
+      "session": 2008,
       "partie": "Activités Géométriques",
-      "numero": "A",
+      "numero": "B",
       "chapitres": [
         "repère orthonormé",
+        "vecteurs",
         "distance entre deux points",
-        "théorème de Pythagore",
+        "parallélogramme",
         "symétrie centrale",
-        "rectangle",
-        "translation",
-        "cercle circonscrit",
-        "tangente au cercle",
-        "équation de droite"
+        "centre de gravité",
+        "médianes"
       ],
-      "enonce": "Le plan est muni d'un repère (O ; I ; J). L'unité de longueur est le centimètre.\nOn donne les points A(7 ; 1), B(8 ; 4) et C(−1 ; 7).\n1) a) Faire une figure, à compléter au fur et à mesure des questions.\n   b) Calculer les distances AB, BC et AC.\n   c) Démontrer que le triangle ABC est rectangle.\n2) M est le milieu du segment [AC] et D le symétrique de B par rapport à M.\n   a) Déterminer le couple de coordonnées du point M.\n   b) Démontrer que le quadrilatère ABCD est un rectangle.\n3) P est l'image de O par la translation de vecteur AC. Déterminer le couple de coordonnées du point P.\n4) (C) est le cercle circonscrit au triangle ABC.\n   a) Préciser le centre et le rayon du cercle (C).\n   b) Justifier que les points D et O appartiennent au cercle (C).\n   c) Démontrer que la droite (OP) est la tangente au cercle (C).\n   d) Déterminer une équation de la droite (OP).",
-      "reponse": "AB = √10 ; BC = 3√10 ; AC = 10 ; AB² + BC² = AC² donc rectangle en B ; M(3 ; 4) ; D(−2 ; 4) ; P(−8 ; 6) ; centre M(3 ; 4), rayon 5 cm ; équation de (OP) : 3x + 4y = 0"
+      "enonce": "Tracer un repère (O, I, J) et placer les points A(−4 ; −1), B(−2 ; 3), C(8 ; 5) et D(6 ; 1).\nOn appelle M le milieu du segment [BD].\na) Démontrer que le quadrilatère ABCD est un parallélogramme.\nb) L est le symétrique de A par rapport à B. Démontrer que le quadrilatère BLCD est un parallélogramme.\nc) Les droites (LM) et (BC) se coupent en G. Que représente G pour le triangle LAC ?\nd) (AG) coupe (LC) en P. Calculer les coordonnées de P. Justifier soigneusement.",
+      "reponse": "AB = CD = 2√5 ; BC = AD = 2√26 ; L(0 ; 7) ; G est le centre de gravité du triangle LAC ; P(4 ; 6)",
+      "correction_du_livre": "Le livre écrit BD = 2√26 : c'est faux. B(−2 ; 3) et D(6 ; 1) donnent BD = √(8² + 2²) = √68 = 2√17. Le raisonnement reste juste, seul ce nombre est erroné."
     },
     {
       "id": "bepc-maths-2008-num-1",
@@ -209,22 +227,20 @@
       "correction_du_livre": "Le livre imprime « longueur 4/3 hm » dans l'énoncé, mais tout son corrigé calcule avec 4/5 — et seul 4/5 donne l'aire décimale exacte que la question b) réclame (0,2 hm²). L'énoncé retenu est donc 4/5."
     },
     {
-      "id": "bepc-maths-2008-geo",
-      "session": 2008,
+      "id": "bepc-maths-2009-geo",
+      "session": 2009,
       "partie": "Activités Géométriques",
       "numero": "B",
       "chapitres": [
-        "repère orthonormé",
-        "vecteurs",
-        "distance entre deux points",
-        "parallélogramme",
-        "symétrie centrale",
-        "centre de gravité",
-        "médianes"
+        "théorème de Pythagore",
+        "symétrie axiale",
+        "triangle équilatéral",
+        "expression littérale",
+        "droites parallèles"
       ],
-      "enonce": "Tracer un repère (O, I, J) et placer les points A(−4 ; −1), B(−2 ; 3), C(8 ; 5) et D(6 ; 1).\nOn appelle M le milieu du segment [BD].\na) Démontrer que le quadrilatère ABCD est un parallélogramme.\nb) L est le symétrique de A par rapport à B. Démontrer que le quadrilatère BLCD est un parallélogramme.\nc) Les droites (LM) et (BC) se coupent en G. Que représente G pour le triangle LAC ?\nd) (AG) coupe (LC) en P. Calculer les coordonnées de P. Justifier soigneusement.",
-      "reponse": "AB = CD = 2√5 ; BC = AD = 2√26 ; L(0 ; 7) ; G est le centre de gravité du triangle LAC ; P(4 ; 6)",
-      "correction_du_livre": "Le livre écrit BD = 2√26 : c'est faux. B(−2 ; 3) et D(6 ; 1) donnent BD = √(8² + 2²) = √68 = 2√17. Le raisonnement reste juste, seul ce nombre est erroné."
+      "enonce": "1) Construire un triangle ABC rectangle en A tel que AB = 3 cm et BC = 6 cm.\nSoit D le symétrique de B par rapport à la droite (AC). Prouver que BD est égal à 6 cm et CD égale à 6 cm.\n2) Soit M un point qui se déplace sur le segment [BD]. On appelle x la longueur du segment [DM].\n   a) Entre quelles valeurs peut varier x ?\n   b) Exprimer BM en fonction de x.\n3) On projette M sur le segment [CD], parallèlement à la droite (BC). Prouver que DI est égal à x.",
+      "reponse": "AC = 3√3 cm ; BD = 6 cm ; CD = 6 cm ; x ∈ [0 ; 6] ; BM = 6 − x ; DI = x",
+      "correction_du_livre": "Le livre calcule AC = √(6² − 3²) = √(36 − 9) puis écrit « = √25 = 5 ». C'est une faute de calcul : 36 − 9 = 27, donc AC = 3√3 ≈ 5,2 cm."
     },
     {
       "id": "bepc-maths-2009-num-1",
@@ -280,20 +296,19 @@
       "reponse": "A = 4x² − 9x + 2 = (x − 2)(4x − 1) ; B = −8x² + 2x + 45 = (2x − 5)(−4x − 9)"
     },
     {
-      "id": "bepc-maths-2009-geo",
-      "session": 2009,
+      "id": "bepc-maths-2010-geo",
+      "session": 2010,
       "partie": "Activités Géométriques",
       "numero": "B",
       "chapitres": [
         "théorème de Pythagore",
-        "symétrie axiale",
-        "triangle équilatéral",
-        "expression littérale",
-        "droites parallèles"
+        "réciproque de Pythagore",
+        "droites parallèles",
+        "théorème de Thalès",
+        "construction géométrique"
       ],
-      "enonce": "1) Construire un triangle ABC rectangle en A tel que AB = 3 cm et BC = 6 cm.\nSoit D le symétrique de B par rapport à la droite (AC). Prouver que BD est égal à 6 cm et CD égale à 6 cm.\n2) Soit M un point qui se déplace sur le segment [BD]. On appelle x la longueur du segment [DM].\n   a) Entre quelles valeurs peut varier x ?\n   b) Exprimer BM en fonction de x.\n3) On projette M sur le segment [CD], parallèlement à la droite (BC). Prouver que DI est égal à x.",
-      "reponse": "AC = 3√3 cm ; BD = 6 cm ; CD = 6 cm ; x ∈ [0 ; 6] ; BM = 6 − x ; DI = x",
-      "correction_du_livre": "Le livre calcule AC = √(6² − 3²) = √(36 − 9) puis écrit « = √25 = 5 ». C'est une faute de calcul : 36 − 9 = 27, donc AC = 3√3 ≈ 5,2 cm."
+      "enonce": "ABC est un triangle tel que AB = 3, AC = 4 et BC = 5.\nSur la demi-droite (AB), on place le point D tel que AD est égal à 4.\nLa parallèle à la droite (BC) passant par le point D coupe la droite (AC) en E ; la perpendiculaire en D à la droite (AB) coupe (CB) en F.\n1) Faire une figure exacte (unité 2 cm).\n2) Montrer que ABC est un triangle rectangle et préciser en quel point.",
+      "reponse": "AB² + AC² = 9 + 16 = 25 = BC², donc ABC est rectangle en A"
     },
     {
       "id": "bepc-maths-2010-num-1",
@@ -336,19 +351,19 @@
       "reponse": "Prix au kilomètre = 50 GNF ; prise en charge = 300 GNF ; y = 50x + 300"
     },
     {
-      "id": "bepc-maths-2010-geo",
-      "session": 2010,
+      "id": "bepc-maths-2011-geo",
+      "session": 2011,
       "partie": "Activités Géométriques",
       "numero": "B",
       "chapitres": [
-        "théorème de Pythagore",
+        "repère orthonormé",
+        "distance entre deux points",
         "réciproque de Pythagore",
-        "droites parallèles",
-        "théorème de Thalès",
-        "construction géométrique"
+        "cercle circonscrit",
+        "médiatrice"
       ],
-      "enonce": "ABC est un triangle tel que AB = 3, AC = 4 et BC = 5.\nSur la demi-droite (AB), on place le point D tel que AD est égal à 4.\nLa parallèle à la droite (BC) passant par le point D coupe la droite (AC) en E ; la perpendiculaire en D à la droite (AB) coupe (CB) en F.\n1) Faire une figure exacte (unité 2 cm).\n2) Montrer que ABC est un triangle rectangle et préciser en quel point.",
-      "reponse": "AB² + AC² = 9 + 16 = 25 = BC², donc ABC est rectangle en A"
+      "enonce": "Placer dans un plan muni d'un repère orthonormal (O, I, J) les points A(−1 ; 5), B(−3 ; 1) et C(−5 ; 2).\na) Calculer les distances AC, AB et BC. En déduire la nature du triangle ABC.\nb) Tracer le cercle circonscrit (C) au triangle ABC. Préciser les coordonnées de son centre K et calculer son rayon.\nc) Soit x un réel différent de −5 et M(x ; 2). Calculer x pour que le point M appartienne au cercle (C). Démontrer que, pour le point M ainsi trouvé, la droite (BK) est la médiatrice du segment [CM].",
+      "reponse": "AB = 2√5 ; AC = 5 ; BC = √5 ; AC² = AB² + BC² donc ABC est rectangle en B. Le centre K est le milieu de l'hypoténuse [AC] : K(−3 ; 7/2), rayon = 5/2 = 2,5. Pour M : x = −1, soit M(−1 ; 2)"
     },
     {
       "id": "bepc-maths-2011-num-1",
@@ -404,19 +419,21 @@
       "reponse": "f(1/2) = 6 ; g(−7/3) = −103/15 ; f(x) = g(x) pour x = 30/7 ; f(x) ≤ g(x) pour x ≥ 30/7, soit x ∈ [30/7 ; +∞["
     },
     {
-      "id": "bepc-maths-2011-geo",
-      "session": 2011,
+      "id": "bepc-maths-2012-geo",
+      "session": 2012,
       "partie": "Activités Géométriques",
       "numero": "B",
       "chapitres": [
         "repère orthonormé",
+        "vecteurs",
+        "orthogonalité",
         "distance entre deux points",
-        "réciproque de Pythagore",
+        "triangle rectangle isocèle",
         "cercle circonscrit",
-        "médiatrice"
+        "trigonométrie"
       ],
-      "enonce": "Placer dans un plan muni d'un repère orthonormal (O, I, J) les points A(−1 ; 5), B(−3 ; 1) et C(−5 ; 2).\na) Calculer les distances AC, AB et BC. En déduire la nature du triangle ABC.\nb) Tracer le cercle circonscrit (C) au triangle ABC. Préciser les coordonnées de son centre K et calculer son rayon.\nc) Soit x un réel différent de −5 et M(x ; 2). Calculer x pour que le point M appartienne au cercle (C). Démontrer que, pour le point M ainsi trouvé, la droite (BK) est la médiatrice du segment [CM].",
-      "reponse": "AB = 2√5 ; AC = 5 ; BC = √5 ; AC² = AB² + BC² donc ABC est rectangle en B. Le centre K est le milieu de l'hypoténuse [AC] : K(−3 ; 7/2), rayon = 5/2 = 2,5. Pour M : x = −1, soit M(−1 ; 2)"
+      "enonce": "Dans un plan muni d'un repère orthonormal, on donne les points A, B et C de coordonnées respectives (6 ; −1), (2 ; −2) et (5 ; 3).\n1) Placer les points A, B et C.\n2) Montrer que les vecteurs AB et AC sont orthogonaux.\n3) Calculer les distances AB, AC et BC. Quelle est la nature du triangle ABC ?\n4) Soit (C) le cercle circonscrit au triangle ABC. Déterminer les coordonnées du point K, centre de ce cercle. Calculer son rayon.\n5) Calculer le sinus, le cosinus et la tangente de l'angle ABC.",
+      "reponse": "AB(−4 ; −1) et AC(−1 ; 4) : produit scalaire nul, donc orthogonaux ; AB = AC = √17 et BC = √34 ; triangle rectangle et isocèle en A ; K(7/2 ; 1/2), rayon √34/2 ; cos(ABC) = sin(ABC) = √2/2 et tan(ABC) = 1"
     },
     {
       "id": "bepc-maths-2012-num-1",
@@ -459,21 +476,21 @@
       "reponse": "Minimum 30 000 F ; maximum 40 000 F ; 30 000 < S < 40 000 ; amplitude 10 000 ; 60 pintades à 300 F et 40 pintades à 400 F"
     },
     {
-      "id": "bepc-maths-2012-geo",
-      "session": 2012,
+      "id": "bepc-maths-2013-geo",
+      "session": 2013,
       "partie": "Activités Géométriques",
       "numero": "B",
       "chapitres": [
-        "repère orthonormé",
-        "vecteurs",
-        "orthogonalité",
-        "distance entre deux points",
-        "triangle rectangle isocèle",
-        "cercle circonscrit",
-        "trigonométrie"
+        "trigonométrie",
+        "théorème de Pythagore",
+        "cercle",
+        "angle inscrit",
+        "théorème de Thalès",
+        "triangle équilatéral"
       ],
-      "enonce": "Dans un plan muni d'un repère orthonormal, on donne les points A, B et C de coordonnées respectives (6 ; −1), (2 ; −2) et (5 ; 3).\n1) Placer les points A, B et C.\n2) Montrer que les vecteurs AB et AC sont orthogonaux.\n3) Calculer les distances AB, AC et BC. Quelle est la nature du triangle ABC ?\n4) Soit (C) le cercle circonscrit au triangle ABC. Déterminer les coordonnées du point K, centre de ce cercle. Calculer son rayon.\n5) Calculer le sinus, le cosinus et la tangente de l'angle ABC.",
-      "reponse": "AB(−4 ; −1) et AC(−1 ; 4) : produit scalaire nul, donc orthogonaux ; AB = AC = √17 et BC = √34 ; triangle rectangle et isocèle en A ; K(7/2 ; 1/2), rayon √34/2 ; cos(ABC) = sin(ABC) = √2/2 et tan(ABC) = 1"
+      "enonce": "ABC est un triangle rectangle en A tel que AC = 4 et BC = 8.\n1) Calculer cos(ACB), en déduire la mesure de l'angle ACB, puis calculer AB.\n2) Dans le triangle ABC, le point H est tel que la droite (AH) est perpendiculaire à la droite (BC). Le point I est le centre du cercle (C) de diamètre [AC]. Démontrer que le point H appartient à (C).\n3) La parallèle à la droite (BC) passant par A coupe le cercle (C) en P. Démontrer que mes(APH) = 60°.\n4) La parallèle à la droite (AC) passant par H coupe la droite (AB) au point N. Calculer NH sachant que BH = 6.",
+      "reponse": "cos(ACB) = 4/8 = 1/2 donc ACB = 60° et AB = 4√3 ; AH = 2√3, CH = 2, IA = IC = IH = 2 donc H appartient au cercle ; mes(APH) = 60° ; NH = (BH × AC)/BC = 24/8 = 3",
+      "correction_du_livre": "L'énoncé imprimé demande cos(ABC), alors que tout le corrigé calcule cos(ACB) — c'est bien l'angle en C qui vaut 60°."
     },
     {
       "id": "bepc-maths-2013-num-1",
@@ -505,21 +522,24 @@
       "correction_du_livre": "L'énoncé imprimé oublie les 12 élèves nés en 1996 : sans eux le total ne fait que 48 élèves au lieu de 60, et la question devient insoluble. Le corrigé, lui, les fait apparaître dans son tableau."
     },
     {
-      "id": "bepc-maths-2013-geo",
-      "session": 2013,
+      "id": "bepc-maths-2014-geo",
+      "session": 2014,
       "partie": "Activités Géométriques",
       "numero": "B",
       "chapitres": [
-        "trigonométrie",
+        "repère orthonormé",
+        "distance entre deux points",
         "théorème de Pythagore",
-        "cercle",
-        "angle inscrit",
-        "théorème de Thalès",
-        "triangle équilatéral"
+        "symétrie centrale",
+        "rectangle",
+        "translation",
+        "cercle circonscrit",
+        "tangente au cercle",
+        "équation de droite"
       ],
-      "enonce": "ABC est un triangle rectangle en A tel que AC = 4 et BC = 8.\n1) Calculer cos(ACB), en déduire la mesure de l'angle ACB, puis calculer AB.\n2) Dans le triangle ABC, le point H est tel que la droite (AH) est perpendiculaire à la droite (BC). Le point I est le centre du cercle (C) de diamètre [AC]. Démontrer que le point H appartient à (C).\n3) La parallèle à la droite (BC) passant par A coupe le cercle (C) en P. Démontrer que mes(APH) = 60°.\n4) La parallèle à la droite (AC) passant par H coupe la droite (AB) au point N. Calculer NH sachant que BH = 6.",
-      "reponse": "cos(ACB) = 4/8 = 1/2 donc ACB = 60° et AB = 4√3 ; AH = 2√3, CH = 2, IA = IC = IH = 2 donc H appartient au cercle ; mes(APH) = 60° ; NH = (BH × AC)/BC = 24/8 = 3",
-      "correction_du_livre": "L'énoncé imprimé demande cos(ABC), alors que tout le corrigé calcule cos(ACB) — c'est bien l'angle en C qui vaut 60°."
+      "enonce": "Le plan est muni d'un repère (O ; I ; J). L'unité de longueur est le centimètre.\nOn donne les points A(7 ; 1), B(8 ; 4) et C(−1 ; 7).\n1) a) Faire une figure, à compléter au fur et à mesure des questions.\n   b) Calculer les distances AB, BC et AC.\n   c) Démontrer que le triangle ABC est rectangle.\n2) M est le milieu du segment [AC] et D le symétrique de B par rapport à M.\n   a) Déterminer le couple de coordonnées du point M.\n   b) Démontrer que le quadrilatère ABCD est un rectangle.\n3) P est l'image de O par la translation de vecteur AC. Déterminer le couple de coordonnées du point P.\n4) (C) est le cercle circonscrit au triangle ABC.\n   a) Préciser le centre et le rayon du cercle (C).\n   b) Justifier que les points D et O appartiennent au cercle (C).\n   c) Démontrer que la droite (OP) est la tangente au cercle (C).\n   d) Déterminer une équation de la droite (OP).",
+      "reponse": "AB = √10 ; BC = 3√10 ; AC = 10 ; AB² + BC² = AC² donc rectangle EN B ; M(3 ; 4) ; D(−2 ; 4) ; P(−8 ; 6) ; centre M(3 ; 4), rayon 5 cm ; équation de (OP) : 3x + 4y = 0",
+      "correction_du_livre": "Deux fautes dans le corrigé 2014 : il conclut « rectangle en A » alors que l'angle droit est en B (l'hypoténuse est [AC]) ; et il calcule correctement xD = −2 et yD = 4 puis écrit « D(3 ; 4) », qui sont les coordonnées de M. Le corrigé de la session 2007, où le même sujet est tombé, donne les bonnes valeurs."
     },
     {
       "id": "bepc-maths-2014-num-1",
@@ -546,58 +566,6 @@
       ],
       "enonce": "Fanta dispose d'une certaine somme d'argent et veut acheter des disques qui coûtent tous le même prix. Elle remarque que si elle en achète quatre, il lui restera 1 500 francs, mais qu'il lui manquerait 500 francs pour en acheter cinq.\nQuel est le prix d'un disque ?",
       "reponse": "Prix d'un disque = 2 000 francs (et Fanta possède 9 500 francs)"
-    },
-    {
-      "id": "bepc-maths-2014-geo",
-      "session": 2014,
-      "partie": "Activités Géométriques",
-      "numero": "B",
-      "chapitres": [
-        "repère orthonormé",
-        "distance entre deux points",
-        "théorème de Pythagore",
-        "symétrie centrale",
-        "rectangle",
-        "translation",
-        "cercle circonscrit",
-        "tangente au cercle",
-        "équation de droite"
-      ],
-      "enonce": "Le plan est muni d'un repère (O ; I ; J). L'unité de longueur est le centimètre.\nOn donne les points A(7 ; 1), B(8 ; 4) et C(−1 ; 7).\n1) a) Faire une figure, à compléter au fur et à mesure des questions.\n   b) Calculer les distances AB, BC et AC.\n   c) Démontrer que le triangle ABC est rectangle.\n2) M est le milieu du segment [AC] et D le symétrique de B par rapport à M.\n   a) Déterminer le couple de coordonnées du point M.\n   b) Démontrer que le quadrilatère ABCD est un rectangle.\n3) P est l'image de O par la translation de vecteur AC. Déterminer le couple de coordonnées du point P.\n4) (C) est le cercle circonscrit au triangle ABC.\n   a) Préciser le centre et le rayon du cercle (C).\n   b) Justifier que les points D et O appartiennent au cercle (C).\n   c) Démontrer que la droite (OP) est la tangente au cercle (C).\n   d) Déterminer une équation de la droite (OP).",
-      "reponse": "AB = √10 ; BC = 3√10 ; AC = 10 ; AB² + BC² = AC² donc rectangle EN B ; M(3 ; 4) ; D(−2 ; 4) ; P(−8 ; 6) ; centre M(3 ; 4), rayon 5 cm ; équation de (OP) : 3x + 4y = 0",
-      "correction_du_livre": "Deux fautes dans le corrigé 2014 : il conclut « rectangle en A » alors que l'angle droit est en B (l'hypoténuse est [AC]) ; et il calcule correctement xD = −2 et yD = 4 puis écrit « D(3 ; 4) », qui sont les coordonnées de M. Le corrigé de la session 2007, où le même sujet est tombé, donne les bonnes valeurs."
-    },
-    {
-      "id": "bepc-maths-2014b-num-1",
-      "session": 2015,
-      "partie": "Activités Numériques",
-      "numero": "Partie A",
-      "chapitres": [
-        "vrai ou faux",
-        "nombres relatifs",
-        "trigonométrie",
-        "racines carrées",
-        "identités remarquables",
-        "équation de droite",
-        "vecteurs",
-        "parallélogramme"
-      ],
-      "enonce": "Recopier chacune des affirmations ci-dessous. Dire si elle est vraie (V) ou fausse (F), puis justifier :\n1) Si x est un réel négatif, alors −(−x) est positif.\n2) Si le triangle ABC est rectangle en B, alors sin  = sin Ĉ.\n3) √15 = √60 / 2\n4) (555555)² + (333333)² = (888888)²\n5) La droite d'équation y = 2x + 3 passe par le point A(1 ; 5).\n6) Si les vecteurs BC et AD sont égaux, alors les segments [AC] et [BD] ont le même milieu.",
-      "reponse": "1) FAUX : si x < 0 alors −(−x) = x < 0.\n2) FAUX : dans un triangle rectangle en B, Â et Ĉ sont complémentaires, donc sin  = cos Ĉ. L'égalité sin  = sin Ĉ n'aurait lieu que si  = Ĉ = 45°.\n3) VRAI : √60/2 = √(4×15)/2 = 2√15/2 = √15.\n4) FAUX : a² + b² ≠ (a + b)².\n5) VRAI : 2(1) + 3 = 5.\n6) VRAI : ABCD est alors un parallélogramme, et ses diagonales se coupent en leur milieu.",
-      "correction_du_livre": "Le livre répond VRAI à l'affirmation 2 en justifiant que « Â et Ĉ sont complémentaires » — or c'est précisément ce qui rend l'égalité fausse : complémentaires donne sin  = cos Ĉ, pas sin  = sin Ĉ. La bonne réponse est FAUX. C'est l'erreur la plus grave relevée dans ce livre : elle enseigne un résultat de trigonométrie inexact. Le livre imprime « SESSION 2014 » sur ce sujet, mais l'ordre des pages le place entre 2014 (p.33) et 2016 (p.41) : c'est la session 2015. À confirmer par le porteur du projet."
-    },
-    {
-      "id": "bepc-maths-2014b-num-2",
-      "session": 2015,
-      "partie": "Activités Numériques",
-      "numero": "Partie B",
-      "chapitres": [
-        "systèmes de deux équations",
-        "problème concret"
-      ],
-      "enonce": "À l'occasion de l'anniversaire d'un collège, le comité de coordination propose des jus de fruit à 3 500 francs la bouteille et des limonades à 5 000 francs la bouteille.\nLa recette a été de 1 450 000 francs pour 350 bouteilles vendues.\nCombien de bouteilles de chaque sorte ont été vendues ?",
-      "reponse": "200 bouteilles de jus de fruit et 150 bouteilles de limonade",
-      "correction_du_livre": "Le livre imprime « SESSION 2014 » sur ce sujet, mais l'ordre des pages le place entre 2014 (p.33) et 2016 (p.41) : c'est la session 2015. À confirmer par le porteur du projet."
     },
     {
       "id": "bepc-maths-2014b-geo-1",
@@ -632,19 +600,36 @@
       "correction_du_livre": "Le livre imprime « SESSION 2014 » sur ce sujet, mais l'ordre des pages le place entre 2014 (p.33) et 2016 (p.41) : c'est la session 2015. À confirmer par le porteur du projet."
     },
     {
-      "id": "bepc-maths-2016-num",
-      "session": 2016,
+      "id": "bepc-maths-2014b-num-1",
+      "session": 2015,
       "partie": "Activités Numériques",
-      "numero": "A",
+      "numero": "Partie A",
       "chapitres": [
-        "statistiques",
-        "moyenne",
-        "pourcentages",
-        "diagramme circulaire",
-        "effectifs cumulés"
+        "vrai ou faux",
+        "nombres relatifs",
+        "trigonométrie",
+        "racines carrées",
+        "identités remarquables",
+        "équation de droite",
+        "vecteurs",
+        "parallélogramme"
       ],
-      "enonce": "Le tableau ci-dessous représente la répartition des notes de mathématiques lors d'un test de niveau, où la note moyenne est 12,5 :\n\nNotes sur 20 :      6 | 8 | 9 | 12 | 15 | x\nNombre d'élèves :   6 | 9 | 15 | 9 | 15 | 18\n\n1) Calculer x, la meilleure note attribuée lors de ce test.\n2) Combien d'élèves ont une note au moins égale à 12 ?\n3) Quel est le pourcentage des élèves qui ont au plus 15 ?\n4) Construire le diagramme circulaire de la série.",
-      "reponse": "Effectif total 72. (576 + 18x)/72 = 12,5 donne x = 18.\nNotes ≥ 12 : 9 + 15 + 18 = 42 élèves.\nNotes ≤ 15 : 54 élèves sur 72, soit 75 %.\nAngles du diagramme : 30°, 45°, 75°, 45°, 75°, 90° (total 360°)."
+      "enonce": "Recopier chacune des affirmations ci-dessous. Dire si elle est vraie (V) ou fausse (F), puis justifier :\n1) Si x est un réel négatif, alors −(−x) est positif.\n2) Si le triangle ABC est rectangle en B, alors sin  = sin Ĉ.\n3) √15 = √60 / 2\n4) (555555)² + (333333)² = (888888)²\n5) La droite d'équation y = 2x + 3 passe par le point A(1 ; 5).\n6) Si les vecteurs BC et AD sont égaux, alors les segments [AC] et [BD] ont le même milieu.",
+      "reponse": "1) FAUX : si x < 0 alors −(−x) = x < 0.\n2) FAUX : dans un triangle rectangle en B, Â et Ĉ sont complémentaires, donc sin  = cos Ĉ. L'égalité sin  = sin Ĉ n'aurait lieu que si  = Ĉ = 45°.\n3) VRAI : √60/2 = √(4×15)/2 = 2√15/2 = √15.\n4) FAUX : a² + b² ≠ (a + b)².\n5) VRAI : 2(1) + 3 = 5.\n6) VRAI : ABCD est alors un parallélogramme, et ses diagonales se coupent en leur milieu.",
+      "correction_du_livre": "Le livre répond VRAI à l'affirmation 2 en justifiant que « Â et Ĉ sont complémentaires » — or c'est précisément ce qui rend l'égalité fausse : complémentaires donne sin  = cos Ĉ, pas sin  = sin Ĉ. La bonne réponse est FAUX. C'est l'erreur la plus grave relevée dans ce livre : elle enseigne un résultat de trigonométrie inexact. Le livre imprime « SESSION 2014 » sur ce sujet, mais l'ordre des pages le place entre 2014 (p.33) et 2016 (p.41) : c'est la session 2015. À confirmer par le porteur du projet."
+    },
+    {
+      "id": "bepc-maths-2014b-num-2",
+      "session": 2015,
+      "partie": "Activités Numériques",
+      "numero": "Partie B",
+      "chapitres": [
+        "systèmes de deux équations",
+        "problème concret"
+      ],
+      "enonce": "À l'occasion de l'anniversaire d'un collège, le comité de coordination propose des jus de fruit à 3 500 francs la bouteille et des limonades à 5 000 francs la bouteille.\nLa recette a été de 1 450 000 francs pour 350 bouteilles vendues.\nCombien de bouteilles de chaque sorte ont été vendues ?",
+      "reponse": "200 bouteilles de jus de fruit et 150 bouteilles de limonade",
+      "correction_du_livre": "Le livre imprime « SESSION 2014 » sur ce sujet, mais l'ordre des pages le place entre 2014 (p.33) et 2016 (p.41) : c'est la session 2015. À confirmer par le porteur du projet."
     },
     {
       "id": "bepc-maths-2016-geo",
@@ -664,22 +649,19 @@
       "reponse": "KA = KN = 5 cm (rayons) et l'angle AKN vaut 60° : ANK est équilatéral, donc AN = 5 cm.\nLa tangente en N est perpendiculaire au rayon [KN] : TNK est rectangle en N, avec l'angle NKT = 60°, donc TN = 5 × tan(60°) = 5√3 ≈ 8,66 cm.\nDans ANT, les angles en T et en N valent 30° : ANT est isocèle en A, avec AT = AN = 5 cm.\nL = K + vecteur AN, donc KL = AN = 5 cm = rayon : L appartient bien à (C).\nANLK a ses quatre côtés égaux à 5 cm : c'est un losange."
     },
     {
-      "id": "bepc-maths-2017-num",
-      "session": 2017,
+      "id": "bepc-maths-2016-num",
+      "session": 2016,
       "partie": "Activités Numériques",
       "numero": "A",
       "chapitres": [
-        "identités remarquables",
-        "développement et factorisation",
-        "facteur commun",
-        "fonction rationnelle",
-        "condition d'existence",
-        "quantité conjuguée",
-        "encadrement",
-        "racines carrées"
+        "statistiques",
+        "moyenne",
+        "pourcentages",
+        "diagramme circulaire",
+        "effectifs cumulés"
       ],
-      "enonce": "On considère les polynômes suivants :\nf(x) = 49x² − 25\ng(x) = (7x − 5)(3 − 2x) − 14x + 10 − 5(5 − 7x)\n1) Développer, réduire et ordonner g(x) suivant les puissances décroissantes de x.\n2) Factoriser f(x) et g(x).\nOn pose h(x) = f(x) / g(x).\n3) a) Déterminer la condition d'existence d'une valeur numérique de h.\n   b) Simplifier h(x).\n4) a) Parmi les nombres réels 0 ; √3 et 5/7, quels sont ceux qui ont une image par h ? Justifier.\n   b) Calculer l'image, lorsqu'elle existe, de chacun de ces nombres.\n5) Donner un encadrement de h(√3) par deux nombres décimaux consécutifs d'ordre 2, sachant que 1,732 < √3 < 1,733.",
-      "reponse": "g(x) = −14x² + 52x − 30 ; f(x) = (7x + 5)(7x − 5) et g(x) = 2(7x − 5)(3 − x).\nh existe si et seulement si x ≠ 5/7 et x ≠ 3 ; h(x) = (7x + 5) / (6 − 2x).\n0 et √3 ont une image, 5/7 n'en a pas.\nh(0) = 5/6 ; h(√3) = (13√3)/6 + 3 ≈ 6,7528.\nEncadrement : 6,75 < h(√3) < 6,76."
+      "enonce": "Le tableau ci-dessous représente la répartition des notes de mathématiques lors d'un test de niveau, où la note moyenne est 12,5 :\n\nNotes sur 20 :      6 | 8 | 9 | 12 | 15 | x\nNombre d'élèves :   6 | 9 | 15 | 9 | 15 | 18\n\n1) Calculer x, la meilleure note attribuée lors de ce test.\n2) Combien d'élèves ont une note au moins égale à 12 ?\n3) Quel est le pourcentage des élèves qui ont au plus 15 ?\n4) Construire le diagramme circulaire de la série.",
+      "reponse": "Effectif total 72. (576 + 18x)/72 = 12,5 donne x = 18.\nNotes ≥ 12 : 9 + 15 + 18 = 42 élèves.\nNotes ≤ 15 : 54 élèves sur 72, soit 75 %.\nAngles du diagramme : 30°, 45°, 75°, 45°, 75°, 90° (total 360°)."
     },
     {
       "id": "bepc-maths-2017-geo",
@@ -700,21 +682,22 @@
       "reponse": "A(0 ; −2) ; AB = AC = 2√5 et BC = 2√10, avec AB² + AC² = BC² : ABC est rectangle et isocèle en A.\nP est le milieu de [BC] : P(−1 ; 1).\nLe cercle circonscrit a pour centre le milieu de l'hypoténuse, soit P(−1 ; 1), et pour rayon √10.\nA vérifie −0 + 3(−2) + 6 = 0, donc A appartient à (Δ') ; le vecteur PA(1 ; −3) est orthogonal au vecteur directeur (3 ; 1) de (Δ') : la droite est bien tangente en A."
     },
     {
-      "id": "bepc-maths-2018-num",
-      "session": 2018,
+      "id": "bepc-maths-2017-num",
+      "session": 2017,
       "partie": "Activités Numériques",
-      "numero": "Exercice",
+      "numero": "A",
       "chapitres": [
-        "statistiques",
-        "fréquences",
-        "effectifs",
-        "mode",
-        "diagramme circulaire",
-        "pourcentages"
+        "identités remarquables",
+        "développement et factorisation",
+        "facteur commun",
+        "fonction rationnelle",
+        "condition d'existence",
+        "quantité conjuguée",
+        "encadrement",
+        "racines carrées"
       ],
-      "enonce": "« Parmi les matières suivantes — Mathématiques, Physique, Chimie, Français et Biologie — laquelle préférez-vous ? » C'est la question qu'un principal de collège a posée aux élèves de ses classes de 10ᵉ année. Selon les réponses, il a établi le tableau ci-dessous :\n\nMatières :          Maths | Physique | Chimie | Français | Biologie | Totaux\nEffectifs :             ?  |    84    |    ?   |     ?    |    75    |   ?\nFréquences (en %) :    30  |     ?    |   12   |     ?    |  18,75   |  100\n\n1) Calculer le nombre total d'élèves interrogés.\n2) Calculer le nombre d'élèves qui préfèrent la chimie.\n3) Reproduire et compléter le tableau ci-dessus. En déduire le mode de cette série.\n4) Représenter cette série statistique à l'aide d'un diagramme circulaire.",
-      "reponse": "N = 75 × 100 / 18,75 = 400 élèves ; chimie = 400 × 12 % = 48 élèves.\nEffectifs : Maths 120, Physique 84, Chimie 48, Français 73, Biologie 75 (total 400).\nFréquences : 30 %, 21 %, 12 %, 18,25 %, 18,75 %.\nAngles : 108°, 75,6°, 43,2°, 65,7°, 67,5° (total 360°).\nLe mode est « Maths ».",
-      "correction_du_livre": "Le tableau du livre donne 75,5° pour la physique. Le calcul exact est 84 × 360 / 400 = 75,6°, et c'est la seule valeur qui fait un total de 360° : avec 75,5° la somme ne fait que 359,9°."
+      "enonce": "On considère les polynômes suivants :\nf(x) = 49x² − 25\ng(x) = (7x − 5)(3 − 2x) − 14x + 10 − 5(5 − 7x)\n1) Développer, réduire et ordonner g(x) suivant les puissances décroissantes de x.\n2) Factoriser f(x) et g(x).\nOn pose h(x) = f(x) / g(x).\n3) a) Déterminer la condition d'existence d'une valeur numérique de h.\n   b) Simplifier h(x).\n4) a) Parmi les nombres réels 0 ; √3 et 5/7, quels sont ceux qui ont une image par h ? Justifier.\n   b) Calculer l'image, lorsqu'elle existe, de chacun de ces nombres.\n5) Donner un encadrement de h(√3) par deux nombres décimaux consécutifs d'ordre 2, sachant que 1,732 < √3 < 1,733.",
+      "reponse": "g(x) = −14x² + 52x − 30 ; f(x) = (7x + 5)(7x − 5) et g(x) = 2(7x − 5)(3 − x).\nh existe si et seulement si x ≠ 5/7 et x ≠ 3 ; h(x) = (7x + 5) / (6 − 2x).\n0 et √3 ont une image, 5/7 n'en a pas.\nh(0) = 5/6 ; h(√3) = (13√3)/6 + 3 ≈ 6,7528.\nEncadrement : 6,75 < h(√3) < 6,76."
     },
     {
       "id": "bepc-maths-2018-geo",
@@ -734,6 +717,41 @@
       "enonce": "Dans le plan muni d'un repère orthonormé (O, I, J), on donne les points A(−2 ; −3), B(−4 ; −1) et C(2 ; 1).\n1) Placer les points A, B et C dans le repère.\n2) Montrer que les vecteurs AB et AC sont orthogonaux, en déduire la nature du triangle ABC.\n3) E est le milieu du segment [AC]. Calculer le couple de coordonnées de E, et donner l'équation de la droite (D), médiatrice de [AC].\n4) La droite passant par E parallèlement à (AB) coupe (BC) en F.\n   a) Calculer AB, AC, BC et AE.\n   b) Calculer de deux façons différentes EF.\n5) Calculer sin B, cos B et tan B.",
       "reponse": "AB(−2 ; 2) et AC(4 ; 4) : le produit −2(4) + 2(4) = 0, donc ABC est rectangle en A.\nE(0 ; −1) ; médiatrice (D) de [AC] : x + y + 1 = 0.\nAB = 2√2 ; AC = 4√2 ; BC = 2√10 ; AE = 2√2.\nEF = √2, par deux chemins : le théorème des milieux (EF = AB/2, F étant le milieu de [BC]), ou le calcul direct avec F(−1 ; 0).\nsin B = AC/BC = 2√5/5 ; cos B = AB/BC = √5/5 ; tan B = AC/AB = 2.",
       "correction_du_livre": "Le corrigé calcule BC = √((2+4)² + (1+3)²) = 2√13 : il a pris l'ordonnée de A au lieu de celle de B. Or yC − yB = 1 − (−1) = 2, donc BC = √(36 + 4) = 2√10. Sa propre vérification de Pythagore le contredit : AB² + AC² = 8 + 32 = 40, et 40 ≠ 52. L'erreur se propage à sin B et cos B, que le livre donne à 2√26/13 et √26/13 au lieu de 2√5/5 et √5/5. Seul tan B = 2 reste juste, parce qu'il ne fait pas intervenir BC."
+    },
+    {
+      "id": "bepc-maths-2018-num",
+      "session": 2018,
+      "partie": "Activités Numériques",
+      "numero": "Exercice",
+      "chapitres": [
+        "statistiques",
+        "fréquences",
+        "effectifs",
+        "mode",
+        "diagramme circulaire",
+        "pourcentages"
+      ],
+      "enonce": "« Parmi les matières suivantes — Mathématiques, Physique, Chimie, Français et Biologie — laquelle préférez-vous ? » C'est la question qu'un principal de collège a posée aux élèves de ses classes de 10ᵉ année. Selon les réponses, il a établi le tableau ci-dessous :\n\nMatières :          Maths | Physique | Chimie | Français | Biologie | Totaux\nEffectifs :             ?  |    84    |    ?   |     ?    |    75    |   ?\nFréquences (en %) :    30  |     ?    |   12   |     ?    |  18,75   |  100\n\n1) Calculer le nombre total d'élèves interrogés.\n2) Calculer le nombre d'élèves qui préfèrent la chimie.\n3) Reproduire et compléter le tableau ci-dessus. En déduire le mode de cette série.\n4) Représenter cette série statistique à l'aide d'un diagramme circulaire.",
+      "reponse": "N = 75 × 100 / 18,75 = 400 élèves ; chimie = 400 × 12 % = 48 élèves.\nEffectifs : Maths 120, Physique 84, Chimie 48, Français 73, Biologie 75 (total 400).\nFréquences : 30 %, 21 %, 12 %, 18,25 %, 18,75 %.\nAngles : 108°, 75,6°, 43,2°, 65,7°, 67,5° (total 360°).\nLe mode est « Maths ».",
+      "correction_du_livre": "Le tableau du livre donne 75,5° pour la physique. Le calcul exact est 84 × 360 / 400 = 75,6°, et c'est la seule valeur qui fait un total de 360° : avec 75,5° la somme ne fait que 359,9°."
+    },
+    {
+      "id": "bepc-maths-2019-geo",
+      "session": 2019,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": [
+        "repère orthonormé",
+        "vecteurs",
+        "orthogonalité",
+        "symétrie centrale",
+        "rectangle",
+        "théorème de Thalès",
+        "équation de droite",
+        "distance entre deux points"
+      ],
+      "enonce": "Dans un repère (O, I, J), on donne les points A(2 ; 1), B(−2 ; 3) et C(5 ; 7).\n1) a) Placer ces points. Démontrer que le triangle ABC est rectangle en A.\n   b) Calculer les coordonnées du milieu K du segment [BC], puis celles de D, symétrique de A par rapport à K. Quelle est la nature du quadrilatère ABDC ?\n2) Placer le point E tel que AE = (1/3) AC. La parallèle à (BC) passant par E coupe (AB) en F. Calculer AF.\n3) Déterminer une équation de la droite (BC) et calculer les coordonnées du point G, intersection de (BC) avec l'axe des abscisses.",
+      "reponse": "AB(−4 ; 2) et AC(3 ; 6) : le produit −4(3) + 2(6) = 0, donc ABC est rectangle en A.\nK(3/2 ; 5) et D(1 ; 9). Les diagonales [AD] et [BC] se coupent en leur milieu K, et l'angle en A est droit : ABDC est un rectangle.\nE(3 ; 3). D'après Thalès, AF/AB = AE/AC = 1/3, et AB = 2√5, donc AF = (2√5)/3.\nÉquation de (BC) : 4x − 7y + 29 = 0. Sur l'axe des abscisses, y = 0 donne G(−29/4 ; 0)."
     },
     {
       "id": "bepc-maths-2019-num-1",
@@ -766,22 +784,21 @@
       "reponse": "Le coefficient directeur vaut 5/(−1) = −5, et f(−1) = 2 donne f(x) = −5x − 3.\nf est décroissante, car son coefficient directeur est négatif.\nComme −1/2 < 1/4 < 1/3 < 22/7 et que f renverse l'ordre :\nf(22/7) < f(1/3) < f(1/4) < f(−1/2)."
     },
     {
-      "id": "bepc-maths-2019-geo",
-      "session": 2019,
+      "id": "bepc-maths-2020-geo",
+      "session": 2020,
       "partie": "Activités Géométriques",
       "numero": "B",
       "chapitres": [
-        "repère orthonormé",
-        "vecteurs",
-        "orthogonalité",
-        "symétrie centrale",
-        "rectangle",
-        "théorème de Thalès",
-        "équation de droite",
-        "distance entre deux points"
+        "théorème de Pythagore",
+        "relations métriques",
+        "projeté orthogonal",
+        "symétrie axiale",
+        "triangle équilatéral",
+        "trigonométrie",
+        "construction géométrique"
       ],
-      "enonce": "Dans un repère (O, I, J), on donne les points A(2 ; 1), B(−2 ; 3) et C(5 ; 7).\n1) a) Placer ces points. Démontrer que le triangle ABC est rectangle en A.\n   b) Calculer les coordonnées du milieu K du segment [BC], puis celles de D, symétrique de A par rapport à K. Quelle est la nature du quadrilatère ABDC ?\n2) Placer le point E tel que AE = (1/3) AC. La parallèle à (BC) passant par E coupe (AB) en F. Calculer AF.\n3) Déterminer une équation de la droite (BC) et calculer les coordonnées du point G, intersection de (BC) avec l'axe des abscisses.",
-      "reponse": "AB(−4 ; 2) et AC(3 ; 6) : le produit −4(3) + 2(6) = 0, donc ABC est rectangle en A.\nK(3/2 ; 5) et D(1 ; 9). Les diagonales [AD] et [BC] se coupent en leur milieu K, et l'angle en A est droit : ABDC est un rectangle.\nE(3 ; 3). D'après Thalès, AF/AB = AE/AC = 1/3, et AB = 2√5, donc AF = (2√5)/3.\nÉquation de (BC) : 4x − 7y + 29 = 0. Sur l'axe des abscisses, y = 0 donne G(−29/4 ; 0)."
+      "enonce": "Faire une figure soignée en prenant le cm pour unité.\nABC est un triangle rectangle en A tel que AB = 2 et BC = 4.\n1) Calculer AC.\n2) Soit H le projeté orthogonal de A sur (BC). Calculer CH.\n3) Soit B' l'image de B par la symétrie orthogonale d'axe (CA). Quelle est la nature du triangle BB'C ? Justifier. En déduire la mesure en degrés de l'angle ACB.\n4) Construire le point D tel que le vecteur CD = 3 CA, puis construire le point E, projeté orthogonal de D sur la droite (CB). Calculer CD et CE.",
+      "reponse": "AC = √(16 − 4) = 2√3.\nCH = AC²/BC = 12/4 = 3.\nC appartient à l'axe (CA), donc CB' = CB = 4 ; et BB' = 2 AB = 4 : le triangle BB'C a ses trois côtés égaux à 4, il est équilatéral. L'angle BCB' vaut donc 60°, et (CA) en est l'axe de symétrie : l'angle ACB = 30°.\nCD = 3 AC = 6√3 ; CE = CD × cos(30°) = 6√3 × (√3/2) = 9."
     },
     {
       "id": "bepc-maths-2020-num-1",
@@ -816,21 +833,19 @@
       "reponse": "Le système 2x + y = 102 et 5x + 3y = 264 donne x = 42 et y = 18.\nLongueur 42 m, largeur 18 m. Vérification : 44 × 22 − 42 × 18 = 212 et 43,5 × 20,5 − 756 = 135,75."
     },
     {
-      "id": "bepc-maths-2020-geo",
-      "session": 2020,
+      "id": "bepc-maths-2021-geo",
+      "session": 2021,
       "partie": "Activités Géométriques",
       "numero": "B",
       "chapitres": [
         "théorème de Pythagore",
-        "relations métriques",
-        "projeté orthogonal",
-        "symétrie axiale",
-        "triangle équilatéral",
         "trigonométrie",
+        "théorème de Thalès",
+        "droites perpendiculaires",
         "construction géométrique"
       ],
-      "enonce": "Faire une figure soignée en prenant le cm pour unité.\nABC est un triangle rectangle en A tel que AB = 2 et BC = 4.\n1) Calculer AC.\n2) Soit H le projeté orthogonal de A sur (BC). Calculer CH.\n3) Soit B' l'image de B par la symétrie orthogonale d'axe (CA). Quelle est la nature du triangle BB'C ? Justifier. En déduire la mesure en degrés de l'angle ACB.\n4) Construire le point D tel que le vecteur CD = 3 CA, puis construire le point E, projeté orthogonal de D sur la droite (CB). Calculer CD et CE.",
-      "reponse": "AC = √(16 − 4) = 2√3.\nCH = AC²/BC = 12/4 = 3.\nC appartient à l'axe (CA), donc CB' = CB = 4 ; et BB' = 2 AB = 4 : le triangle BB'C a ses trois côtés égaux à 4, il est équilatéral. L'angle BCB' vaut donc 60°, et (CA) en est l'axe de symétrie : l'angle ACB = 30°.\nCD = 3 AC = 6√3 ; CE = CD × cos(30°) = 6√3 × (√3/2) = 9."
+      "enonce": "On considère le triangle ABC tel que AC = 4,8 cm ; AB = 6,4 cm et BC = 8 cm.\n1) Construire le triangle ABC.\n2) Démontrer que le triangle ABC est rectangle en A.\n3) Tracer la droite (D) perpendiculaire en C à la droite (BC) ; cette droite (D) coupe la droite (AB) en un point E.\n4) a) Exprimer tan B dans le triangle ABC, puis dans le triangle BCE.\n   b) En déduire que EC = 6 cm.\n5) Sur le segment [CE], on marque le point M tel que CM = 4,2 cm. La parallèle à (BE) passant par M coupe [BC] en N. Calculer les longueurs CN et MN.\n6) Calculer cos B et sin B.",
+      "reponse": "AB² + AC² = 40,96 + 23,04 = 64 = BC² : le triangle est rectangle en A (réciproque de Pythagore).\ntan B = AC/AB = 4,8/6,4 = 3/4 dans ABC, et tan B = EC/BC = EC/8 dans BCE, d'où EC = 6 cm.\nDans le triangle CEB, MN ∥ EB donne CM/CE = CN/CB = MN/EB, avec le rapport 4,2/6 = 0,7.\nDonc CN = 0,7 × 8 = 5,6 cm, et comme EB = √(64 + 36) = 10 cm, MN = 0,7 × 10 = 7 cm.\ncos B = AB/BC = 0,8 et sin B = AC/BC = 0,6."
     },
     {
       "id": "bepc-maths-2021-num-1",
@@ -864,19 +879,34 @@
       "reponse": "Le système x + y = 6 460 et (2/3)x + (3/4)y = 4 610 donne x = 2 820 F pour le premier et y = 3 640 F pour le second.\nVérification : 1 880 + 2 730 = 4 610 F."
     },
     {
-      "id": "bepc-maths-2021-geo",
-      "session": 2021,
+      "id": "bepc-maths-2022-geo-1",
+      "session": 2022,
       "partie": "Activités Géométriques",
-      "numero": "B",
+      "numero": "Partie A",
       "chapitres": [
-        "théorème de Pythagore",
-        "trigonométrie",
         "théorème de Thalès",
-        "droites perpendiculaires",
-        "construction géométrique"
+        "droites parallèles",
+        "rapports de longueurs"
       ],
-      "enonce": "On considère le triangle ABC tel que AC = 4,8 cm ; AB = 6,4 cm et BC = 8 cm.\n1) Construire le triangle ABC.\n2) Démontrer que le triangle ABC est rectangle en A.\n3) Tracer la droite (D) perpendiculaire en C à la droite (BC) ; cette droite (D) coupe la droite (AB) en un point E.\n4) a) Exprimer tan B dans le triangle ABC, puis dans le triangle BCE.\n   b) En déduire que EC = 6 cm.\n5) Sur le segment [CE], on marque le point M tel que CM = 4,2 cm. La parallèle à (BE) passant par M coupe [BC] en N. Calculer les longueurs CN et MN.\n6) Calculer cos B et sin B.",
-      "reponse": "AB² + AC² = 40,96 + 23,04 = 64 = BC² : le triangle est rectangle en A (réciproque de Pythagore).\ntan B = AC/AB = 4,8/6,4 = 3/4 dans ABC, et tan B = EC/BC = EC/8 dans BCE, d'où EC = 6 cm.\nDans le triangle CEB, MN ∥ EB donne CM/CE = CN/CB = MN/EB, avec le rapport 4,2/6 = 0,7.\nDonc CN = 0,7 × 8 = 5,6 cm, et comme EB = √(64 + 36) = 10 cm, MN = 0,7 × 10 = 7 cm.\ncos B = AB/BC = 0,8 et sin B = AC/BC = 0,6."
+      "enonce": "Soit ABC un triangle tel que AB = 6 cm et BC = 9 cm. M est un point du segment [AB] tel que AM = 2 cm. La parallèle à (BC) passant par M coupe [AC] en N.\n1) Calculer MN.\n2) Donner la valeur du quotient AN/AC.\n3) On suppose que NC = 2,5 cm. Calculer AC et AN.",
+      "reponse": "D'après Thalès, AM/AB = MN/BC = AN/AC = 2/6 = 1/3.\nMN = 9/3 = 3 cm.\nAN/AC = 1/3.\nComme NC = AC − AN = (2/3) AC = 2,5, on obtient AC = 3,75 cm et AN = 1,25 cm."
+    },
+    {
+      "id": "bepc-maths-2022-geo-2",
+      "session": 2022,
+      "partie": "Activités Géométriques",
+      "numero": "Partie B",
+      "chapitres": [
+        "repère orthonormé",
+        "vecteurs",
+        "orthogonalité",
+        "translation",
+        "losange",
+        "équation de droite",
+        "distance entre deux points"
+      ],
+      "enonce": "Soit (O, I, J) un repère orthonormé. On donne A(0 ; 4) ; B(2 ; 8) et C(4 ; 4).\n1) Placer les points A, B et C, puis compléter la figure au fur et à mesure.\n2) Calculer les coordonnées de M, milieu du segment [AC].\n3) Montrer que les droites (AC) et (BM) sont perpendiculaires.\n4) Calculer les coordonnées de D, image de A par la translation de vecteur BC, puis en déduire et justifier la nature du quadrilatère ABCD.\n5) Donner une équation de la droite (AB). Soit K le point de la droite (AB) dont l'ordonnée est nulle. Calculer son abscisse.",
+      "reponse": "M(2 ; 4).\nLe vecteur AC(4 ; 0) et le vecteur BM(0 ; −4) : leur produit 4 × 0 + 0 × (−4) = 0, donc (AC) ⊥ (BM).\nLe vecteur BC(2 ; −4) donne D(2 ; 0).\nABCD est un losange : ses quatre côtés valent 2√5, et ses diagonales [AC] et [BD] sont perpendiculaires. Ce n'est pas un carré, car AC = 4 et BD = 8.\nÉquation de (AB) : y = 2x + 4. Pour y = 0, K(−2 ; 0)."
     },
     {
       "id": "bepc-maths-2022-num-1",
@@ -910,34 +940,157 @@
       "reponse": "(a + 3)² − 64 = a² + 6a − 55.\nFactorisation par différence de deux carrés : a² + 6a − 55 = (a + 3)² − 8² = (a − 5)(a + 11).\nL'équation donne a = 5 ou a = −11.\nPour le rectangle, la largeur l vérifie l(l + 6) = 55, soit la même équation : l = 5 ou l = −11. Une largeur étant positive, la largeur est 5 cm (et la longueur 11 cm)."
     },
     {
-      "id": "bepc-maths-2022-geo-1",
-      "session": 2022,
+      "id": "bepc-maths-2023-geo",
+      "session": 2023,
       "partie": "Activités Géométriques",
-      "numero": "Partie A",
-      "chapitres": [
-        "théorème de Thalès",
-        "droites parallèles",
-        "rapports de longueurs"
-      ],
-      "enonce": "Soit ABC un triangle tel que AB = 6 cm et BC = 9 cm. M est un point du segment [AB] tel que AM = 2 cm. La parallèle à (BC) passant par M coupe [AC] en N.\n1) Calculer MN.\n2) Donner la valeur du quotient AN/AC.\n3) On suppose que NC = 2,5 cm. Calculer AC et AN.",
-      "reponse": "D'après Thalès, AM/AB = MN/BC = AN/AC = 2/6 = 1/3.\nMN = 9/3 = 3 cm.\nAN/AC = 1/3.\nComme NC = AC − AN = (2/3) AC = 2,5, on obtient AC = 3,75 cm et AN = 1,25 cm."
-    },
-    {
-      "id": "bepc-maths-2022-geo-2",
-      "session": 2022,
-      "partie": "Activités Géométriques",
-      "numero": "Partie B",
+      "numero": "B",
       "chapitres": [
         "repère orthonormé",
+        "coordonnées d'un vecteur",
+        "vecteurs",
+        "distance entre deux points",
+        "réciproque de Pythagore",
+        "théorème de Pythagore",
+        "milieu d'un segment",
+        "symétrie centrale",
+        "rectangle",
+        "aires",
+        "équation de droite"
+      ],
+      "enonce": "Le plan est muni d'un repère orthonormé (O, I, J). L'unité de longueur est le centimètre.\n1. a. Place les points A(−2 ; −1), B(−5 ; 3) et C(3 ; 9). Fais une figure que tu compléteras au fur et à mesure de ta progression dans l'énoncé. (2 points)\nb. Donne les coordonnées des vecteurs AB et BC, puis vérifie par un calcul que AB = 5 cm et BC = 10 cm. (2 points)\n2. Calcule les coordonnées du vecteur AC et en déduis la distance AC (on l'écrira sous la forme a√5 où a est un entier naturel).\n3. Démontre que ABC est un triangle rectangle en B. (1 point)\n4. Calcule les coordonnées de K, milieu du segment [AC]. (1 point)\n5. a. Place le point D symétrique de B par rapport à K. (1 point)\nb. Démontre que ABCD est un rectangle. (1 point)\nc. Calcule l'aire du rectangle ABCD, puis celle du triangle ABC. (1 point)\n6. Détermine une équation de la droite (AB). (1 point)",
+      "reponse": "1.b. AB(−3 ; 4) donc AB = √(9 + 16) = 5 ; BC(8 ; 6) donc BC = √(64 + 36) = 10. 2. AC(5 ; 10) donc AC = √125 = 5√5 (a = 5). 3. AC² = 125 et AB² + BC² = 25 + 100 = 125 : par la réciproque de Pythagore, ABC est rectangle en B. 4. K(1/2 ; 4). 5.a. D(6 ; 5). b. K est le milieu de [AC] et de [BD] : les diagonales se coupent en leur milieu, donc ABCD est un parallélogramme ; comme l'angle en B est droit, c'est un rectangle. c. Aire ABCD = AB × BC = 5 × 10 = 50 cm² ; aire ABC = 25 cm². 6. (AB) : 4x + 3y + 11 = 0, soit y = (−4x − 11)/3.",
+      "correction_du_livre": "Le corrigé imprimé s'arrête au point D de la question 5.a. Les questions 5.b (ABCD est un rectangle), 5.c (les deux aires) et 6 (l'équation de la droite AB) ne sont jamais traitées."
+    },
+    {
+      "id": "bepc-maths-2023-num-1",
+      "session": 2023,
+      "partie": "Activités Numériques",
+      "numero": "Exercice 1",
+      "chapitres": [
+        "programme de calcul",
+        "identités remarquables",
+        "équation produit",
+        "développement et factorisation"
+      ],
+      "enonce": "On propose deux programmes de calcul. (4 points)\nProgramme A : choisis un nombre ; ajoute 5 ; calcule le carré du résultat obtenu.\nProgramme B : choisis un nombre ; soustrais 7 ; calcule le carré du résultat obtenu.\n1. On choisit 5 comme nombre de départ. Montre que le résultat du programme B est 4. (0,5 point)\n2. On choisit −2 comme nombre de départ. Quel est le résultat avec le programme A ? (0,5 point)\n3. a. Quel nombre faut-il choisir pour que le résultat du programme A soit 0 ? (0,5 point)\nb. Quels nombres faut-il choisir pour que le résultat du programme B soit 9 ? (1 point)\n4. Quel nombre doit-on choisir pour obtenir le même résultat avec les deux programmes ? (1,5 point)",
+      "reponse": "1. (5 − 7)² = (−2)² = 4. 2. (−2 + 5)² = 3² = 9. 3.a. (x + 5)² = 0 donne x = −5. b. (x − 7)² = 9 s'écrit (x − 7)² − 3² = 0, soit (x − 10)(x − 4) = 0 : x = 4 ou x = 10. 4. (x + 5)² = (x − 7)² donne 10x + 25 = −14x + 49, soit 24x = 24 et x = 1."
+    },
+    {
+      "id": "bepc-maths-2023-num-2",
+      "session": 2023,
+      "partie": "Activités Numériques",
+      "numero": "Exercice 2",
+      "chapitres": [
+        "racines carrées",
+        "quantité conjuguée",
+        "encadrement",
+        "comparaison de réels",
+        "valeur absolue"
+      ],
+      "enonce": "On donne les réels : x = 4/(7 + 3√5) et y = 3√5 − 7. (5 points)\n1. Écris x avec un dénominateur rationnel. (0,5 point)\n2. Démontre que y est négatif. (1 point)\n3. Justifie que x = −y. (0,5 point)\n4. Encadre x à 10⁻² près, sachant que 2,236 < √5 < 2,237. (1,5 point)\n5. On pose z = (x − y)². Justifie que √z = −2y. (1,5 point)",
+      "reponse": "1. En multipliant par la quantité conjuguée 7 − 3√5 : x = 4(7 − 3√5)/(49 − 45) = 7 − 3√5. 2. (3√5)² = 45 et 7² = 49, donc 3√5 < 7 et y = 3√5 − 7 < 0. 3. x = 7 − 3√5 = −(3√5 − 7) = −y. 4. De 2,236 < √5 < 2,237 on tire 6,708 < 3√5 < 6,711, puis 7 − 6,711 < x < 7 − 6,708, soit 0,289 < x < 0,292. 5. Comme x = −y, x − y = −2y, donc z = 4y² et √z = |−2y| = −2y puisque y est négatif.",
+      "correction_du_livre": "Deux glissements dans le corrigé imprimé de la question 4. Il écrit « 3 × 2,24 » au lieu de 3 × 2,236 (la suite du calcul utilise bien 6,708). Et il conclut 0,288 < x alors que 7 − 6,711 = 0,289 : l'encadrement juste est 0,289 < x < 0,292."
+    },
+    {
+      "id": "bepc-maths-2024-geo",
+      "session": 2024,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": [
+        "repère orthonormé",
+        "coordonnées d'un vecteur",
         "vecteurs",
         "orthogonalité",
-        "translation",
-        "losange",
-        "équation de droite",
+        "triangle rectangle",
+        "cercle circonscrit",
+        "milieu d'un segment",
+        "points alignés",
+        "colinéarité",
         "distance entre deux points"
       ],
-      "enonce": "Soit (O, I, J) un repère orthonormé. On donne A(0 ; 4) ; B(2 ; 8) et C(4 ; 4).\n1) Placer les points A, B et C, puis compléter la figure au fur et à mesure.\n2) Calculer les coordonnées de M, milieu du segment [AC].\n3) Montrer que les droites (AC) et (BM) sont perpendiculaires.\n4) Calculer les coordonnées de D, image de A par la translation de vecteur BC, puis en déduire et justifier la nature du quadrilatère ABCD.\n5) Donner une équation de la droite (AB). Soit K le point de la droite (AB) dont l'ordonnée est nulle. Calculer son abscisse.",
-      "reponse": "M(2 ; 4).\nLe vecteur AC(4 ; 0) et le vecteur BM(0 ; −4) : leur produit 4 × 0 + 0 × (−4) = 0, donc (AC) ⊥ (BM).\nLe vecteur BC(2 ; −4) donne D(2 ; 0).\nABCD est un losange : ses quatre côtés valent 2√5, et ses diagonales [AC] et [BD] sont perpendiculaires. Ce n'est pas un carré, car AC = 4 et BD = 8.\nÉquation de (AB) : y = 2x + 4. Pour y = 0, K(−2 ; 0)."
+      "enonce": "Le plan est muni d'un repère orthonormé (O ; I ; J), on donne les points : A(4 ; 6), B(−1 ; 5) et C(5 ; 1). (10 points)\n1. Place ces points. (1,5 point)\n2. Calcule les coordonnées des vecteurs AB et AC et montre qu'ils sont orthogonaux. (2 points)\nEn déduis la nature du triangle ABC. (1 point)\n3. (C) est le cercle circonscrit au triangle ABC.\na. Calcule le couple de coordonnées du centre I de ce cercle, puis calcule son rayon r. (1,5 point)\nb. Trace le cercle (C). (0,5 point)\n4. Montre que les points A, I et O sont alignés. (2 points)\n5. Montre que le point O appartient au cercle (C). (1,5 point)",
+      "reponse": "2. AB(−5 ; −1) et AC(1 ; −5). Le produit scalaire vaut (−5)(1) + (−1)(−5) = 0 : les vecteurs sont orthogonaux, donc ABC est un triangle rectangle en A. 3.a. Le triangle étant rectangle en A, le centre du cercle circonscrit est le milieu de l'hypoténuse [BC] : I(2 ; 3). BC = √(36 + 16) = √52 = 2√13, donc r = √13. 4. AI(−2 ; −3) et AO(−4 ; −6) = 2 × AI : les vecteurs sont colinéaires, donc A, I et O sont alignés. 5. IO = √((0 − 2)² + (0 − 3)²) = √13 = r, donc O appartient au cercle (C)."
+    },
+    {
+      "id": "bepc-maths-2024-num-1",
+      "session": 2024,
+      "partie": "Activités Numériques",
+      "numero": "Exercice 1",
+      "chapitres": [
+        "systèmes de deux équations",
+        "problème concret"
+      ],
+      "enonce": "Les petites économies de Fanta sont constituées de billets de 500 FG et de 1000 FG. Ce qui représente 26 billets au total pour un montant de 16 500 FG.\nTrouve le nombre de billets de 500 FG et le nombre de billets de 1000 FG. (4 points)",
+      "reponse": "Soit x le nombre de billets de 500 FG et y celui de 1000 FG : x + y = 26 et 500x + 1000y = 16 500, c'est-à-dire x + 2y = 33. Par soustraction y = 7, puis x = 19. Il y a 19 billets de 500 FG et 7 billets de 1000 FG (vérification : 19 × 500 + 7 × 1000 = 16 500 FG)."
+    },
+    {
+      "id": "bepc-maths-2024-num-2",
+      "session": 2024,
+      "partie": "Activités Numériques",
+      "numero": "Exercice 2",
+      "chapitres": [
+        "développement et factorisation",
+        "identités remarquables",
+        "fraction rationnelle",
+        "condition d'existence",
+        "valeur numérique",
+        "équations du premier degré"
+      ],
+      "enonce": "Soit les expressions littérales :\nA = (2x − 3)(x + 7) − 4x² + 9 − (2x − 3) ; B = 6x² − 9x (6 points)\n1. Développe, réduis et ordonne l'expression A. (1 point)\n2. Factorise A et B. (1 point)\n3. Calcule la valeur numérique de B pour x = √2. (1 point)\n4. Soit la fraction rationnelle E = (6x² − 9x) / ((2x − 3)(−x + 3)).\na. Détermine la condition d'existence de E. (1 point)\nb. Simplifie E. (1 point)\nc. Calcule la valeur numérique de E pour x = −6 × 10⁻¹. (1 point)\nd. Pour quelle valeur de x a-t-on E = 1 ? (1 point)",
+      "reponse": "1. (2x − 3)(x + 7) = 2x² + 11x − 21, donc A = 2x² + 11x − 21 − 4x² + 9 − 2x + 3 = −2x² + 9x − 9. 2. A = (2x − 3)[(x + 7) − (2x + 3) − 1] = (2x − 3)(−x + 3) ; B = 3x(2x − 3). 3. B(√2) = 6 × 2 − 9√2 = 12 − 9√2. 4.a. Il faut 2x − 3 ≠ 0 ET −x + 3 ≠ 0 : x ≠ 3/2 et x ≠ 3, donc D = ℝ privé de {3/2 ; 3}. b. E = 3x(2x − 3)/((2x − 3)(−x + 3)) = 3x/(−x + 3). c. Pour x = −0,6 : E = −1,8/3,6 = −1/2. d. 3x = −x + 3 donne 4x = 3, soit x = 3/4.",
+      "correction_du_livre": "Le corrigé imprimé développe (2x − 3)(x + 7) en 2x² + 7x − 3x − 21 au lieu de 2x² + 14x − 3x − 21, et annonce A = −2x² + 2x − 9. Sa propre factorisation le contredit : (2x − 3)(−x + 3) redonne −2x² + 9x − 9. C'est une erreur que l'élève peut vérifier seul en redéveloppant la forme factorisée.\nDeux autres glissements : à la question 4.c le calcul écrit bien −1,8/3,6 puis perd le signe et conclut E = 1/2, alors que E = −1/2 ; et la condition d'existence est écrite avec « ou » là où il faut « et »."
+    },
+    {
+      "id": "bepc-maths-2025-geo",
+      "session": 2025,
+      "partie": "Activités Géométriques",
+      "numero": "B",
+      "chapitres": [
+        "repère orthonormé",
+        "distance entre deux points",
+        "réciproque de Pythagore",
+        "théorème de Pythagore",
+        "milieu d'un segment",
+        "cercle circonscrit",
+        "tangente au cercle",
+        "équation de droite",
+        "trigonométrie",
+        "parallélogramme",
+        "droites parallèles"
+      ],
+      "enonce": "Le plan est muni d'un repère orthonormé (O, i, j). On donne : A(1 ; −1) ; B(−1 ; −3) et C(5 ; −5). (10 points)\n1. Fais une figure que tu compléteras au fur et à mesure.\n2. Calcule AB, BC et AC.\n3. Montre que le triangle ABC est un triangle rectangle (précise en quel point).\n4. Soit le point M, milieu de [BC]. Calcule les coordonnées de M.\n5. Soit le cercle (C), circonscrit au triangle ABC.\na. Montre que le point M est le centre du cercle (C).\nb. Montre que le segment [AM] est un rayon du cercle (C), puis calcule sa valeur.\n6. Soit (T) la tangente du cercle (C) au point A. Détermine l'équation de la tangente (T), puis trace la droite (T).\n7. Montre que sin(ACB) = √5/5.\n8. Soit le point D tel que le quadrilatère ABCD soit un parallélogramme.\na. Calcule les coordonnées de D puis place-le dans le repère.\nb. Soit la droite (Δ) passant par D et parallèle à (T). Détermine l'équation de la droite (Δ).",
+      "reponse": "2. AB = √(4 + 4) = 2√2 ; BC = √(36 + 4) = 2√10 ; AC = √(16 + 16) = 4√2. 3. AB² + AC² = 8 + 32 = 40 = BC² : par la réciproque de Pythagore, le triangle est rectangle en A. 4. M(2 ; −4). 5.a. Le triangle est rectangle en A, donc son cercle circonscrit a pour diamètre l'hypoténuse [BC] et pour centre son milieu M. b. [AM] joint le centre à un point du cercle : c'est un rayon. AM = √(1 + 9) = √10 (soit bien BC/2). 6. (T) est perpendiculaire au rayon [AM] en A. Le vecteur AM(1 ; −3) est normal à (T), d'où (T) : x − 3y − 4 = 0. 7. Dans le triangle rectangle en A, sin(ACB) = AB/BC = 2√2/(2√10) = √(1/5) = √5/5. 8.a. ABCD parallélogramme signifie AB = DC, d'où D = C − B + A = (7 ; −3). b. (Δ) a la même direction que (T) : x − 3y + c = 0 avec 7 + 9 + c = 0, donc (Δ) : x − 3y − 16 = 0."
+    },
+    {
+      "id": "bepc-maths-2025-num-1",
+      "session": 2025,
+      "partie": "Activités Numériques",
+      "numero": "Exercice 1",
+      "chapitres": [
+        "statistiques",
+        "mode",
+        "effectifs cumulés",
+        "moyenne"
+      ],
+      "enonce": "Le professeur de mathématiques a relevé, le 05 mars 2025, l'âge des élèves d'une classe de 10ᵉ année que voici : (6 points)\n13  16  14  15  13\n16  14  14  15  16\n15  15  14  17  14\n13  15  15  15  16\n13  14  15  17  16\n16  15  15  14  15\n1. Quel est le caractère étudié ? Précise sa nature.\n2. Établis le tableau des effectifs des âges de cette série statistique.\n3. Quel est le mode de cette série statistique ?\n4. Quel est le nombre d'élèves ayant un âge inférieur à 15 ans ?\n5. Quel est le nombre d'élèves ayant au moins 16 ans ?\n6. Calcule l'âge moyen des élèves de cette série.",
+      "reponse": "La série compte 30 valeurs. 1. Le caractère étudié est l'âge des élèves ; il est quantitatif discret. 2. Effectifs : 13 ans → 4 ; 14 ans → 7 ; 15 ans → 11 ; 16 ans → 6 ; 17 ans → 2 ; total 30. 3. Le mode est 15 ans (effectif 11, le plus grand). 4. Moins de 15 ans : 4 + 7 = 11 élèves. 5. Au moins 16 ans : 6 + 2 = 8 élèves. 6. Moyenne = (13×4 + 14×7 + 15×11 + 16×6 + 17×2)/30 = 445/30 ≈ 14,83 ans.",
+      "correction_du_livre": "Le corrigé imprimé est faux d'un bout à l'autre de cet exercice. Il donne les effectifs 5, 8, 15, 6, 2 pour un total de 36, alors que la série ne contient que 30 valeurs (6 lignes de 5 nombres). Les effectifs justes sont 4, 7, 11, 6, 2. En conséquence il annonce 13 élèves de moins de 15 ans au lieu de 11, et une moyenne de 14,77 ans au lieu de 14,83. Le mode (15 ans) et le nombre d'élèves d'au moins 16 ans (8) sont les seules réponses justes. Un élève peut trancher lui-même : il suffit de compter les nombres de l'énoncé."
+    },
+    {
+      "id": "bepc-maths-2025-num-2",
+      "session": 2025,
+      "partie": "Activités Numériques",
+      "numero": "Exercice 2",
+      "chapitres": [
+        "racines carrées",
+        "nombres inverses",
+        "identités remarquables",
+        "développement et factorisation",
+        "simplification de radicaux",
+        "quantité conjuguée"
+      ],
+      "enonce": "On donne les réels suivants : a = (√3 − 1)/√2 et b = (√3 + 1)/√2. (4 points)\n1. Calcule le produit a × b. Que peux-tu dire des réels a et b ?\n2. Calcule a² et a/b. Que constates-tu ? Pouvais-tu prévoir ce résultat ? Justifie ta réponse.\n3. a. Développe les expressions suivantes : (√3 − 1)² et (√3 + 1)².\nb. En déduis une écriture simple des expressions C et D définies par : C = √(4 + 2√3) et D = √(4 − 2√3).",
+      "reponse": "1. a × b = (√3 − 1)(√3 + 1)/2 = (3 − 1)/2 = 1 : a et b sont inverses l'un de l'autre. 2. a² = (√3 − 1)²/2 = (4 − 2√3)/2 = 2 − √3. Comme b = 1/a, a/b = a × a = a² = 2 − √3 : c'était prévisible dès la question 1. 3.a. (√3 − 1)² = 4 − 2√3 et (√3 + 1)² = 4 + 2√3. b. C = √((√3 + 1)²) = √3 + 1 et D = √((√3 − 1)²) = √3 − 1 (positif, donc la valeur absolue ne change rien)."
     }
   ]
 }

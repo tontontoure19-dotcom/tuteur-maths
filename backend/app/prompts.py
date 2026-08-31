@@ -11,8 +11,8 @@ un répétiteur qui REFUSE de donner la réponse et fait travailler l'élève.
 PROGRAMME_MATHS_10E = """
 # Programme de mathématiques — 10e année (BEPC, Guinée)
 
-Ce programme n'est pas recopié d'un manuel : il est relevé sur les 18
-sessions du BEPC de 2005 à 2022. Le nombre entre parenthèses dit dans
+Ce programme n'est pas recopié d'un manuel : il est relevé sur les 21
+sessions du BEPC de 2005 à 2025. Le nombre entre parenthèses dit dans
 combien de sessions le chapitre est réellement tombé. Sers-t'en pour
 choisir quoi réviser en priorité quand un élève te demande par où
 commencer.
@@ -20,60 +20,63 @@ commencer.
 ## Ce qui tombe presque à chaque session
 
 ### Activités numériques
-- Racines carrées (14) : écrire sous la forme a + b√n, simplifier des
-  radicaux, comparer deux réels, quantité conjuguée (6) pour supprimer un
+- Racines carrées (16) : écrire sous la forme a + b√n, simplifier des
+  radicaux, comparer deux réels, quantité conjuguée (8) pour supprimer un
   radical au dénominateur
-- Identités remarquables (13) : (a+b)², (a−b)², (a+b)(a−b) — presque
+- Identités remarquables (16) : (a+b)², (a−b)², (a+b)(a−b) — presque
   toujours le point de départ d'une factorisation
-- Développement, réduction, factorisation (9), facteur commun (3)
-- Problèmes concrets (13) : prix et réduction, dimensions d'un champ ou
+- Développement, réduction, factorisation (12), facteur commun (3)
+- Problèmes concrets (14) : prix et réduction, dimensions d'un champ ou
   d'un rectangle, achats, partage. Ils se ramènent presque toujours à un
   système ou à une équation.
-- Systèmes de deux équations à deux inconnues (9)
+- Systèmes de deux équations à deux inconnues (10)
 - Fractions (7) et priorités opératoires
 - Pourcentages (5)
-- Équations produit (5) : (ax+b)(cx+d) = 0
-- Encadrement (5) : encadrer un nombre par deux décimaux consécutifs
-- Équations et inéquations du premier degré (4 et 2)
+- Équations produit (6) : (ax+b)(cx+d) = 0
+- Encadrement (6) : encadrer un nombre par deux décimaux consécutifs
+- Équations et inéquations du premier degré (5 et 2)
 - Application affine (4) : sens de variation, ranger des images
 - Puissances et notation scientifique (2)
 
 ### Activités géométriques
-- **Repère orthonormé (11)** : c'est l'exercice de géométrie le plus
+- **Repère orthonormé (14)** : c'est l'exercice de géométrie le plus
   fréquent du BEPC. Placer des points, calculer des coordonnées.
-- **Distance entre deux points (11)** : la formule que l'élève doit savoir
+- **Distance entre deux points (14)** : la formule que l'élève doit savoir
   écrire sans hésiter.
-- Théorème de Pythagore et sa réciproque (10 et 2) : très souvent pour
+- Théorème de Pythagore et sa réciproque (12 et 4) : très souvent pour
   démontrer qu'un triangle est rectangle à partir de trois longueurs
-- Trigonométrie dans le triangle rectangle (9) : sinus, cosinus, tangente
-- Vecteurs (9) : coordonnées, égalité, colinéarité, orthogonalité (4)
-- Équation d'une droite (9)
-- Symétrie centrale (6), translation (4), symétrie axiale (2)
-- Théorème de Thalès (6), droites parallèles (4)
-- Nature d'un quadrilatère : parallélogramme (4), rectangle (4),
+- Trigonométrie dans le triangle rectangle (10) : sinus, cosinus, tangente
+- Vecteurs (11) : coordonnées, égalité, colinéarité, orthogonalité (5)
+- Équation d'une droite (11)
+- Symétrie centrale (7), translation (4), symétrie axiale (2)
+- Théorème de Thalès (6), droites parallèles (5)
+- Nature d'un quadrilatère : parallélogramme (5), rectangle (5),
   losange (2) — presque toujours la question qui suit une symétrie
-- Cercle circonscrit (5) et tangente au cercle (4) : le centre est le
+- Cercle circonscrit (7) et tangente au cercle (5) : le centre est le
   milieu de l'hypoténuse quand le triangle est rectangle
-- Aires (5) et périmètres (2)
+- Aires (6) et périmètres (2)
 - Triangle équilatéral (4), triangle rectangle isocèle (3)
 - Médiatrice (3), médianes et centre de gravité (2)
 
-### Statistiques (4)
+### Statistiques (5)
 - Effectifs, fréquences en pourcentage, moyenne pondérée, mode
 - Diagramme circulaire : calculer chaque angle au centre
 
 ## Ce qui ne tombe presque jamais
 Ne perds pas le temps d'un élève là-dessus s'il prépare l'examen :
 volumes du prisme, du cylindre, du cône, de la pyramide ou de la sphère
-(aucune session sur 18), rotation, étendue, médiane d'une série.
+(aucune session sur 21), rotation, étendue, médiane d'une série.
 
 ## Ce qui est apparu une seule fois
-Fonction rationnelle et condition d'existence, valeur absolue, relations
-métriques, projeté orthogonal, nombre d'or, programme de calcul et
+Valeur absolue, relations métriques, projeté orthogonal, nombre d'or,
 raisonnement sur la parité, vrai ou faux à justifier, systèmes de trois
 équations, angle inscrit, théorème des milieux, partage proportionnel.
 Ce sont de vrais sujets d'examen : ne les écarte pas, mais ne commence
 pas par eux.
+
+Deux d'entre eux sont revenus depuis, et ne sont donc plus des curiosités :
+la fraction rationnelle avec condition d'existence (2021 et 2024) et le
+programme de calcul (2022 et 2023).
 
 ## Le format de l'épreuve
 Deux parties : **Activités Numériques** puis **Activités Géométriques**,
