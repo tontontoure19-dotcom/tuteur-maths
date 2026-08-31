@@ -168,7 +168,7 @@
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 26</div>
+  <div id="version">version 27</div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -292,7 +292,14 @@ function majDemarrage() {
 
 const identifiantDe = nom =>
   nom.toLowerCase().trim().replace(/[^a-z0-9 _-]/g, '').replace(/ /g, '_').slice(0, 40);
-const cleConversation = () => 'conv_' + identifiantDe(eleve);
+/* Les maths et la physique sont deux cours séparés : ils ne doivent pas
+   partager la même mémoire dans le téléphone, sinon l'élève ouvre la
+   physique et retrouve sa discussion de maths à l'écran.
+   Les maths gardent la clé d'origine : les élèves déjà installés ne
+   perdent pas leur travail. */
+const suffixeMatiere = () => (niveau && niveau !== 'bepc') ? '_' + niveau : '';
+const cleConversation = () => 'conv_' + identifiantDe(eleve) + suffixeMatiere();
+const cleSeance = () => 'seance_' + identifiantDe(eleve) + suffixeMatiere();
 
 function lireProfils() {
   try { return JSON.parse(localStorage.getItem('profils') || '[]'); }
@@ -471,7 +478,7 @@ $('seances-btn').addEventListener('click', ouvrirSeances);
 $('fermer-seances').addEventListener('click', fermerPanneaux);
 
 function memoriserSeance() {
-  if (seanceActive) localStorage.setItem('seance_' + identifiantDe(eleve), seanceActive);
+  if (seanceActive) localStorage.setItem(cleSeance(), seanceActive);
 }
 
 function fermerPanneaux() {
@@ -613,12 +620,18 @@ document.querySelectorAll('.niveau').forEach(b => b.addEventListener('click', ()
 function ouvrirChat() {
   $('accueil').classList.add('cache');
   ['progres', 'seances'].forEach(id => $(id).classList.add('cache'));
-  seanceActive = Number(localStorage.getItem('seance_' + identifiantDe(eleve))) || null;
+  seanceActive = Number(localStorage.getItem(cleSeance())) || null;
   ['entete', 'fil', 'barre', 'symboles'].forEach(id => $(id).classList.remove('cache'));
   const LIBELLES = { bepc: '10ᵉ année · Maths',
                      'bepc-physique': '10ᵉ année · Physique',
                      bac: 'Terminale · Maths' };
   $('salut').textContent = 'Salut ' + eleve + ' 👋 · ' + (LIBELLES[niveau] || '10ᵉ année');
+  // On repart d'un fil vide : sinon, l'élève qui passe des maths à la
+  // physique sans recharger la page garderait l'ancien cours à l'écran —
+  // et cet ancien cours serait renvoyé au répétiteur comme s'il était le
+  // sien.
+  historique = [];
+  $('fil').innerHTML = '';
   // Ce qui est dans le téléphone s'affiche tout de suite, sans attendre le
   // réseau ; le serveur, lui, a l'historique complet et prend le relais.
   const local = restaurer();
