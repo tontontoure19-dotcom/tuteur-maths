@@ -1149,15 +1149,30 @@ def depenses(code: str | None = None):
                 semaine += cout
 
         # Les bilans sont facturés à part : leur coût vit dans leur cache.
+        # Il ne compte dans le mois ou la semaine QUE s'il a été calculé
+        # pendant cette période — sinon un bilan d'août gonflait la dépense
+        # de septembre et le total ne collait plus avec la console Anthropic.
         cache = DOSSIER_BILANS / f"{fichier.stem}.json"
-        cout_bilan = 0.0
+        cout_bilan, calcule_le = 0.0, None
         if cache.exists():
             try:
-                cout_bilan = json.loads(cache.read_text(encoding="utf-8")).get("_cout_gnf", 0)
+                donnees = json.loads(cache.read_text(encoding="utf-8"))
+                cout_bilan = donnees.get("_cout_gnf", 0)
+                calcule_le = donnees.get("_calcule_le")
             except (json.JSONDecodeError, OSError):
                 cout_bilan = 0.0
         total += cout_bilan
-        mois += cout_bilan
+        # Les bilans d'avant cette correction n'ont pas de date : ils
+        # comptent dans le total, jamais dans une période.
+        if cout_bilan and calcule_le:
+            try:
+                quand = datetime.fromisoformat(calcule_le)
+                if quand >= debut_mois:
+                    mois += cout_bilan
+                if quand >= debut_semaine:
+                    semaine += cout_bilan
+            except ValueError:
+                pass
 
         etiquette = nom or fichier.stem.split("_", 1)[-1].replace("_", " ").title()
         fiche = par_eleve.setdefault(etiquette, {"nom": etiquette, "gnf": 0.0})

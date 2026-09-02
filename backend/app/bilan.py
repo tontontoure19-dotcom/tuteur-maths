@@ -8,6 +8,7 @@ Le bilan est mis en cache : il n'est recalculé que si l'élève a travaillé
 depuis la dernière fois. Un parent qui rafraîchit sa page ne coûte rien.
 """
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Literal
 
@@ -179,6 +180,9 @@ def generer(fichier_session: Path, fichier_cache: Path,
     resultat["_echanges"] = nb_echanges
     resultat["_version"] = VERSION_ANALYSE
     resultat["_cout_gnf"] = round(cout_gnf(reponse.usage), 2)
+    # Sans cette date, la page « Ce que ça vous coûte » comptait un bilan
+    # d'août dans la dépense de septembre.
+    resultat["_calcule_le"] = datetime.now(timezone.utc).isoformat()
     fichier_cache.write_text(
         json.dumps(resultat, ensure_ascii=False, indent=1), encoding="utf-8"
     )
