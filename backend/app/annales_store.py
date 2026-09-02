@@ -32,10 +32,17 @@ def charger(examen: str = "bepc", matiere: str = "maths") -> list[dict]:
 MOTS_VIDES = {"les", "des", "une", "aux", "deux", "sur", "dans", "pour", "avec"}
 
 
+# Mots de deux lettres qui portent tout le sens d'une question. Sans cette
+# liste, « explique-moi le pH » ne trouvait aucune annale de chimie alors
+# que le pH est tombé à 15 sessions sur 20.
+MOTS_COURTS = {"ph"}
+
+
 def _mots(texte: str) -> set[str]:
     """Mots utiles d'une expression, au singulier."""
     bruts = re.split(r"[^a-z0-9]+", _sans_accent(texte))
-    return {m.rstrip("s") for m in bruts if len(m) > 2 and m not in MOTS_VIDES}
+    return {m.rstrip("s") for m in bruts
+            if (len(m) > 2 or m in MOTS_COURTS) and m not in MOTS_VIDES}
 
 
 # Racine commune suffisante pour dire que deux mots parlent de la même chose.

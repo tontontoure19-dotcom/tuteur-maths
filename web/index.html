@@ -163,12 +163,13 @@
   <div class="niveaux">
     <button class="niveau actif" data-niveau="bepc">10ᵉ année<span>BEPC · Maths</span></button>
     <button class="niveau" data-niveau="bepc-physique">10ᵉ année<span>BEPC · Physique</span></button>
+    <button class="niveau" data-niveau="bepc-chimie">10ᵉ année<span>BEPC · Chimie</span></button>
     <button class="niveau" data-niveau="bac">Terminale<span>BAC · Maths</span></button>
   </div>
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 27</div>
+  <div id="version">version 28</div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -230,7 +231,7 @@ let codeAcces = localStorage.getItem('code_acces') || '';
 // question rapide, puis revenir à son cours : chacune garde son fil.
 let seanceActive = null;
 // Les niveaux que l'application sait ouvrir.
-const LIBELLES_CONNUS = ['bepc', 'bepc-physique', 'bac'];
+const LIBELLES_CONNUS = ['bepc', 'bepc-physique', 'bepc-chimie', 'bac'];
 // Vrai dès que l'élève a lui-même touché un bouton de niveau.
 let niveauChoisiALaMain = false;
 
@@ -600,7 +601,8 @@ async function demarrer() {
 // L'examen visé n'est pas le même selon le niveau : la promesse d'accueil
 // doit nommer CELUI de l'élève, sinon la moitié des visiteurs se sent
 // étrangère à l'application dès la première phrase.
-const EXAMENS = { bepc: 'BEPC', 'bepc-physique': 'BEPC', bac: 'BAC' };
+const EXAMENS = { bepc: 'BEPC', 'bepc-physique': 'BEPC',
+                  'bepc-chimie': 'BEPC', bac: 'BAC' };
 
 function majPromesse() {
   $('promesse').innerHTML =
@@ -624,6 +626,7 @@ function ouvrirChat() {
   ['entete', 'fil', 'barre', 'symboles'].forEach(id => $(id).classList.remove('cache'));
   const LIBELLES = { bepc: '10ᵉ année · Maths',
                      'bepc-physique': '10ᵉ année · Physique',
+                     'bepc-chimie': '10ᵉ année · Chimie',
                      bac: 'Terminale · Maths' };
   $('salut').textContent = 'Salut ' + eleve + ' 👋 · ' + (LIBELLES[niveau] || '10ᵉ année');
   // On repart d'un fil vide : sinon, l'élève qui passe des maths à la

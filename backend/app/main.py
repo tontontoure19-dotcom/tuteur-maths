@@ -349,7 +349,8 @@ def _retour_apres_absence(eleve: str, code: str | None) -> str:
 # Chaque niveau va chercher dans SA réserve. Sans cette table, une séance
 # de physique recevait des exercices de maths : l'élève demandait la loi
 # d'Ohm et le répétiteur lui sortait un exercice de géométrie.
-MATIERE_DES_ANNALES = {"bepc": "maths", "bepc-physique": "physique"}
+MATIERE_DES_ANNALES = {"bepc": "maths", "bepc-physique": "physique",
+                       "bepc-chimie": "chimie"}
 
 
 def _annale_utile(message: str, niveau: str) -> str:

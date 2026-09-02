@@ -1,0 +1,468 @@
+{
+  "source": "Sujets de chimie du BEPC guinéen, sessions 2006 à 2025 (20 sessions relevées, pages 120 à 166 du volume 1).",
+  "note": "Les énoncés sont ceux des sujets d'examen. Les réponses ont été recalculées et vérifiées une à une : on ne recopie jamais un corrigé. Le champ correction_du_livre signale les endroits où le corrigé imprimé est faux ou incomplet.",
+  "exercices": [
+    {
+      "id": "bepc-chimie-2006-1",
+      "session": 2006,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["oxydoréduction", "oxyde cuivrique", "équation-bilan", "calcul de masse", "volume molaire"],
+      "enonce": "La réduction de l'oxyde cuivrique (CuO) par le carbone donne 25,4 g de cuivre.\na) Écrire l'équation de la réaction.\nb) Quelle est la masse d'oxyde de cuivre décomposé ?\nc) Calculer la masse de carbone utilisé et le volume du gaz formé.\nOn donne : Vm = 22,4 L/mol ; Cu = 63,5 g/mol ; O = 16 g/mol ; C = 12 g/mol.",
+      "reponse": "a) 2CuO + C → 2Cu + CO₂. b) M(CuO) = 79,5 g/mol : 159 g de CuO donnent 127 g de Cu, donc m(CuO) = 25,4 × 159/127 = 31,8 g. c) m(C) = 25,4 × 12/127 = 2,4 g ; V(CO₂) = 25,4 × 22,4/127 = 4,48 L."
+    },
+    {
+      "id": "bepc-chimie-2006-2",
+      "session": 2006,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["densité d'un gaz", "alcène", "formule brute", "addition du dichlore", "combustion complète", "volume d'air"],
+      "enonce": "1. La densité d'un alcène par rapport à l'air est d = 0,96.\na) Déterminer sa formule brute et sa formule développée.\nb) Quelle masse de chlore peut-on fixer sur 5,6 L de cet alcène ?\nc) Quel est le nom du produit obtenu ?\n2. On brûle complètement 4,2 L de cet alcène dans l'oxygène.\na) Écrire l'équation de la réaction de combustion.\nb) Quel volume d'air faut-il pour la réaction ?\nc) Calculer la masse d'eau formée.\nDonnées : C = 12 ; Cl = 35,5 ; O = 16 ; H = 1 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "1.a) M = 29 × 0,96 ≈ 28 g/mol. Pour un alcène CnH2n : 14n = 28, donc n = 2 : C₂H₄, de formule développée CH₂=CH₂ (éthylène). b) n(C₂H₄) = 5,6/22,4 = 0,25 mol ; C₂H₄ + Cl₂ → C₂H₄Cl₂, donc m(Cl₂) = 0,25 × 71 = 17,75 g. c) Le 1,2-dichloroéthane. 2.a) C₂H₄ + 3O₂ → 2CO₂ + 2H₂O. b) n = 4,2/22,4 = 0,1875 mol ; V(O₂) = 3 × 0,1875 × 22,4 = 12,6 L, donc V(air) = 5 × 12,6 = 63 L. c) m(H₂O) = 2 × 0,1875 × 18 = 6,75 g."
+    },
+    {
+      "id": "bepc-chimie-2007-th",
+      "session": 2007,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["oxydoréduction", "aluminothermie", "oxydant et réducteur", "pH", "classement des solutions"],
+      "enonce": "I. Écrire l'équation bilan de la réaction entre l'oxyde de chrome et l'aluminium. Quel est le réactif qui s'oxyde ? Quel est le réactif qui se réduit ?\nII. Le pH de quelques produits : tomate 4,5 ; vinaigre 1 ; eau de mer 8,5 ; suc gastrique 2 ; eau de javel 13 ; lessive 11,2 ; eau de pluie 6,5.\na) Quel est le produit le plus acide ? le plus basique ?\nb) Classer ces produits du plus acide au plus basique.",
+      "reponse": "I. Cr₂O₃ + 2Al → 2Cr + Al₂O₃. L'aluminium s'oxyde (c'est le réducteur), l'oxyde de chrome se réduit (c'est l'oxydant). II.a) Le plus acide est le vinaigre (pH = 1) ; le plus basique est l'eau de javel (pH = 13). b) vinaigre (1) < suc gastrique (2) < tomate (4,5) < eau de pluie (6,5) < eau de mer (8,5) < lessive (11,2) < eau de javel (13).",
+      "correction_du_livre": "Trois défauts dans le corrigé imprimé. Il ne dit jamais quel est le produit le PLUS ACIDE, pourtant demandé. Son classement oublie le suc gastrique (pH = 2), il ne range que six produits sur sept. Et il écrit « vinaigre pH = 3 » alors que l'énoncé donne pH = 1."
+    },
+    {
+      "id": "bepc-chimie-2007-pr",
+      "session": 2007,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["densité d'un gaz", "alcène", "formule brute", "addition du dichlore", "combustion complète", "volume d'air"],
+      "enonce": "La densité de vapeur d'un hydrocarbure éthylénique A est d = 1,45.\n1. Déterminer sa formule brute, sa formule développée et son nom.\n2. Quelle masse de dichlore peut-on fixer sur 2,24 L de A ? Nommer le produit obtenu.\n3. On brûle complètement 2,24 L de A dans le dioxygène. Écrire l'équation, puis calculer le volume d'air nécessaire, la masse d'eau et la masse de gaz carbonique formées.\nDonnées : C = 12 ; H = 1 ; Cl = 35,5 ; O = 16 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "1. M = 29 × 1,45 ≈ 42 g/mol ; pour CnH2n : 14n = 42, n = 3 : C₃H₆, le propène, CH₂=CH−CH₃. 2. n = 2,24/22,4 = 0,1 mol ; C₃H₆ + Cl₂ → C₃H₆Cl₂ : m(Cl₂) = 0,1 × 71 = 7,1 g, c'est le 1,2-dichloropropane. 3. C₃H₆ + 9/2 O₂ → 3CO₂ + 3H₂O. Pour 0,1 mol : V(O₂) = 4,5 × 0,1 × 22,4 = 10,08 L, donc V(air) = 5 × 10,08 = 50,4 L ; m(H₂O) = 3 × 0,1 × 18 = 5,4 g ; m(CO₂) = 3 × 0,1 × 44 = 13,2 g."
+    },
+    {
+      "id": "bepc-chimie-2008-th",
+      "session": 2008,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["oxydoréduction", "équations-bilan", "oxydant et réducteur", "équilibrage"],
+      "enonce": "Écrire les équations bilan des réactions d'oxydoréduction suivantes en indiquant pour chacune l'oxydant et le réducteur :\nCuO + C → ?\nH₂SO₄ + Zn → ?\nCO + Fe₂O₃ → ?\nCr₂O₃ + Al → ?",
+      "reponse": "2CuO + C → 2Cu + CO₂ (CuO oxydant, C réducteur).\nH₂SO₄ + Zn → ZnSO₄ + H₂ (H₂SO₄ oxydant, Zn réducteur).\n3CO + Fe₂O₃ → 2Fe + 3CO₂ (Fe₂O₃ oxydant, CO réducteur).\nCr₂O₃ + 2Al → 2Cr + Al₂O₃ (Cr₂O₃ oxydant, Al réducteur).",
+      "correction_du_livre": "Le corrigé imprimé écrit « 3CO + Fe₂O₃ → CO₂ + 2Fe » : le carbone n'est pas équilibré, il y a 3 atomes de carbone à gauche et 1 seul à droite. Il faut 3CO₂. L'élève peut le vérifier lui-même en comptant les atomes de chaque côté."
+    },
+    {
+      "id": "bepc-chimie-2008-pr",
+      "session": 2008,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["densité d'un gaz", "alcène", "addition du chlorure d'hydrogène", "combustion complète", "volume d'air"],
+      "enonce": "La densité par rapport à l'air d'un hydrocarbure éthylénique A vaut d = 0,97.\na) Déterminer sa formule moléculaire exacte.\nb) Sur 1,5 g de A on fixe du chlorure d'hydrogène. Écrire l'équation avec les formules semi-développées et calculer la masse du produit obtenu.\nc) Écrire l'équation de la combustion complète de A.\nd) Quel volume d'air (CNTP) faut-il pour brûler 3 g de A ?\ne) Calculer la masse d'eau et la masse de gaz carbonique formées.\nDonnées : C = 12 ; H = 1 ; Cl = 35,5 ; O = 16 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "a) M = 29 × 0,97 ≈ 28 g/mol, donc C₂H₄. b) CH₂=CH₂ + HCl → CH₃−CH₂Cl (chloroéthane) ; M = 64,5 g/mol : m = 1,5 × 64,5/28 = 3,45 g. c) C₂H₄ + 3O₂ → 2CO₂ + 2H₂O. d) V(O₂) = 3 × 67,2/28 = 7,2 L, donc V(air) = 36 L. e) m(H₂O) = 3 × 36/28 = 3,86 g et m(CO₂) = 3 × 88/28 = 9,43 g."
+    },
+    {
+      "id": "bepc-chimie-2009-th",
+      "session": 2009,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["pH", "dilution", "bleu de bromothymol", "indicateur coloré"],
+      "enonce": "1. Du point de vue du pH, quelle différence y a-t-il entre une solution acide, une solution basique et une solution neutre ?\n2. Comment varie le pH d'une solution acide par : a) addition d'eau ? b) addition d'acide ?\n3. Quelle couleur prend le bleu de bromothymol en milieu : a) acide ? b) basique ? c) neutre ?",
+      "reponse": "1. Une solution est acide si son pH < 7, basique si son pH > 7, neutre si son pH = 7 (à 25 °C). 2.a) L'addition d'eau dilue la solution : la concentration en ions H⁺ diminue, donc le pH augmente et se rapproche de 7. b) L'addition d'acide fait diminuer le pH. 3. Le B.B.T. vire au jaune en milieu acide, au bleu en milieu basique, au vert en milieu neutre."
+    },
+    {
+      "id": "bepc-chimie-2009-pr1",
+      "session": 2009,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["oxydoréduction", "oxyde cuivrique", "oxydant et réducteur", "calcul de masse", "volume molaire"],
+      "enonce": "On chauffe un mélange de 3,18 g d'oxyde cuivrique et de charbon de bois en excès.\n1. Écrire l'équation bilan de la réaction.\n2. Indiquer le sens de l'oxydation et celui de la réduction.\n3. Quel est le corps oxydant ? le corps réducteur ?\n4. Calculer la masse de carbone qui a réagi et le volume du gaz dégagé.\nDonnées : Cu = 63,5 ; O = 16 ; C = 12 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "1. 2CuO + C → 2Cu + CO₂. 3. CuO est l'oxydant (il perd son oxygène), le carbone est le réducteur (il fixe l'oxygène). 4. 159 g de CuO consomment 12 g de carbone : m(C) = 3,18 × 12/159 = 0,24 g ; et libèrent 22,4 L de CO₂ : V = 3,18 × 22,4/159 = 0,448 L."
+    },
+    {
+      "id": "bepc-chimie-2009-pr2",
+      "session": 2009,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["masse molaire", "alcène", "formule brute", "addition du dichlore", "combustion complète", "volume d'air"],
+      "enonce": "La masse molaire d'un alcène est M = 28 g/mol.\n1. Donner sa formule brute, sa formule développée et son nom.\n2. Quelle masse de chlore peut-on fixer sur 5,6 L de cet alcène ?\n3. Quel volume d'air faut-il pour la combustion complète de 5,6 L de cet alcène ?\nDonnées : C = 12 ; H = 1 ; Cl = 35,5 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "1. CnH2n avec 14n = 28 : n = 2, donc C₂H₄, CH₂=CH₂, l'éthylène (ou éthène). 2. n = 5,6/22,4 = 0,25 mol ; m(Cl₂) = 0,25 × 71 = 17,75 g. 3. C₂H₄ + 3O₂ → 2CO₂ + 2H₂O : V(O₂) = 3 × 0,25 × 22,4 = 16,8 L, donc V(air) = 5 × 16,8 = 84 L."
+    },
+    {
+      "id": "bepc-chimie-2010-th",
+      "session": 2010,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["oxydoréduction", "équilibrage", "pH", "bleu de bromothymol", "classement des solutions"],
+      "enonce": "I. Compléter et équilibrer les équations suivantes, puis indiquer pour chacune le sens de l'oxydation et de la réduction, le corps qui s'oxyde et celui qui se réduit :\nFe₂O₃ + … → Al₂O₃ + …\nZn + Cu²⁺ → …\nH₂SO₄ + Al → …\nII. On considère cinq solutions A, B, C, D et E de pH respectifs 1 ; 4 ; 7 ; 8 et 12.\na) Classer ces solutions en acides, basiques et neutres.\nb) Quelle est la couleur du B.B.T. dans chacune d'elles ?",
+      "reponse": "I. Fe₂O₃ + 2Al → Al₂O₃ + 2Fe (Al s'oxyde, Fe₂O₃ se réduit) ; Zn + Cu²⁺ → Zn²⁺ + Cu (Zn s'oxyde, Cu²⁺ se réduit) ; 3H₂SO₄ + 2Al → 3H₂ + Al₂(SO₄)₃ (Al s'oxyde, l'acide se réduit). II.a) Acides : A (pH 1) et B (pH 4) ; neutre : C (pH 7) ; basiques : D (pH 8) et E (pH 12). b) A et B jaunes, C verte, D et E bleues."
+    },
+    {
+      "id": "bepc-chimie-2010-pr",
+      "session": 2010,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["masse molaire", "alcyne", "formule brute", "hydrogénation", "combustion complète", "volume d'air"],
+      "enonce": "La masse moléculaire d'un alcyne A est M = 26 g/mol.\na) Donner sa formule brute, son nom et sa formule développée.\nb) Quel volume d'hydrogène peut-on fixer sur 5,2 g de A pour avoir un composé saturé ?\nc) Quel volume d'air faut-il pour la combustion complète de 5,2 g de A ?\nd) Quel est le volume de gaz carbonique formé ?\nDonnées : C = 12 ; H = 1 ; O = 16 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "a) CnH2n−2 avec 14n − 2 = 26 : n = 2, donc C₂H₂, l'acétylène (éthyne), H−C≡C−H. b) n(A) = 5,2/26 = 0,2 mol. Le composé saturé est l'éthane : C₂H₂ + 2H₂ → C₂H₆. Il faut donc 0,4 mol d'hydrogène, soit V(H₂) = 8,96 L. c) C₂H₂ + 5/2 O₂ → 2CO₂ + H₂O : V(O₂) = 2,5 × 0,2 × 22,4 = 11,2 L, donc V(air) = 56 L. d) V(CO₂) = 2 × 0,2 × 22,4 = 8,96 L.",
+      "correction_du_livre": "La question demande un composé SATURÉ. Le corrigé imprimé n'écrit que CH≡CH + H₂ → CH₂=CH₂ et conclut 4,48 L : or l'éthylène est encore insaturé (il a une double liaison). Pour saturer il faut deux molécules de dihydrogène et obtenir l'éthane C₂H₆, soit 8,96 L."
+    },
+    {
+      "id": "bepc-chimie-2011-th",
+      "session": 2011,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["pH", "classement des solutions", "nature d'une solution"],
+      "enonce": "On donne le pH de sept solutions : A = 1 ; B = 7,8 ; C = 4 ; D = 7 ; E = 6,5 ; F = 12 ; G = 8.\n1. Indiquer la nature acide, basique ou neutre de chacune de ces solutions.\n2. Classer ces solutions de la plus acide à la plus basique.",
+      "reponse": "1. A acide, B basique, C acide, D neutre, E acide, F basique, G basique. 2. A (1) < C (4) < E (6,5) < D (7) < B (7,8) < G (8) < F (12)."
+    },
+    {
+      "id": "bepc-chimie-2011-pr1",
+      "session": 2011,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["oxydoréduction", "oxyde cuivrique", "oxydant et réducteur", "calcul de masse", "volume molaire"],
+      "enonce": "On chauffe un mélange d'oxyde cuivrique et de poudre de charbon en excès. On obtient 6,35 g de métal.\n1. Écrire l'équation bilan de la réaction.\n2. Indiquer le sens de l'oxydation et de la réduction, le corps oxydant et le corps réducteur.\n3. Calculer la masse d'oxyde cuivrique transformée.\n4. Quel est le volume du gaz dégagé ?\n5. Calculer la masse de carbone qui a réagi.\nDonnées : Cu = 63,5 ; O = 16 ; C = 12 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "1. 2CuO + C → 2Cu + CO₂. 2. CuO est l'oxydant, le carbone le réducteur. 3. 127 g de cuivre proviennent de 159 g de CuO : m(CuO) = 6,35 × 159/127 = 7,95 g. 4. V(CO₂) = 6,35 × 22,4/127 = 1,12 L. 5. m(C) = 6,35 × 12/127 = 0,6 g."
+    },
+    {
+      "id": "bepc-chimie-2011-pr2",
+      "session": 2011,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["densité d'un gaz", "alcène", "addition du dichlore", "combustion complète", "volume d'air"],
+      "enonce": "La densité par rapport à l'air d'un hydrocarbure éthylénique A est d = 0,96.\n1. Déterminer sa formule brute et son nom.\n2. Quelle masse de dichlore peut-on fixer sur 1,5 g de A ?\n3. Quelle est la masse du corps formé ?\n4. Quel volume d'air faut-il pour la combustion complète de 1,5 g de A ?\nDonnées : C = 12 ; H = 1 ; Cl = 35,5 ; O = 16 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "1. M = 29 × 0,96 ≈ 28 g/mol, donc C₂H₄, l'éthylène. 2. C₂H₄ + Cl₂ → C₂H₄Cl₂ : m(Cl₂) = 1,5 × 71/28 = 3,80 g. 3. M(C₂H₄Cl₂) = 99 g/mol : m = 1,5 × 99/28 = 5,30 g. 4. V(O₂) = 1,5 × 67,2/28 = 3,6 L, donc V(air) = 18 L."
+    },
+    {
+      "id": "bepc-chimie-2012-th",
+      "session": 2012,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["pH", "classement des solutions", "nature d'une solution"],
+      "enonce": "Le pH de quelques produits de la vie courante : tomates 4,5 ; vinaigre 3 ; eau de mer 8,5 ; suc gastrique 2 ; eau de javel 13 ; sang 7,4 ; lessive 11,2 ; eau de pluie 6,5.\na) Classer ces produits en acides, basiques et neutres.\nb) Quel est le produit le plus acide ? le moins acide ?\nc) Quel est le produit le plus basique ? le moins basique ?",
+      "reponse": "a) Acides (pH < 7) : suc gastrique 2, vinaigre 3, tomates 4,5, eau de pluie 6,5. Basiques (pH > 7) : sang 7,4, eau de mer 8,5, lessive 11,2, eau de javel 13. Aucun produit n'est neutre. b) Le plus acide : le suc gastrique (pH = 2) ; le moins acide : l'eau de pluie (pH = 6,5). c) Le plus basique : l'eau de javel (pH = 13) ; le moins basique : le sang (pH = 7,4).",
+      "correction_du_livre": "La question b demande le produit le plus acide ET le moins acide. Le corrigé imprimé répond « le plus acide » puis « le moins BASIQUE », et donne deux fois le suc gastrique. Le moins acide est l'eau de pluie (pH = 6,5). Quant à la question c, elle n'est pas traitée du tout."
+    },
+    {
+      "id": "bepc-chimie-2012-pr1",
+      "session": 2012,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["oxydoréduction", "oxyde cuivrique", "oxydant et réducteur", "calcul de masse"],
+      "enonce": "On chauffe un mélange de 15,9 g d'oxyde cuivrique et de charbon en excès.\na) Écrire l'équation bilan de la réaction.\nb) Indiquer le sens de l'oxydation et de la réduction, le corps oxydant et le corps réducteur.\nc) Calculer la masse du métal formée.\nd) Calculer la masse de charbon qui a réagi.\nDonnées : Cu = 63,5 ; O = 16 ; C = 12 g/mol.",
+      "reponse": "a) 2CuO + C → 2Cu + CO₂. b) CuO est l'oxydant, le carbone le réducteur. c) m(Cu) = 15,9 × 127/159 = 12,7 g. d) m(C) = 15,9 × 12/159 = 1,2 g."
+    },
+    {
+      "id": "bepc-chimie-2012-pr2",
+      "session": 2012,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["masse molaire", "alcène", "addition du dichlore", "combustion complète", "volume d'air"],
+      "enonce": "La masse molaire d'un alcène A est M = 28 g/mol.\na) Donner sa formule brute, sa formule semi-développée et son nom.\nb) Écrire l'équation d'addition du dichlore sur A.\nc) Quelle masse de dichlore faut-il pour 6,72 L de A ?\nd) Quel volume d'air faut-il pour la combustion complète de 6,72 L de A ?\nDonnées : C = 12 ; H = 1 ; Cl = 35,5 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "a) C₂H₄, CH₂=CH₂, l'éthylène. b) CH₂=CH₂ + Cl₂ → CH₂Cl−CH₂Cl. c) n = 6,72/22,4 = 0,3 mol : m(Cl₂) = 0,3 × 71 = 21,3 g. d) V(O₂) = 3 × 0,3 × 22,4 = 20,16 L, donc V(air) = 100,8 L."
+    },
+    {
+      "id": "bepc-chimie-2013-th",
+      "session": 2013,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["pH", "dilution", "bleu de bromothymol", "indicateur coloré"],
+      "enonce": "a. Du point de vue du pH, quelle différence y a-t-il entre une solution acide, basique et neutre ?\nb. Comment varie le pH d'une solution acide par addition d'eau ? Quelle couleur prend le B.B.T. en milieu acide, basique et neutre ?",
+      "reponse": "a. Acide : pH < 7 ; basique : pH > 7 ; neutre : pH = 7. b. L'addition d'eau dilue la solution et fait augmenter le pH, qui se rapproche de 7 sans jamais l'atteindre. Le B.B.T. est jaune en milieu acide, bleu en milieu basique, vert en milieu neutre."
+    },
+    {
+      "id": "bepc-chimie-2013-pr1",
+      "session": 2013,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["oxydoréduction", "aluminothermie", "oxyde ferrique", "calcul de masse"],
+      "enonce": "Par la réduction d'une certaine masse d'oxyde ferrique par l'aluminium, il se forme 16,8 g de fer.\na. Écrire l'équation bilan de la réaction.\nb. Indiquer le sens de l'oxydation et celui de la réduction.\nc. Calculer la masse de l'oxyde de fer transformé.\nd. Calculer la masse de l'oxyde formé.\nDonnées : Fe = 56 ; O = 16 ; Al = 27 g/mol.",
+      "reponse": "a. Fe₂O₃ + 2Al → 2Fe + Al₂O₃. b. L'aluminium s'oxyde, l'oxyde ferrique se réduit. c. M(Fe₂O₃) = 160 g/mol : 160 g donnent 112 g de fer, donc m(Fe₂O₃) = 16,8 × 160/112 = 24 g. d. M(Al₂O₃) = 102 g/mol : m(Al₂O₃) = 16,8 × 102/112 = 15,3 g."
+    },
+    {
+      "id": "bepc-chimie-2013-pr2",
+      "session": 2013,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["densité d'un gaz", "alcène", "combustion complète", "volume d'air", "calcul de masse"],
+      "enonce": "La densité d'un hydrocarbure éthylénique par rapport à l'air est d = 0,96.\na. Déterminer sa formule brute, sa formule développée et son nom.\nb. On brûle complètement 5 g de cet hydrocarbure dans le dioxygène : quel volume d'air faut-il ?\nc. Quel est le volume de gaz carbonique formé ?\nd. Calculer la masse d'eau formée.\nDonnées : C = 12 ; H = 1 ; O = 16 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "a. M = 29 × 0,96 ≈ 28 g/mol : C₂H₄, CH₂=CH₂, l'éthylène. b. C₂H₄ + 3O₂ → 2CO₂ + 2H₂O : V(O₂) = 5 × 67,2/28 = 12 L, donc V(air) = 60 L. c. V(CO₂) = 5 × 44,8/28 = 8 L. d. m(H₂O) = 5 × 36/28 = 6,43 g."
+    },
+    {
+      "id": "bepc-chimie-2014-th",
+      "session": 2014,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["pH", "bleu de bromothymol", "réactions ioniques", "précipitation", "équilibrage"],
+      "enonce": "I. On considère les solutions A, B, C, D et E de pH respectifs 2, 5, 13, 7 et 9.\na) Indiquer la nature acide, basique ou neutre de ces solutions.\nb) Quelle est la couleur du B.B.T. dans chacune de ces solutions ?\nII. Compléter et équilibrer les équations des réactions suivantes :\n(Ba²⁺ + 2Cl⁻) + (2Na⁺ + SO₄²⁻) → ?\n(2H⁺ + SO₄²⁻) + Zn → ?\n(Ag⁺ + NO₃⁻) + (Ca²⁺ + 2Cl⁻) → ?\n(Ca²⁺ + CO₃²⁻) + (2H⁺ + SO₄²⁻) → ?",
+      "reponse": "I.a) A acide, B acide, C basique, D neutre, E basique. b) A jaune, B jaune, C bleue, D verte, E bleue. II. (Ba²⁺ + 2Cl⁻) + (2Na⁺ + SO₄²⁻) → BaSO₄↓ + 2NaCl ; (2H⁺ + SO₄²⁻) + Zn → ZnSO₄ + H₂ ; (2Ag⁺ + 2NO₃⁻) + (Ca²⁺ + 2Cl⁻) → 2AgCl↓ + Ca(NO₃)₂ ; (Ca²⁺ + CO₃²⁻) + (2H⁺ + SO₄²⁻) → CaSO₄ + H₂CO₃ (qui se décompose en H₂O + CO₂)."
+    },
+    {
+      "id": "bepc-chimie-2014-pr",
+      "session": 2014,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["oxydoréduction", "haut fourneau", "oxyde ferrique", "monoxyde de carbone", "volume molaire"],
+      "enonce": "On réduit 32 g d'oxyde ferrique par le monoxyde de carbone en excès.\na. Écrire l'équation de la réaction.\nb. Indiquer par cette réaction le sens de l'oxydation et celui de la réduction, l'oxydant et le réducteur.\nc. Calculer la masse du métal formé.\nd. Quel est le volume de monoxyde de carbone qui a réagi ?\nDonnées : Fe = 56 ; O = 16 ; C = 12 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "a. Fe₂O₃ + 3CO → 2Fe + 3CO₂. b. Fe₂O₃ est l'oxydant (il se réduit), CO est le réducteur (il s'oxyde en CO₂). c. m(Fe) = 32 × 112/160 = 22,4 g. d. V(CO) = 32 × (3 × 22,4)/160 = 13,44 L."
+    },
+    {
+      "id": "bepc-chimie-2015-th",
+      "session": 2015,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["oxydoréduction", "équilibrage", "pH", "ions hydroxyde", "bleu de bromothymol"],
+      "enonce": "I.1. Compléter et équilibrer les équations des réactions d'oxydoréduction suivantes : Al + O₂ → … et Fe + Cu²⁺ → …\n2. Indiquer pour chacune de ces réactions le sens de l'oxydation et celui de la réduction, l'oxydant et le réducteur.\nII. Dire si chaque affirmation est vraie ou fausse :\n1. Une addition d'eau à une solution acide diminue la concentration des ions H⁺.\n2. Les ions OH⁻ sont responsables du caractère basique d'une solution.\n3. Une solution dont le pH = 8 est plus basique qu'une solution de pH = 12.\n4. Le bleu de bromothymol (B.B.T.) colore en bleu les solutions basiques.",
+      "reponse": "I.1. 4Al + 3O₂ → 2Al₂O₃ ; Fe + Cu²⁺ → Fe²⁺ + Cu. 2. Dans la première, l'aluminium s'oxyde (réducteur) et le dioxygène se réduit (oxydant). Dans la seconde, le fer s'oxyde (réducteur) et l'ion cuivre Cu²⁺ se réduit (oxydant). II. 1 vrai ; 2 vrai ; 3 faux (pH 12 est plus basique que pH 8) ; 4 vrai.",
+      "correction_du_livre": "Dans le schéma des flèches, le corrigé imprimé écrit « Fe²⁺ + Cu → Fe + Cu²⁺ », c'est-à-dire l'équation à l'envers de celle qu'il vient lui-même d'établir. Les étiquettes oxydant et réducteur se retrouvent donc du mauvais côté. L'équation juste est Fe + Cu²⁺ → Fe²⁺ + Cu."
+    },
+    {
+      "id": "bepc-chimie-2015-pr1",
+      "session": 2015,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["oxydoréduction", "oxyde de zinc", "calcul de masse", "volume molaire"],
+      "enonce": "On réduit l'oxyde de zinc par le charbon en excès, il se forme 26 g de métal.\na. Écrire l'équation de la réaction.\nb. Calculer la masse de l'oxyde de zinc transformé.\nc. Quel est le volume du gaz qui se dégage ?\nd. Calculer la masse de carbone qui a réagi.\nDonnées : Zn = 65 ; C = 12 ; O = 16 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "a. 2ZnO + C → 2Zn + CO₂. b. M(ZnO) = 81 g/mol : 130 g de zinc proviennent de 162 g de ZnO, donc m(ZnO) = 26 × 162/130 = 32,4 g. c. V(CO₂) = 26 × 22,4/130 = 4,48 L. d. m(C) = 26 × 12/130 = 2,4 g."
+    },
+    {
+      "id": "bepc-chimie-2015-pr2",
+      "session": 2015,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["carbure de calcium", "acétylène", "addition du dichlore", "calcul de masse", "volume molaire"],
+      "enonce": "On traite du carbure de calcium pur par de l'eau en excès. Le gaz recueilli occupe un volume de 33,6 L.\n– Écrire l'équation de la réaction.\n– Calculer la masse de carbure de calcium transformé.\n– Quelle est la masse d'eau nécessaire à la réaction ?\n– Calculer la masse maximale de dichlore que peut fixer, par addition, le gaz formé.\nDonnées : Ca = 40 ; C = 12 ; H = 1 ; O = 16 ; Cl = 35,5 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "CaC₂ + 2H₂O → C₂H₂ + Ca(OH)₂. n(C₂H₂) = 33,6/22,4 = 1,5 mol. M(CaC₂) = 64 g/mol : m(CaC₂) = 1,5 × 64 = 96 g. m(H₂O) = 2 × 1,5 × 18 = 54 g. L'acétylène a une triple liaison : il fixe au maximum DEUX molécules de dichlore, C₂H₂ + 2Cl₂ → C₂H₂Cl₄. Donc n(Cl₂) = 3 mol et m(Cl₂) = 3 × 71 = 213 g.",
+      "correction_du_livre": "Le corrigé imprimé calcule d'abord 106,5 g, ce qui correspond à une seule molécule de dichlore. Il annonce ensuite qu'il en faut le double, mais son calcul emploie 3,6 L d'acétylène au lieu de 33,6 L et aboutit à 22,82 g. La masse maximale est 213 g."
+    },
+    {
+      "id": "bepc-chimie-2016-1",
+      "session": 2016,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["oxydoréduction", "vapeur d'eau", "oxyde ferrique", "calcul de masse", "volume molaire"],
+      "enonce": "Le fer porté au rouge réagit avec la vapeur d'eau en libérant du dihydrogène.\na. Écrire l'équation de la réaction. Dans cette réaction, quel est le corps qui s'oxyde et quel est le corps qui se réduit ?\nb. Quelle masse de fer faut-il utiliser pour préparer 6,5 L de dihydrogène dans les conditions normales de température et de pression ?\nc. Calculer la masse de l'oxyde ferrique formé.\nd. Quelle est la masse de l'eau qui a réagi ?\nDonnées : Fe = 56 ; O = 16 ; H = 1 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "a. 2Fe + 3H₂O → Fe₂O₃ + 3H₂. Le fer s'oxyde (réducteur), l'eau se réduit (oxydant). b. 3 × 22,4 = 67,2 L de H₂ proviennent de 112 g de fer : m(Fe) = 6,5 × 112/67,2 = 10,83 g. c. m(Fe₂O₃) = 6,5 × 160/67,2 = 15,47 g. d. m(H₂O) = 6,5 × 54/67,2 = 5,22 g."
+    },
+    {
+      "id": "bepc-chimie-2016-2",
+      "session": 2016,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["réactions ioniques", "précipitation", "chlorure d'argent", "calcul de masse"],
+      "enonce": "Dans un récipient contenant une solution de nitrate d'argent, on verse une solution de chlorure de baryum. Il se forme un précipité blanc qui, lavé et séché, pèse 5,74 g.\na. Écrire l'équation de la réaction à l'aide des formules ioniques des composés.\nb. Calculer la masse de chlorure de baryum nécessaire à la réaction.\nc. Quelle est la masse de nitrate d'argent qui a réagi ?\nd. Calculer la masse de nitrate de baryum formé.\nDonnées : N = 14 ; O = 16 ; Ba = 137 ; Ag = 108 ; Cl = 35,5 g/mol.",
+      "reponse": "a. 2(Ag⁺ + NO₃⁻) + (Ba²⁺ + 2Cl⁻) → 2AgCl↓ + (Ba²⁺ + 2NO₃⁻), soit en abrégé Ag⁺ + Cl⁻ → AgCl↓. b. M(AgCl) = 143,5 g/mol, donc 287 g pour 2 mol ; M(BaCl₂) = 208 g/mol : m(BaCl₂) = 5,74 × 208/287 = 4,16 g. c. M(AgNO₃) = 170 g/mol, soit 340 g pour 2 mol : m(AgNO₃) = 5,74 × 340/287 = 6,8 g. d. M(Ba(NO₃)₂) = 261 g/mol : m = 5,74 × 261/287 = 5,22 g.",
+      "correction_du_livre": "Le corrigé imprimé pose bien le calcul de la masse de nitrate d'argent et trouve 6,8 g, mais sa ligne de conclusion annonce « m(AgNO₃) = 4,8 g ». C'est 6,8 g. Remarque sur l'énoncé : les masses molaires de l'argent et du chlore ne figurent pas dans les données, il faut les connaître (Ag = 108, Cl = 35,5)."
+    },
+    {
+      "id": "bepc-chimie-2016-3",
+      "session": 2016,
+      "partie": "Pratique",
+      "numero": "III",
+      "chapitres": ["masse molaire", "alcane", "isomères", "substitution", "brome", "calcul de masse"],
+      "enonce": "La masse molaire d'un alcane A est M = 58 g/mol.\na. Trouver la formule brute de A et toutes les formules semi-développées correspondantes.\nOn réalise une réaction de substitution d'un atome de brome. Il se forme un composé bromé de masse m = 10,96 g.\nb. Quelle est la masse de l'alcane A qui a réagi ?\nc. Calculer la masse de bromure d'hydrogène formé au cours de la réaction.\nd. Quelle est la masse de brome nécessaire à la réaction ?\nDonnées : Br = 80 ; C = 12 ; H = 1 g/mol.",
+      "reponse": "a. CnH2n+2 avec 14n + 2 = 58 : n = 4, donc C₄H₁₀. Deux isomères : le butane CH₃−CH₂−CH₂−CH₃ et le méthyl-2 propane (isobutane) CH₃−CH(CH₃)−CH₃. b. C₄H₁₀ + Br₂ → C₄H₉Br + HBr ; M(C₄H₉Br) = 137 g/mol : m(C₄H₁₀) = 10,96 × 58/137 = 4,64 g. c. M(HBr) = 81 g/mol : m(HBr) = 10,96 × 81/137 = 6,48 g. d. M(Br₂) = 160 g/mol : m(Br₂) = 10,96 × 160/137 = 12,8 g."
+    },
+    {
+      "id": "bepc-chimie-2017-th",
+      "session": 2017,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["pH", "dilution", "oxydoréduction", "aluminium", "vapeur d'eau"],
+      "enonce": "I. Le coca-cola a un pH égal à 2,5 ; l'eau de mer un pH égal à 8 ; l'eau salée un pH égal à 7.\na) Pour chacune de ces solutions, dire si elle est acide, basique ou neutre.\nb) On ajoute à chaque solution 50 fois son volume en eau distillée. Le pH d'une solution acide augmente. Dire, pour chacune de ces trois solutions, dans quel sens évolue son pH.\nII.1.a) Écrire et équilibrer l'équation-bilan de la combustion de l'aluminium dans la vapeur d'eau, sachant qu'il se forme de l'alumine (Al₂O₃) et du dihydrogène (H₂).\nb) Montrer le processus d'oxydation, le processus de réduction, l'oxydant et le réducteur.",
+      "reponse": "I.a) Coca-cola acide, eau de mer basique, eau salée neutre. b) Le pH du coca-cola augmente, celui de l'eau de mer diminue, celui de l'eau salée ne varie pas : la dilution rapproche toujours le pH de 7. II.a) 2Al + 3H₂O → Al₂O₃ + 3H₂. b) L'aluminium s'oxyde : c'est le réducteur. L'eau se réduit : c'est l'oxydant."
+    },
+    {
+      "id": "bepc-chimie-2017-pr",
+      "session": 2017,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["carbure de calcium", "acétylène", "hydrogénation", "combustion complète", "volume d'air", "calcul de masse"],
+      "enonce": "On traite par de l'eau 3,2 g de carbure de calcium (CaC₂) supposé chimiquement pur.\n1) Quel est le volume d'acétylène obtenu ? Quelle est la masse d'eau nécessaire à la réaction ?\n2) Quel est le volume de dihydrogène nécessaire pour transformer l'acétylène en éthane ?\n3) Quel est le volume d'air nécessaire pour la combustion de l'éthane obtenu ? Quelle est la masse d'eau provenant de cette combustion ?\nDonnées : Vm = 22,4 L/mol ; Ca = 40 ; C = 12 ; H = 1 ; O = 16 g/mol.",
+      "reponse": "CaC₂ + 2H₂O → Ca(OH)₂ + C₂H₂. M(CaC₂) = 64 g/mol : n = 3,2/64 = 0,05 mol.\n1) V(C₂H₂) = 0,05 × 22,4 = 1,12 L ; m(H₂O) = 2 × 0,05 × 18 = 1,8 g.\n2) C₂H₂ + 2H₂ → C₂H₆ : V(H₂) = 2 × 0,05 × 22,4 = 2,24 L.\n3) C₂H₆ + 7/2 O₂ → 2CO₂ + 3H₂O : V(O₂) = 3,5 × 0,05 × 22,4 = 3,92 L, donc V(air) = 19,6 L ; m(H₂O) = 3 × 0,05 × 18 = 2,71 g.",
+      "correction_du_livre": "À la question 1, le corrigé imprimé annonce V(C₂H₂) = 2,24 L alors que sa propre ligne de calcul donne 3,2 × 22,4/64 = 1,12. Il recalcule d'ailleurs 1,12 L à la question 2, où il se contredit lui-même. Le volume d'acétylène est bien 1,12 L."
+    },
+    {
+      "id": "bepc-chimie-2018-th",
+      "session": 2018,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["pH", "classement des solutions", "ions hydrogène", "concentration"],
+      "enonce": "Le tableau ci-dessous indique le pH de quelques liquides de la vie courante :\njus de tomate 4 ; eau minérale 7,1 ; jus de citron 2,5 ; vinaigre 3 ; débouche évier 13 ; lessive 11,2.\na) Quelle information donne le pH d'une solution ?\nb) Classer ces liquides du plus acide au plus basique.\nc) Quel ion donne le caractère acide à une solution ?\nd) Un verre de jus de tomate contient-il plus ou moins d'ions H⁺ qu'un verre contenant le même volume de jus de citron ? Justifier la réponse.",
+      "reponse": "a) Le pH est une grandeur sans unité qui précise l'acidité, la basicité ou la neutralité d'une solution. b) jus de citron (2,5) < vinaigre (3) < jus de tomate (4) < eau minérale (7,1) < lessive (11,2) < débouche évier (13). c) L'ion hydrogène H⁺ (ou H₃O⁺). d) Moins : le pH du jus de tomate (4) est supérieur à celui du jus de citron (2,5), donc il contient moins d'ions H⁺.",
+      "correction_du_livre": "Le classement du corrigé imprimé oublie l'eau minérale (pH = 7,1) : il ne range que cinq liquides sur six."
+    },
+    {
+      "id": "bepc-chimie-2018-pr1",
+      "session": 2018,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["oxydoréduction", "aluminothermie", "oxyde de chrome", "calcul de masse"],
+      "enonce": "Pour fabriquer industriellement du chrome (Cr), on réduit son oxyde (Cr₂O₃) par l'aluminium. Il se forme de l'alumine (Al₂O₃).\na) Écrire l'équation bilan de la réaction.\nb) Quelle est la masse du chrome produit en utilisant 16 g d'aluminium ?\nc) Quelle est la masse d'oxyde de chrome consommé ?\nd) Quelle est la masse d'alumine formée ?\nDonnées : Cr = 52 ; Al = 27 ; O = 16 g/mol.",
+      "reponse": "a) Cr₂O₃ + 2Al → 2Cr + Al₂O₃. b) 54 g d'aluminium donnent 104 g de chrome : m(Cr) = 16 × 104/54 = 30,81 g. c) M(Cr₂O₃) = 152 g/mol : m = 16 × 152/54 = 45,03 g. d) M(Al₂O₃) = 102 g/mol : m = 16 × 102/54 = 30,22 g."
+    },
+    {
+      "id": "bepc-chimie-2018-pr2",
+      "session": 2018,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["densité d'un gaz", "alcane", "isomères", "substitution", "brome", "combustion complète", "volume d'air"],
+      "enonce": "La densité par rapport à l'air d'un hydrocarbure saturé est d = 2.\n1. Quelle est la formule brute de cet hydrocarbure ? Donner les formules semi-développées possibles de ses isomères.\n2. On réalise la bromation de cet hydrocarbure par substitution d'un atome d'hydrogène par un atome de brome. Il se forme 10 g d'un composé bromé. Calculer le volume du gaz qui se dégage.\n3. Calculer la masse de l'hydrocarbure qui a réagi.\n4. Quel volume d'air serait nécessaire pour la combustion complète de cet hydrocarbure ?\nDonnées : Br = 80 ; C = 12 ; H = 1 ; O = 16 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "1. M = 29 × 2 = 58 g/mol ; CnH2n+2 avec 14n + 2 = 58 : n = 4, donc C₄H₁₀. Isomères : butane CH₃−CH₂−CH₂−CH₃ et méthyl-2 propane. 2. C₄H₁₀ + Br₂ → C₄H₉Br + HBr. Le gaz qui se dégage est le bromure d'hydrogène HBr. M(C₄H₉Br) = 137 g/mol : n = 10/137 = 0,073 mol, donc V(HBr) = 0,073 × 22,4 = 1,64 L. 3. m(C₄H₁₀) = 10 × 58/137 = 4,23 g. 4. 2C₄H₁₀ + 13O₂ → 8CO₂ + 10H₂O. Pour 116 g de butane il faut 13 × 22,4 = 291,2 L d'oxygène : V(O₂) = 4,23 × 291,2/116 = 10,62 L, donc V(air) = 5 × 10,62 = 53,1 L.",
+      "correction_du_livre": "Deux problèmes dans le corrigé imprimé. Il appelle « gaz qui se dégage » l'alcane C₄H₁₀ : c'est en réalité le bromure d'hydrogène HBr (le volume 1,64 L reste le même, car il y a autant de moles de l'un que de l'autre). Surtout, à la question 4 il écrit l'équation 2C₄H₁₀ + 13O₂ → 4CO₂ + 5H₂O, qui n'est pas équilibrée (il faut 8CO₂ + 10H₂O), et annonce V(O₂) = 2,51 L puis V(air) = 12,55 L. Le calcul juste donne 10,62 L d'oxygène et 53,1 L d'air."
+    },
+    {
+      "id": "bepc-chimie-2019-th",
+      "session": 2019,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["haut fourneau", "fonte et acier", "pile Leclanché", "pH", "bleu de bromothymol", "dilution"],
+      "enonce": "I.1. Après avoir donné la principale réaction du haut fourneau, dites la différence fondamentale entre la fonte et l'acier.\n2. Qu'est-ce qui assure le fonctionnement d'une pile Leclanché ?\nII. Trois étiquettes portant respectivement comme indication pH = 3, pH = 7 et pH = 12 ont été décollées de trois flacons A, B et C contenant respectivement de l'eau sucrée, une solution de soude et du jus de citron.\na) Remplir convenablement le tableau : flacon, pH, nature de la solution, couleur du B.B.T.\nb) On ajoute dans chaque flacon de l'eau distillée. Indiquer comment évolue le pH des solutions ainsi diluées.",
+      "reponse": "I.1. Fe₂O₃ + 3CO → 2Fe + 3CO₂. La fonte est un alliage de fer contenant 3 à 4 % de carbone, l'acier en contient moins de 1 %. 2. C'est la consommation du zinc, qui s'oxyde en perdant des électrons. II.a) A (eau sucrée) : pH 7, neutre, B.B.T. vert. B (soude) : pH 12, basique, B.B.T. bleu. C (jus de citron) : pH 3, acide, B.B.T. jaune. b) Le pH de A reste constant, celui de B diminue, celui de C augmente : tous se rapprochent de 7."
+    },
+    {
+      "id": "bepc-chimie-2019-pr",
+      "session": 2019,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["carbure d'aluminium", "méthane", "pourcentage d'impuretés", "calcul de masse", "volume molaire", "précipité"],
+      "enonce": "On verse de l'eau mélangée à un peu d'acide chlorhydrique sur 1 kg de carbure d'aluminium (Al₄C₃) contenant 10 % d'impuretés. Calculer :\na) la masse d'hydrocarbure dégagé ;\nb) le volume d'hydrocarbure dégagé ;\nc) la masse du précipité obtenu ;\nd) la masse d'eau utilisée.\nDonnées : Al = 27 ; C = 12 ; O = 16 ; H = 1 g/mol ; Vm = 24 L/mol.",
+      "reponse": "Al₄C₃ + 12H₂O → 4Al(OH)₃↓ + 3CH₄. M(Al₄C₃) = 144 g/mol. La masse pure vaut 1000 × 0,90 = 900 g, soit n = 6,25 mol.\na) m(CH₄) = 3 × 6,25 × 16 = 300 g. b) V(CH₄) = 3 × 6,25 × 24 = 450 L. c) M(Al(OH)₃) = 78 g/mol : m = 4 × 6,25 × 78 = 1950 g. d) m(H₂O) = 12 × 6,25 × 18 = 1350 g."
+    },
+    {
+      "id": "bepc-chimie-2020-th",
+      "session": 2020,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["identification des ions", "précipitation", "réactions ioniques", "pH", "dilution"],
+      "enonce": "I. Compléter le tableau ci-dessous en indiquant l'observation et la réaction pour chaque couple ion / réactif : Cu²⁺ avec la soude ; Fe²⁺ avec la soude ; Cl⁻ avec le nitrate d'argent ; SO₄²⁻ avec le chlorure de baryum. (6 points)\nII. Le coca-cola a un pH égal à 2,5 ; l'eau de javel un pH égal à 10,5 ; l'eau salée un pH égal à 7.\na. Pour chacune de ces solutions, dire si elle est acide, basique ou neutre. Justifier votre réponse. (1 point)\nb. On ajoute à chaque solution 5 fois son volume en eau distillée. Dire, pour chacune des trois solutions, dans quel sens évolue son pH.\nc. De quelle valeur se rapproche le pH de chacune d'elles si l'on ajoute une très importante quantité d'eau distillée ? (1,5 point)",
+      "reponse": "I. Cu²⁺ + soude : précipité bleu d'hydroxyde cuivrique, Cu²⁺ + 2OH⁻ → Cu(OH)₂↓. Fe²⁺ + soude : précipité vert d'hydroxyde ferreux, Fe²⁺ + 2OH⁻ → Fe(OH)₂↓. Cl⁻ + nitrate d'argent : précipité blanc de chlorure d'argent, Ag⁺ + Cl⁻ → AgCl↓. SO₄²⁻ + chlorure de baryum : précipité blanc de sulfate de baryum, Ba²⁺ + SO₄²⁻ → BaSO₄↓.\nII.a) Coca-cola acide (pH < 7), eau de javel basique (pH > 7), eau salée neutre (pH = 7). b) Le pH du coca-cola augmente, celui de l'eau de javel diminue, celui de l'eau salée ne change pas. c) Tous se rapprochent de 7, sans jamais l'atteindre pour les deux premières."
+    },
+    {
+      "id": "bepc-chimie-2020-pr",
+      "session": 2020,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["composition de l'air", "volume", "combustion complète", "butane", "durée de consommation"],
+      "enonce": "I. Les dimensions d'une chambre sont : L = 4 m ; l = 3 m ; h = 2,5 m.\n1. Calculer son volume. (2 points)\n2. Calculer le volume de dioxygène contenu dans la chambre (l'air contient en volume 1/5 de O₂ et 4/5 de N₂). (2 points)\nII. Un appareil de chauffage au butane consomme 0,8 m³ de dioxygène à l'heure.\na. Au bout de combien de temps tout le dioxygène de la chambre sera-t-il consommé ?\nb. Écrire l'équation-bilan de la réaction de combustion complète du butane.",
+      "reponse": "I.1. V = 4 × 3 × 2,5 = 30 m³. 2. V(O₂) = 30/5 = 6 m³. II.a) t = 6/0,8 = 7,5 h, soit 7 h 30 min. b) 2C₄H₁₀ + 13O₂ → 8CO₂ + 10H₂O."
+    },
+    {
+      "id": "bepc-chimie-2021-th",
+      "session": 2021,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["identification des ions", "précipitation", "cation et anion", "réactions ioniques"],
+      "enonce": "1°) Quels sont les réactifs permettant d'identifier les ions suivants : Fe³⁺ ; Zn²⁺ ; CO₃²⁻ ; Cl⁻ ?\n2°) Quelles différences faites-vous entre un cation et un anion ?",
+      "reponse": "1°) Fe³⁺ : la soude, il se forme un précipité rouille d'hydroxyde ferrique, Fe³⁺ + 3OH⁻ → Fe(OH)₃↓. Zn²⁺ : la soude, précipité blanc d'hydroxyde de zinc soluble dans un excès de soude, Zn²⁺ + 2OH⁻ → Zn(OH)₂↓. CO₃²⁻ : un acide comme l'acide chlorhydrique, il se produit un dégagement gazeux qui trouble l'eau de chaux, CO₃²⁻ + 2H⁺ → CO₂ + H₂O. Cl⁻ : le nitrate d'argent, précipité blanc de chlorure d'argent qui noircit à la lumière, Ag⁺ + Cl⁻ → AgCl↓.\n2°) Un cation est un ion positif : il provient d'un atome qui a PERDU un ou plusieurs électrons (Na⁺, Ca²⁺, Al³⁺). Un anion est un ion négatif : il provient d'un atome qui a GAGNÉ un ou plusieurs électrons (Cl⁻, S²⁻, SO₄²⁻)."
+    },
+    {
+      "id": "bepc-chimie-2021-pr1",
+      "session": 2021,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["grillage de la blende", "pourcentage d'impuretés", "calcul de masse", "volume d'air", "volume molaire"],
+      "enonce": "On grille une tonne de blende (ZnS) contenant 12 % d'impureté. Calculer :\na°) la masse d'oxyde de zinc obtenu ;\nb°) le volume de dioxyde de soufre (SO₂) qui se dégage pendant l'opération ;\nc°) le volume d'air nécessaire pour ce grillage.\nDonnées : Zn = 65 ; S = 32 ; O = 16 g/mol ; VM = 25 L/mol.",
+      "reponse": "2ZnS + 3O₂ → 2ZnO + 2SO₂. M(ZnS) = 97 g/mol. La masse pure vaut 1 t − 0,12 t = 0,88 t = 880 000 g, soit n = 9072,16 mol.\na°) M(ZnO) = 81 g/mol : m(ZnO) = 9072,16 × 81 = 734 845 g ≈ 734,8 kg.\nb°) V(SO₂) = 9072,16 × 25 = 226 804 L ≈ 226,8 m³.\nc°) n(O₂) = 1,5 × 9072,16 = 13 608 mol : V(O₂) = 340 206 L, donc V(air) = 5 × 340 206 = 1 701 031 L ≈ 1701 m³."
+    },
+    {
+      "id": "bepc-chimie-2021-pr2",
+      "session": 2021,
+      "partie": "Pratique",
+      "numero": "II",
+      "chapitres": ["masse molaire", "alcène", "combustion complète", "volume d'air", "hydrogénation"],
+      "enonce": "La masse molaire d'un hydrocarbure éthylénique est M = 28 g/mol.\na°) Donner sa formule et son nom.\nb°) Quel volume d'air faut-il pour brûler complètement 30 g de ce composé ?\nc°) Calculer la masse et le volume du gaz carbonique formé.\nd°) Calculer la masse d'hydrogène utilisé pour transformer ce composé en un hydrocarbure saturé. Donner la formule et le nom de l'hydrocarbure saturé.\nDonnées : C = 12 ; H = 1 ; O = 16 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "a°) CnH2n avec 14n = 28 : n = 2, donc C₂H₄, l'éthène (ou éthylène). b°) C₂H₄ + 3O₂ → 2CO₂ + 2H₂O : V(O₂) = 30 × 67,2/28 = 72 L, donc V(air) = 360 L. c°) m(CO₂) = 30 × 88/28 = 94,28 g et V(CO₂) = 30 × 44,8/28 = 48 L. d°) C₂H₄ + H₂ → C₂H₆ : m(H₂) = 30 × 2/28 = 2,14 g. L'hydrocarbure saturé est l'éthane C₂H₆."
+    },
+    {
+      "id": "bepc-chimie-2022-th",
+      "session": 2022,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["oxydoréduction", "aluminothermie", "calcul de masse", "pH", "dilution", "bleu de bromothymol", "ions hydrogène"],
+      "enonce": "I. Recopier et compléter les phrases suivantes à l'aide des mots et expressions qui conviennent : le fer, l'oxyde d'aluminium, l'oxyde ferrique, l'oxydoréduction, oxyde, réduit.\n« L'aluminium Al réagit avec … Fe₂O₃ pour donner de … Al₂O₃ et du … Fe. L'aluminium … l'oxyde ferrique en … L'oxyde ferrique … l'aluminium en oxyde … C'est une réaction … »\n2°) Écrire l'équation de la réaction de l'aluminium (Al) avec l'oxyde ferrique (Fe₂O₃).\na) À l'aide des flèches indiquer le sens de l'oxydation et le sens de la réduction.\nb) Calculer la masse du fer et la masse de l'oxyde d'aluminium obtenus à partir de 2,7 g d'aluminium.\nDonnées : Al = 27 ; O = 16 ; Fe = 56 g/mol.\nII.1°) La mesure du pH d'un savon liquide donne pH = 3,3.\na) Ce savon est-il acide ou basique ?\nb) Pendant son utilisation il est mélangé à de l'eau. Le pH de la solution obtenue est-il inférieur, supérieur ou égal à 3,3 ? Expliquer pourquoi.\nc) Quelle couleur prend cette solution lorsqu'on ajoute quelques gouttes de bleu de bromothymol ?\n2°) Dans 10 cm³ de vinaigre (acide) y a-t-il plus ou moins d'ions H⁺ que dans 10 cm³ d'eau ? Justifier la réponse.",
+      "reponse": "I. L'aluminium réagit avec l'oxyde ferrique pour donner de l'oxyde d'aluminium et du fer. L'aluminium RÉDUIT l'oxyde ferrique en fer. L'oxyde ferrique OXYDE l'aluminium en oxyde d'aluminium. C'est une réaction d'OXYDORÉDUCTION.\n2°) Fe₂O₃ + 2Al → 2Fe + Al₂O₃. L'aluminium est le réducteur, l'oxyde ferrique l'oxydant. b) 54 g d'aluminium donnent 112 g de fer : m(Fe) = 2,7 × 112/54 = 5,6 g ; et 102 g d'alumine : m(Al₂O₃) = 2,7 × 102/54 = 5,1 g.\nII.1°.a) Acide, car son pH est inférieur à 7. b) Supérieur à 3,3 : l'ajout d'eau est une dilution, la concentration en ions H⁺ diminue donc le pH augmente. c) Jaune. 2°) Plus : le vinaigre est acide, la quantité d'ions H⁺ y est supérieure à celle des ions OH⁻, alors que dans l'eau pure il y en a autant."
+    },
+    {
+      "id": "bepc-chimie-2022-pr",
+      "session": 2022,
+      "partie": "Pratique",
+      "numero": "B",
+      "chapitres": ["méthane", "combustion complète", "volume d'air", "calcul de masse", "volume molaire"],
+      "enonce": "On fait la combustion complète de 1 litre de méthane pur dans le dioxygène de l'air.\n1. Écrire l'équation-bilan de la réaction de cette combustion.\n2. Quel est le volume du gaz carbonique formé ?\n3. Calculer la masse d'eau formée.\n4. Quel est le volume d'air nécessaire pour cette combustion ?\nDans les conditions de l'expérience le volume molaire vaut 24 L/mol.\nDonnées : C = 12 ; H = 1 ; O = 16 g/mol.",
+      "reponse": "1. CH₄ + 2O₂ → CO₂ + 2H₂O. 2. Une mole de méthane donne une mole de CO₂ : V(CO₂) = 1 L. 3. n(CH₄) = 1/24 mol : m(H₂O) = 2 × (1/24) × 18 = 1,5 g. 4. V(O₂) = 2 × 1 = 2 L, donc V(air) = 5 × 2 = 10 L."
+    },
+    {
+      "id": "bepc-chimie-2023-1",
+      "session": 2023,
+      "partie": "Pratique",
+      "numero": "I",
+      "chapitres": ["haut fourneau", "minerai", "fonte et acier", "oxydoréduction", "pourcentage d'impuretés", "volume molaire"],
+      "enonce": "Dans un haut fourneau, le monoxyde de carbone réduit le minerai de fer Fe₂O₃, on obtient de la fonte et du dioxyde de carbone.\n1. Définis un minerai et dis quel est le principal constituant de la fonte.\n2. Écris l'équation-bilan de la réaction. Montre que c'est une réaction d'oxydoréduction.\n3. Quelle masse de fer obtient-on à partir de 3 tonnes de minerai contenant 10 % d'impuretés ?\n4. Calcule le volume de monoxyde de carbone utilisé dans les conditions où le volume molaire vaut 25 L/mol.\n5. La fonte obtenue contient 4 % de carbone. Calcule la masse de carbone contenue dans 1 tonne de cette fonte.\nDonnées : Fe = 56 ; O = 16 ; C = 12 g/mol.",
+      "reponse": "1. Un minerai est une roche dont on peut extraire économiquement un métal. Le principal constituant de la fonte est le fer. 2. Fe₂O₃ + 3CO → 2Fe + 3CO₂ : Fe₂O₃ perd son oxygène, il est réduit (oxydant) ; CO fixe l'oxygène, il est oxydé (réducteur). 3. Masse pure = 3 × 0,90 = 2,7 t. M(Fe₂O₃) = 160 g/mol : m(Fe) = 2,7 × 112/160 = 1,89 t. 4. n(Fe₂O₃) = 2 700 000/160 = 16 875 mol, donc n(CO) = 50 625 mol et V(CO) = 50 625 × 25 = 1 265 625 L ≈ 1266 m³. 5. 1 t × 4 % = 40 kg de carbone."
+    },
+    {
+      "id": "bepc-chimie-2023-2",
+      "session": 2023,
+      "partie": "Théorie",
+      "numero": "II",
+      "chapitres": ["pH", "classement des solutions"],
+      "enonce": "Le pH de plusieurs solutions a été consigné dans le tableau suivant :\nA = 7 ; B = 1,4 ; C = 2 ; D = 13 ; K = 8 ; N = 6 ; O = 4,5 ; R = 9 ; Y = 12,4.\na. Classe ces solutions de la plus acide à la plus basique.\nb. Extrais de cette classification la solution la plus acide et la plus basique. Trouve la nouvelle classification.",
+      "reponse": "a. B (1,4) < C (2) < O (4,5) < N (6) < A (7) < K (8) < R (9) < Y (12,4) < D (13). b. La plus acide est B et la plus basique est D. En les retirant : C (2) < O (4,5) < N (6) < A (7) < K (8) < R (9) < Y (12,4)."
+    },
+    {
+      "id": "bepc-chimie-2023-3",
+      "session": 2023,
+      "partie": "Pratique",
+      "numero": "III",
+      "chapitres": ["densité d'un gaz", "alcyne", "formule brute", "hydrogénation", "volume molaire"],
+      "enonce": "La densité d'un hydrocarbure acétylénique (A) par rapport à l'air est 1,37.\na. Détermine sa formule brute, son nom et sa formule développée.\nb. Quels sont les volumes de dihydrogène nécessaires pour transformer 2 litres de cet hydrocarbure (A) en un composé éthylénique et en un composé saturé ? Précise les équations des réactions et nomme les produits obtenus.\nDonnées : C = 12 ; H = 1 ; O = 16 g/mol ; Vm = 24 L/mol.",
+      "reponse": "a. M = 29 × 1,37 ≈ 40 g/mol ; pour un alcyne CnH2n−2 : 14n − 2 = 40, n = 3, donc C₃H₄, le propyne, CH≡C−CH₃. b. Pour le composé éthylénique : C₃H₄ + H₂ → C₃H₆ (propène), il faut V(H₂) = 2 L. Pour le composé saturé : C₃H₄ + 2H₂ → C₃H₈ (propane), il faut V(H₂) = 4 L."
+    },
+    {
+      "id": "bepc-chimie-2024-th",
+      "session": 2024,
+      "partie": "Théorie",
+      "numero": "A",
+      "chapitres": ["oxydoréduction", "aluminothermie", "équilibrage", "calcul de masse", "réactions ioniques", "précipitation", "pile Leclanché"],
+      "enonce": "I. Voici une équation bilan incomplète : Fe₂O₃ + X → Al₂O₃ + Y\na) Donne le nom et le symbole des corps simples X et Y. (2 points)\nb) Équilibre l'équation-bilan de la réaction. (2 points)\nc) Quel est le corps réduit ? le corps oxydé ? (1 point)\nd) Calcule la masse de Al₂O₃ et la masse du corps X à partir de 15,5 g de Fe₂O₃.\nDonnées : Al = 27 ; O = 16 ; Fe = 56 g/mol.\nII.1. Complète et équilibre les équations des réactions suivantes :\nBa²⁺ + SO₄²⁻ → … ; Ag⁺ + Cl⁻ → … ; Fe³⁺ + OH⁻ → …\n2) Explique le fonctionnement d'une pile de Leclanché. Quelle est la principale réaction qui explique son fonctionnement ?",
+      "reponse": "I.a) X est l'aluminium (Al) et Y le fer (Fe). b) Fe₂O₃ + 2Al → Al₂O₃ + 2Fe. c) Fe₂O₃ est le corps réduit, l'aluminium est le corps oxydé. d) M(Fe₂O₃) = 160 g/mol : m(Al₂O₃) = 15,5 × 102/160 = 9,88 g et m(Al) = 15,5 × 54/160 = 5,23 g.\nII.1. Ba²⁺ + SO₄²⁻ → BaSO₄↓ ; Ag⁺ + Cl⁻ → AgCl↓ ; Fe³⁺ + 3OH⁻ → Fe(OH)₃↓. 2) Dans la pile Leclanché, le cylindre de zinc est le pôle négatif et la barre de carbone entourée de bioxyde de manganèse MnO₂ le pôle positif ; entre les deux se trouve du chlorure d'ammonium qui sert d'électrolyte. La réaction est essentiellement une oxydation du zinc et une réduction du bioxyde de manganèse.",
+      "correction_du_livre": "La question demande de COMPLÉTER ET ÉQUILIBRER. Le corrigé imprimé écrit « Fe³⁺ + OH⁻ → Fe(OH)₃ », qui n'est pas équilibrée : il y a un seul ion hydroxyde à gauche et trois dans Fe(OH)₃. L'équation juste est Fe³⁺ + 3OH⁻ → Fe(OH)₃↓."
+    },
+    {
+      "id": "bepc-chimie-2024-pr",
+      "session": 2024,
+      "partie": "Pratique",
+      "numero": "III",
+      "chapitres": ["densité d'un gaz", "alcane", "méthane", "combustion complète", "volume d'air", "calcul de masse"],
+      "enonce": "On réalise la combustion complète de 15 litres d'un alcane gazeux dans les conditions normales de température et de pression. La densité par rapport à l'air de cet alcane est d = 0,55.\na) Détermine la formule brute, la formule développée et le nom de l'alcane.\nb) Calcule la masse de l'eau formée et le volume du gaz carbonique dégagé.\nc) Quel volume d'air est nécessaire à cette combustion ?\nDonnées : C = 12 ; H = 1 ; O = 16 g/mol ; Vm = 22,4 L/mol.",
+      "reponse": "a) M = 29 × 0,55 ≈ 16 g/mol ; CnH2n+2 avec 14n + 2 = 16 : n = 1, donc CH₄, le méthane, dont la formule développée montre un carbone lié à quatre hydrogènes. b) CH₄ + 2O₂ → CO₂ + 2H₂O : m(H₂O) = 15 × 36/22,4 = 24,10 g ; une mole de méthane donne une mole de CO₂, donc V(CO₂) = 15 L. c) V(O₂) = 15 × 44,8/22,4 = 30 L, donc V(air) = 5 × 30 = 150 L.",
+      "correction_du_livre": "La question b demande la masse d'eau ET le volume du gaz carbonique. Le corrigé imprimé calcule la masse d'eau puis passe directement au volume d'air : il ne donne jamais le volume de CO₂, qui vaut 15 L (autant que le méthane brûlé)."
+    },
+    {
+      "id": "bepc-chimie-2025-1",
+      "session": 2025,
+      "partie": "Théorie",
+      "numero": "I",
+      "chapitres": ["oxydoréduction", "oxyde cuivrique", "équation-bilan", "calcul de masse", "volume molaire"],
+      "enonce": "1. Complète : « L'oxyde de cuivre de formule CuO est réduit par le carbone C : cette réaction produit du … et du … L'oxyde de cuivre est réduit parce qu'il perd ses atomes d'… Le carbone est … car ses atomes se combinent à des atomes d'… » (2 points)\n2. La réduction de l'oxyde de cuivre par le carbone fournit 25,4 g de cuivre.\na. Écris l'équation bilan de la réaction observée. À l'aide de flèches, indique le sens de l'oxydation et le sens de la réduction. (3 points)\nb. Quelle est la masse de l'oxyde de cuivre décomposée ?\nc. Calcule la masse du carbone et le volume du gaz formé. (2 points)\nOn donne : VM = 24 L/mol ; M(C) = 12 ; M(Cu) = 63,5 ; M(O) = 16 g/mol.",
+      "reponse": "1. La réaction produit du CUIVRE et du DIOXYDE DE CARBONE. L'oxyde de cuivre est réduit parce qu'il perd ses atomes d'OXYGÈNE. Le carbone est OXYDÉ car ses atomes se combinent à des atomes d'OXYGÈNE.\n2.a. 2CuO + C → 2Cu + CO₂. b. M(CuO) = 79,5 g/mol : 159 g de CuO donnent 127 g de cuivre, donc m(CuO) = 25,4 × 159/127 = 31,8 g. c. m(C) = 25,4 × 12/127 = 2,4 g et V(CO₂) = 25,4 × 24/127 = 4,8 L."
+    },
+    {
+      "id": "bepc-chimie-2025-2",
+      "session": 2025,
+      "partie": "Théorie",
+      "numero": "II",
+      "chapitres": ["pile Leclanché", "durée de fonctionnement", "conversion d'unités", "bleu de bromothymol", "pH"],
+      "enonce": "1. Une pile Leclanché consomme 1 mg de zinc par seconde. Le cylindre de zinc a une masse de 20 g. Calcule en heures la durée de fonctionnement de cette pile. (2 points) N.B. : une heure correspond à 3600 secondes.\n2. Après avoir préparé diverses solutions, on verse dans chacune d'elles quelques gouttes de B.B.T. Complète le tableau en donnant la teinte de ces solutions : acide sulfurique (pH = 3) ; soude (pH = 12) ; acide nitrique (pH = 2) ; eau Perrier (pH = 5,5) ; solution d'ammoniac (pH = 10) ; solution de chlorure de sodium (pH = 7). (4 points)",
+      "reponse": "1. 20 g = 20 000 mg, soit 20 000 secondes de fonctionnement. t = 20 000/3600 = 5,56 h, c'est-à-dire 5 h 33 min 20 s. 2. Acide sulfurique : jaune. Soude : bleue. Acide nitrique : jaune. Eau Perrier : jaune. Solution d'ammoniac : bleue. Solution de chlorure de sodium : verte."
+    },
+    {
+      "id": "bepc-chimie-2025-3",
+      "session": 2025,
+      "partie": "Pratique",
+      "numero": "III",
+      "chapitres": ["carbure de calcium", "acétylène", "alcyne", "volume molaire", "équation-bilan"],
+      "enonce": "On traite 38,4 g de carbure de calcium de formule CaC₂ par l'eau, goutte à goutte, jusqu'à la disparition complète du carbure.\na. Écris l'équation bilan de la réaction. (3 points)\nb. Quelle est la nature du gaz dégagé ? (1 point)\nc. Calcule le volume de ce gaz dans les conditions où le volume molaire vaut 22,4 L/mol. (2 points)\nOn donne : M(C) = 12 ; M(Ca) = 40 ; M(H) = 1 ; M(O) = 16 g/mol.",
+      "reponse": "a. CaC₂ + 2H₂O → Ca(OH)₂ + C₂H₂. b. C'est l'acétylène (éthyne), un hydrocarbure insaturé de la famille des alcynes. c. M(CaC₂) = 64 g/mol : n = 38,4/64 = 0,6 mol, donc V(C₂H₂) = 0,6 × 22,4 = 13,44 L."
+    }
+  ]
+}
