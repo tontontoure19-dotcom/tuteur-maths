@@ -4,9 +4,13 @@ C'est ce fichier qui fait la différence avec une IA gratuite. Il définit
 un répétiteur qui REFUSE de donner la réponse et fait travailler l'élève.
 """
 
-# ⚠️ À FAIRE VÉRIFIER par le porteur du projet (professionnel de l'éducation) :
-# ces programmes sont une base de travail, à corriger avec les programmes
-# officiels guinéens et les sujets d'annales réels.
+# Les quatre programmes viennent de sources réelles, plus d'une rédaction
+# de mémoire : les trois du BEPC sont relevés sur les sessions réellement
+# tombées (fréquences à l'appui), celui de Terminale est le programme
+# officiel transmis par un enseignant guinéen. Toute réécriture doit
+# repartir d'une source, jamais de ce qu'on croit savoir : la version
+# écrite de mémoire inventait la géométrie dans l'espace et oubliait
+# l'arithmétique entière.
 
 PROGRAMME_MATHS_10E = """
 # Programme de mathématiques — 10e année (BEPC, Guinée)
@@ -204,47 +208,157 @@ juste même quand le calcul se trompe.
 """
 
 PROGRAMME_MATHS_TERMINALE = """
-# Programme de mathématiques — Terminale (Baccalauréat, Guinée)
+# Programme de mathématiques — Terminale SM et SE (Baccalauréat, Guinée)
 
-## Analyse
-- Limites de fonctions, continuité, théorème des valeurs intermédiaires
-- Dérivation : règles de calcul, dérivées des fonctions usuelles
-- Étude complète de fonctions : variations, extremums, asymptotes,
-  courbe représentative
-- Fonction logarithme népérien : propriétés, équations, dérivée, limites
-- Fonction exponentielle : propriétés, équations, dérivée, limites
-- Primitives, calcul intégral, calcul d'aires
-- Équations différentielles simples (y' = ay, y' = ay + b)
+Ce programme est celui transmis par un enseignant guinéen (relevé daté du
+7 octobre 2025). Il vaut pour la Terminale Sciences Mathématiques ET la
+Terminale Sciences Expérimentales : les deux séries suivent le même
+programme de mathématiques.
 
-## Suites numériques
-- Suites arithmétiques et géométriques
-- Sens de variation, majoration, minoration
-- Limite d'une suite, convergence
-- Raisonnement par récurrence
+Contrairement aux programmes du BEPC, il n'y a pas encore de fréquences :
+la réserve d'annales du BAC n'est pas constituée. Ne prétends jamais
+savoir « ce qui tombe le plus » en Terminale.
 
-## Nombres complexes
-- Forme algébrique, conjugué, module, argument
-- Forme trigonométrique et exponentielle
-- Équations du second degré dans C
-- Interprétation géométrique, transformations du plan
+## 1. Nombres complexes
 
-## Probabilités et statistiques
-- Probabilités conditionnelles, indépendance
-- Variables aléatoires, espérance, variance
+- Corps des nombres complexes
+- Forme algébrique ; forme trigonométrique
+- Module et argument d'un nombre complexe
+- Module et argument d'un produit et d'un quotient
+- Représentation géométrique, affixe d'un point et d'un vecteur
+- Notations Re, Im, Arg, e^(iθ)
+- Racine carrée d'un nombre complexe ; racine n-ième
+- Équations du premier et du second degré dans ℂ
+- Application à l'étude des similitudes
+
+### Applications des complexes, traitées à part
+- Points cocycliques
+- Formule de Moivre
+- Linéarisation de polynômes trigonométriques
+- Conversion de sommes en produits
+- Réduction de a·cos x + b·sin x
+
+## 2. Arithmétique
+
+Chapitre entier, souvent sous-estimé par les élèves.
+- Numération décimale et binaire
+- Anneau ℤ, sous-groupes de ℤ
+- Division euclidienne dans ℕ et dans ℤ
+- Congruences, anneau ℤ/nℤ
+- Nombres premiers, corps ℤ/pℤ
+- Décomposition d'un entier naturel en produit de facteurs premiers
+- PGCD et PPCM
+
+## 3. Raisonnement par récurrence
+
+## 4. Suites numériques
+
+- Suites convergentes : définition et propriétés
+- Suites croissantes et majorées, décroissantes et minorées
+- Image d'une suite convergeant vers a par une fonction continue en a
+- Suites divergeant vers +∞
+- Comportement de la somme d'une suite bornée et d'une suite divergeant
+  vers +∞
+- Comportement du produit d'une suite admettant un minorant strictement
+  positif et d'une suite divergeant vers +∞
+- Suites n ↦ aⁿ et n ↦ n^a ; croissances comparées
+- Suites récurrentes du type u(n+1) = f(u(n))
+
+## 5. Probabilités
+
+- Consolidation des acquis de 12ᵉ année sur le dénombrement
+- Formule du binôme
+- Notion de probabilité, probabilité d'un événement dans l'hypothèse
+  d'équiprobabilité
 - Loi binomiale
-- Statistiques à deux variables, ajustement affine
 
-## Géométrie dans l'espace
-- Vecteurs de l'espace, repérage
-- Produit scalaire, produit vectoriel
-- Équations de droites et de plans
-- Distances, orthogonalité
+## 6. Limites
 
-## Format de l'épreuve du BAC
+- Fonctions tendant vers +∞ (resp. −∞)
+- Limite de la composée d'une fonction de limite a par une fonction
+  continue en a
+- Limite de la somme d'une fonction bornée et d'une fonction tendant
+  vers +∞ (resp. −∞)
+- Limite du produit d'une fonction admettant un minorant strictement
+  positif et d'une fonction tendant vers +∞ (resp. −∞)
+- Limite d'une fonction croissante et majorée sur un intervalle ]a ; b[
+
+## 7. Fonctions continues sur un intervalle
+
+- Opérations sur les fonctions continues
+- Image d'un intervalle, image d'un segment
+- Fonction continue et strictement monotone sur un intervalle
+  (la continuité de la bijection réciproque est admise)
+
+## 8. Fonctions dérivées
+
+- Dérivées successives, notations df/dx et d²f/dx²
+- Dérivée d'une fonction composée (admise)
+- Existence de la dérivée de la fonction réciproque (admise), formule
+- Majorant, minorant, extremums d'une fonction
+
+## 9. Compléments sur l'étude des variations
+
+- Application à la résolution d'équations et d'inéquations
+- Extremums
+
+## 10. Branches infinies
+
+- Recherche des directions asymptotiques et des asymptotes
+- Position de la courbe par rapport aux asymptotes
+
+## 11. Exemples de fonctions à étudier
+
+- x ↦ ⁿ√x, avec n entier naturel différent de 0 et 1
+- x ↦ x^r, avec r rationnel et x réel strictement positif
+- x ↦ ln x et x ↦ eˣ
+- x ↦ x^a, avec a réel
+- x ↦ aˣ, avec a réel strictement positif
+- Fonctions du type in∘f et exp∘f
+
+## 12. Intégration
+
+- Définition ; existence de primitives pour une fonction continue sur un
+  intervalle (admise)
+- Intégrale d'une fonction continue sur un intervalle I :
+  ∫ de a à b de f(t)dt = F(b) − F(a), où F est une primitive de f sur I
+- Propriétés : relation de Chasles, linéarité, inégalité de la moyenne,
+  valeur moyenne
+- Calcul : intégration par parties, changement de variables affines
+- Valeur approchée d'une intégrale ; méthode des rectangles avec
+  majoration du reste
+- Applications : étude de fonctions du type x ↦ ∫ de a à x de f(t)dt ;
+  calcul de l'aire de la partie du plan définie par a ≤ x ≤ b et
+  0 ≤ y ≤ f(x), f continue et positive sur [a ; b] ; généralisation à
+  une fonction continue de signe quelconque
+
+## 13. Équations différentielles
+
+- f' = kf
+- f' = 0
+- f'' = mf
+- Applications aux sciences physiques
+
+## 14. Calculs barycentriques
+
+- Étude des fonctions M ↦ somme des aᵢ·vecteur(MAᵢ)
+- Étude des fonctions M ↦ somme des aᵢ·vecteur(MAᵢ)²
+
+## Ce que ce programme NE contient PAS
+
+À ne pas proposer à un élève qui révise le BAC guinéen, même si ces
+chapitres existent dans d'autres pays : géométrie dans l'espace (vecteurs
+de l'espace, produit vectoriel, équations de plans), probabilités
+conditionnelles et indépendance, variables aléatoires, espérance et
+variance, statistiques à deux variables et ajustement affine, suites
+arithmétiques et géométriques traitées pour elles-mêmes.
+
+## Le format de l'épreuve
+
 L'épreuve comporte plusieurs exercices indépendants puis un problème
-d'analyse plus long (étude de fonction avec logarithme ou exponentielle,
-souvent accompagnée d'une suite ou d'un calcul d'aire). Le barème
-récompense la rédaction et la justification de chaque étape.
+d'analyse plus long. La rédaction et la justification de chaque étape
+sont notées : dis-le aux élèves, beaucoup perdent des points en sautant
+les justifications.
 """
 
 # Chaque niveau a son programme et son examen.
@@ -372,7 +486,7 @@ NIVEAUX = {
         "programme": PROGRAMME_CHIMIE_10E,
     },
     "bac": {
-        "libelle": "Terminale (BAC)",
+        "libelle": "Terminale — Maths, séries SM et SE (BAC)",
         "classe": "Terminale",
         "examen": "Baccalauréat",
         "programme": PROGRAMME_MATHS_TERMINALE,
