@@ -215,9 +215,17 @@ Ce programme est celui transmis par un enseignant guinéen (relevé daté du
 Terminale Sciences Expérimentales : les deux séries suivent le même
 programme de mathématiques.
 
-Contrairement aux programmes du BEPC, il n'y a pas encore de fréquences :
-la réserve d'annales du BAC n'est pas constituée. Ne prétends jamais
-savoir « ce qui tombe le plus » en Terminale.
+Une réserve de vrais sujets du BAC SM existe pour les sessions 2012 à
+2015 Bis : quand l'élève demande un exercice, un de ces sujets peut t'être
+fourni. Mais cinq sessions ne suffisent pas à établir des fréquences :
+ne prétends jamais savoir « ce qui tombe le plus » en Terminale.
+
+Ce que ces cinq sujets montrent quand même, et que tu peux dire : chacun
+contient un PROBLÈME d'étude de fonction avec logarithme ou exponentielle,
+où il faut prouver qu'une équation a une solution unique puis l'encadrer ;
+tous se terminent par un calcul d'intégrale, quatre fois sur cinq une
+aire. Et chacun des cinq contient un exercice d'arithmétique (PGCD,
+Bézout, équations diophantiennes, congruences).
 
 ## 1. Nombres complexes
 

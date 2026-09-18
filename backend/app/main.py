@@ -346,47 +346,70 @@ def _retour_apres_absence(eleve: str, code: str | None) -> str:
     )
 
 
-# Chaque niveau va chercher dans SA réserve. Sans cette table, une séance
-# de physique recevait des exercices de maths : l'élève demandait la loi
-# d'Ohm et le répétiteur lui sortait un exercice de géométrie.
-MATIERE_DES_ANNALES = {"bepc": "maths", "bepc-physique": "physique",
-                       "bepc-chimie": "chimie"}
+# Chaque niveau va chercher dans SA réserve : (examen, matière). Sans cette
+# table, une séance de physique recevait des exercices de maths : l'élève
+# demandait la loi d'Ohm et le répétiteur lui sortait un exercice de
+# géométrie.
+RESERVE_DU_NIVEAU = {
+    "bepc": ("bepc", "maths"),
+    "bepc-physique": ("bepc", "physique"),
+    "bepc-chimie": ("bepc", "chimie"),
+    "bac": ("bac", "maths"),
+}
+NOM_EXAMEN = {"bepc": "BEPC", "bac": "BAC"}
 
 
 def _annale_utile(message: str, niveau: str) -> str:
     """Un sujet d'examen portant sur ce dont l'élève vient de parler.
 
-    On ne cherche que pour le BEPC : la réserve du BAC n'existe pas encore.
     Rien trouvé = rien ajouté, et le répétiteur travaille comme avant.
     """
-    matiere = MATIERE_DES_ANNALES.get(niveau)
-    if not matiere or len(message.strip()) < 8:
+    reserve = RESERVE_DU_NIVEAU.get(niveau)
+    if not reserve or len(message.strip()) < 8:
         return ""
 
-    trouves = annales_store.chercher(message, examen="bepc", matiere=matiere, limite=1)
+    examen, matiere = reserve
+    trouves = annales_store.chercher(message, examen=examen, matiere=matiere, limite=1)
     if not trouves:
         return ""
 
     ex = trouves[0]
-    # « épreuve d'Activités Numériques » mais « épreuve de Théorie ».
-    liaison = "d'" if ex["partie"][:1].lower() in "aeiouéèê" else "de "
-    return (
+    nom = NOM_EXAMEN[examen]
+    # « 2015 Bis » : deux sujets la même année, l'élève doit savoir lequel.
+    session = ex.get("libelle_session", ex["session"])
+    if examen == "bac":
+        provenance = f"Sujet tombé au BAC {session} (série SM), {ex['partie']}"
+    else:
+        # « épreuve d'Activités Numériques » mais « épreuve de Théorie ».
+        liaison = "d'" if ex["partie"][:1].lower() in "aeiouéèê" else "de "
+        provenance = f"Exercice tombé au BEPC {session}, épreuve {liaison}{ex['partie']}"
+    morceaux = [
         "# Un vrai sujet d'examen est disponible\n\n"
-        f"Exercice tombé au BEPC {ex['session']}, épreuve {liaison}{ex['partie']} :\n\n"
+        f"{provenance} :\n\n"
         f"{ex['enonce']}\n\n"
         f"Résultat attendu (POUR TOI SEUL, jamais pour l'élève) : {ex['reponse']}\n\n"
         "**Si l'élève demande un exercice, donne CELUI-CI. N'en invente pas.** "
         "Un sujet réellement tombé à l'examen vaut infiniment mieux qu'un "
         "exercice fabriqué : c'est la seule chose qui dise à l'élève où il en "
-        "est vraiment pour le jour du BEPC.\n\n"
+        f"est vraiment pour le jour du {nom}.\n\n"
         "La seule exception : ne l'impose pas au milieu d'un raisonnement en "
-        "cours. Attends que l'élève ait fini ce qu'il fait.\n\n"
-        "Dis toujours d'où il vient : « Celui-ci est tombé au BEPC "
-        f"{ex['session']}, on essaie ? » Puis fais-le chercher, comme toujours.\n\n"
+        "cours. Attends que l'élève ait fini ce qu'il fait.\n\n",
+    ]
+    if examen == "bac":
+        # Un problème du BAC tient sur une page entière : collé d'un bloc
+        # dans un téléphone, il décourage avant la première ligne.
+        morceaux.append(
+            "Un sujet du BAC est long : propose-le question par question, "
+            "jamais tout d'un bloc, et avance au rythme de l'élève.\n\n"
+        )
+    morceaux.append(
+        f"Dis toujours d'où il vient : « Celui-ci est tombé au {nom} "
+        f"{session}, on essaie ? » Puis fais-le chercher, comme toujours.\n\n"
         "Le résultat attendu te sert UNIQUEMENT à vérifier l'élève. Tu ne le "
         "donnes jamais : la règle du répétiteur ne change pas parce que "
         "l'exercice vient d'un examen."
     )
+    return "".join(morceaux)
 
 
 def _fichiers_du_code(code: str) -> list[Path]:
@@ -892,11 +915,11 @@ def config():
         # Une entrée par matière : c'est ce qui dit d'un coup d'œil qu'une
         # nouvelle réserve est bien arrivée en ligne.
         "annales": {
-            matiere: {
-                "sessions": annales_store.sessions_disponibles(matiere=matiere),
-                "exercices": len(annales_store.charger(matiere=matiere)),
+            f"{examen}-{matiere}": {
+                "sessions": annales_store.sessions_disponibles(examen, matiere),
+                "exercices": len(annales_store.charger(examen, matiere)),
             }
-            for matiere in sorted(set(MATIERE_DES_ANNALES.values()))
+            for examen, matiere in sorted(set(RESERVE_DU_NIVEAU.values()))
         },
     }
 
