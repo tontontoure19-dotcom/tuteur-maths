@@ -107,6 +107,19 @@ class Abonnements:
         self._ecrire(registre)
         return {"code": code, **registre[code]}
 
+    def renommer(self, code: str, nom: str) -> dict | None:
+        """Corrige le nom de l'abonné, sans toucher à rien d'autre.
+
+        Le travail de l'élève n'est pas rangé sous ce nom mais sous le code :
+        le renommer ne fait rien perdre.
+        """
+        registre = self._lire()
+        if code not in registre:
+            return None
+        registre[code]["nom"] = nom.strip()
+        self._ecrire(registre)
+        return {"code": code, **registre[code]}
+
     def couper(self, code: str) -> dict | None:
         """Suspend un abonnement sans effacer ce qu'on sait de lui."""
         registre = self._lire()

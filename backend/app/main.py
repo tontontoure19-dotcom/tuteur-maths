@@ -1371,6 +1371,23 @@ def couper_abonnement(abonne: str, code: str | None = None):
     return resultat
 
 
+class NouveauNom(BaseModel):
+    nom: str = Field(..., max_length=60)
+
+
+@app.post("/api/admin/abonnement/{abonne}/renommer")
+def renommer_abonnement(abonne: str, demande: NouveauNom, code: str | None = None):
+    """Corrige le nom d'un abonné — par exemple pour l'aligner sur le prénom
+    que l'élève tape réellement. Son travail, rangé sous le code, ne bouge pas."""
+    _exiger_admin(code)
+    if not demande.nom.strip():
+        raise HTTPException(status_code=400, detail="Il faut un nom.")
+    resultat = ABONNEMENTS.renommer(abonne, demande.nom)
+    if resultat is None:
+        raise HTTPException(status_code=404, detail="Abonnement introuvable.")
+    return resultat
+
+
 @app.get("/api/codes")
 def usage_codes(code: str | None = None):
     """Qui utilise quel code — sert à repérer un code qui a été partagé.
