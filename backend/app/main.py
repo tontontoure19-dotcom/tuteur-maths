@@ -1048,7 +1048,7 @@ def creer_abonnement(demande: NouvelAbonnement, code: str | None = None):
 JOURS_SEMAINE_RAPPORT = 7
 
 
-def _semaine_de_l_eleve(eleve: str, code: str | None) -> dict:
+def _semaine_du_journal(fichier: Path) -> dict:
     """Ce que l'élève a fait ces sept derniers jours.
 
     Les chiffres sont comptés ici, pas demandés à l'IA : un parent qui lit
@@ -1056,7 +1056,7 @@ def _semaine_de_l_eleve(eleve: str, code: str | None) -> dict:
     """
     depuis = datetime.now(timezone.utc) - timedelta(days=JOURS_SEMAINE_RAPPORT)
     questions, jours = 0, set()
-    for e in _journal(_fichier_session(eleve, code)):
+    for e in _journal(fichier):
         if e["role"] != "eleve":
             continue
         try:
@@ -1069,16 +1069,44 @@ def _semaine_de_l_eleve(eleve: str, code: str | None) -> dict:
     return {"questions": questions, "jours_actifs": len(jours)}
 
 
-def _message_hebdomadaire(eleve: str, code: str | None) -> str:
+def _nom_dans_le_journal(fichier: Path) -> str:
+    """Le prénom que l'élève tape réellement pour se connecter."""
+    echanges = _journal(fichier)
+    for e in reversed(echanges):
+        if e.get("eleve"):
+            return e["eleve"]
+    return fichier.stem.split("_", 1)[-1].replace("_", " ").title()
+
+
+def _journal_de_l_abonne(code_abonne: str) -> Path | None:
+    """Le journal de l'élève qui utilise réellement cet abonnement.
+
+    On part du CODE, pas du nom saisi à la création de l'abonnement : le
+    responsable tape « Alpha Oumar Dabo », l'élève se connecte en tapant
+    « Alphonse Dabo », et un message cherché par le nom affirmait au parent
+    que son enfant n'avait rien fait — alors qu'il avait posé 64 questions.
+    Si plusieurs élèves partagent le code, on retient le plus actif.
+    """
+    candidats = [f for f in _fichiers_du_code(code_abonne) if _journal(f)]
+    if not candidats:
+        return None
+    return max(candidats, key=lambda f: (_semaine_du_journal(f)["questions"],
+                                         _journal(f)[-1]["horodatage"]))
+
+
+def _message_hebdomadaire(eleve: str, fichier: Path, nom_du_lien: str) -> str:
     """Le message WhatsApp à envoyer au parent, prêt à copier.
 
     Court par nécessité : un parent le lit sur son téléphone, entre deux
     choses. S'il fait dix lignes, il n'est pas lu — et c'est précisément ce
     message qui décide du renouvellement de l'abonnement.
+
+    `eleve` est le nom que connaît le parent ; `nom_du_lien` celui sous
+    lequel l'élève travaille, sans quoi le lien ouvre une page vide.
     """
     prenom = eleve.strip().split()[0] if eleve.strip() else eleve
-    semaine = _semaine_de_l_eleve(eleve, code)
-    lien = f"{ADRESSE_PUBLIQUE}/parent.html?eleve={quote(eleve)}"
+    semaine = _semaine_du_journal(fichier)
+    lien = f"{ADRESSE_PUBLIQUE}/parent.html?eleve={quote(nom_du_lien)}"
 
     if semaine["questions"] == 0:
         return (
@@ -1091,7 +1119,6 @@ def _message_hebdomadaire(eleve: str, code: str | None) -> str:
         )
 
     # Le qualitatif vient du bilan déjà calculé : aucun appel de plus.
-    fichier = _fichier_session(eleve, code)
     bilan = None
     if CLE_PRESENTE and fichier.exists():
         try:
@@ -1122,14 +1149,34 @@ def _message_hebdomadaire(eleve: str, code: str | None) -> str:
 
 
 @app.get("/api/admin/message-hebdo/{eleve}")
-def message_hebdomadaire(eleve: str, code: str | None = None):
-    """Le message de la semaine, prêt à coller dans WhatsApp."""
+def message_hebdomadaire(eleve: str, code: str | None = None,
+                         abonne: str | None = None):
+    """Le message de la semaine, prêt à coller dans WhatsApp.
+
+    Avec `abonne` (le code de l'abonnement), l'activité est retrouvée par le
+    code, quel que soit le prénom que l'élève tape en se connectant.
+    """
     code_utilise = _exiger_admin(code)
-    # Le responsable consulte n'importe quel élève : _fichier_session le sait.
+    if abonne:
+        fichier = _journal_de_l_abonne(abonne)
+        nom_utilise = _nom_dans_le_journal(fichier) if fichier else None
+    else:
+        # Le responsable consulte n'importe quel élève : _fichier_session le sait.
+        fichier = _fichier_session(eleve, code_utilise)
+        nom_utilise = eleve
+    if fichier is None:
+        fichier = DOSSIER_SESSIONS / "_aucun_journal_.jsonl"
+
     return {
         "eleve": eleve,
-        "message": _message_hebdomadaire(eleve, code_utilise),
-        **_semaine_de_l_eleve(eleve, code_utilise),
+        "message": _message_hebdomadaire(eleve, fichier, nom_utilise or eleve),
+        # Le responsable doit savoir que l'élève se connecte sous un autre
+        # nom : c'est peut-être une faute de frappe, peut-être un frère qui
+        # utilise l'abonnement de sa sœur.
+        "nom_utilise": nom_utilise,
+        "nom_different": bool(nom_utilise)
+                         and _nom_normalise(nom_utilise) != _nom_normalise(eleve),
+        **_semaine_du_journal(fichier),
     }
 
 

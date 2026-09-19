@@ -68,6 +68,8 @@
   .succes button{background:var(--vert);color:#fff;border:none;border-radius:10px;
                  padding:10px 16px;font-size:14px;cursor:pointer;font-family:inherit}
   .erreur{background:#FDECEC;color:#9B2C2C;border-radius:12px;padding:14px;font-size:14.5px;margin-bottom:14px}
+  .succes .avertissement{background:#FFF4DB;color:#7A4B00;border-radius:10px;padding:10px 12px;
+                         font-size:14px;line-height:1.45;margin:10px 0 0}
   .info{text-align:center;color:var(--gris);padding:28px 18px;font-size:15px}
   .sommes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
   .somme{border:1px solid var(--bord);border-radius:14px;padding:13px 10px;text-align:center}
@@ -271,7 +273,7 @@ async function charger() {
           <div class="travail">${activite(a)}</div>
         </div>
         <div class="actions">
-          <button data-message="${echapper(a.nom)}" title="Message de la semaine">📩</button>
+          <button data-message="${echapper(a.code)}" data-nom="${echapper(a.nom)}" title="Message de la semaine">📩</button>
           ${a.testeur ? '' : `
             <button class="vert" data-prolonger="${echapper(a.code)}" title="Ajouter un mois">+ mois</button>
             <button data-semaine="${echapper(a.code)}" title="Ajouter une semaine">+ sem.</button>
@@ -314,14 +316,27 @@ function brancher(action, faire) {
 
 /* Le message hebdomadaire au parent. C'est lui qui fait renouveler
    l'abonnement : le parent qui ne reçoit rien oublie qu'il paie. */
-async function montrerMessage(nom) {
+/* On envoie le CODE de l'abonnement, pas seulement le nom : l'élève ne tape
+   pas forcément le nom saisi à la création (« Alpha Oumar » contre
+   « Alphonse »), et un message cherché par le nom annonçait au parent un
+   enfant qui n'avait rien fait. */
+async function montrerMessage(code) {
+  const bouton = document.querySelector(`[data-message="${CSS.escape(code)}"]`);
+  const nom = bouton ? bouton.dataset.nom : code;
   try {
-    const r = await appeler('/api/admin/message-hebdo/' + encodeURIComponent(nom));
+    const r = await appeler('/api/admin/message-hebdo/' + encodeURIComponent(nom)
+                            + '?abonne=' + encodeURIComponent(code));
     const d = await r.json();
     if (!r.ok) throw new Error(d.detail || 'Message indisponible.');
+    const autreNom = d.nom_different
+      ? `<p class="avertissement">⚠ L'élève se connecte sous le nom
+           « ${echapper(d.nom_utilise)} ». Faute de frappe, ou quelqu'un d'autre
+           utilise cet abonnement : à vérifier avant d'envoyer.</p>`
+      : '';
     $('message').innerHTML = `
       <div class="succes">
         <b>Message de la semaine — ${echapper(nom)}</b>
+        ${autreNom}
         <pre class="apercu">${echapper(d.message)}</pre>
         <button id="copier-hebdo">Copier pour WhatsApp</button>
       </div>`;
