@@ -61,6 +61,26 @@ CHAPITRES = {
         ("Identification des ions", 2),
         ("Pile Leclanché, fonte et acier", 2),
     ],
+    # Physique de Terminale SM : aucune annale relevée pour l'instant, donc
+    # aucune fréquence. L'ordre suit celui du programme de l'enseignant, qui
+    # est aussi l'ordre où les chapitres s'enchaînent — la dynamique a besoin
+    # de la cinématique, l'induction du champ magnétique.
+    "bac-physique": [
+        ("Cinématique et mouvements", 3),
+        ("Dynamique : relation fondamentale et énergie cinétique", 4),
+        ("Interaction et champ gravitationnel, satellites et planètes", 3),
+        ("Mouvement d'un projectile dans le champ de pesanteur", 3),
+        ("Particule chargée dans un champ électrostatique", 3),
+        ("Solide en rotation et théorème de Huygens", 3),
+        ("Oscillations mécaniques libres : pendule élastique", 3),
+        ("Champ magnétique et loi de Laplace", 4),
+        ("Induction électromagnétique et auto-induction", 4),
+        ("Oscillations électriques et courant alternatif", 4),
+        ("Ondes électromagnétiques", 2),
+        ("Optique ondulatoire : interférences lumineuses", 3),
+        ("Effet photoélectrique et niveaux d'énergie de l'atome", 3),
+        ("Physique nucléaire : noyau, radioactivité, réactions", 4),
+    ],
     # BAC SM/SE : cinq sessions seulement, pas de fréquences fiables. Le
     # problème d'étude de fonction et l'arithmétique tombent à chaque
     # session : ils passent en tête, le reste suit l'ordre du programme.

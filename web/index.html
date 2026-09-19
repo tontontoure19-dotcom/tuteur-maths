@@ -191,11 +191,12 @@
     <button class="niveau" data-niveau="bepc-physique">10ᵉ année<span>BEPC · Physique</span></button>
     <button class="niveau" data-niveau="bepc-chimie">10ᵉ année<span>BEPC · Chimie</span></button>
     <button class="niveau" data-niveau="bac">Terminale<span>BAC · Maths (SM et SE)</span></button>
+    <button class="niveau" data-niveau="bac-physique">Terminale<span>BAC · Physique (SM)</span></button>
   </div>
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 33</div>
+  <div id="version">version 34</div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -257,7 +258,7 @@ let codeAcces = localStorage.getItem('code_acces') || '';
 // question rapide, puis revenir à son cours : chacune garde son fil.
 let seanceActive = null;
 // Les niveaux que l'application sait ouvrir.
-const LIBELLES_CONNUS = ['bepc', 'bepc-physique', 'bepc-chimie', 'bac'];
+const LIBELLES_CONNUS = ['bepc', 'bepc-physique', 'bepc-chimie', 'bac', 'bac-physique'];
 // Vrai dès que l'élève a lui-même touché un bouton de niveau.
 let niveauChoisiALaMain = false;
 
@@ -628,7 +629,7 @@ async function demarrer() {
 // doit nommer CELUI de l'élève, sinon la moitié des visiteurs se sent
 // étrangère à l'application dès la première phrase.
 const EXAMENS = { bepc: 'BEPC', 'bepc-physique': 'BEPC',
-                  'bepc-chimie': 'BEPC', bac: 'BAC' };
+                  'bepc-chimie': 'BEPC', bac: 'BAC', 'bac-physique': 'BAC' };
 
 function majPromesse() {
   $('promesse').innerHTML =
@@ -653,7 +654,8 @@ function ouvrirChat() {
   const LIBELLES = { bepc: '10ᵉ année · Maths',
                      'bepc-physique': '10ᵉ année · Physique',
                      'bepc-chimie': '10ᵉ année · Chimie',
-                     bac: 'Terminale · Maths' };
+                     bac: 'Terminale · Maths',
+                     'bac-physique': 'Terminale · Physique' };
   $('salut').textContent = 'Salut ' + eleve + ' 👋 · ' + (LIBELLES[niveau] || '10ᵉ année');
   // On repart d'un fil vide : sinon, l'élève qui passe des maths à la
   // physique sans recharger la page garderait l'ancien cours à l'écran —
@@ -855,7 +857,8 @@ async function ouvrirProgres() {
    l'application sans savoir quoi y faire — et ne revenait pas. */
 
 const MATIERES = { bepc: 'maths', 'bepc-physique': 'physique',
-                   'bepc-chimie': 'chimie', bac: 'maths' };
+                   'bepc-chimie': 'chimie', bac: 'maths',
+                   'bac-physique': 'physique' };
 const MOIS_COURTS = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin',
                      'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
 const dateCourte = iso => {

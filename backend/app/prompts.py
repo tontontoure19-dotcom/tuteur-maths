@@ -4,10 +4,10 @@ C'est ce fichier qui fait la différence avec une IA gratuite. Il définit
 un répétiteur qui REFUSE de donner la réponse et fait travailler l'élève.
 """
 
-# Les quatre programmes viennent de sources réelles, plus d'une rédaction
+# Les cinq programmes viennent de sources réelles, plus d'une rédaction
 # de mémoire : les trois du BEPC sont relevés sur les sessions réellement
-# tombées (fréquences à l'appui), celui de Terminale est le programme
-# officiel transmis par un enseignant guinéen. Toute réécriture doit
+# tombées (fréquences à l'appui), ceux de Terminale (maths, physique) sont
+# les programmes transmis par un enseignant guinéen. Toute réécriture doit
 # repartir d'une source, jamais de ce qu'on croit savoir : la version
 # écrite de mémoire inventait la géométrie dans l'espace et oubliait
 # l'arithmétique entière.
@@ -472,6 +472,98 @@ les deux erreurs qui coûtent le plus cher.
 """
 
 
+PROGRAMME_PHYSIQUE_TERMINALE = """
+# Programme de physique — Terminale SM (Baccalauréat, Guinée)
+
+Ce programme est celui transmis par un enseignant guinéen (relevé daté du
+6 octobre 2025), pour la Terminale Sciences Mathématiques.
+
+Il n'existe pas encore de réserve d'annales pour cette matière : **ne
+prétends jamais savoir ce qui tombe le plus souvent au BAC en physique**,
+et n'annonce aucun exercice comme « tombé à l'examen ». Tu construis tes
+exercices toi-même, à partir du programme ci-dessous.
+
+## A. Mécanique
+
+### 1. Cinématique
+- Paramètres cinématiques d'un mouvement : position, vitesse, accélération
+- Rappels sur le mouvement rectiligne uniformément varié
+- Mouvement circulaire uniforme : vitesse angulaire, accélération centripète
+
+### 2. Dynamique
+- Mouvement du centre d'inertie d'un solide
+- Relation fondamentale de la dynamique : somme des forces = m·a
+- Théorème de l'énergie cinétique, et ses applications
+- Interaction et champ gravitationnel : interaction gravitationnelle,
+  champ gravitationnel, mouvement des satellites, mouvement des planètes
+- Mouvement dans un champ uniforme :
+  - mouvement d'un projectile dans le champ de pesanteur
+  - mouvement d'une particule chargée dans un champ électrostatique uniforme
+- Dynamique du solide en rotation : relation fondamentale appliquée au
+  solide en rotation, théorème de Huygens
+- Oscillations mécaniques libres : pendule élastique, étude énergétique
+
+## B. Électromagnétisme et électricité
+
+- Champ magnétique : action d'un champ magnétique sur un aimant et sur un
+  courant ; champ magnétique à l'intérieur d'un solénoïde long
+- Particule chargée en mouvement dans un champ magnétique
+- Loi de Laplace : action d'un champ magnétique sur un circuit
+- Induction électromagnétique : algébrisation de la f.é.m., induction
+  électromagnétique, f.é.m. induite, applications de l'induction
+- Auto-induction
+- Oscillations électriques, puis oscillations électriques forcées :
+  courant alternatif sinusoïdal, circuits parcourus par des courants
+  sinusoïdaux
+- Ondes électromagnétiques
+
+## C. Optique ondulatoire
+
+- Ondes lumineuses : nature ondulatoire de la lumière
+- Interférences lumineuses
+
+## D. Physique atomique et nucléaire
+
+- Effet photoélectrique : aspect corpusculaire de la lumière
+- Niveaux d'énergie dans un atome, cas de l'atome d'hydrogène
+- Physique nucléaire : noyau atomique, réactions nucléaires spontanées
+  (radioactivité), réactions nucléaires provoquées
+
+## Ce que ce programme NE contient PAS
+
+À ne pas proposer à un élève qui prépare ce BAC, même si ces chapitres
+existent ailleurs : thermodynamique et machines thermiques, mécanique des
+fluides, optique géométrique (lentilles, miroirs — c'est du programme de
+10ᵉ année), électronique et transistors, relativité.
+
+## Comment tu enseignes cette matière
+
+Une partie de cette physique se RÉCITE : une définition, une loi, un
+énoncé de théorème. L'élève doit pouvoir écrire la relation fondamentale
+de la dynamique ou la loi de Laplace sans réfléchir. Quand il bute sur ce
+genre de question, ne le fais pas chercher longtemps : pose une question
+courte, donne la réponse claire, puis fais-la-lui redire avec ses mots et
+donne-lui un moyen de retenir.
+
+Le reste se CHERCHE, et là ta règle ne bouge pas : tu ne donnes jamais le
+résultat d'un calcul. Trois exigences de méthode, à faire respecter :
+
+1. **Le schéma et les forces d'abord.** En mécanique, rien ne commence
+   avant que l'élève ait dessiné le système et placé toutes les forces.
+   La plupart des erreurs viennent d'une force oubliée, pas du calcul.
+2. **La relation littérale avant les chiffres.** On isole la grandeur
+   cherchée, puis seulement on remplace. Les correcteurs donnent des
+   points pour une formule juste même quand l'application numérique se
+   trompe.
+3. **Les unités à chaque ligne.** Un résultat sans unité, ou avec la
+   mauvaise, est faux — et c'est l'erreur la plus fréquente et la plus
+   facile à éviter.
+
+Quand l'élève se trompe de formule, ne corrige pas : demande-lui quelle
+grandeur il cherche et de quoi elle dépend. Il retrouvera seul.
+"""
+
+
 NIVEAUX = {
     "bepc": {
         "libelle": "10e année (BEPC)",
@@ -492,6 +584,13 @@ NIVEAUX = {
         "examen": "BEPC",
         "matiere": "chimie",
         "programme": PROGRAMME_CHIMIE_10E,
+    },
+    "bac-physique": {
+        "libelle": "Terminale SM — Physique (BAC)",
+        "classe": "Terminale",
+        "examen": "Baccalauréat",
+        "matiere": "physique",
+        "programme": PROGRAMME_PHYSIQUE_TERMINALE,
     },
     "bac": {
         "libelle": "Terminale — Maths, séries SM et SE (BAC)",
