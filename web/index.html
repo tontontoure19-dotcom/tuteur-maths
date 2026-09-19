@@ -195,7 +195,7 @@
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 32</div>
+  <div id="version">version 33</div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -888,14 +888,17 @@ function afficherPlan(d, modifier = false) {
 
   // Pas encore de plan, ou l'élève veut changer la date ou le rythme.
   if (!d.plan || modifier) {
-    const moisChoisi = d.plan ? d.plan.mois_examen : '';
+    // Juin par défaut : c'est le mois des examens en Guinée, et beaucoup
+    // d'élèves de 10ᵉ année ne connaissent pas encore leur date.
+    const moisExamen = (d.mois_proposes.find(m => m.examen) || {}).valeur || '';
+    const moisChoisi = d.plan ? d.plan.mois_examen : moisExamen;
     const rythme = d.plan ? d.plan.seances_par_semaine : 3;
     zone.innerHTML = `<div class="bloc">${titre}
       <p class="plan-intro">${d.plan
         ? 'Change la date ou ton rythme : les chapitres déjà cochés restent cochés.'
         : 'Dis-moi quand est ton examen et combien de fois par semaine tu peux travailler. ' +
           'Je te prépare l\'ordre des chapitres, en commençant par ce qui tombe le plus souvent.'}</p>
-      <div class="plan-champ"><label for="plan-mois">Mon examen est en</label>
+      <div class="plan-champ"><label for="plan-mois">Mon examen est en <span style="opacity:.8">(en général juin)</span></label>
         <select id="plan-mois"><option value="">Choisis le mois…</option>
           ${d.mois_proposes.map(m => `<option value="${m.valeur}" ${m.valeur === moisChoisi ? 'selected' : ''}>${m.libelle}</option>`).join('')}
         </select></div>

@@ -1071,15 +1071,24 @@ MOIS_FR = ("janvier", "février", "mars", "avril", "mai", "juin", "juillet",
            "août", "septembre", "octobre", "novembre", "décembre")
 
 
+# Le CEE, le BEPC et le BAC guinéens se passent en juin : c'est le mois
+# proposé d'office, beaucoup d'élèves de 10e année ne connaissant pas encore
+# la date de leur examen.
+MOIS_DES_EXAMENS = 6
+
+
 def _mois_proposes() -> list[dict]:
     """Les mois d'examen que l'élève peut choisir : de celui qui vient à un an."""
     aujourdhui = datetime.now(timezone.utc).date()
-    mois = []
+    mois, juin_trouve = [], False
     for decalage in range(1, 13):
         n = aujourdhui.month - 1 + decalage
         annee, numero = aujourdhui.year + n // 12, n % 12 + 1
+        examen = numero == MOIS_DES_EXAMENS and not juin_trouve
+        juin_trouve = juin_trouve or examen
         mois.append({"valeur": f"{annee}-{numero:02d}",
-                     "libelle": f"{MOIS_FR[numero - 1]} {annee}"})
+                     "libelle": f"{MOIS_FR[numero - 1]} {annee}",
+                     "examen": examen})
     return mois
 
 
