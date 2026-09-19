@@ -149,6 +149,32 @@
                   border-radius:16px;padding:16px;font-size:16px;line-height:1.5;color:var(--vert)}
   #progres .patience{text-align:center;color:var(--gris);padding:30px 12px;font-size:15px}
   #progres .btn{margin-top:auto;max-width:none}
+  #zone-bilan{display:flex;flex-direction:column;gap:12px}
+
+  /* ---- Plan de révision ---- */
+  #progres .plan-intro{font-size:15px;line-height:1.5;margin-bottom:12px}
+  #progres .plan-champ{margin-bottom:11px}
+  #progres .plan-champ label{display:block;font-size:13px;color:var(--gris);margin-bottom:4px}
+  #progres .plan-champ select{width:100%;padding:12px;border:1px solid #DDD8D0;border-radius:12px;
+                              font-size:16px;background:#fff;font-family:inherit;color:var(--texte)}
+  #progres .plan-go{width:100%;background:var(--vert);color:#fff;border:none;border-radius:12px;
+                    padding:13px;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit}
+  #progres .plan-go:disabled{opacity:.5}
+  #progres .plan-statut{font-size:14px;color:var(--gris);margin:4px 0 2px;line-height:1.45}
+  #progres .plan-statut.retard{color:#9A5B00}
+  #progres .ch{display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid #EFEBE5}
+  #progres .ch:last-child{border-bottom:none}
+  #progres .ch .coche{width:30px;height:30px;border-radius:9px;border:2px solid #CFC9C0;
+                      background:#fff;font-size:16px;cursor:pointer;flex-shrink:0;line-height:1}
+  #progres .ch.fait .coche{background:var(--vert);border-color:var(--vert);color:#fff}
+  #progres .ch.fait .ch-nom{color:var(--gris);text-decoration:line-through}
+  #progres .ch.maintenant{background:var(--vert-clair);border-radius:12px;padding:9px 8px;
+                          border-bottom-color:transparent}
+  #progres .ch-nom{font-weight:600;font-size:15px}
+  #progres .ch-date{font-size:12.5px;color:var(--gris)}
+  #progres .ch-date .option{color:#9A5B00}
+  #progres .lien-plan{background:none;border:none;color:var(--gris);text-decoration:underline;
+                      font-size:13.5px;cursor:pointer;font-family:inherit;margin-top:10px;padding:0}
   .cache{display:none !important}
 </style>
 </head>
@@ -169,7 +195,7 @@
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 31</div>
+  <div id="version">version 32</div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -639,9 +665,10 @@ function ouvrirChat() {
   // réseau ; le serveur, lui, a l'historique complet et prend le relais.
   const local = restaurer();
   if (!local) {
-    afficher('tuteur',
+    const accueil = afficher('tuteur',
       'Salut ' + eleve + ' ! Sur quoi tu travailles aujourd\'hui ?\n\n' +
       'Tu peux m\'écrire ta question, ou photographier ton exercice avec le bouton 📷.');
+    annoncerPlan(accueil);
   }
   $('fil').scrollTop = $('fil').scrollHeight;
   $('texte').focus();
@@ -794,8 +821,13 @@ async function ouvrirProgres() {
   if (occupe) return;
   ['fil', 'barre', 'symboles', 'apercu', 'seances'].forEach(id => $(id).classList.add('cache'));
   $('progres').classList.remove('cache');
+  // Le plan s'affiche tout de suite ; le bilan, qui peut demander quelques
+  // secondes à l'IA, arrive en dessous quand il est prêt.
   $('progres-contenu').innerHTML =
-    '<div class="patience">Je regarde ton travail…<br>Quelques secondes.</div>';
+    '<div id="zone-plan"></div>' +
+    '<div id="zone-bilan"><div class="patience">Je regarde ton travail…<br>Quelques secondes.</div></div>';
+
+  chargerPlan().then(d => afficherPlan(d)).catch(() => { $('zone-plan').innerHTML = ''; });
 
   try {
     const r = await fetch(API + '/api/progres/' + encodeURIComponent(eleve) +
@@ -803,7 +835,7 @@ async function ouvrirProgres() {
     const d = await r.json();
     if (!r.ok) throw new Error(d.detail || 'erreur');
     if (d.pas_assez_de_donnees) {
-      $('progres-contenu').innerHTML =
+      $('zone-bilan').innerHTML =
         '<div class="patience">Tu viens juste de commencer.<br><br>' +
         'Fais quelques exercices : tu verras ici les chapitres que tu maîtrises ' +
         'passer au vert.</div>';
@@ -811,10 +843,144 @@ async function ouvrirProgres() {
     }
     afficherProgres(d);
   } catch (e) {
-    $('progres-contenu').innerHTML =
+    $('zone-bilan').innerHTML =
       '<div class="patience">Je n\'arrive pas à charger ta progression maintenant.' +
       '<br>Réessaie dans un moment.</div>';
   }
+}
+
+/* ---------- Plan de révision --------------------------------------------
+   Le répétiteur propose l'ordre des chapitres jusqu'à l'examen, en
+   commençant par ce qui tombe le plus souvent. Sans plan, l'élève ouvrait
+   l'application sans savoir quoi y faire — et ne revenait pas. */
+
+const MATIERES = { bepc: 'maths', 'bepc-physique': 'physique',
+                   'bepc-chimie': 'chimie', bac: 'maths' };
+const MOIS_COURTS = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin',
+                     'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+const dateCourte = iso => {
+  const [, m, j] = iso.split('-').map(Number);
+  return j + ' ' + MOIS_COURTS[m - 1];
+};
+
+async function chargerPlan() {
+  const r = await fetch(API + '/api/plan/' + encodeURIComponent(eleve) + '?' + parametres({ niveau }));
+  const d = await r.json();
+  if (!r.ok) throw new Error(d.detail || 'erreur');
+  return d;
+}
+
+async function envoyerPlan(chemin, corps) {
+  const r = await fetch(API + '/api/plan/' + encodeURIComponent(eleve) + chemin, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ code: codeAcces || null, niveau, ...corps }),
+  });
+  const d = await r.json();
+  if (!r.ok) throw new Error(typeof d.detail === 'string' ? d.detail : 'Réessaie dans un moment.');
+  return d;
+}
+
+function afficherPlan(d, modifier = false) {
+  const zone = $('zone-plan');
+  if (!zone) return;
+  if (!d || !d.disponible) { zone.innerHTML = ''; return; }
+  const titre = `<h2>Mon plan de révision · ${MATIERES[niveau] || ''}</h2>`;
+
+  // Pas encore de plan, ou l'élève veut changer la date ou le rythme.
+  if (!d.plan || modifier) {
+    const moisChoisi = d.plan ? d.plan.mois_examen : '';
+    const rythme = d.plan ? d.plan.seances_par_semaine : 3;
+    zone.innerHTML = `<div class="bloc">${titre}
+      <p class="plan-intro">${d.plan
+        ? 'Change la date ou ton rythme : les chapitres déjà cochés restent cochés.'
+        : 'Dis-moi quand est ton examen et combien de fois par semaine tu peux travailler. ' +
+          'Je te prépare l\'ordre des chapitres, en commençant par ce qui tombe le plus souvent.'}</p>
+      <div class="plan-champ"><label for="plan-mois">Mon examen est en</label>
+        <select id="plan-mois"><option value="">Choisis le mois…</option>
+          ${d.mois_proposes.map(m => `<option value="${m.valeur}" ${m.valeur === moisChoisi ? 'selected' : ''}>${m.libelle}</option>`).join('')}
+        </select></div>
+      <div class="plan-champ"><label for="plan-rythme">Je peux travailler</label>
+        <select id="plan-rythme">
+          ${d.rythmes.map(n => `<option value="${n}" ${n === rythme ? 'selected' : ''}>${n} fois par semaine</option>`).join('')}
+        </select></div>
+      <button class="plan-go" id="plan-go" disabled>${d.plan ? 'Refaire mon plan' : 'Préparer mon plan'}</button>
+    </div>`;
+    const maj = () => { $('plan-go').disabled = !$('plan-mois').value; };
+    $('plan-mois').addEventListener('change', maj);
+    maj();
+    $('plan-go').addEventListener('click', async () => {
+      $('plan-go').disabled = true;
+      $('plan-go').textContent = 'Je prépare ton plan…';
+      try {
+        afficherPlan(await envoyerPlan('', {
+          mois_examen: $('plan-mois').value,
+          seances_par_semaine: Number($('plan-rythme').value),
+        }));
+      } catch (e) {
+        $('plan-go').disabled = false;
+        $('plan-go').textContent = 'Réessayer';
+        alert(e.message);
+      }
+    });
+    return;
+  }
+
+  const e = d.etat;
+  const pluriel = n => n > 1 ? 's' : '';
+  let statut = `${e.faits} chapitre${pluriel(e.faits)} sur ${e.total} · examen dans ${e.jours_avant_examen} jours`;
+  let classe = '';
+  if (e.retard) {
+    statut += `<br>Tu as ${e.retard} chapitre${pluriel(e.retard)} de retard. Pas de panique : on rattrape à ta prochaine séance.`;
+    classe = 'retard';
+  } else if (e.faits) {
+    statut += '<br>Tu es dans les temps. 👍';
+  }
+  if (!e.tout_tient) {
+    statut += '<br>À ce rythme, tout ne tient pas avant l\'examen : les derniers chapitres ' +
+              'sont marqués « si tu as le temps ». Commence par le haut de la liste.';
+  }
+
+  const lignes = d.plan.chapitres.map(c => `
+    <div class="ch ${c.fait ? 'fait' : ''} ${c.nom === e.prochain ? 'maintenant' : ''}">
+      <button class="coche" data-chap="${echapper(c.nom)}" data-fait="${c.fait}"
+              aria-label="${c.fait ? 'Décocher' : 'Cocher'} ${echapper(c.nom)}">${c.fait ? '✓' : ''}</button>
+      <div><div class="ch-nom">${echapper(c.nom)}</div>
+        <div class="ch-date">${c.optionnel ? '<span class="option">si tu as le temps</span>'
+                                           : 'pour le ' + dateCourte(c.fin_prevue)}</div></div>
+    </div>`).join('');
+
+  zone.innerHTML = `
+    ${e.prochain ? `<div class="etape">Au programme maintenant : <b>${echapper(e.prochain)}</b><br>
+      <span style="font-size:14px">à finir pour le ${dateCourte(e.prochain_fin_prevue)} · reviens au chat et dis-moi « on y va »</span></div>`
+      : '<div class="etape"><b>Tout ton plan est coché !</b><br>Place aux sujets complets d\'examen : demande-m\'en un.</div>'}
+    <div class="bloc" style="margin-top:12px">${titre}
+      <p class="plan-statut ${classe}">${statut}</p>
+      ${lignes}
+      <button class="lien-plan" id="plan-modifier">Changer la date ou mon rythme</button>
+    </div>`;
+
+  $('plan-modifier').addEventListener('click', () => afficherPlan(d, true));
+  zone.querySelectorAll('.coche').forEach(b => b.addEventListener('click', async () => {
+    b.disabled = true;
+    try {
+      afficherPlan(await envoyerPlan('/chapitre', { nom: b.dataset.chap, fait: b.dataset.fait !== 'true' }));
+    } catch (err) {
+      b.disabled = false;
+      alert(err.message);
+    }
+  }));
+}
+
+/* À l'ouverture d'un cours, le répétiteur annonce le chapitre du jour :
+   l'élève sait tout de suite quoi faire au lieu de fixer une page blanche. */
+async function annoncerPlan(bulle) {
+  try {
+    const d = await chargerPlan();
+    if (!d.plan || !d.etat.prochain || !bulle.isConnected) return;
+    bulle.corps.innerHTML = formater(
+      'Salut ' + eleve + ' ! Au programme de ton plan : **' + d.etat.prochain + '**. On s\'y met ?\n\n' +
+      'Si tu as plutôt un exercice à toi, écris-le ou photographie-le avec le bouton 📷.');
+  } catch (e) { /* sans plan ou hors ligne : le message d'accueil habituel suffit */ }
 }
 
 function afficherProgres(d) {
@@ -831,7 +997,7 @@ function afficherProgres(d) {
       </div></div>`;
   }).join('');
 
-  $('progres-contenu').innerHTML = `
+  $('zone-bilan').innerHTML = `
     <div class="compteurs">
       <div class="compteur"><b>${a.questions ?? 0}</b><span>questions posées</span></div>
       <div class="compteur"><b>${liste.length}</b><span>chapitres travaillés</span></div>

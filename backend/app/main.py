@@ -27,6 +27,7 @@ from pydantic import BaseModel, Field
 from . import annales_store
 from .abonnements import Abonnements
 from . import bilan as module_bilan
+from . import plan as module_plan
 from .prompts import NIVEAU_DEFAUT, NIVEAUX, construire_systeme
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,6 +55,7 @@ MAX_PHOTO_OCTETS = 3 * 1024 * 1024
 # Registre des abonnements : créer ou couper un accès ne demande plus de
 # redéployer le service.
 ABONNEMENTS = Abonnements(DOSSIER_DONNEES / "abonnements.json")
+PLANS = module_plan.Plans(DOSSIER_DONNEES / "plans")
 
 # Adresse à laquelle le parent recevra le lien de suivi.
 ADRESSE_PUBLIQUE = (os.getenv("ADRESSE_PUBLIQUE")
@@ -305,6 +307,58 @@ def _qui_est_l_eleve(eleve: str) -> str:
         "n'en devines pas un à partir de ce qu'il écrit. Si tu as un doute, "
         "tu ne mets pas de prénom du tout."
     )
+
+
+def _plan_de_l_eleve(eleve: str, code: str | None, niveau: str) -> str:
+    """Dit au répétiteur où l'élève en est de son plan de révision.
+
+    C'est ce qui lui permet d'accueillir un élève qui revient en lui
+    disant quoi faire aujourd'hui, au lieu d'attendre une question — la
+    page blanche est la première raison pour laquelle les élèves arrêtaient.
+    Hors du cache : ce bloc change d'un élève à l'autre.
+    """
+    if niveau not in module_plan.CHAPITRES:
+        return ""
+    plan = PLANS.lire(_fichier_session(eleve, code).stem, niveau)
+    if not plan:
+        return (
+            "# Plan de révision\n\n"
+            "Cet élève n'a pas encore de plan de révision. Si l'occasion s'y "
+            "prête — il ne sait pas quoi travailler, ou il vient de finir un "
+            "exercice — propose-lui d'en faire un : il touche 📈 « Ma "
+            "progression », puis « Mon plan de révision ». Deux questions, et "
+            "tu lui prépares l'ordre des chapitres, en commençant par ce qui "
+            "tombe le plus à l'examen. Propose-le une fois, sans insister, et "
+            "jamais au milieu d'un exercice."
+        )
+
+    e = module_plan.etat(plan)
+    faits = [c["nom"] for c in plan["chapitres"] if c["fait"]]
+    lignes = ["# Plan de révision de l'élève", ""]
+    if e["prochain"]:
+        lignes.append(f"Chapitre du moment : **{e['prochain']}** "
+                      f"(à finir pour le {e['prochain_fin_prevue']}).")
+    else:
+        lignes.append("Tous les chapitres de son plan sont cochés : place aux "
+                      "sujets complets d'examen.")
+    lignes.append(f"Chapitres cochés : {e['faits']} sur {e['total']}"
+                  + (f" ({', '.join(faits)})." if faits else "."))
+    if e["retard"]:
+        lignes.append(f"Il a {e['retard']} chapitre(s) de retard sur son plan.")
+    lignes += [
+        f"Examen dans {e['jours_avant_examen']} jours.",
+        "",
+        "S'il arrive sans demande précise, propose-lui le chapitre du "
+        "moment : « Aujourd'hui, au programme : … On y va ? » S'il vient avec "
+        "un exercice à lui, aide-le d'abord : le plan attend.",
+        "Quand un chapitre te paraît vraiment maîtrisé — il a réussi seul "
+        "plusieurs exercices — propose-lui de le cocher dans 📈 « Ma "
+        "progression ». Ne le fais pas cocher trop tôt.",
+    ]
+    if e["retard"]:
+        lignes.append("Le retard ne se reproche jamais : dis plutôt ce qu'on "
+                      "peut rattraper aujourd'hui.")
+    return "\n".join(lignes)
 
 
 def _retour_apres_absence(eleve: str, code: str | None) -> str:
@@ -656,6 +710,7 @@ def chat(demande: DemandeChat):
     retour = _retour_apres_absence(demande.eleve, code_utilise)
     qui = _qui_est_l_eleve(demande.eleve)
     alerte = _alerte_quota(code_utilise)
+    plan = _plan_de_l_eleve(demande.eleve, code_utilise, demande.niveau)
 
     dernier = demande.messages[-1]
     if dernier.role == "user":
@@ -702,7 +757,7 @@ def chat(demande: DemandeChat):
                             "cache_control": {"type": "ephemeral"},
                         },
                         *({"type": "text", "text": bloc}
-                          for bloc in (qui, alerte, retour, annale) if bloc),
+                          for bloc in (qui, plan, alerte, retour, annale) if bloc),
                     ],
                     messages=messages,
                 ) as stream:
@@ -1012,6 +1067,85 @@ def progres_eleve(eleve: str, code: str | None = None):
     }
 
 
+MOIS_FR = ("janvier", "février", "mars", "avril", "mai", "juin", "juillet",
+           "août", "septembre", "octobre", "novembre", "décembre")
+
+
+def _mois_proposes() -> list[dict]:
+    """Les mois d'examen que l'élève peut choisir : de celui qui vient à un an."""
+    aujourdhui = datetime.now(timezone.utc).date()
+    mois = []
+    for decalage in range(1, 13):
+        n = aujourdhui.month - 1 + decalage
+        annee, numero = aujourdhui.year + n // 12, n % 12 + 1
+        mois.append({"valeur": f"{annee}-{numero:02d}",
+                     "libelle": f"{MOIS_FR[numero - 1]} {annee}"})
+    return mois
+
+
+def _reponse_plan(plan: dict | None, niveau: str) -> dict:
+    return {
+        "niveau": niveau,
+        "disponible": niveau in module_plan.CHAPITRES,
+        "plan": plan,
+        "etat": module_plan.etat(plan) if plan else None,
+        "mois_proposes": _mois_proposes(),
+        "rythmes": list(module_plan.RYTHMES),
+    }
+
+
+@app.get("/api/plan/{eleve}")
+def lire_plan(eleve: str, code: str | None = None, niveau: str = NIVEAU_DEFAUT):
+    """Le plan de révision de l'élève pour cette matière, s'il en a un."""
+    code_utilise = _verifier_code(code)
+    plan = PLANS.lire(_fichier_session(eleve, code_utilise).stem, niveau)
+    return _reponse_plan(plan, niveau)
+
+
+class DemandePlan(BaseModel):
+    code: str | None = Field(default=None, max_length=60)
+    niveau: str = Field(default=NIVEAU_DEFAUT, max_length=30)
+    mois_examen: str = Field(..., pattern=r"^\d{4}-\d{2}$")
+    seances_par_semaine: int = Field(..., ge=1, le=7)
+
+
+@app.post("/api/plan/{eleve}")
+def creer_plan(eleve: str, demande: DemandePlan):
+    """Le répétiteur propose un plan : l'ordre des chapitres jusqu'à l'examen.
+
+    Refaire un plan (autre date, autre rythme) garde les chapitres cochés.
+    """
+    code_utilise = _verifier_code(demande.code)
+    try:
+        plan = PLANS.creer(_fichier_session(eleve, code_utilise).stem, demande.niveau,
+                           demande.mois_examen, demande.seances_par_semaine)
+    except ValueError as erreur:
+        raise HTTPException(status_code=400, detail={
+            "niveau sans plan": "Cette matière n'a pas encore de plan de révision.",
+            "rythme inconnu": "Choisis un nombre de séances dans la liste.",
+            "examen passé": "Ce mois est déjà passé : choisis le mois de ton examen.",
+        }.get(str(erreur), "Plan impossible."))
+    return _reponse_plan(plan, demande.niveau)
+
+
+class DemandeCoche(BaseModel):
+    code: str | None = Field(default=None, max_length=60)
+    niveau: str = Field(default=NIVEAU_DEFAUT, max_length=30)
+    nom: str = Field(..., max_length=120)
+    fait: bool = True
+
+
+@app.post("/api/plan/{eleve}/chapitre")
+def cocher_chapitre(eleve: str, demande: DemandeCoche):
+    """L'élève coche (ou décoche) un chapitre qu'il estime maîtrisé."""
+    code_utilise = _verifier_code(demande.code)
+    plan = PLANS.cocher(_fichier_session(eleve, code_utilise).stem,
+                        demande.niveau, demande.nom, demande.fait)
+    if plan is None:
+        raise HTTPException(status_code=404, detail="Chapitre introuvable dans ton plan.")
+    return _reponse_plan(plan, demande.niveau)
+
+
 def _exiger_admin(code: str | None) -> str:
     """Réservé au responsable du service."""
     propre = (code or "").strip()
@@ -1094,6 +1228,27 @@ def _journal_de_l_abonne(code_abonne: str) -> Path | None:
                                          _journal(f)[-1]["horodatage"]))
 
 
+MATIERE_DU_NIVEAU = {"bepc": "maths", "bepc-physique": "physique",
+                     "bepc-chimie": "chimie", "bac": "maths"}
+
+
+def _lignes_du_plan(fichier: Path) -> list[str]:
+    """L'avancement du plan de révision, une ligne par matière.
+
+    Pour le parent, c'est la mesure la plus parlante : « 3 chapitres sur 14 »
+    se comprend sans rien connaître au programme.
+    """
+    lignes = []
+    for plan in PLANS.tous(fichier.stem):
+        e = module_plan.etat(plan)
+        matiere = MATIERE_DU_NIVEAU.get(plan["niveau"], plan["niveau"])
+        ligne = f"📅 Plan de révision en {matiere} : {e['faits']} chapitre(s) sur {e['total']}"
+        if e["retard"]:
+            ligne += f", {e['retard']} de retard"
+        lignes.append(ligne)
+    return lignes
+
+
 def _message_hebdomadaire(eleve: str, fichier: Path, nom_du_lien: str) -> str:
     """Le message WhatsApp à envoyer au parent, prêt à copier.
 
@@ -1108,6 +1263,7 @@ def _message_hebdomadaire(eleve: str, fichier: Path, nom_du_lien: str) -> str:
     semaine = _semaine_du_journal(fichier)
     lien = f"{ADRESSE_PUBLIQUE}/parent.html?eleve={quote(nom_du_lien)}"
 
+    plan = _lignes_du_plan(fichier)
     if semaine["questions"] == 0:
         return (
             f"Bonjour ! Cette semaine, {prenom} n'a pas travaillé avec le "
@@ -1115,7 +1271,9 @@ def _message_hebdomadaire(eleve: str, fichier: Path, nom_du_lien: str) -> str:
             "Ça arrive — un téléphone occupé, une semaine chargée. Un seul "
             "exercice suffit pour repartir : une photo d'un devoir difficile, "
             "et le répétiteur prend le relais.\n\n"
-            f"Le suivi : {lien}"
+            + "".join(ligne + "\n" for ligne in plan)
+            + ("\n" if plan else "")
+            + f"Le suivi : {lien}"
         )
 
     # Le qualitatif vient du bilan déjà calculé : aucun appel de plus.
@@ -1131,6 +1289,7 @@ def _message_hebdomadaire(eleve: str, fichier: Path, nom_du_lien: str) -> str:
     jours = semaine["jours_actifs"]
     lignes.append(f"📚 {semaine['questions']} question(s) posée(s), "
                   f"sur {jours} jour{'s' if jours > 1 else ''} de travail")
+    lignes += plan
 
     if bilan and not bilan.get("pas_assez_de_donnees"):
         acquis = [c["nom"] for c in bilan.get("chapitres", []) if c["niveau"] == "acquis"]
