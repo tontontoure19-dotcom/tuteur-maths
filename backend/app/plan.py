@@ -81,6 +81,26 @@ CHAPITRES = {
         ("Effet photoélectrique et niveaux d'énergie de l'atome", 3),
         ("Physique nucléaire : noyau, radioactivité, réactions", 4),
     ],
+    # Chimie de Terminale SM : pas d'annales non plus. L'ordre est celui du
+    # programme de l'enseignant, et les poids suivent ses durées : les acides
+    # et bases valent 40 heures, la cinétique 25.
+    "bac-chimie": [
+        ("pH, acides forts et bases fortes", 4),
+        ("Couples acide-base et constante d'acidité", 4),
+        ("Classification des couples et indicateurs colorés", 3),
+        ("Réactions acido-basiques et courbes de pH", 4),
+        ("Dosage acido-basique", 3),
+        ("Solutions tampon", 2),
+        ("Vitesse de réaction : formation et disparition", 4),
+        ("Facteurs cinétiques : concentration, température, pression", 3),
+        ("Mécanisme réactionnel et catalyse", 3),
+        ("Stéréochimie : conformation, isomérie Z/E, énantiomérie", 4),
+        ("Alcools et polyalcools", 3),
+        ("Aldéhydes, cétones et oxydation des alcools", 3),
+        ("Acides carboxyliques et leurs dérivés", 4),
+        ("Amines et amides", 3),
+        ("Des acides α-aminés aux protéines", 3),
+    ],
     # BAC SM/SE : cinq sessions seulement, pas de fréquences fiables. Le
     # problème d'étude de fonction et l'arithmétique tombent à chaque
     # session : ils passent en tête, le reste suit l'ordre du programme.

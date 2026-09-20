@@ -1239,7 +1239,7 @@ def _journal_de_l_abonne(code_abonne: str) -> Path | None:
 
 MATIERE_DU_NIVEAU = {"bepc": "maths", "bepc-physique": "physique",
                      "bepc-chimie": "chimie", "bac": "maths",
-                     "bac-physique": "physique"}
+                     "bac-physique": "physique", "bac-chimie": "chimie"}
 
 
 def _lignes_du_plan(fichier: Path) -> list[str]:

@@ -564,6 +564,160 @@ grandeur il cherche et de quoi elle dépend. Il retrouvera seul.
 """
 
 
+PROGRAMME_CHIMIE_TERMINALE = """
+# Programme de chimie — Terminale SM (Baccalauréat, Guinée)
+
+Ce programme est celui transmis par un enseignant guinéen (relevé daté du
+10 octobre 2025), pour la Terminale Sciences Mathématiques. Les durées
+entre parenthèses sont celles que l'enseignant a notées.
+
+Il n'existe pas encore de réserve d'annales pour cette matière : **ne
+prétends jamais savoir ce qui tombe le plus souvent au BAC en chimie**,
+et n'annonce aucun exercice comme « tombé à l'examen ». Tu construis tes
+exercices toi-même, à partir du programme ci-dessous.
+
+## Chapitre 1. Acides et bases en solution aqueuse (40 h)
+
+C'est de loin le plus gros chapitre de l'année.
+
+### 1. Dissociation de l'eau, produit ionique
+- Conductivité de l'eau ; produit ionique de l'eau
+- Définition du pH ; acidité ou basicité d'une solution aqueuse
+
+### 2. Acides forts et bases fortes
+- Étude de la solution aqueuse de HCl : préparation, étude qualitative,
+  étude quantitative, relation entre le pH et la concentration
+- Étude de la solution aqueuse d'hydroxyde de sodium NaOH : préparation,
+  étude qualitative, étude quantitative, relation entre le pH et la
+  concentration
+
+### 3. Couples acide-base
+- Définition de Brønsted d'un acide et d'une base
+- L'acide éthanoïque, un acide faible : étude quantitative de CH₃COOH
+- L'ion éthanoate, une base faible ; l'équilibre chimique entre l'acide
+  éthanoïque et l'ion éthanoate
+- Généralisation : définition d'un acide, d'une base, d'un couple
+  acide-base ; les couples de l'eau ; polyacides, polybases, amphotères
+- Constante d'acidité d'un couple : expression, cas de CH₃COOH/CH₃COO⁻
+- Classification des couples : force d'un acide, force d'une base ;
+  couple dont l'acide est fort, dont la base est forte, dont l'acide et
+  la base sont faibles
+- Applications : domaines de prédominance, indicateurs colorés
+
+### 4. Réactions acido-basiques
+- Acide fort + base forte (HCl et NaOH) : caractéristiques, évolution du
+  pH, courbe de variation, tracé, caractéristiques essentielles,
+  influence de la dilution, équivalence acido-basique, pH à
+  l'équivalence, détermination du point d'équivalence
+- Acide faible + base forte (CH₃COOH et NaOH) : nature de la réaction,
+  évolution du pH, courbe pH = f(Vb), équivalence et ses conséquences,
+  pH à l'équivalence, demi-équivalence où pH = pKa
+- Acide fort + base faible : évolution du pH, courbe pH = f(Va),
+  caractéristiques, équivalence, demi-équivalence où pH = pKa
+
+### 5. Dosage acido-basique
+- Principe ; détermination de l'équivalence ; utilisation du graphe
+  pH = f(V du réactif) ; utilisation des indicateurs colorés
+
+### 6. Solutions tampon
+- Définition et exemples ; pouvoir tampon ; préparation d'une solution
+  tampon ; solution étalon de pH ; analyse chimique à pH contrôlé ;
+  pH des milieux biologiques
+
+## Chapitre 2. Cinétique chimique (25 h)
+
+### 1. Évolution des systèmes chimiques
+- Systèmes stables et systèmes cinétiquement inertes (solution contenant
+  des ions Cu²⁺, Mn²⁺, SO₄²⁻ ; solutions de permanganate de potassium)
+- Classification cinétique des réactions : instantanée, lente, très
+  lente, infiniment lente
+
+### 2. Vitesse moyenne et vitesse instantanée
+- Vitesse de formation d'un produit : moyenne, puis instantanée
+- Vitesse de disparition d'un réactif : moyenne, puis instantanée
+
+### 3. Facteurs cinétiques
+- Influence des concentrations des réactifs : oxydation des ions I⁻ par
+  les ions S₂O₈²⁻ ; dismutation de S₂O₃²⁻ ; réaction entre MnO₄⁻ et
+  H₂C₂O₄
+- Applications : blocage des réactions, concentration des aliments,
+  déclenchement des réactions, dismutation de l'ion thiosulfate en
+  milieu acide
+- Influence de la température ; influence de la pression
+
+### 4. Mécanisme réactionnel
+- Mécanisme d'une réaction chimique
+- Réaction photochimique du dichlore sur le dihydrogène
+
+### 5. Catalyse
+- Catalyse homogène ; catalyse hétérogène ; caractères de l'action
+  catalytique ; importance
+
+## Chapitre 3. Chimie organique
+
+### A. Stéréochimie
+- Notions de base ; différents types de carbone ; convention ; structure
+  de quelques molécules
+- Isomérie de conformation : cas de l'éthane, cas du cyclohexane
+- Isomérie de configuration : isomérie Z/E ; énantiomérie
+
+### B. Alcools et polyalcools
+- Généralités ; préparation des alcools ; quelques réactions des
+  alcools ; obtention des phosphates d'alkyle ; exemples de polyalcools
+
+### C. Aldéhydes et cétones, oxydation des alcools
+- Les composés carbonylés : aldéhydes et cétones
+- Caractère réducteur des aldéhydes ; oxydation des alcools
+
+### D. Acides carboxyliques et dérivés
+- Acide carboxylique R–COOH ; chlorure d'acyle R–COCl ; anhydride
+  d'acide (R–CO)₂O ; ester R–COO–R'
+
+### E. Amines et amides
+- Généralités sur les amines ; propriété basique ; propriétés
+  nucléophiles des amines ; amides
+
+### F. Des acides α-aminés aux protéines
+- Les acides α-aminés R–CH(NH₂)–COOH ; propriétés acido-basiques
+- Des acides aminés aux protéines ; structure des polypeptides et des
+  protéines ; importance des protéines et des polypeptides
+
+## Ce que ce programme NE contient PAS
+
+À ne pas proposer à un élève qui prépare ce BAC, même si ces chapitres
+existent ailleurs : thermochimie et enthalpie, électrochimie et piles,
+oxydoréduction traitée pour elle-même (elle n'apparaît ici que comme
+outil de la cinétique), cristallographie, chimie nucléaire (elle est au
+programme de PHYSIQUE, pas de chimie).
+
+## Comment tu enseignes cette matière
+
+Une partie se RÉCITE : la définition de Brønsted, le produit ionique de
+l'eau, ce qu'est une solution tampon, le nom d'une famille de molécules.
+Quand l'élève bute là-dessus, une question courte, puis la réponse
+claire, puis tu la lui fais redire avec ses mots.
+
+Le reste se CHERCHE, et ta règle ne change pas : tu ne donnes jamais le
+résultat d'un calcul. Quatre exigences de méthode, propres à cette
+matière :
+
+1. **L'équation de la réaction d'abord, équilibrée.** Rien ne commence
+   avant elle, ni un dosage ni un calcul de pH.
+2. **Le tableau d'avancement pour tout ce qui est quantitatif.** État
+   initial, état intermédiaire, état final : c'est là que se voient le
+   réactif limitant et l'équivalence.
+3. **Distinguer concentration et quantité de matière.** La confusion
+   entre C et n est l'erreur la plus fréquente d'un dosage.
+4. **Lire une courbe de pH avant de calculer.** Le saut donne
+   l'équivalence, la demi-équivalence donne directement pKa. Beaucoup
+   d'élèves calculent longuement ce que le graphe montre en une seconde.
+
+En chimie organique, fais toujours écrire la formule semi-développée :
+un élève qui nomme une molécule sans savoir la dessiner ne la reconnaîtra
+pas le jour de l'examen.
+"""
+
+
 NIVEAUX = {
     "bepc": {
         "libelle": "10e année (BEPC)",
@@ -591,6 +745,13 @@ NIVEAUX = {
         "examen": "Baccalauréat",
         "matiere": "physique",
         "programme": PROGRAMME_PHYSIQUE_TERMINALE,
+    },
+    "bac-chimie": {
+        "libelle": "Terminale SM — Chimie (BAC)",
+        "classe": "Terminale",
+        "examen": "Baccalauréat",
+        "matiere": "chimie",
+        "programme": PROGRAMME_CHIMIE_TERMINALE,
     },
     "bac": {
         "libelle": "Terminale — Maths, séries SM et SE (BAC)",
