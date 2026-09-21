@@ -1,0 +1,38 @@
+{
+  "source": "Exercices du BAC guinéen relevés dans « Le Guide Pratique du BAC — Mon Prof de Chimie » (M. Konaté Cheickna et M. Camara N'faly, Conakry, 492 pages).",
+  "note": "PREMIER RELEVÉ, pages 40 à 57 du livre. Le livre mêle des exercices venus de plusieurs pays ; seuls ceux explicitement marqués « Guinée » sont retenus ici, avec leur année. Les réponses ont été recalculées avant d'être comparées au corrigé imprimé.",
+  "exercices": [
+    {
+      "id": "bac-chimie-1993-propanoique",
+      "session": 1993,
+      "serie": "SM",
+      "partie": "Problème",
+      "numero": "28",
+      "chapitres": ["acide faible", "concentration molaire", "pH d'une solution", "constante d'acidité", "pKa", "demi-équivalence", "couple acide-base", "acide propanoïque"],
+      "enonce": "On dissout 3,7 g d'acide propanoïque dans une quantité suffisante d'eau pure pour obtenir un litre d'une solution S.\n1°) Quelle est la concentration molaire de la solution S ?\n2°) On mesure le pH de cette solution ; on trouve pH = 3,1. En déduire que l'acide propanoïque est un acide faible. Écrire l'équation d'ionisation de cet acide dans l'eau.\n3°) On verse dans 20 mL de solution S, 25 mL d'une solution aqueuse d'hydroxyde de sodium à 0,02 mol/L : le pH du mélange est 4,9. En déduire le pKa du couple acide propanoïque / ion propanoate.",
+      "reponse": "1°) M(C₂H₅COOH) = 74 g/mol, donc C = 3,7/74 = 5·10⁻² mol/L. 2°) Si l'acide était fort, on aurait pH = −log C = −log(5·10⁻²) = 1,3. Or le pH mesuré vaut 3,1 > 1,3 : l'acide n'est pas entièrement dissocié, c'est un acide faible. Son ionisation s'écrit CH₃−CH₂−COOH + H₂O ⇌ CH₃−CH₂−COO⁻ + H₃O⁺. 3°) n(acide) = 0,020 × 5·10⁻² = 1·10⁻³ mol et n(base) = 0,025 × 0,02 = 5·10⁻⁴ mol. La base est en défaut : il reste 5·10⁻⁴ mol d'acide et il s'est formé 5·10⁻⁴ mol d'ion propanoate. Les deux formes sont en quantités égales : on est à la demi-équivalence, donc pKa = pH = 4,9."
+    },
+    {
+      "id": "bac-chimie-2011-hcl-naoh",
+      "session": 2011,
+      "serie": "SM/SE",
+      "partie": "Problème",
+      "numero": "24",
+      "chapitres": ["acide fort", "base forte", "réaction acido-basique", "équivalence acido-basique", "pH d'une solution", "bilan des espèces", "concentration des espèces", "électroneutralité"],
+      "enonce": "À 10 cm³ de solution d'acide chlorhydrique de concentration 2·10⁻² mol/L, on ajoute 10 cm³ d'une solution d'hydroxyde de sodium de concentration 10⁻² mol/L.\n1°) Écrire l'équation-bilan de la réaction.\n2°) Peut-on ainsi atteindre l'équivalence acido-basique ? Préciser si la solution obtenue est acide, basique ou neutre.\n3°) Déterminer le pH de la solution.\n4°) Calculer les concentrations des différentes espèces chimiques présentes dans la solution. On donne : log 5 ≈ 0,7.",
+      "reponse": "1°) H₃O⁺ + OH⁻ → 2H₂O. 2°) n(acide) = 2·10⁻² × 10⁻² = 2·10⁻⁴ mol et n(base) = 10⁻² × 10⁻² = 1·10⁻⁴ mol. L'acide est en excès : l'équivalence n'est pas atteinte et la solution reste acide. 3°) Il reste n(H₃O⁺) = 2·10⁻⁴ − 1·10⁻⁴ = 1·10⁻⁴ mol dans 2·10⁻² L, soit [H₃O⁺] = 5·10⁻³ mol/L ; pH = −log(5·10⁻³) = 3 − log 5 = 2,3. 4°) [H₃O⁺] = 5·10⁻³ mol/L ; [OH⁻] = 10⁻¹⁴/5·10⁻³ = 2·10⁻¹² mol/L ; [Cl⁻] = 2·10⁻² × 10⁻²/2·10⁻² = 10⁻² mol/L ; [Na⁺] = 10⁻² × 10⁻²/2·10⁻² = 5·10⁻³ mol/L (l'électroneutralité se vérifie : 5·10⁻³ + 5·10⁻³ = 10⁻²).",
+      "correction_du_livre": "Le corrigé imprimé écrit les quantités de matière nA et nB en « mol·L⁻¹ » : ce sont des moles, pas des concentrations. Les valeurs, elles, sont justes."
+    },
+    {
+      "id": "bac-chimie-2012-melange-hcl-naoh",
+      "session": 2012,
+      "serie": "SM/SE",
+      "partie": "Problème",
+      "numero": "25",
+      "chapitres": ["acide fort", "base forte", "réaction acido-basique", "équivalence acido-basique", "pH d'une solution", "concentration des espèces", "dosage acido-basique"],
+      "enonce": "On mélange 20 cm³ d'une solution d'acide chlorhydrique de concentration 10⁻² mol/L et un volume V d'une solution d'hydroxyde de sodium de concentration 1,5·10⁻² mol/L. La solution obtenue a un pH < 7.\na) Exprimer la concentration des différentes espèces chimiques en solution en fonction de V.\nb) Déterminer le volume V lorsque le pH = 2,5.\nc) Quel est le volume de solution de soude nécessaire pour obtenir l'équivalence ? Quel est alors le pH de la solution ? Justifier votre réponse.",
+      "reponse": "a) L'équation est H₃O⁺ + OH⁻ → 2H₂O ; les espèces présentes sont H₃O⁺, OH⁻, Na⁺ et Cl⁻. Avec V en cm³ : [H₃O⁺] = 10⁻²(20 − 1,5V)/(20 + V) ; [OH⁻] = 10⁻¹²(20 + V)/(20 − 1,5V) ; [Cl⁻] = 2·10⁻¹/(20 + V) ; [Na⁺] = 1,5·10⁻²V/(20 + V), toutes en mol/L. b) pH = 2,5 donne [H₃O⁺] = 10⁻²·⁵ = 3,16·10⁻³ mol/L ; en reportant : 0,2 − 0,015V = 3,16·10⁻³(20 + V), d'où V = 7,53 cm³. c) À l'équivalence, CA·VA = CB·VB donne VB = (10⁻² × 20)/(1,5·10⁻²) = 13,3 cm³. La réaction est celle d'un acide fort avec une base forte : à l'équivalence il ne reste que de l'eau et des ions spectateurs, la solution est neutre et pH = 7.",
+      "correction_du_livre": "Le corrigé imprimé écrit « 10⁻²·⁵ = 4·10⁻³ mol/L » : c'est 3,16·10⁻³. L'erreur est sans conséquence, car le volume final annoncé (7,53 cm³) correspond bien à la valeur exacte 3,16·10⁻³ — avec 4·10⁻³ on trouverait 6,3 cm³."
+    }
+  ]
+}

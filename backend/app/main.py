@@ -409,6 +409,7 @@ RESERVE_DU_NIVEAU = {
     "bepc-physique": ("bepc", "physique"),
     "bepc-chimie": ("bepc", "chimie"),
     "bac": ("bac", "maths"),
+    "bac-chimie": ("bac", "chimie"),
 }
 NOM_EXAMEN = {"bepc": "BEPC", "bac": "BAC"}
 
@@ -432,7 +433,10 @@ def _annale_utile(message: str, niveau: str) -> str:
     # « 2015 Bis » : deux sujets la même année, l'élève doit savoir lequel.
     session = ex.get("libelle_session", ex["session"])
     if examen == "bac":
-        provenance = f"Sujet tombé au BAC {session} (série SM), {ex['partie']}"
+        # La série change d'un sujet à l'autre (SM, SM/SE) : on dit celle du
+        # sujet, sans la deviner.
+        serie = ex.get("serie", "SM")
+        provenance = f"Sujet tombé au BAC {session} en Guinée (série {serie}), {ex['partie']}"
     else:
         # « épreuve d'Activités Numériques » mais « épreuve de Théorie ».
         liaison = "d'" if ex["partie"][:1].lower() in "aeiouéèê" else "de "

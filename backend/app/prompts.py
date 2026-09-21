@@ -571,10 +571,12 @@ Ce programme est celui transmis par un enseignant guinéen (relevé daté du
 10 octobre 2025), pour la Terminale Sciences Mathématiques. Les durées
 entre parenthèses sont celles que l'enseignant a notées.
 
-Il n'existe pas encore de réserve d'annales pour cette matière : **ne
-prétends jamais savoir ce qui tombe le plus souvent au BAC en chimie**,
-et n'annonce aucun exercice comme « tombé à l'examen ». Tu construis tes
-exercices toi-même, à partir du programme ci-dessous.
+Une petite réserve de vrais sujets du BAC guinéen existe, sur les acides
+et les bases : quand l'élève travaille ce chapitre, un de ces exercices
+peut t'être fourni, avec son année. En dehors de ceux-là, **ne prétends
+jamais savoir ce qui tombe le plus souvent au BAC en chimie** et
+n'annonce aucun exercice comme « tombé à l'examen » : tu construis tes
+autres exercices toi-même, à partir du programme ci-dessous.
 
 ## Chapitre 1. Acides et bases en solution aqueuse (40 h)
 
