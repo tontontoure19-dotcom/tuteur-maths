@@ -81,25 +81,30 @@ CHAPITRES = {
         ("Effet photoélectrique et niveaux d'énergie de l'atome", 3),
         ("Physique nucléaire : noyau, radioactivité, réactions", 4),
     ],
-    # Chimie de Terminale SM : pas d'annales non plus. L'ordre est celui du
-    # programme de l'enseignant, et les poids suivent ses durées : les acides
-    # et bases valent 40 heures, la cinétique 25.
+    # Chimie de Terminale SM/SE : 30 sessions relevées, de 1993 à 2025. La
+    # fréquence entre parenthèses est le nombre de sessions où le chapitre
+    # est tombé. L'ordre les suit, à une exception près : un chapitre ne
+    # passe jamais avant celui dont il a besoin. Le pH des acides forts
+    # (16) remonte donc devant les couples (21), et les alcools (15)
+    # devant les acides carboxyliques (16) — on ne fait pas d'ester sans
+    # alcool. Les poids en séances suivent les durées de l'enseignant :
+    # acides et bases 40 heures, cinétique 25.
     "bac-chimie": [
-        ("pH, acides forts et bases fortes", 4),
-        ("Couples acide-base et constante d'acidité", 4),
-        ("Classification des couples et indicateurs colorés", 3),
-        ("Réactions acido-basiques et courbes de pH", 4),
-        ("Dosage acido-basique", 3),
-        ("Solutions tampon", 2),
-        ("Vitesse de réaction : formation et disparition", 4),
-        ("Facteurs cinétiques : concentration, température, pression", 3),
-        ("Mécanisme réactionnel et catalyse", 3),
-        ("Stéréochimie : conformation, isomérie Z/E, énantiomérie", 4),
-        ("Alcools et polyalcools", 3),
-        ("Aldéhydes, cétones et oxydation des alcools", 3),
-        ("Acides carboxyliques et leurs dérivés", 4),
-        ("Amines et amides", 3),
-        ("Des acides α-aminés aux protéines", 3),
+        ("pH, acides forts et bases fortes", 4),                        # 16/30
+        ("Couples acide-base et constante d'acidité", 4),               # 21/30
+        ("Dosage acido-basique", 3),                                    # 21/30
+        ("Alcools et polyalcools", 3),                                  # 15/30
+        ("Acides carboxyliques et leurs dérivés", 4),                   # 16/30
+        ("Vitesse de réaction : formation et disparition", 4),          # 15/30
+        ("Aldéhydes, cétones et oxydation des alcools", 3),             # 11/30
+        ("Solutions tampon", 2),                                        # 10/30
+        ("Mécanisme réactionnel et catalyse", 3),                       #  9/30
+        ("Stéréochimie : conformation, isomérie Z/E, énantiomérie", 4), #  9/30
+        ("Amines et amides", 3),                                        #  9/30
+        ("Facteurs cinétiques : concentration, température, pression", 3),  # 6/30
+        ("Réactions acido-basiques et courbes de pH", 4),               #  5/30
+        ("Classification des couples et indicateurs colorés", 3),       #  4/30
+        ("Des acides α-aminés aux protéines", 3),                       #  2/30
     ],
     # BAC SM/SE : cinq sessions seulement, pas de fréquences fiables. Le
     # problème d'étude de fonction et l'arithmétique tombent à chaque
