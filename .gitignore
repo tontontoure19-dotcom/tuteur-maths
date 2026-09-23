@@ -16,8 +16,12 @@ __pycache__/
 *.pyc
 .venv/
 
-# Photos des annales (volumineuses, et gardées en local)
+# Photos des annales (volumineuses, et gardées en local).
+# Écrit AVANT que les photos n'arrivent : celles de Terminal SM sont restées
+# dans l'historique de deux commits pour avoir été ajoutées trop tard.
 Anal BEPC/
 Anal-BEPC/
+Anal CEE/
+Anal-CEE/
 Terminal SM/
 Terminal SM-SE/
