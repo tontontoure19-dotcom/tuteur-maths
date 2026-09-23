@@ -1,0 +1,208 @@
+{
+  "source": "Sujets du CEE guinéen relevés dans « Mon Examen — CEE, CM2 », EDAL-Guinée, Conakry, édition 2026, section « Calcul écrit » (pages 184 à 239). Même éditeur que le livre du BEPC.",
+  "note": "RELEVÉ EN COURS. Le CEE se passe en fin de CM2 ; l'épreuve de calcul écrit dure 1 h 30 et se compose de quatre ou cinq opérations posées, puis d'un problème. Chaque session donne donc deux entrées ici : les opérations et le problème. Toutes les réponses ont été recalculées. ATTENTION : ce livre se trompe beaucoup plus souvent que ceux du BEPC et du BAC, et ses énoncés contredisent parfois ses propres corrigés — voir le champ correction_du_livre.",
+  "exercices": [
+    {
+      "id": "cee-maths-2000-operations",
+      "session": 2000,
+      "partie": "Opérations",
+      "chapitres": [
+        "addition de décimaux",
+        "division de décimaux",
+        "multiplication de décimaux",
+        "opérations posées",
+        "soustraction de durées",
+        "heures et minutes"
+      ],
+      "enonce": "Posez et effectuez les opérations suivantes :\n1) 406,725 + 2008 + 34,08 + 119,2 =\n2) 43,752 : 0,82 =\n3) 88,6 × 48,4 =\n4) 3h 15mn − 2h 45mn =",
+      "reponse": "1) Avant d'additionner, on aligne les virgules en complétant par des zéros : 406,725 + 2008,000 + 34,080 + 119,200 = 2568,005.\n2) On déplace les virgules des deux nombres du même nombre de rangs pour que le diviseur devienne entier : 43,752 : 0,82 revient à 4375,2 : 82 = 53,356.\n3) 88,6 × 48,4 = 4288,24 (un chiffre après la virgule dans chaque facteur, donc deux dans le résultat).\n4) On ne peut pas ôter 45 mn de 15 mn : on emprunte une heure, 3h 15mn = 2h 75mn. Alors 2h 75mn − 2h 45mn = 0h 30mn, soit 30 minutes."
+    },
+    {
+      "id": "cee-maths-2000-probleme",
+      "session": 2000,
+      "partie": "Problème",
+      "chapitres": [
+        "aire d'un rectangle",
+        "conversion d'aires",
+        "hectare",
+        "problème de champ",
+        "division",
+        "prix et poids"
+      ],
+      "enonce": "1. Un champ rectangulaire mesure 840 m de longueur et 300 m de largeur. Calculez sa surface.\n2. On l'a ensemencé avec du riz qui coûte 325 francs le kilogramme et la dépense a été de 84 420 francs. Quel poids de riz a-t-on acheté ?\n3. Trouvez le poids de riz semé à l'hectare.",
+      "reponse": "1. Surface = 840 m × 300 m = 252 000 m². Comme 1 hectare vaut 10 000 m², cela fait 25,20 ha (ou 2520 ares).\n2. Le poids de riz est la dépense divisée par le prix du kilo : 84 420 : 325 = 259,753 kg.\n3. Le poids semé à l'hectare est le poids total divisé par le nombre d'hectares : 259,753 : 25,20 = 10,307 kg par hectare."
+    },
+    {
+      "id": "cee-maths-2001-operations",
+      "session": 2001,
+      "partie": "Opérations",
+      "chapitres": [
+        "addition de décimaux",
+        "division de décimaux",
+        "multiplication de décimaux",
+        "opérations posées",
+        "soustraction de durées",
+        "heures minutes secondes"
+      ],
+      "enonce": "Posez et effectuez les opérations suivantes :\na) 4537 + 75,87 + 332,135 =\nb) 37,215 : 2,07 =\nc) 5h 3mn 42s − 1h 58mn 27s =\nd) 320,50 × 76,03 =",
+      "reponse": "a) En alignant les virgules : 4537,000 + 75,870 + 332,135 = 4945,005.\nb) On rend le diviseur entier : 37,215 : 2,07 revient à 3721,5 : 207 = 17,978.\nc) On ne peut pas ôter 58 mn de 3 mn : on emprunte une heure, 5h 3mn 42s = 4h 63mn 42s. Alors 4h 63mn 42s − 1h 58mn 27s = 3h 05mn 15s.\nd) 320,50 × 76,03 = 24 367,6150."
+    },
+    {
+      "id": "cee-maths-2001-probleme",
+      "session": 2001,
+      "partie": "Problème",
+      "chapitres": [
+        "aire d'un rectangle",
+        "aire d'un carré",
+        "conversion de longueurs",
+        "division",
+        "problème de carrelage",
+        "prix d'achat",
+        "prix de revient"
+      ],
+      "enonce": "Le chef de centre culturel de votre quartier désire faire le carrelage de la salle de spectacles mesurant 25 m de longueur sur 15 m de large. Pour cela il a choisi des carreaux carrés de 50 cm de côté. Les carreaux sont vendus par paquets de 10 au prix de 60 000 Fg le paquet. Calculer :\na) Le nombre de carreaux qu'il faut utiliser\nb) Le nombre de paquets de carreaux qu'il doit payer\nc) Le prix de ces paquets\nd) Le prix de revient des travaux, sachant que l'ouvrier qui a fait le travail lui a demandé 360 000 Fg de main d'œuvre.",
+      "reponse": "a) Surface de la salle = 25 m × 15 m = 375 m². Le côté d'un carreau vaut 50 cm = 0,5 m, donc sa surface vaut 0,5 m × 0,5 m = 0,25 m². Le nombre de carreaux est 375 : 0,25 = 1500 carreaux.\nb) Les carreaux vont par 10 : 1500 : 10 = 150 paquets.\nc) 150 × 60 000 Fg = 9 000 000 Fg.\nd) Prix de revient = 9 000 000 + 360 000 = 9 360 000 Fg."
+    },
+    {
+      "id": "cee-maths-2002-operations",
+      "session": 2002,
+      "partie": "Opérations",
+      "chapitres": [
+        "addition de décimaux",
+        "division de décimaux",
+        "multiplication de décimaux",
+        "opérations posées",
+        "soustraction de durées",
+        "heures minutes secondes",
+        "arrondi"
+      ],
+      "enonce": "Posez et effectuez les opérations suivantes :\n1) 456,7 + 12,34 + 4,56 =\n2) 5h 9mn 21s − 2h 14mn 53s =\n3) 953,12 × 40,08 =\n4) 76 809 : 15,44 = (à 1/1000 près)",
+      "reponse": "1) En alignant les virgules : 456,70 + 12,34 + 4,56 = 473,60.\n2) On emprunte deux fois : 5h 9mn 21s = 4h 68mn 81s. Alors 4h 68mn 81s − 2h 14mn 53s = 2h 54mn 28s.\n3) 953,12 × 40,08 = 38 201,0496.\n4) On rend le diviseur entier : 76 809 : 15,44 revient à 7 680 900 : 1544 = 4974,67 (au millième près).",
+      "correction_du_livre": "L'énoncé imprimé écrit la première opération « 458,7 + 1234 + 4,56 », mais le corrigé calcule « 456,7 + 12,34 + 4,56 = 473,60 ». Les deux ne peuvent pas être vrais en même temps. C'est le corrigé qui est cohérent avec lui-même, et ses nombres sont de l'ordre de grandeur attendu au CEE : c'est l'énoncé qui a été mal recopié."
+    },
+    {
+      "id": "cee-maths-2002-probleme",
+      "session": 2002,
+      "partie": "Problème",
+      "chapitres": [
+        "division",
+        "prix d'achat",
+        "prix de revient",
+        "bénéfice",
+        "pourcentage",
+        "prix de vente",
+        "problème de commerce"
+      ],
+      "enonce": "Un marchand de moutons de Conakry achète des moutons pour 1 350 000 Fg à Dalaba, à raison de 45 000 Fg l'animal.\n1) Combien de moutons a-t-il achetés ?\n2) Sachant qu'il paye pour chaque animal 250 Fg d'herbe et 1750 Fg le transport, quel est le prix de revient total des moutons vendus à Conakry ?\n3) Quel est le prix de revient par animal ?\n4) À quel prix reviendra-t-il vendre l'animal à Conakry s'il veut réaliser un bénéfice de 25 % du prix de revient ?",
+      "reponse": "1) 1 350 000 : 45 000 = 30 moutons.\n2) Les frais par mouton sont 250 + 1750 = 2000 Fg, donc pour les 30 moutons 2000 × 30 = 60 000 Fg. Le prix de revient total vaut 1 350 000 + 60 000 = 1 410 000 Fg.\n3) Prix de revient par animal = 45 000 + 2000 = 47 000 Fg (on peut aussi faire 1 410 000 : 30, qui donne la même chose).\n4) Le bénéfice voulu sur un animal est 25 % de 47 000, c'est-à-dire (47 000 × 25) : 100 = 11 750 Fg. Il devra donc vendre chaque mouton 47 000 + 11 750 = 58 750 Fg. Pour les 30 moutons, le bénéfice total vaut 11 750 × 30 = 352 500 Fg et la recette totale 1 410 000 + 352 500 = 1 762 500 Fg.",
+      "correction_du_livre": "Le corrigé imprimé écrit le prix de vente total « 1.762.5000 Fg », avec un zéro de trop : c'est 1 762 500 Fg."
+    },
+    {
+      "id": "cee-maths-2003-operations",
+      "session": 2003,
+      "partie": "Opérations",
+      "chapitres": [
+        "conversion d'aires",
+        "dam2",
+        "hm2",
+        "opérations posées",
+        "soustraction de durées",
+        "heures minutes secondes",
+        "division",
+        "soustraction de décimaux",
+        "multiplication de décimaux"
+      ],
+      "enonce": "Poser et effectuer les opérations suivantes :\n1) 8 dam² + 3,25 hm² + 305 m² = ......... m²\n2) 9h 23mn 10s − 4h 38mn 30s = .........\n3) 702 : 32 = ......... (à 0,01 près)\n4) 901 500 − 86 174,36 =\n5) 2,75 × 3,03 =",
+      "reponse": "1) On convertit tout en m² : 1 dam² = 100 m², donc 8 dam² = 800 m² ; 1 hm² = 10 000 m², donc 3,25 hm² = 32 500 m². Total : 800 + 32 500 + 305 = 33 605 m².\n2) On emprunte deux fois : 9h 23mn 10s = 8h 82mn 70s. Alors 8h 82mn 70s − 4h 38mn 30s = 4h 44mn 40s.\n3) 702 : 32 = 21,93 (à 0,01 près).\n4) 901 500,00 − 86 174,36 = 815 325,64.\n5) 2,75 × 3,03 = 8,3325.",
+      "correction_du_livre": "Le corrigé imprimé se trompe lourdement sur la quatrième opération : il pose « 901500,00 − 0886174,38 » et trouve 15 325,62. Il a lu 886 174,38 là où l'énoncé écrit 86 174,36 — un 8 de trop au début, et un 8 au lieu d'un 6 à la fin. La bonne réponse est 815 325,64, soit huit cent mille de plus que ce qu'annonce le livre."
+    },
+    {
+      "id": "cee-maths-2003-probleme",
+      "session": 2003,
+      "partie": "Problème",
+      "chapitres": [
+        "soustraction",
+        "problème de longueurs",
+        "fleuves",
+        "comparaison de grandeurs",
+        "différence"
+      ],
+      "enonce": "L'un des plus grands fleuves du monde est l'Amazone. Il mesure 7000 km de long. Le Nil a 300 km de moins que l'Amazone. Le Mississippi a 490 km de moins que le Nil. Le Congo a 1510 km de moins que le Mississippi.\n1) Quelle est la longueur de chacun de ces fleuves ?\n2) Quelle est la différence entre la longueur de l'Amazone et celle du Congo ?",
+      "reponse": "1) On enchaîne les soustractions, chaque fleuve se comparant au précédent :\n   Amazone : 7000 km (donné)\n   Nil : 7000 − 300 = 6700 km\n   Mississippi : 6700 − 490 = 6210 km\n   Congo : 6210 − 1510 = 4700 km\n2) Différence entre l'Amazone et le Congo : 7000 − 4700 = 2300 km.",
+      "correction_du_livre": "Deux erreurs dans le corrigé imprimé. Il annonce le Congo à 4300 km alors que 6210 − 1510 = 4700. Puis il calcule la différence en écrivant « 7600 km 4300 km = 2700 km » : l'Amazone mesure 7000 km et non 7600, le Congo 4700 et non 4300, et même avec ses propres nombres 7600 − 4300 ferait 3300. La bonne réponse est 7000 − 4700 = 2300 km."
+    },
+    {
+      "id": "cee-maths-2004-operations",
+      "session": 2004,
+      "partie": "Opérations",
+      "chapitres": [
+        "division de décimaux",
+        "multiplication de décimaux",
+        "soustraction de décimaux",
+        "addition de durées",
+        "heures minutes secondes",
+        "addition de fractions",
+        "réduction au même dénominateur",
+        "opérations posées"
+      ],
+      "enonce": "Posez et effectuez les opérations suivantes :\n1) 0,894 : 38 =\n2) 693,02 × 2,5 =\n3) 7865,08 − 947,28 =\n4) 2h 55mn 45s + 1h 15mn 20s =\n5) 2/7 + 2/5 + 5/6 =",
+      "reponse": "1) 0,894 : 38 = 0,023 (à 0,001 près).\n2) 693,02 × 2,5 = 1732,550.\n3) 7865,08 − 947,28 = 6917,80.\n4) On additionne chaque colonne, puis on retient : 45s + 20s = 65s = 1mn 05s ; 55mn + 15mn = 70mn, plus la minute retenue = 71mn = 1h 11mn ; 2h + 1h = 3h, plus l'heure retenue = 4h. Le résultat est donc 4h 11mn 05s.\n5) On réduit au même dénominateur. Le plus petit dénominateur commun à 7, 5 et 6 est 210 : 2/7 = 60/210, 2/5 = 84/210, 5/6 = 175/210. La somme vaut (60 + 84 + 175)/210 = 319/210.",
+      "correction_du_livre": "Le corrigé imprimé s'arrête à « 3h 71mn 65s = 3h 70mn 65s » pour la quatrième opération : c'est doublement faux. Une durée doit être réduite — 65 secondes font 1 minute et 5 secondes, et 71 minutes font 1 heure et 11 minutes — ce qui donne 4h 11mn 05s. L'énoncé imprimé écrit par ailleurs « 7865,08 − 947,26 » et « 2/7 + 2/6 + 5/6 » là où le corrigé calcule avec 947,28 et 2/5 ; ce sont les nombres du corrigé qui se tiennent."
+    },
+    {
+      "id": "cee-maths-2004-probleme",
+      "session": 2004,
+      "partie": "Problème",
+      "chapitres": [
+        "demi-périmètre",
+        "dimensions d'un rectangle",
+        "aire d'un rectangle",
+        "conversion d'aires",
+        "hectare",
+        "quintal",
+        "tonne",
+        "problème de champ",
+        "rendement agricole"
+      ],
+      "enonce": "Un champ de forme rectangulaire a un demi-périmètre de 210 mètres, sachant que la largeur mesure 30 m de moins que la longueur.\n1) a- Trouvez les dimensions du champ.\n   b- Trouvez la superficie du champ.\n2) L'année dernière, le champ a produit 20,5 quintaux à l'hectare. Calculez le poids total de la production (en tonnes) pendant l'année écoulée.",
+      "reponse": "1) a- Le demi-périmètre est la somme d'une longueur et d'une largeur, donc L + l = 210 m. Comme la largeur a 30 m de moins que la longueur, on retire d'abord ces 30 m et on partage en deux : l = (210 − 30) : 2 = 90 m, puis L = 90 + 30 = 120 m.\n   b- Superficie = 120 m × 90 m = 10 800 m², soit 1,08 ha.\n2) Le champ produit 20,5 quintaux par hectare et mesure 1,08 ha, donc la production vaut 20,5 × 1,08 = 22,14 quintaux. Un quintal pesant 100 kg, cela fait 2214 kg, c'est-à-dire 2,214 tonnes.",
+      "correction_du_livre": "Le corrigé imprimé calcule la production avec 20 quintaux à l'hectare au lieu de 20,5 : il annonce 21,600 quintaux, soit 2,16 tonnes. Avec le rendement de l'énoncé, 20,5 × 1,08 = 22,14 quintaux, c'est-à-dire 2,214 tonnes."
+    },
+    {
+      "id": "cee-maths-2005-operations",
+      "session": 2005,
+      "partie": "Opérations",
+      "chapitres": [
+        "soustraction de décimaux",
+        "conversion d'aires",
+        "hectare",
+        "are",
+        "centiare",
+        "division de décimaux",
+        "multiplication de décimaux",
+        "opérations posées"
+      ],
+      "enonce": "Poser et effectuer les opérations suivantes :\n1) 9200 FG − 447,15 FG =\n2) 6 ha + 4,5 a = ......... m²\n3) 43,752 : 0,82 =\n4) 88,6 × 1,24 =",
+      "reponse": "1) 9200,00 − 447,15 = 8752,85 FG.\n2) On ramène tout aux ares : 1 ha = 100 a, donc 6 ha = 600 a. 600 a + 4,5 a = 604,5 a. Comme 1 a = 100 ca = 100 m², cela fait 60 450 m².\n3) On rend le diviseur entier : 43,752 : 0,82 revient à 4375,2 : 82 = 53,35.\n4) 88,6 × 1,24 = 109,864.",
+      "correction_du_livre": "Le corrigé imprimé annonce 88,6 × 1,24 = 109,884. Ses produits partiels sont pourtant justes (3544, 1772 et 886) et leur somme donne 109 864 : la bonne réponse est 109,864. C'est la dernière ligne qui a été mal recopiée."
+    },
+    {
+      "id": "cee-maths-2005-probleme",
+      "session": 2005,
+      "partie": "Problème",
+      "chapitres": [
+        "aire d'un rectangle",
+        "conversion d'aires",
+        "hectare",
+        "problème de parc",
+        "allées en croix",
+        "soustraction d'aires",
+        "poids et surface",
+        "tonne"
+      ],
+      "enonce": "Un parc rectangulaire a 340 m de long et 275 m de large. Deux allées en croix de 3 m de large sont aménagées suivant les médianes.\n1) Faire son croquis, puis calculer en hectares l'aire des allées.\n2) On répand sur les allées 85 kg de gravier au mètre carré. Quel est le poids du gravier répandu ?",
+      "reponse": "1) Aire totale du parc = 340 m × 275 m = 93 500 m². Les deux allées découpent le parc en quatre rectangles ; ensemble ils mesurent (340 − 3) m sur (275 − 3) m, soit 337 m × 272 m = 91 664 m². L'aire des allées est la différence : 93 500 − 91 664 = 1836 m², c'est-à-dire 0,1836 ha.\n   (On peut vérifier autrement : l'allée en longueur mesure 340 × 3 = 1020 m², celle en largeur 275 × 3 = 825 m², et leur croisement de 3 m sur 3 m est compté deux fois, soit 1020 + 825 − 9 = 1836 m².)\n2) Poids du gravier = 85 kg × 1836 = 156 060 kg, soit 156,06 tonnes.",
+      "correction_du_livre": "Le corrigé imprimé accumule les fautes sur ce problème. Il écrit l'aire du parc « 340 × 275 = 83 600 m² » alors que le produit vaut 93 500 (le « 9,35 ha » qu'il annonce juste après correspond d'ailleurs bien à 93 500). Il donne la largeur de l'aire restante égale à 337 m au lieu de 272 m. Il convertit 1836 m² en « 1,884 ha » alors que 1836 m² font 0,1836 ha. Enfin il calcule le gravier avec 1838 m² au lieu de 1836 et annonce « 156 080 kg ou 158,080 t », deux nombres qui ne correspondent ni l'un ni l'autre à son propre calcul. Le résultat exact est 85 × 1836 = 156 060 kg, soit 156,06 tonnes."
+    }
+  ]
+}
