@@ -980,6 +980,16 @@ def config():
             }
             for examen, matiere in sorted(set(RESERVE_DU_NIVEAU.values()))
         },
+        # Les plafonds tels qu'ils sont RÉELLEMENT appliqués. Ils viennent de
+        # variables Render, qui l'emportent sur les valeurs écrites dans le
+        # code : sans cette ligne, rien ne permet de vérifier de l'extérieur
+        # qu'un changement de plafond a bien pris. Ces nombres sont déjà
+        # publics — ils figurent dans le README et dans render.yaml.
+        "limites": {
+            "questions_par_mois": MAX_QUESTIONS_PAR_MOIS,
+            "questions_par_jour": MAX_QUESTIONS_PAR_JOUR,
+            "eleves_par_code": MAX_ELEVES_PAR_CODE,
+        },
     }
 
 
