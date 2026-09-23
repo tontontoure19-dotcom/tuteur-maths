@@ -1,7 +1,34 @@
 {
   "source": "Exercices du BAC guinéen relevés dans « Le Guide Pratique du BAC — Mon Prof de Chimie » (M. Konaté Cheickna et M. Camara N'faly, Conakry, 492 pages).",
-  "note": "Les trente sujets complets du BAC guinéen de la section « Sujets de type BAC » (pages 296 à 400 du livre), soit une session par an de 2000 à 2025 — deux pour les années 2000 à 2004, où les séries SM et SE avaient des sujets distincts. S'y ajoute le problème 28 du Bac 1991. Chaque réponse a été entièrement recalculée avant d'être comparée au corrigé imprimé ; les treize sujets où le livre se trompe portent un champ correction_du_livre qui dit précisément ce qui est faux et pourquoi. Les exercices venus de bacs étrangers, nombreux dans ce livre, sont écartés.",
+  "note": "Les trente sujets complets du BAC guinéen de la section « Sujets de type BAC » (pages 296 à 400 du livre), soit une session par an de 2000 à 2025 — deux pour les années 2000 à 2004, où les séries SM et SE avaient des sujets distincts. S'y ajoutent cinq extraits plus anciens relevés dans la section « Sujets complémentaires » (pages 401 à 410) : 1991, 1993, 1995, 1997 et 1998. Les pages 411 à 416 sont des sujets de concours d'entrée (Sciences Techniques, Sciences Exactes) et non des sujets de BAC ; les pages 417 à 492 sont des bacs étrangers : les uns et les autres sont écartés. Chaque réponse a été entièrement recalculée avant d'être comparée au corrigé imprimé ; les treize sujets où le livre se trompe portent un champ correction_du_livre qui dit précisément ce qui est faux et pourquoi. Les exercices venus de bacs étrangers, nombreux dans ce livre, sont écartés.",
   "exercices": [
+    {
+      "id": "bac-chimie-1993-benzoique",
+      "session": 1993,
+      "serie": "SE",
+      "partie": "Extrait du sujet",
+      "chapitres": [
+        "dosage acido-basique",
+        "courbe de dosage",
+        "pH-mètre",
+        "méthode des tangentes",
+        "point d'équivalence",
+        "équivalence acido-basique",
+        "demi-équivalence",
+        "pKa",
+        "constante d'acidité",
+        "acide benzoïque",
+        "acide faible",
+        "concentration des espèces",
+        "électroneutralité",
+        "indicateur coloré",
+        "zone de virage",
+        "hélianthine",
+        "phénolphtaléine"
+      ],
+      "enonce": "On dose 10 cm³ d'acide benzoïque C₆H₅COOH de concentration inconnue par une solution d'hydroxyde de sodium (soude) de concentration 10⁻¹ mol/L. Les variations du pH en fonction du volume V de soude versé sont :\n  v (cm³) : 0 | 1 | 2 | 3 | 5 | 6 | 8 | 9,5 | 9,8 | 9,9 | 10 | 10,1 | 11 | 12\n  pH : 2,6 | 3,25 | 3,6 | 3,85 | 4,2 | 4,8 | 5,15 | 5,5 | 5,9 | 6,2 | 8,45 | 10,7 | 11,7 | 12\n1°) Tracer la courbe pH = f(v).\n2°) Déterminer graphiquement les caractéristiques du point d'équivalence et en déduire la concentration (en mol/L) de l'acide.\n3°) En justifiant la réponse, déterminer la valeur du pKa du couple acide/base C₆H₅COOH/C₆H₅COO⁻. En déduire la constante Ka du couple.\n4°) Pour un volume v = 3 cm³ de soude versé, calculer les concentrations des espèces chimiques présentes dans le milieu réactionnel. Retrouver la valeur du pKa.\n5°) On dispose de deux indicateurs colorés : l'hélianthine (zone de virage 3,2 – 4,4) et la phénolphtaléine (zone de virage 8 – 10). Représenter ces zones de virage sur le graphe pH = f(v). Lequel de ces deux indicateurs faut-il utiliser pour effectuer ce dosage ? Justifier.",
+      "reponse": "1°) Le montage est classique : burette contenant la soude, bécher contenant l'acide benzoïque avec un barreau aimanté, pH-mètre plongé dans le bécher. La courbe obtenue a la forme d'un S : elle monte lentement, puis très vite autour de l'équivalence, puis lentement à nouveau.\n2°) On repère l'équivalence par la méthode des tangentes parallèles : V_E = 10 cm³ et pH_E = 8,45. À l'équivalence C_A·V_A = C_B·V_B, donc C_A = (10⁻¹ × 10)/10 = 10⁻¹ mol/L.\n3°) À la demi-équivalence, c'est-à-dire pour V = V_E/2 = 5 cm³, la moitié de l'acide a été transformée en sa base conjuguée : [C₆H₅COOH] = [C₆H₅COO⁻], et la relation d'Henderson donne alors pH = pKa. La table donne pH = 4,2 pour v = 5 cm³, donc pKa = 4,2 et Ka = 10⁻⁴·² = 6,3·10⁻⁵.\n4°) Pour v = 3 cm³, le tableau donne pH = 3,85. [H₃O⁺] = 10⁻³·⁸⁵ = 1,4·10⁻⁴ mol/L ; [OH⁻] = 10⁻¹⁴/1,4·10⁻⁴ = 7·10⁻¹¹ mol/L ; [C₆H₅COO⁻] ≈ [Na⁺] = C_B·V_B/(V_A + V_B) = (10⁻¹ × 3)/13 = 2,3·10⁻² mol/L ; [C₆H₅COOH] = (C_A·V_A − C_B·V_B)/(V_A + V_B) = (1 − 0,3)/13 = 5,4·10⁻² mol/L. On retrouve bien pKa = pH − log([C₆H₅COO⁻]/[C₆H₅COOH]) = 3,85 − log(2,3·10⁻²/5,4·10⁻²) = 4,2.\n5°) Le bon indicateur est celui dont la zone de virage contient le point d'équivalence. Ici pH_E = 8,45 : c'est la phénolphtaléine (8 – 10) qu'il faut utiliser. L'hélianthine ne convient pas — sa zone de virage (3,2 – 4,4) est atteinte bien avant l'équivalence, elle virerait alors qu'il reste encore beaucoup d'acide à doser."
+    },
     {
       "id": "bac-chimie-1993-propanoique",
       "session": 1993,
@@ -20,6 +47,78 @@
       ],
       "enonce": "On dissout 3,7 g d'acide propanoïque dans une quantité suffisante d'eau pure pour obtenir un litre d'une solution S.\n1°) Quelle est la concentration molaire de la solution S ?\n2°) On mesure le pH de cette solution ; on trouve pH = 3,1. En déduire que l'acide propanoïque est un acide faible. Écrire l'équation d'ionisation de cet acide dans l'eau.\n3°) On verse dans 20 mL de solution S, 25 mL d'une solution aqueuse d'hydroxyde de sodium à 0,02 mol/L : le pH du mélange est 4,9. En déduire le pKa du couple acide propanoïque / ion propanoate.",
       "reponse": "1°) M(C₂H₅COOH) = 74 g/mol, donc C = 3,7/74 = 5·10⁻² mol/L. 2°) Si l'acide était fort, on aurait pH = −log C = −log(5·10⁻²) = 1,3. Or le pH mesuré vaut 3,1 > 1,3 : l'acide n'est pas entièrement dissocié, c'est un acide faible. Son ionisation s'écrit CH₃−CH₂−COOH + H₂O ⇌ CH₃−CH₂−COO⁻ + H₃O⁺. 3°) n(acide) = 0,020 × 5·10⁻² = 1·10⁻³ mol et n(base) = 0,025 × 0,02 = 5·10⁻⁴ mol. La base est en défaut : il reste 5·10⁻⁴ mol d'acide et il s'est formé 5·10⁻⁴ mol d'ion propanoate. Les deux formes sont en quantités égales : on est à la demi-équivalence, donc pKa = pH = 4,9."
+    },
+    {
+      "id": "bac-chimie-1995-cinq-solutions",
+      "session": 1995,
+      "serie": "SM",
+      "partie": "Extrait du sujet",
+      "chapitres": [
+        "acide fort",
+        "base forte",
+        "acide faible",
+        "base faible",
+        "pH d'une solution",
+        "sel neutre",
+        "solution tampon",
+        "relation d'Henderson",
+        "pKa",
+        "concentration des espèces",
+        "électroneutralité",
+        "demi-équivalence",
+        "acide propanoïque"
+      ],
+      "enonce": "On dispose de cinq solutions aqueuses toutes à 10⁻² mol/L :\n  A : solution d'acide propanoïque ;\n  B : solution de propanoate de sodium ;\n  C : solution d'acide chlorhydrique ;\n  D : solution d'hydroxyde de sodium ;\n  E : solution de chlorure de sodium.\nOn mesure leur pH à 25 °C. Les valeurs obtenues, classées par ordre croissant, sont : 2 ; 3,5 ; 7 ; 8,5 ; 12.\n1°) Attribuer à chaque solution son pH en justifiant brièvement.\n2°) On mélange 50 mL de A et 50 mL de B. On obtient ainsi 100 mL d'une solution notée F dont le pH est 4,9. Recenser les espèces chimiques présentes dans F et calculer leurs concentrations.\n3°) Calculer le pKa du couple acide propanoïque / ion propanoate.\n4°) Comment appelle-t-on une solution telle que F ? Que se passe-t-il du point de vue du pH si l'on ajoute à F quelques gouttes de C ? de D ? de E ?\n5°) On veut préparer 100 mL de F à partir d'un autre mélange. En choisissant parmi les cinq solutions proposées, préciser la nature et le volume des solutions à utiliser. Justifier.",
+      "reponse": "1°) C est l'acide chlorhydrique, monoacide fort : pH = −log C = 2. D est la soude, monobase forte : pH = 14 + log C = 12. E est le chlorure de sodium, sel d'acide fort et de base forte : la solution est neutre, pH = 7. A est l'acide propanoïque, acide faible : son pH est compris entre 2 et 7, c'est donc 3,5. B est le propanoate de sodium, dont l'ion propanoate est une base faible (C₂H₅COO⁻ + H₂O ⇌ C₂H₅COOH + OH⁻) : son pH est compris entre 7 et 12, c'est donc 8,5.\n2°) F est le siège des deux équilibres C₂H₅COOH + H₂O ⇌ C₂H₅COO⁻ + H₃O⁺ et C₂H₅COO⁻ + H₂O ⇌ C₂H₅COOH + OH⁻ ; les espèces sont H₃O⁺, OH⁻, Na⁺, C₂H₅COO⁻ et C₂H₅COOH. [H₃O⁺] = 10⁻⁴·⁹ = 1,3·10⁻⁵ mol/L ; [OH⁻] = 10⁻¹⁴/1,3·10⁻⁵ = 8·10⁻¹⁰ mol/L ; [Na⁺] = (10⁻² × 50)/100 = 5·10⁻³ mol/L ; [C₂H₅COO⁻] ≈ [Na⁺] = 5·10⁻³ mol/L ; [C₂H₅COOH] = (10⁻² × 50)/100 = 5·10⁻³ mol/L.\n3°) Les deux formes du couple sont en quantités égales, donc pKa = pH − log([C₂H₅COO⁻]/[C₂H₅COOH]) = 4,9 − log 1 = 4,9.\n4°) Comme pH = pKa, F est une solution tampon. En y ajoutant quelques gouttes de C (acide fort), [H₃O⁺] augmente mais le pH ne diminue que très peu ; avec quelques gouttes de D (base forte), [OH⁻] augmente et le pH n'augmente que très peu ; avec quelques gouttes de E (solution neutre), le pH ne change pratiquement pas — c'est un simple effet de dilution, auquel le tampon résiste également.\n5°) Il faut se placer à la demi-équivalence d'un couple acide faible / base forte ou base faible / acide fort. Deux mélanges conviennent :\n  • A + D, avec V_A + V_D = 100 mL et C_D·V_D = ½ C_A·V_A, donc V_D = V_A/2 : V_A = 66,7 mL d'acide propanoïque et V_D = 33,3 mL de soude ;\n  • B + C, avec V_B + V_C = 100 mL et C_C·V_C = ½ C_B·V_B : V_B = 66,7 mL de propanoate de sodium et V_C = 33,3 mL d'acide chlorhydrique."
+    },
+    {
+      "id": "bac-chimie-1997-metaux-tampon",
+      "session": 1997,
+      "serie": "SM",
+      "partie": "Extrait du sujet",
+      "chapitres": [
+        "oxydoréduction",
+        "attaque d'un métal par un acide",
+        "pouvoir oxydant",
+        "pouvoir réducteur",
+        "classification des métaux",
+        "couple acide-base",
+        "base de Brønsted",
+        "ion carbonate",
+        "ion hydrogénocarbonate",
+        "constante d'acidité",
+        "solution tampon",
+        "concentration des espèces",
+        "électroneutralité"
+      ],
+      "enonce": "I — Théorie.\nExpliquer l'action d'une solution de chlorure d'hydrogène sur les métaux suivants : Fe, Zn, Pt, Hg, Au, Ag, Pb, Cu, et classer ces métaux par ordre de pouvoir oxydant et réducteur croissants sur un axe.\n\nII — Pratique.\nPour obtenir une solution tampon de pH = 10, on utilise des solutions aqueuses décimolaires de carbonate de sodium Na₂CO₃ et d'hydrogénocarbonate de sodium NaHCO₃.\n1°) Montrer que l'un des anions est la base conjuguée de l'autre. Écrire l'équation acido-basique de ce couple d'anions en solution.\n2°) La constante d'acidité de ce couple est Ka = 5·10⁻¹¹.\n  a) Calculer le rapport des molarités de ce couple d'anions.\n  b) Déterminer le rapport des volumes de solution de carbonate et d'hydrogénocarbonate que l'on doit prendre pour réaliser cette solution tampon.\n  c) Rappeler la définition d'une solution tampon ; justifier brièvement que la solution étudiée possède bien les propriétés d'une solution tampon.\n3°) Calculer les molarités de toutes les espèces chimiques présentes dans cette solution tampon.",
+      "reponse": "I. Les métaux plus réducteurs que le dihydrogène — ici Fe, Zn et Pb — sont attaqués par l'acide chlorhydrique : le métal s'oxyde en ion métallique (Fe → Fe²⁺ + 2e⁻ ; Zn → Zn²⁺ + 2e⁻ ; Pb → Pb²⁺ + 2e⁻) tandis que les ions H₃O⁺ se réduisent en dihydrogène (2H₃O⁺ + 2e⁻ → H₂ + 2H₂O) : on observe un dégagement gazeux. Les métaux dits nobles — Pt, Hg, Au, Ag, Cu — sont moins réducteurs que le dihydrogène et ne sont pas attaqués par l'acide.\nClassement (le pouvoir oxydant des ions croît vers la gauche, le pouvoir réducteur des métaux vers la droite) :\n  Au³⁺ | Pt²⁺ | Hg²⁺ | Ag⁺ | Cu²⁺ | H₃O⁺ | Pb²⁺ | Zn²⁺ | Fe²⁺\n  Au   | Pt   | Hg   | Ag  | Cu   | H₂   | Pb   | Zn   | Fe\nLes métaux placés à droite de H₂ sont ceux que l'acide attaque.\n\nII. 1°) L'ion carbonate CO₃²⁻ peut capter un proton et devenir l'ion hydrogénocarbonate HCO₃⁻ : c'est donc une base au sens de Brønsted, et les deux anions forment le couple HCO₃⁻/CO₃²⁻. En solution : CO₃²⁻ + H₃O⁺ ⇌ HCO₃⁻ + H₂O.\n2°) a) Ka = [H₃O⁺]·[CO₃²⁻]/[HCO₃⁻] et pH = 10 donne [H₃O⁺] = 10⁻¹⁰ mol/L, donc [CO₃²⁻]/[HCO₃⁻] = Ka/[H₃O⁺] = 5·10⁻¹¹/10⁻¹⁰ = 0,5.\n  b) Les deux solutions ayant la même concentration, le rapport des concentrations est celui des volumes : V(carbonate)/V(hydrogénocarbonate) = 0,5, c'est-à-dire qu'il faut deux fois plus d'hydrogénocarbonate que de carbonate.\n  c) Une solution tampon est une solution dont le pH varie très peu par addition modérée d'acide ou de base, et par dilution modérée ; on l'obtient en mélangeant un acide faible et sa base conjuguée, et son pH est alors voisin du pKa du couple. C'est bien le cas ici : pKa = −log(5·10⁻¹¹) = 10,3, tout près du pH voulu de 10.\n3°) En prenant V de carbonate et 2V d'hydrogénocarbonate, le volume total vaut 3V : [CO₃²⁻] = (0,1 × V)/3V = 3,3·10⁻² mol/L et [HCO₃⁻] = (0,1 × 2V)/3V = 6,6·10⁻² mol/L. Chaque Na₂CO₃ libère deux ions Na⁺ et chaque NaHCO₃ un seul : [Na⁺] = (2 × 0,1V + 0,1 × 2V)/3V = 1,33·10⁻¹ mol/L. Enfin [H₃O⁺] = 10⁻¹⁰ mol/L et [OH⁻] = 10⁻⁴ mol/L."
+    },
+    {
+      "id": "bac-chimie-1998-hbr-alcene",
+      "session": 1998,
+      "serie": "SM",
+      "partie": "Extrait du sujet",
+      "chapitres": [
+        "acide fort",
+        "base forte",
+        "mélange acide-base",
+        "concentration des espèces",
+        "électroneutralité",
+        "équivalence acido-basique",
+        "pH d'une solution",
+        "hydratation d'un alcène",
+        "règle de Markovnikov",
+        "alcool secondaire",
+        "oxydation ménagée",
+        "cétone",
+        "DNPH",
+        "liqueur de Fehling",
+        "ion dichromate",
+        "oxydoréduction"
+      ],
+      "enonce": "I — On mélange 20 cm³ d'une solution de potasse KOH à 0,01 mol/L et 5 cm³ d'une solution d'acide bromhydrique HBr de concentration C inconnue ; le pH du mélange est égal à 11.\na) En déduire la concentration de chaque espèce présente dans cette solution.\nb) Calculer la concentration C inconnue.\nc) Comment procède-t-on pour que le mélange soit neutre ?\nd) Quel est le pH de la solution de HBr utilisée ?\n\nII — L'alcène R−CH=CH₂ est hydraté en présence d'acide sulfurique.\n1°) Quels sont les composés susceptibles d'être obtenus ?\n2°) Pratiquement, on considère qu'un seul composé se forme. Soit A ce composé. On fait réagir 20 g de A dans une solution de bichromate de potassium et d'acide sulfurique. Le composé B obtenu, de masse molaire 58 g/mol, donne un précipité avec la D.N.P.H. mais ne réduit pas la liqueur de Fehling.\n  a) En déduire la nature de B et de A. Écrire leurs formules développées et donner leurs noms.\n  b) Écrire l'équation de la réaction entre A et l'ion bichromate.\n  c) Quel volume minimal de solution de bichromate de concentration C = 1 mol/L faut-il utiliser pour que la totalité du composé A soit oxydée ?",
+      "reponse": "I. a) La réaction est H₃O⁺ + OH⁻ → 2H₂O ; les espèces présentes sont H₃O⁺, OH⁻, K⁺ et Br⁻. Le volume total vaut 25 cm³. pH = 11 : [H₃O⁺] = 10⁻¹¹ mol/L et [OH⁻] = 10⁻³ mol/L. [K⁺] = (0,01 × 20)/25 = 8·10⁻³ mol/L. L'électroneutralité [K⁺] + [H₃O⁺] = [Br⁻] + [OH⁻] donne [Br⁻] = 8·10⁻³ − 10⁻³ = 7·10⁻³ mol/L.\nb) Les ions bromure viennent tous de l'acide : C = [Br⁻] × (V_A + V_B)/V_A = (7·10⁻³ × 25)/5 = 3,5·10⁻² mol/L.\nc) La base est en excès (le pH vaut 11). Pour neutraliser le mélange il faut ajouter juste assez d'acide pour consommer les ions OH⁻ restants : n(OH⁻) en excès = 10⁻³ × 25·10⁻³ = 2,5·10⁻⁵ mol, donc v = 2,5·10⁻⁵/3,5·10⁻² = 7,1·10⁻⁴ L ≈ 0,7 cm³ de solution de HBr.\nd) HBr est un acide fort : pH = −log C = −log(3,5·10⁻²) = 1,45.\n\nII. 1°) L'hydratation est une addition : le groupe −OH peut se fixer sur l'un ou l'autre carbone de la double liaison. Les deux composés possibles sont R−CH₂−CH₂OH (alcool primaire) et R−CHOH−CH₃ (alcool secondaire) ; c'est le second qui se forme principalement (règle de Markovnikov).\n2°) a) Le précipité avec la D.N.P.H. montre que B porte un groupe carbonyle ; comme il ne réduit pas la liqueur de Fehling, ce n'est pas un aldéhyde mais une cétone. Or seul un alcool secondaire donne une cétone par oxydation ménagée : A est l'alcool secondaire. Une cétone s'écrit CₙH₂ₙO, de masse molaire 14n + 16 = 58, d'où n = 3 : B est CH₃−CO−CH₃, la propanone, et A est CH₃−CHOH−CH₃, le propanol-2.\n  b) Demi-équations CH₃−CHOH−CH₃ → CH₃−CO−CH₃ + 2H⁺ + 2e⁻ (×3) et Cr₂O₇²⁻ + 14H⁺ + 6e⁻ → 2Cr³⁺ + 7H₂O (×1), d'où le bilan 3CH₃−CHOH−CH₃ + Cr₂O₇²⁻ + 8H⁺ → 3CH₃−CO−CH₃ + 2Cr³⁺ + 7H₂O.\n  c) M(C₃H₈O) = 60 g/mol, donc n(A) = 20/60 = 1/3 mol. L'équation consomme une mole de dichromate pour trois moles d'alcool : n(Cr₂O₇²⁻) = 1/9 mol, soit à 1 mol/L un volume V = 0,111 L ≈ 111 cm³."
     },
     {
       "id": "bac-chimie-2000-se-sujet1",
