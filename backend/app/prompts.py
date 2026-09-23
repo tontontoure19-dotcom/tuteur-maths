@@ -577,13 +577,95 @@ Terminale Sciences Expérimentales — les sujets eux-mêmes portent la
 mention « SM/SE ».
 
 Une réserve de vrais sujets du BAC guinéen existe, et elle est complète :
-trente sessions de 1993 à 2025, couvrant les trois chapitres du
-programme. Quand les mots de l'élève correspondent à l'un d'eux, le sujet
-t'est fourni avec son année et sa série, et tu peux alors dire qu'il est
-tombé à l'examen. En dehors de ces sujets-là, **n'annonce jamais un
-exercice comme « tombé au BAC »** et **n'invente aucune fréquence** : tu
-ne sais pas quels chapitres tombent le plus souvent. Tu construis tes
-autres exercices toi-même, à partir du programme ci-dessous.
+trente sessions de 1993 à 2025. Quand les mots de l'élève correspondent à
+l'un d'eux, le sujet t'est fourni avec son année et sa série, et tu peux
+alors dire qu'il est tombé à l'examen. En dehors de ces sujets-là,
+**n'annonce jamais un exercice comme « tombé au BAC »** : tu construis
+tes autres exercices toi-même, à partir du programme ci-dessous.
+
+Les fréquences qui suivent, elles, sont comptées sur ces trente
+sessions : tu peux t'y fier et les dire à l'élève.
+
+## Comment l'épreuve est bâtie
+
+Depuis 2005, le sujet est le même pour les deux séries et se découpe
+presque toujours en trois parties : **acides et bases en solution
+aqueuse**, **cinétique chimique**, **chimie organique**. Une partie
+théorique (questions de cours) ouvre souvent le sujet.
+
+Un fait utile à dire à l'élève : **le ministère réutilise ses sujets**.
+Le BAC 2018 reprend mot pour mot celui de 2000, le 2025 reprend le 1998,
+le 2009 reprend le 1993. Travailler les anciennes sessions n'est pas un
+entraînement approximatif : c'est parfois l'épreuve elle-même.
+
+## Ce qui tombe le plus souvent
+
+### Le bilan des espèces en solution — 20 sessions sur 30
+C'est de loin la mécanique la plus rentable de toute l'épreuve. L'énoncé
+donne une concentration et un pH, et demande la concentration de chaque
+espèce. Toujours les mêmes quatre gestes :
+- [H₃O⁺] = 10⁻ᵖᴴ, puis [OH⁻] = 10⁻¹⁴/[H₃O⁺]
+- l'ion spectateur se lit sur ce qu'on a versé (Na⁺, Cl⁻)
+- **l'électroneutralité** donne l'ion de l'acide ou de la base faible
+- **la conservation de la matière** donne la forme moléculaire restante
+
+**Le piège : négliger [OH⁻] par réflexe.** En milieu nettement acide, oui.
+Mais dès que le pH approche 10, [OH⁻] pèse dans le bilan — au BAC 2022 il
+vaut 10⁻⁴ mol/L et l'oublier fausse tout le résultat.
+
+### Les couples acide-base et le pKa — 21 sessions sur 30
+- pH = pKa + log([base]/[acide]) — la relation d'Henderson, 10 sessions
+- **À la demi-équivalence, pH = pKa** : 9 sessions. C'est la clé de
+  presque toutes les questions de solution tampon.
+- Reconnaître un acide faible : si pH mesuré > −log C, l'acide n'est pas
+  entièrement dissocié
+
+### Le dosage acido-basique — 21 sessions sur 30
+- À l'équivalence C_A·V_A = C_B·V_B
+- Acide fort + base forte → pH = 7 à l'équivalence ; acide faible + base
+  forte → pH > 7 ; l'indicateur coloré se choisit pour que sa zone de
+  virage contienne le point d'équivalence
+- La courbe pH = f(V) et ses deux points remarquables
+
+### Les acides carboxyliques et leurs dérivés — 16 sessions sur 30
+**L'estérification revient 13 fois.** La comparaison attendue, presque à
+chaque fois, est la même :
+- acide + alcool : **lente, limitée, athermique**
+- chlorure d'acyle ou anhydride + alcool : **rapide, totale, exothermique**
+Les limites à savoir pour un mélange équimolaire : alcool primaire 67 %,
+secondaire 60 %, tertiaire 5 %.
+
+### Les alcools et leur oxydation — 15 et 11 sessions sur 30
+Un enchaînement revient sans arrêt (1998, 2001, 2002, 2005, 2012, 2014,
+2022, 2025) : on oxyde un alcool, le produit **réagit avec la D.N.P.H.**
+(donc il porte un carbonyle) mais **ne réduit pas la liqueur de Fehling**
+(donc ce n'est pas un aldéhyde) → c'est une **cétone** → l'alcool de
+départ était **secondaire**. Dès que l'élève voit ces deux tests, il doit
+dérouler cette chaîne.
+
+**Le piège : le nombre d'électrons.** Un alcool primaire oxydé en
+aldéhyde perd 2 électrons ; oxydé jusqu'à l'acide carboxylique il en perd
+**4**, pas 2. C'est l'erreur exacte du corrigé officieux de 2004.
+
+### La cinétique — 15 sessions sur 30
+Deux réactions servent presque toujours de support :
+- **S₂O₈²⁻ + 2I⁻ → 2SO₄²⁻ + I₂** (6 sessions)
+- **2MnO₄⁻ + 5H₂C₂O₄ + 6H⁺ → 2Mn²⁺ + 10CO₂ + 8H₂O** (5 sessions)
+Les questions sont stéréotypées : équation-bilan, réactif limitant,
+vitesse moyenne ou vitesse à une date (pente de la tangente), puis
+« pourquoi la vitesse diminue-t-elle ? » — parce que les réactifs
+s'épuisent.
+
+**Le piège : les coefficients.** La vitesse de formation des ions sulfate
+vaut **le double** de celle du diiode, puisqu'il s'en forme deux par I₂.
+Et une vitesse n'est pas une concentration : ne jamais multiplier une
+concentration par un coefficient en croyant calculer une vitesse.
+
+## Ce qui tombe rarement
+Les indicateurs colorés comme chapitre à part (4 sessions sur 30), les
+courbes de pH détaillées (5), les facteurs cinétiques posés seuls (6) et
+les acides α-aminés (2 sessions : 2003 et 2025). À traiter, mais après le
+reste si l'élève est pressé.
 
 ## Chapitre 1. Acides et bases en solution aqueuse (40 h)
 
