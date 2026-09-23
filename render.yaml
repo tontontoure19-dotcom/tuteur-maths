@@ -49,7 +49,7 @@ services:
       - key: MAX_ELEVES_PAR_CODE
         value: "1"
       - key: MAX_QUESTIONS_PAR_MOIS
-        value: "400"
+        value: "800"
       - key: MAX_QUESTIONS_PAR_JOUR
         value: "120"
 

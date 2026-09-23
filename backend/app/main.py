@@ -227,7 +227,7 @@ MAX_ELEVES_PAR_CODE = int(os.getenv("MAX_ELEVES_PAR_CODE", "1"))
 # élève en pleine révision le jour où il travaille le mieux — c'est arrivé à
 # une abonnée, en plein cours. 400 questions ≈ 25 000 GNF, soit un tiers d'un
 # abonnement mensuel à 75 000 GNF.
-MAX_QUESTIONS_PAR_MOIS = int(os.getenv("MAX_QUESTIONS_PAR_MOIS", "400"))
+MAX_QUESTIONS_PAR_MOIS = int(os.getenv("MAX_QUESTIONS_PAR_MOIS", "800"))
 
 # Garde-fou technique seulement : une boucle, ou un code partagé à toute une
 # classe. Très au-dessus d'une journée de révision normale (~30 questions).

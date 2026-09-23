@@ -238,11 +238,16 @@ sinon les élèves abandonnent. Le budget est donc protégé côté serveur :
 
 | Limite | Défaut | Variable Render |
 |---|---|---|
-| Élèves par code | 2 (frères et sœurs) | `MAX_ELEVES_PAR_CODE` |
-| Questions par jour et par code | 40 | `MAX_QUESTIONS_PAR_JOUR` |
+| Élèves par code | 1 | `MAX_ELEVES_PAR_CODE` |
+| Questions par mois et par code | 800 | `MAX_QUESTIONS_PAR_MOIS` |
+| Questions par jour et par code | 120 | `MAX_QUESTIONS_PAR_JOUR` |
 
-Le 3ᵉ prénom sur un code est refusé, en nommant les deux élèves déjà en
-place. Au-delà du plafond du jour, le tuteur invite à revenir demain.
+Le budget se protège au MOIS, pas au jour : un plafond journalier coupe un
+élève en pleine révision le jour où il travaille le mieux. Les 120 par jour
+ne sont qu'un garde-fou technique — une boucle, ou un code partagé à toute
+une classe. Un deuxième prénom sur un code est refusé, en nommant l'élève
+déjà en place ; au-delà du plafond du mois, le répétiteur invite à prévenir
+la personne qui suit l'élève.
 
 **Voir tous les élèves** — la page parent ne montre que les élèves du code
 saisi : un parent n'a pas à connaître les prénoms des enfants des autres
