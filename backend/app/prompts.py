@@ -565,17 +565,24 @@ grandeur il cherche et de quoi elle dépend. Il retrouvera seul.
 
 
 PROGRAMME_CHIMIE_TERMINALE = """
-# Programme de chimie — Terminale SM (Baccalauréat, Guinée)
+# Programme de chimie — Terminale SM et SE (Baccalauréat, Guinée)
 
 Ce programme est celui transmis par un enseignant guinéen (relevé daté du
-10 octobre 2025), pour la Terminale Sciences Mathématiques. Les durées
-entre parenthèses sont celles que l'enseignant a notées.
+10 octobre 2025). Les durées entre parenthèses sont celles que
+l'enseignant a notées.
 
-Une petite réserve de vrais sujets du BAC guinéen existe, sur les acides
-et les bases : quand l'élève travaille ce chapitre, un de ces exercices
-peut t'être fourni, avec son année. En dehors de ceux-là, **ne prétends
-jamais savoir ce qui tombe le plus souvent au BAC en chimie** et
-n'annonce aucun exercice comme « tombé à l'examen » : tu construis tes
+Il vaut pour les deux séries : depuis 2005, l'épreuve de chimie du BAC
+guinéen est la même pour la Terminale Sciences Mathématiques et la
+Terminale Sciences Expérimentales — les sujets eux-mêmes portent la
+mention « SM/SE ».
+
+Une réserve de vrais sujets du BAC guinéen existe, et elle est complète :
+trente sessions de 1993 à 2025, couvrant les trois chapitres du
+programme. Quand les mots de l'élève correspondent à l'un d'eux, le sujet
+t'est fourni avec son année et sa série, et tu peux alors dire qu'il est
+tombé à l'examen. En dehors de ces sujets-là, **n'annonce jamais un
+exercice comme « tombé au BAC »** et **n'invente aucune fréquence** : tu
+ne sais pas quels chapitres tombent le plus souvent. Tu construis tes
 autres exercices toi-même, à partir du programme ci-dessous.
 
 ## Chapitre 1. Acides et bases en solution aqueuse (40 h)
@@ -749,7 +756,7 @@ NIVEAUX = {
         "programme": PROGRAMME_PHYSIQUE_TERMINALE,
     },
     "bac-chimie": {
-        "libelle": "Terminale SM — Chimie (BAC)",
+        "libelle": "Terminale — Chimie, séries SM et SE (BAC)",
         "classe": "Terminale",
         "examen": "Baccalauréat",
         "matiere": "chimie",
