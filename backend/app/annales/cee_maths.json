@@ -1,6 +1,6 @@
 {
   "source": "Sujets du CEE guinéen relevés dans « Mon Examen — CEE, CM2 », EDAL-Guinée, Conakry, édition 2026, section « Calcul écrit » (pages 184 à 239). Même éditeur que le livre du BEPC.",
-  "note": "RELEVÉ EN COURS. Le CEE se passe en fin de CM2 ; l'épreuve de calcul écrit dure 1 h 30 et se compose de quatre ou cinq opérations posées, puis d'un problème. Chaque session donne donc deux entrées ici : les opérations et le problème. Toutes les réponses ont été recalculées. ATTENTION : ce livre se trompe beaucoup plus souvent que ceux du BEPC et du BAC, et ses énoncés contredisent parfois ses propres corrigés — voir le champ correction_du_livre.",
+  "note": "Les vingt-six sessions du CEE guinéen, de 2000 à 2025, relevées dans la section « Calcul écrit » du livre (pages 184 à 239). Le CEE se passe en fin de CM2 ; l'épreuve dure 1 h 30 à 2 h et se compose de quatre ou cinq opérations posées, puis d'un problème. Chaque session donne donc deux entrées : les opérations et le problème. Toutes les réponses ont été recalculées. ATTENTION : ce livre se trompe beaucoup plus souvent que ceux du BEPC et du BAC, et ses énoncés contredisent parfois ses propres corrigés — voir le champ correction_du_livre. Règle suivie : l'énoncé est le sujet du ministère, le corrigé n'est que le travail de l'éditeur ; quand les deux divergent, on suit l'énoncé.",
   "exercices": [
     {
       "id": "cee-maths-2000-operations",
@@ -765,6 +765,142 @@
       ],
       "enonce": "Le plus long fleuve d'Afrique est le Nil ; il mesure 6700 km. Le Niger a 2500 km de moins que le Nil. Le Sénégal a 2500 km de moins que le Niger. Le fleuve Gambie a 600 km de moins que le Sénégal.\nCalcule :\n1) La longueur de chaque fleuve\n2) La différence entre la longueur du premier fleuve et celle du dernier.",
       "reponse": "1) On enchaîne les soustractions, chaque fleuve se comparant au précédent :\n   Nil : 6700 km (donné)\n   Niger : 6700 − 2500 = 4200 km\n   Sénégal : 4200 − 2500 = 1700 km\n   Gambie : 1700 − 600 = 1100 km\n2) Différence entre le Nil et la Gambie : 6700 − 1100 = 5600 km."
+    },
+    {
+      "id": "cee-maths-2022-operations",
+      "session": 2022,
+      "partie": "Opérations",
+      "chapitres": [
+        "écriture des nombres en lettres",
+        "addition de fractions",
+        "réduction au même dénominateur",
+        "soustraction de durées",
+        "heures minutes secondes",
+        "division de décimaux",
+        "arrondi",
+        "triangle isocèle",
+        "construction géométrique"
+      ],
+      "enonce": "1) Écris ce nombre en lettres : 8 673 542\n2) Pose et effectue les opérations suivantes :\n   a) 4/7 + 2/5 =\n   b) 7h 28min 45s − 3h 45min 35s =\n   c) 289,65 : 32,8 = ......... (à 1/10ᵉ près)\n3) Trace un triangle isocèle ABC dont les deux côtés égaux mesurent 7 cm chacun.",
+      "reponse": "1) Huit millions six cent soixante-treize mille cinq cent quarante-deux.\n2) a) Le plus petit dénominateur commun à 7 et 5 est 35 : 4/7 = 20/35 et 2/5 = 14/35. La somme vaut 34/35.\n   b) On emprunte une heure : 7h 28mn 45s = 6h 88mn 45s. Alors 6h 88mn 45s − 3h 45mn 35s = 3h 43mn 10s.\n   c) On rend le diviseur entier : 289,65 : 32,8 revient à 2896,5 : 328 = 8,8 (au dixième près ; la valeur exacte commence par 8,83).\n3) Un triangle isocèle a deux côtés égaux : on trace la base BC à la règle, puis on ouvre le compas à 7 cm et, depuis B puis depuis C, on trace deux arcs qui se coupent en A. Les côtés AB et AC mesurent alors 7 cm chacun."
+    },
+    {
+      "id": "cee-maths-2022-probleme",
+      "session": 2022,
+      "partie": "Problème",
+      "chapitres": [
+        "partage inégal",
+        "schéma de partage",
+        "soustraction",
+        "division",
+        "problème de partage",
+        "épargne"
+      ],
+      "enonce": "Deux frères, Mohamed et Fodé, ont vendu leurs marchandises à 3 800 000 fg. Ils épargnent 750 000 fg puis se partagent le reste. Mohamed, l'aîné, gagne 250 000 fg de plus que Fodé.\n1) Traduis par un graphique le partage.\n2) Calcule la part qui revient à chacun des deux frères.",
+      "reponse": "1) On dessine deux segments : celui de Fodé, et celui de Mohamed qui est le même plus un bout de 250 000 fg.\n2) On commence par le montant réellement partagé, une fois l'épargne mise de côté : 3 800 000 − 750 000 = 3 050 000 fg.\nCe montant contient deux parts de Fodé plus les 250 000 fg de différence. On retire donc la différence, puis on partage en deux : (3 050 000 − 250 000) : 2 = 2 800 000 : 2 = 1 400 000 fg pour Fodé. Mohamed reçoit 1 400 000 + 250 000 = 1 650 000 fg. (Vérification : 1 400 000 + 1 650 000 = 3 050 000 fg.)"
+    },
+    {
+      "id": "cee-maths-2023-operations",
+      "session": 2023,
+      "partie": "Opérations",
+      "chapitres": [
+        "addition de décimaux",
+        "soustraction de durées",
+        "heures et minutes",
+        "fraction décimale",
+        "comparaison de décimaux",
+        "ordre croissant",
+        "soustraction de grands nombres"
+      ],
+      "enonce": "1) Posez et effectuez les opérations suivantes :\n   3458,45 + 615,375 = ?\n   17h 10mn − 8h 45mn = ?\n2) Calcule la valeur décimale exacte de cette fraction : 17/20\n3) Recopie ces nombres en allant du plus petit au plus grand :\n   2,18 ; 2,0189 ; 2,4 ; 2 ; 108\n4) Dans une préfecture, il y a 275 454 habitants dont 165 269 femmes. Quel est le nombre d'hommes ?",
+      "reponse": "1) En alignant les virgules : 3458,450 + 615,375 = 4073,825. Pour les durées, on ne peut pas ôter 45 mn de 10 mn : on emprunte une heure, 17h 10mn = 16h 70mn, et 16h 70mn − 8h 45mn = 8h 25mn.\n2) 17/20 = 0,85 (on peut diviser 17 par 20, ou remarquer que 17/20 = 85/100).\n3) 2 < 2,0189 < 2,18 < 2,4 < 108.\n4) Nombre d'hommes = 275 454 − 165 269 = 110 185."
+    },
+    {
+      "id": "cee-maths-2023-probleme",
+      "session": 2023,
+      "partie": "Problème",
+      "chapitres": [
+        "aire d'un rectangle",
+        "aire d'un disque",
+        "rayon",
+        "diamètre",
+        "pi",
+        "aire restante",
+        "soustraction d'aires",
+        "problème de pelouse"
+      ],
+      "enonce": "Au milieu d'une pelouse gazonnée rectangulaire de 24 m de longueur et 12 m de largeur, on aménage un bassin circulaire de 6 m de diamètre.\nCalculez :\na) L'aire de la pelouse\nb) L'aire du bassin\nc) L'aire restante\nNB : π = 3,14",
+      "reponse": "a) Aire de la pelouse = 24 m × 12 m = 288 m².\nb) Le rayon est la moitié du diamètre : 6 : 2 = 3 m. L'aire d'un disque vaut rayon × rayon × π : 3 × 3 × 3,14 = 28,26 m².\nc) L'aire restante est celle du gazon une fois le bassin enlevé : 288 − 28,26 = 259,74 m²."
+    },
+    {
+      "id": "cee-maths-2024-operations",
+      "session": 2024,
+      "partie": "Opérations",
+      "chapitres": [
+        "aire d'un rectangle",
+        "addition de durées",
+        "heures et minutes",
+        "division de décimaux",
+        "arrondi",
+        "soustraction de décimaux"
+      ],
+      "enonce": "a) Quelle est l'aire d'un terrain de 90 m de longueur et de 40 m de largeur ?\nb) À quelle heure arrive à Conakry un camion parti de Labé à 7h 40 min, s'il met 11h 45 min pour faire ce trajet ?\nc) Pose et effectue les opérations suivantes :\n   2,875 : 0,89 = ......... (à 1/100 près)\n   45 062 − 1971,035 =",
+      "reponse": "a) Aire = 90 m × 40 m = 3600 m².\nb) On ajoute la durée du trajet à l'heure de départ : 7h 40min + 11h 45min = 18h 85min. Comme 85 min font 1h 25min, cela donne 19h 25min.\nc) On rend le diviseur entier : 2,875 : 0,89 revient à 287,5 : 89 = 3,23 (au centième près). Et 45 062,000 − 1971,035 = 43 090,965."
+    },
+    {
+      "id": "cee-maths-2024-probleme",
+      "session": 2024,
+      "partie": "Problème",
+      "chapitres": [
+        "multiplication",
+        "division",
+        "moyenne",
+        "pourcentage",
+        "réduction",
+        "dépense totale",
+        "problème de fournitures"
+      ],
+      "enonce": "L'effectif des classes de CM2 d'une école primaire est de 120 élèves. Il faut en moyenne 12 cahiers de 100 pages par élève et par an.\na) Combien de cahiers seront annuellement utilisés ?\nb) Quelle est la consommation moyenne mensuelle de l'école en cahiers, si l'année scolaire compte 9 mois ?\nc) Les cahiers sont vendus par carton de 40. Combien de cartons faudra-t-il acheter ?\nd) Un carton coûte 100 000 GNF et la librairie fait une réduction de 5 % sur ce prix. Quelle sera la dépense ?",
+      "reponse": "a) 120 élèves × 12 cahiers = 1440 cahiers par an.\nb) 1440 : 9 = 160 cahiers par mois.\nc) 1440 : 40 = 36 cartons.\nd) Prix sans réduction = 100 000 × 36 = 3 600 000 GNF. La réduction vaut 5 % de cette somme : (3 600 000 × 5) : 100 = 180 000 GNF. La dépense est donc 3 600 000 − 180 000 = 3 420 000 GNF."
+    },
+    {
+      "id": "cee-maths-2025-operations",
+      "session": 2025,
+      "partie": "Opérations",
+      "chapitres": [
+        "addition de durées",
+        "heures minutes secondes",
+        "soustraction de fractions",
+        "simplification de fractions",
+        "division de décimaux",
+        "arrondi",
+        "prix au mètre",
+        "multiplication de décimaux",
+        "angles",
+        "angle aigu",
+        "angle obtus",
+        "angle droit",
+        "angle plat"
+      ],
+      "enonce": "1) Pose et effectue les opérations suivantes :\n   a) 12h 25min 45s + 4h 56min =\n   b) 7/4 − 1/2 = ......... ; simplifie la réponse\n   c) 1980,75 : 39,8 = ......... (à 1/10 près)\n2) Quel est le prix de 2,85 m de tissu à 27 800 fg le mètre ?\n3) Voici des mesures d'angles en degrés : 112° ; 180° ; 75° ; 90°. Écris le nom de l'angle qui correspond à chaque mesure.",
+      "reponse": "1) a) 45s restent 45s ; 25min + 56min = 81min ; 12h + 4h = 16h, soit 16h 81min 45s. On réduit : 81 min font 1h 21min, donc le résultat est 17h 21min 45s.\n   b) On met au même dénominateur : 7/4 − 1/2 = 7/4 − 2/4 = 5/4. (Par la multiplication en croix on trouve 10/8, que l'on simplifie en divisant en haut et en bas par 2 : 5/4.)\n   c) On rend le diviseur entier : 1980,75 : 39,8 revient à 19 807,5 : 398 = 49,7 au dixième près (la valeur exacte commence par 49,76).\n2) Prix = 27 800 × 2,85 = 79 230 fg.\n3) 112° : angle obtus (plus de 90°). 180° : angle plat. 75° : angle aigu (moins de 90°). 90° : angle droit."
+    },
+    {
+      "id": "cee-maths-2025-probleme",
+      "session": 2025,
+      "partie": "Problème",
+      "chapitres": [
+        "aire d'un triangle",
+        "fraction d'une longueur",
+        "conversion d'aires",
+        "hectare",
+        "rendement à l'hectare",
+        "tonne",
+        "prix de vente",
+        "problème de champ"
+      ],
+      "enonce": "Un champ a la forme d'un triangle. La mesure de sa base est de 260 m. La hauteur est égale à 1/2 de sa base.\na) Calcule son aire en mètres carrés (m²), puis en hectares (ha).\nb) Ce champ a produit 8,4162 tonnes de manioc. Quel a été son rendement à l'hectare ?\nc) Calcule le prix de vente de la production à raison de 3 500 000 fg la tonne.",
+      "reponse": "a) La hauteur vaut la moitié de la base : 260 : 2 = 130 m. L'aire d'un triangle vaut (base × hauteur) : 2 = (260 × 130) : 2 = 33 800 : 2 = 16 900 m². Comme 1 ha = 10 000 m², cela fait 1,69 ha.\nb) Le rendement est la production divisée par la surface : 8,4162 : 1,69 = 4,98 tonnes par hectare.\nc) Prix de vente = 8,4162 × 3 500 000 = 29 456 700 fg."
     }
   ]
 }
