@@ -1,0 +1,34 @@
+{
+  "source": "Sujets du BAC guinéen relevés dans « Le Guide Pratique — Collection Cheickna — Terminales SM/SE — Mon Prof de Physique », édition 2025 (N'Faly Camara et Cheickna Konaté ; Warh Business Groupe / Da Wadoudou, Conakry). Les énoncés occupent les pages 437 à 455, sous le titre « Sujets », et leurs corrigés les pages 456 à 520, sous le titre « Corrigés-types des sujets du BAC guinéen de 2016 à 2024 ». Même collection et mêmes auteurs que le livre de chimie : la couverture porte « Terminales SM/SE », ce qui confirme que la physique du BAC est commune aux deux séries scientifiques.",
+  "note": "RELEVÉ EN COURS. Le livre aligne dix-huit sujets numérotés, deux par an de 2016 à 2024 — un pour la série SM, un pour la série SE. Chaque sujet a une partie THÉORIE (4 à 6 points) et une partie PRATIQUE (14 à 16 points) en deux ou trois problèmes indépendants : mécanique, électricité, optique ondulatoire, physique atomique et nucléaire. Particularité de ce livre : les énoncés et les corrigés sont dans DEUX sections séparées, il faut les recoller sujet par sujet. Toutes les réponses sont recalculées avant d'être comparées au corrigé imprimé.",
+  "exercices": [
+    {
+      "id": "bac-physique-2016-se-sujet1",
+      "session": 2016,
+      "serie": "SE",
+      "partie": "Sujet complet",
+      "numero": "1",
+      "chapitres": [
+        "diffraction de la lumière",
+        "radioactivité artificielle",
+        "radioactivité bêta moins",
+        "équation nucléaire",
+        "période radioactive",
+        "demi-vie",
+        "loi de décroissance",
+        "quantité de matière",
+        "cinématique",
+        "mouvement uniformément varié",
+        "équation horaire",
+        "changement de sens",
+        "circuit RLC série",
+        "résonance",
+        "bande passante",
+        "facteur de qualité",
+        "surtension"
+      ],
+      "enonce": "A — Théorie (4 points).\nExpliquer le phénomène de diffraction de la lumière.\n\nB — Pratique (16 points).\nI — On se propose de déterminer le volume sanguin d'un individu à l'aide d'un radioélément artificiel : le sodium 24.\n1°) On prépare le sodium 24 par bombardement du sodium 23 (Z = 11, A = 23) avec des neutrons. Écrire l'équation.\n2°) Le sodium 24 est radioactif β⁻ et sa période (demi-vie) est de 15 h. Écrire l'équation de désintégration du sodium 24.\n3°) On injecte par voie intraveineuse 10 cm³ d'une solution de concentration molaire 10⁻³ mol/L. Quelle est la quantité de matière de sodium 24 introduite dans le sang ?\n4°) Au bout de 7 h 30 min — temps au bout duquel on peut considérer que le liquide injecté a diffusé uniformément dans tout le volume sanguin — on prélève 10 cm³ de sang. Un dosage permet d'établir la présence de 1,4·10⁻⁸ mol de sodium 24. Déduire de ce résultat le volume sanguin de cet individu.\n\nII — On étudie le mouvement d'un mobile ponctuel sur un axe (O, i). Ses caractéristiques sont : accélération constante 4,1 m·s⁻², abscisse à la date t = 0 : 1 m, et vitesse à la date t = 0 : −3 m·s⁻¹.\n1°) Quelle est la nature du mouvement ? Écrire l'équation de la vitesse V(t) et l'équation horaire x(t).\n2°) Déterminer les dates auxquelles le mobile passe par l'origine O. Quelles sont alors les vitesses correspondantes ?\n3°) Au cours de son mouvement, le mobile change-t-il de sens de parcours ? Si oui, donner la date et la position correspondant à ce changement.\n\nIII — La largeur de la bande passante d'un circuit R.L.C. série est 100 Hz et la fréquence à la résonance 700 Hz.\n1°) Quel est le facteur de qualité du circuit ?\n2°) La tension efficace délivrée par le générateur est 5 V. Quelle est la tension aux bornes du condensateur à la résonance d'intensité ?",
+      "reponse": "A. La diffraction est la modification du trajet d'une onde lumineuse lorsqu'elle traverse une ouverture de petite dimension. En éclairant un trou de diamètre d réglable avec une source de lumière monochromatique de longueur d'onde λ, le phénomène apparaît dès que d devient comparable à λ (d ≤ λ) : la lumière s'étale au lieu de continuer en ligne droite.\n\nB. I. 1°) Le bombardement du sodium 23 par un neutron donne le sodium 24 : ²³₁₁Na + ¹₀n → ²⁴₁₁Na.\n2°) Dans une désintégration β⁻, un neutron se change en proton : le numéro atomique augmente de 1 et le nombre de masse ne bouge pas. ²⁴₁₁Na → ⁰₋₁e + ²⁴₁₂Mg — le noyau fils est un isotope du magnésium.\n3°) n₀ = C·V = 10⁻³ × 10·10⁻³ = 10⁻⁵ mol.\n4°) 7 h 30 min est exactement la MOITIÉ de la période (T = 15 h). La loi de décroissance n = n₀·e^(−λt) avec λ = ln2/T donne, pour t = T/2 : n = n₀/√2 = 10⁻⁵/1,414 = 7,07·10⁻⁶ mol. Ces 7,07·10⁻⁶ mol se répartissent dans tout le sang, tandis que les 10 cm³ prélevés n'en contiennent que 1,4·10⁻⁸ mol. Le nombre de moles étant proportionnel au volume : V = (n/n_prélevé) × V_prélevé = (7,07·10⁻⁶/1,4·10⁻⁸) × 10 cm³ ≈ 5050 cm³, soit environ 5 litres de sang.\n\nII. 1°) L'accélération est constante : le mouvement est rectiligne uniformément varié. V(t) = a·t + V₀ = 4,1t − 3 (m/s) et x(t) = ½a·t² + V₀·t + x₀ = 2,05t² − 3t + 1 (m).\n2°) Le mobile passe par O quand x = 0 : 2,05t² − 3t + 1 = 0. Δ = 9 − 4(2,05)(1) = 0,8, donc t₁ = 0,51 s et t₂ = 0,95 s. Les vitesses correspondantes : V₁ = 4,1(0,51) − 3 = −0,91 m/s et V₂ = 4,1(0,95) − 3 = 0,89 m/s. Les signes sont opposés : le mobile passe une première fois en reculant, une seconde fois en avançant.\n3°) Oui, il change de sens — c'est d'ailleurs ce que les deux vitesses de signes contraires annonçaient. Le demi-tour a lieu quand V = 0 : 4,1t − 3 = 0, donc t = 0,73 s. À cette date x = 2,05(0,73)² − 3(0,73) + 1 = −0,097 m : le mobile rebrousse chemin juste après avoir dépassé l'origine.\n\nIII. 1°) Le facteur de qualité est le rapport de la fréquence de résonance à la largeur de la bande passante : Q = f₀/Δf = 700/100 = 7.\n2°) À la résonance, Q = U_C/U, donc U_C = Q·U = 7 × 5 = 35 V. Remarquable : la tension aux bornes du condensateur (35 V) est SEPT FOIS plus grande que celle du générateur (5 V). C'est le phénomène de surtension à la résonance — et la raison pour laquelle un facteur de qualité trop grand peut détériorer le circuit."
+    }
+  ]
+}
