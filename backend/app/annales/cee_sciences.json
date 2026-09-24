@@ -1,0 +1,136 @@
+{
+  "source": "Sujets du CEE guinéen relevés dans « Mon Examen — CEE, CM2 », EDAL-Guinée, Conakry, édition 2026, section « Sciences d'observation » (pages 148 à 183).",
+  "note": "RELEVÉ EN COURS. L'épreuve de sciences d'observation dure 1 heure (1 h 15 les dernières années) et compte 10 points. Elle mêle la biologie humaine (digestion, respiration, circulation, sang, peau, dent, os), la santé (sida, tabac, paludisme, premiers secours), les plantes et leur multiplication, les états de la matière et la protection de l'environnement. Plusieurs questions demandent un CROQUIS ANNOTÉ — l'enfant doit le dessiner sur son cahier ; le répétiteur nomme les parties et vérifie, il ne dessine pas à sa place. Les réponses ont été vérifiées ; les erreurs du livre sont signalées dans correction_du_livre.",
+  "exercices": [
+    {
+      "id": "cee-sciences-2005",
+      "session": 2005,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "organes et fonctions",
+        "épuration",
+        "circulation",
+        "respiration",
+        "digestion",
+        "appareil digestif",
+        "trajet des aliments",
+        "techniques culturales",
+        "drainage",
+        "maladies des organes",
+        "carie dentaire",
+        "ulcère",
+        "gale",
+        "surmenage"
+      ],
+      "enonce": "1) Placez ces organes dans le tableau selon leur fonction : foie, veines, estomac, cœur, poumons, artères, intestin, rein, capillaires, vessie, dents, nez. Colonnes : Épuration | Circulation | Respiration | Digestion.\n2) Votre école veut mettre en valeur un potager mais le terrain choisi est inondé par l'eau. Quelles techniques et pratiques culturales faut-il utiliser ?\n3) À partir d'un schéma et en vous servant de flèches, décrivez le trajet parcouru par une poignée de fonio avalée.\n4) Reliez par une flèche les maladies propres à chaque organe : Dent, Système nerveux, Peau, Estomac — Gales, Ulcère, Carie, Surmenage.",
+      "reponse": "1) Épuration : rein, vessie, foie. Circulation : veines, artères, capillaires, cœur. Respiration : poumons, nez. Digestion : intestin, estomac, dents (le foie aide aussi à la digestion en fabriquant la bile).\n2) Le terrain est inondé : il faut évacuer l'eau et la retenir ailleurs. Le drainage (creuser des rigoles pour faire partir l'eau), la réimplantation des haies, et l'infiltration des eaux.\n3) Le fonio suit toujours le même chemin : bouche → œsophage → estomac → intestin grêle → gros intestin → rectum → anus. Sur le schéma on place aussi les glandes salivaires, le foie et le pancréas, qui versent leurs sucs mais ne sont pas sur le trajet lui-même.\n4) Dent → carie. Système nerveux → surmenage. Peau → gales. Estomac → ulcère."
+    },
+    {
+      "id": "cee-sciences-2007",
+      "session": 2007,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "organes et fonctions",
+        "épuration",
+        "circulation",
+        "respiration",
+        "digestion",
+        "maladies des os",
+        "fracture",
+        "entorse",
+        "luxation",
+        "méfaits du tabac",
+        "coupe d'une dent",
+        "croquis annoté"
+      ],
+      "enonce": "1) Placez les organes ci-dessous dans le tableau selon leur fonction : foie, dent, nez, estomac, bronches. Colonnes : Épuration | Circulation | Respiration | Digestion.\n2) Un de vos frères tombe d'un grand arbre. Quelles maladies des os risque-t-il ?\n3) Un de vos camarades est fumeur. Quels conseils pouvez-vous lui donner sur les méfaits du tabac ?\n4) Faites le schéma de la coupe d'une dent et indiquez les différentes parties.",
+      "reponse": "1) Épuration : foie. Respiration : nez, bronches. Digestion : dent, estomac. (Aucun des cinq organes de la liste n'appartient à la circulation.)\n2) En tombant, il risque : la fracture (os cassé), l'entorse ou foulure (articulation forcée), et la luxation ou déboîtement (l'os sort de son articulation).\n3) Le tabac contient des substances dangereuses pour la santé. Il provoque des maladies : cancer du poumon, bronchite, asthme, troubles de la mémoire et des nerfs. Il coûte cher, il fait perdre le prestige, et il réduit l'espérance de vie.\n4) La dent se partage en deux : la COURONNE, la partie qu'on voit, et la RACINE, enfoncée dans la gencive. De l'extérieur vers l'intérieur : la cuticule, puis l'émail (le plus dur), puis l'ivoire, et au centre la pulpe. Dans la racine : le cément, et le nerf avec l'entrée et la sortie du sang.",
+      "correction_du_livre": "Le tableau imprimé écrit « Eruption » au lieu d'« Épuration » — le livre écrit pourtant correctement ce mot dans son corrigé de 2005. Le corrigé range par ailleurs dans le tableau des organes qui ne figurent pas dans la liste de l'énoncé (rein, vessie, veines, cœur, artères, capillaires, poumons, intestin) : il a recopié la réponse du sujet de 2005, qui comptait douze organes. L'énoncé de 2007 n'en donne que cinq."
+    },
+    {
+      "id": "cee-sciences-2008",
+      "session": 2008,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "multiplication des plantes",
+        "semis",
+        "bouturage",
+        "drageonnage",
+        "greffage",
+        "états de la matière",
+        "corps solides",
+        "corps liquides",
+        "corps gazeux",
+        "respiration",
+        "inspiration",
+        "expiration",
+        "maladies contagieuses",
+        "maladies sexuellement transmissibles"
+      ],
+      "enonce": "1) Relie chaque plante à son mode de multiplication : Manguier, Bananier, Manioc, Tomate — Semis, Bouturage, Drageonnage, Greffage.\n2) Voici une liste de corps, classe-les dans un tableau (corps solides, corps liquides, corps gazeux) : la fumée, le gaz, le sable, l'oxygène, le pétrole, le gas-oil, le fer, le vent, l'air, la chaise, le caillou, l'eau, la glace, l'huile, la règle.\n3) Est-ce qu'il y a une différence entre l'inspiration et l'expiration ? Si oui, explique.\n4) Parmi les maladies suivantes, il y a celles qui sont contagieuses et d'autres sexuellement transmissibles : le choléra, la dysenterie amibienne, le sida, la syphilis, la tuberculose, la gonococcie. Classe-les dans un tableau.",
+      "reponse": "1) Manguier → greffage. Bananier → drageonnage. Manioc → bouturage. Tomate → semis.\n2) Solides : le sable, le fer, la chaise, le caillou, la glace, la règle. Liquides : le pétrole, le gas-oil, l'eau, l'huile. Gazeux : la fumée, le gaz, l'oxygène, le vent, l'air.\n(Retiens la différence : un solide garde sa forme, un liquide prend la forme de son récipient, un gaz occupe tout l'espace qu'il trouve. La glace est de l'eau, mais à l'état solide.)\n3) Oui. L'inspiration est l'entrée de l'air dans les poumons ; l'expiration est la sortie de l'air des poumons.\n4) Maladies contagieuses : le choléra, la dysenterie amibienne, la tuberculose. Maladies sexuellement transmissibles : le sida, la syphilis, la gonococcie."
+    },
+    {
+      "id": "cee-sciences-2009",
+      "session": 2009,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "morsure de serpent",
+        "premiers secours",
+        "pollution",
+        "déforestation",
+        "protection de l'environnement",
+        "organes excréteurs",
+        "déchets de l'organisme",
+        "coupe d'une dent",
+        "croquis annoté"
+      ],
+      "enonce": "1) Un de vos camarades est mordu par un serpent dans une localité éloignée du centre de santé. Quelles mesures prendre pour sauver sa vie ?\n2) Relie par une flèche chaque action de l'homme à sa conséquence : Déforestation, Rejet de fumée toxique, Rejet de produit toxique dans une rivière — Pollution de l'air, Pollution de l'eau, Disparition des végétaux et animaux.\n3) Relie par une flèche chaque déchet à l'organe qui l'élimine : Gaz carbonique, Sueur, Urine, Cérumen — Reins, Peau, Poumons, Oreilles.\n4) Fais la coupe longitudinale d'une dent et indique les différentes parties.",
+      "reponse": "1) ATTENTION, cette question demande deux réponses différentes.\nCe que le corrigé du livre attend : poser un garrot au-dessus de la morsure pour empêcher le venin d'atteindre le cœur, et extraire le venin en le suçant ou avec un appareil.\nCe que disent aujourd'hui les secouristes : NE PAS poser de garrot et NE PAS sucer la plaie — ces deux gestes aggravent la blessure. Il faut allonger le camarade, le calmer, ne pas le faire marcher, immobiliser le membre mordu en le laissant plus bas que le cœur, et le transporter au centre de santé le plus vite possible.\nSi la question tombe à l'examen, écris ce que ton livre et ton maître enseignent. Mais dans la vraie vie, c'est la seconde réponse qui sauve, et il faut demander conseil à un agent de santé.\n2) Déforestation → disparition des végétaux et animaux. Rejet de fumée toxique → pollution de l'air. Rejet de produit toxique dans une rivière → pollution de l'eau.\n3) Gaz carbonique → poumons. Sueur → peau. Urine → reins. Cérumen → oreilles.\n4) Couronne : cuticule, émail, ivoire, pulpe. Racine : cément, nerf, entrée et sortie du sang.",
+      "correction_du_livre": "Ce n'est pas une erreur de calcul mais elle est plus grave : le corrigé imprimé conseille, pour une morsure de serpent, de poser un garrot et d'aspirer le venin à la bouche. Ces deux gestes ne sont plus recommandés — ils abîment le membre et exposent celui qui aspire. La conduite retenue aujourd'hui est d'allonger et de calmer la victime, de ne pas la faire marcher, d'immobiliser le membre et de rejoindre un centre de santé au plus vite. L'entrée garde les deux réponses : celle qu'attend l'examen, et celle qui protège l'enfant."
+    },
+    {
+      "id": "cee-sciences-2015",
+      "session": 2015,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "fonctions des êtres vivants",
+        "régimes alimentaires",
+        "carnivore",
+        "herbivore",
+        "omnivore",
+        "insectivore",
+        "composition du sang",
+        "la peau",
+        "croquis annoté",
+        "aluminium",
+        "bauxite"
+      ],
+      "enonce": "1) Cite les fonctions communes aux êtres vivants.\n2) Donne la signification des 4 mots suivants : Carnivores, Herbivores, Omnivores, Insectivores.\n3) Quelle est la composition du sang ?\n4) Fais le croquis annoté de la peau.\n5) Quelles sont les propriétés de l'aluminium et de quelle matière première provient-il ?",
+      "reponse": "1) Les fonctions communes à tous les êtres vivants : la nutrition, la respiration, la reproduction, et la relation avec le milieu.\n2) Carnivore : animal qui se nourrit de viande (le chien, le lion, la panthère). Herbivore : être vivant qui se nourrit d'herbe ou de feuilles (la vache, le mouton). Omnivore : animal qui se nourrit de tout (le cochon, le phacochère). Insectivore : animal qui se nourrit d'insectes (la grenouille, l'hirondelle).\n3) Le sang est composé de globules rouges (les hématies), de globules blancs (les leucocytes), de plaquettes et de plasma.\n4) De la surface vers l'intérieur : la couche cornée et l'épiderme, puis le derme, puis l'hypoderme. On y trouve aussi le pore de transpiration, le poil avec son bulbe, la glande sudoripare (qui fabrique la sueur) et la glande sébacée.\n5) L'aluminium est un métal léger, résistant à la rouille, bon conducteur de la chaleur et de l'électricité. Il provient de la BAUXITE — et c'est la principale richesse minière de la Guinée.",
+      "correction_du_livre": "Le corrigé imprimé écrit que le sang est fait « de globules rouges (hématites), de globules blancs (leucocytes) et du plasma ». Deux choses : les globules rouges sont les HÉMATIES (l'hématite est un minerai de fer), et il manque les PLAQUETTES, qui sont le quatrième constituant du sang et servent à arrêter les saignements."
+    },
+    {
+      "id": "cee-sciences-2025",
+      "session": 2025,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "pollution",
+        "évaporation",
+        "lutte curative",
+        "épiderme",
+        "organes excréteurs",
+        "déchets de l'organisme",
+        "hygiène",
+        "multiplication des plantes",
+        "bouturage",
+        "tubercules",
+        "transmission du sida",
+        "coupe d'une dent",
+        "croquis annoté"
+      ],
+      "enonce": "1) Définis les termes suivants : pollution, évaporation, lutte curative, épiderme.\n2) Classe dans un tableau les éléments suivants (colonnes : organes excréteurs | déchets rejetés | moyens de garder les organes en bonne santé) : hygiène, urine, selles, sports et hygiène, sueur, boire et hygiène, dioxyde de carbone, alimentation variée. Organes : poumons, peau, reins, intestin.\n3) Voici une liste de plantes : le riz, le manioc, le bananier, la pomme de terre. Identifie le mode de multiplication de chaque plante.\n4) Cite deux modes de transmission du Sida.\n5) Fais un croquis annoté de la coupe d'une dent.",
+      "reponse": "1) Pollution : dégradation de l'environnement par des déchets nuisibles. Évaporation : transformation de l'eau en vapeur sous l'effet de la chaleur. Lutte curative : ensemble des actions pour soigner une maladie (par opposition à la lutte préventive, qui l'empêche d'arriver). Épiderme : la couche superficielle de la peau.\n2) Poumons → dioxyde de carbone → sports et hygiène. Peau → sueur → hygiène. Reins → urine → boire et hygiène. Intestin → selles → alimentation variée.\n3) Riz : par graines (semis). Manioc : par boutures. Bananier : par rejets (drageonnage). Pomme de terre : par tubercules.\n4) Deux modes de transmission du Sida : les rapports sexuels non protégés, et l'utilisation d'objets tranchants contaminés (rasoir, seringue). Le sang contaminé lors d'une transfusion en est un troisième.\n5) Couronne : cuticule, émail, ivoire, pulpe. Racine : cément, nerf, entrée et sortie du sang."
+    }
+  ]
+}
