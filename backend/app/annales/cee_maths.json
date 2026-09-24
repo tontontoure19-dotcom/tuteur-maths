@@ -629,7 +629,142 @@
         "problème de poulailler"
       ],
       "enonce": "Pour construire un poulailler, on choisit un emplacement rectangulaire de 3,50 m de long et de 2,50 m de large. Convertis ces dimensions en cm. Le grillage entourant ce poulailler sera maintenu par des piquets métalliques espacés de 50 cm. Calcule la dépense totale, sachant qu'un mètre de grillage coûte 18 500 fg et qu'un piquet coûte 45 500 fg.",
-      "reponse": "Conversion : 3,50 m = 350 cm et 2,50 m = 250 cm.\nPérimètre = (350 + 250) × 2 = 1200 cm, c'est-à-dire 12 m.\nPrix du grillage : il en faut 12 m, donc 18 500 × 12 = 222 000 fg.\nNombre de piquets : ils sont espacés de 50 cm sur les 1200 cm du tour, et la clôture se referme sur elle-même, donc 1200 : 50 = 24 piquets. Prix des piquets = 45 500 × 24 = 1 092 000 fg.\nDépense totale = 222 000 + 1 092 000 = 1 314 000 fg."
+      "reponse": "Conversion : 3,50 m = 350 cm et 2,50 m = 250 cm.\nPérimètre = (350 + 250) × 2 = 1200 cm, c'est-à-dire 12 m.\nPrix du grillage : il en faut 12 m, donc 18 500 × 12 = 222 000 fg.\nNombre de piquets : ils sont espacés de 50 cm sur les 1200 cm du tour, et la clôture se referme sur elle-même, donc 1200 : 50 = 24 piquets. Prix des piquets = 45 500 × 24 = 1 092 000 fg.\nDépense totale = 222 000 + 1 092 000 = 1 314 000 fg.",
+      "correction_du_livre": "Le corrigé imprimé additionne « 222 000 + 1 092 000 = 1 340 000 fg ». La somme exacte est 1 314 000 fg — les chiffres 14 ont été intervertis en 40."
+    },
+    {
+      "id": "cee-maths-2018-operations",
+      "session": 2018,
+      "partie": "Opérations",
+      "chapitres": [
+        "comparaison de décimaux",
+        "ordre croissant",
+        "division",
+        "longueur d'un pas",
+        "soustraction de durées",
+        "heures minutes secondes",
+        "multiplication de décimaux"
+      ],
+      "enonce": "1) Classe les nombres suivants dans l'ordre croissant :\n   53,89 ; 54 ; 53,099 ; 52,89 ; 53,8 ; 52,698 ; 53,809 ; 53,71\n2) Fodé a parcouru 660 m en faisant 100 pas. Quelle est la longueur de son pas ?\n3) Pose et effectue : 3h 40mn − 1h 50mn 42s = ; puis 5836,5 × 0,25 =",
+      "reponse": "1) Pour comparer des décimaux, on compare d'abord la partie entière, puis les décimales rang par rang : 52,698 < 52,89 < 53,099 < 53,71 < 53,8 < 53,809 < 53,89 < 54.\n(Attention au piège : 53,8 est plus petit que 53,809, car 53,8 s'écrit aussi 53,800.)\n2) La longueur d'un pas est la distance divisée par le nombre de pas : 660 : 100 = 6,6 m.\n3) Il n'y a pas de secondes à gauche : 3h 40mn = 2h 99mn 60s. Alors 2h 99mn 60s − 1h 50mn 42s = 1h 49mn 18s. Et 5836,5 × 0,25 = 1459,125 (multiplier par 0,25 revient à prendre le quart).",
+      "correction_du_livre": "Le corrigé imprimé calcule « 5836,25 × 0,25 = 1 459,0625 » alors que l'énoncé demande 5836,5 × 0,25, dont la réponse est 1459,125."
+    },
+    {
+      "id": "cee-maths-2018-probleme",
+      "session": 2018,
+      "partie": "Problème",
+      "chapitres": [
+        "aire d'un triangle rectangle",
+        "aire d'un carré",
+        "aire d'un trapèze",
+        "figure composée",
+        "prix au m2",
+        "problème de terrain"
+      ],
+      "enonce": "Soit un terrain représenté par le quadrilatère ABCD : ABCE est un carré de 18 m de côté, et ECD est un triangle rectangle dont le côté ED mesure 20 m (E est situé sur le segment AD).\nCalcule :\n1) L'aire du triangle ECD\n2) L'aire du carré ABCE\n3) L'aire du trapèze ABCD\n4) Quelle est la valeur de ce terrain si le m² est vendu à 15 000 fg ?",
+      "reponse": "1) Le triangle ECD est rectangle en E, ses côtés de l'angle droit sont ED = 20 m et EC = 18 m (EC est un côté du carré). Aire = (20 × 18) : 2 = 180 m².\n2) Aire du carré = 18 × 18 = 324 m².\n3) Le trapèze ABCD a pour bases BC = 18 m et AD = AE + ED = 18 + 20 = 38 m, et pour hauteur AB = 18 m. Aire = (38 + 18) × 18 : 2 = 56 × 18 : 2 = 504 m². (On vérifie : 180 + 324 = 504 m², le trapèze est bien la réunion du carré et du triangle.)\n4) Valeur du terrain = 15 000 × 504 = 7 560 000 fg."
+    },
+    {
+      "id": "cee-maths-2019-operations",
+      "session": 2019,
+      "partie": "Opérations",
+      "chapitres": [
+        "addition de grands nombres",
+        "multiplication de décimaux",
+        "soustraction de fractions",
+        "réduction au même dénominateur",
+        "division de décimaux",
+        "arrondi"
+      ],
+      "enonce": "a) Ajoute 1000 aux nombres suivants : 777 005 ; 799 000.\nb) Calcule la quantité d'huile contenue dans 954 fûts de 89,71 litres.\nc) Pose et effectue : 6/7 − 2/5 ; puis 156,8 : 0,038 (à 2/100ᵉ près)",
+      "reponse": "a) 777 005 + 1000 = 778 005 ; 799 000 + 1000 = 800 000.\nb) 954 × 89,71 = 85 583,34 litres.\nc) Le plus petit dénominateur commun à 7 et 5 est 35 : 6/7 = 30/35 et 2/5 = 14/35, donc la différence vaut 16/35. Pour la division, on rend le diviseur entier : 156,8 : 0,038 revient à 156 800 : 38 = 4126,31 (au centième près).",
+      "correction_du_livre": "Le corrigé imprimé calcule la quantité d'huile avec 95 fûts au lieu des 954 de l'énoncé, et annonce 8521,5 litres — un résultat qui ne correspond d'ailleurs même pas à 95 fûts (95 × 89,71 = 8522,45). Avec les 954 fûts du sujet, la réponse est 85 583,34 litres."
+    },
+    {
+      "id": "cee-maths-2019-probleme",
+      "session": 2019,
+      "partie": "Problème",
+      "chapitres": [
+        "conversion de masses",
+        "tonne",
+        "kilogramme",
+        "poids net",
+        "poids brut",
+        "prix de vente",
+        "pourcentage",
+        "division",
+        "problème de plantation"
+      ],
+      "enonce": "Un planteur a récolté 6,4 t de café. Il le fait sécher puis griller. Le café perd 1250 kg de son poids brut.\na) Quel est son poids net ?\nb) Une coopérative achète cette production au prix de 6500 Fg le kg. Quel est le prix de vente ?\nc) Le planteur utilise 80 % de cette vente pour acheter des feuilles de tôles dont l'unité vaut 65 000 Fg. Combien de feuilles de tôles peut-il acheter ?",
+      "reponse": "a) 6,4 t = 6400 kg. Le poids net est ce qui reste après séchage : 6400 − 1250 = 5150 kg.\nb) Prix de vente = 5150 × 6500 = 33 475 000 Fg.\nc) 80 % de la vente : (33 475 000 × 80) : 100 = 26 780 000 Fg. Nombre de tôles = 26 780 000 : 65 000 = 412 feuilles.",
+      "correction_du_livre": "Le corrigé imprimé écrit le prix de vente « 33 475 0000 Fg », avec un zéro de trop : c'est 33 475 000 Fg. La suite du calcul utilise bien la bonne valeur."
+    },
+    {
+      "id": "cee-maths-2020-operations",
+      "session": 2020,
+      "partie": "Opérations",
+      "chapitres": [
+        "comparaison de nombres",
+        "comparaison de fractions",
+        "conversion de longueurs",
+        "écriture des nombres en lettres",
+        "chiffres romains",
+        "aire d'un trapèze",
+        "carré d'un nombre"
+      ],
+      "enonce": "a) Compare ces nombres en utilisant les signes >, <, = :\n   250 mm ...... 2,50 mm ; 39 076 ...... 41 067 ; 3h 15min ...... 2h 15min ; 26/40 ...... 13/40\nb) Écris ces nombres en lettres : 6 598 003 ; XVIII ; 28,08 ; 1/14\nc) Quelle est la formule pour calculer l'aire d'un trapèze ?\nd) Quel est le nombre qui, multiplié par lui-même, est égal à la moitié de 50 ?",
+      "reponse": "a) 250 mm > 2,50 mm ; 39 076 < 41 067 ; 3h 15min > 2h 15min ; 26/40 > 13/40 (à dénominateur égal, la plus grande fraction est celle qui a le plus grand numérateur).\nb) 6 598 003 : six millions cinq cent quatre-vingt-dix-huit mille trois. XVIII : dix-huit. 28,08 : vingt-huit virgule zéro huit. 1/14 : un quatorzième (ou un sur quatorze).\nc) L'aire d'un trapèze vaut la somme des deux bases multipliée par la hauteur, le tout divisé par deux : S = (B + b) × h : 2.\nd) La moitié de 50 est 25, et 5 × 5 = 25 : le nombre cherché est 5.",
+      "correction_du_livre": "Deux erreurs dans le corrigé imprimé. Il écrit 6 598 003 « six millions cinq cent quatre-vingt-neuf mille trois » : 598 se dit quatre-vingt-DIX-HUIT, pas quatre-vingt-neuf. Et il donne la formule du trapèze « S = (B + b) × 2h », alors qu'il faut DIVISER par 2 et non multiplier : S = (B + b) × h : 2. Le livre écrit d'ailleurs correctement cette formule dans son corrigé de 2008."
+    },
+    {
+      "id": "cee-maths-2020-probleme",
+      "session": 2020,
+      "partie": "Problème",
+      "chapitres": [
+        "multiplication",
+        "prix de vente",
+        "soustraction",
+        "division",
+        "problème de commerce",
+        "monnaie"
+      ],
+      "enonce": "Un paysan vend 13 canards à 45 000 Fg l'un. Avec l'argent reçu, il achète une tenue de travail à 35 000 Fg et des chaussures pour ses enfants valant 25 000 Fg la paire. Calcule :\na) le prix de la vente des canards ;\nb) le prix d'achat des chaussures ;\nc) le nombre de paires de chaussures achetées.",
+      "reponse": "a) 13 × 45 000 = 585 000 Fg.\nb) Il retire d'abord le prix de la tenue de travail : 585 000 − 35 000 = 550 000 Fg pour les chaussures.\nc) 550 000 : 25 000 = 22 paires de chaussures."
+    },
+    {
+      "id": "cee-maths-2021-operations",
+      "session": 2021,
+      "partie": "Opérations",
+      "chapitres": [
+        "division",
+        "angles",
+        "angle aigu",
+        "angle obtus",
+        "angle plat",
+        "angle plein",
+        "multiplication de décimaux",
+        "addition de fractions",
+        "réduction au même dénominateur",
+        "simplification de fractions",
+        "soustraction de durées"
+      ],
+      "enonce": "A) Une école compte 480 élèves. Dans cette école il y a 8 classes de même effectif. Combien y a-t-il d'élèves par classe ?\nB) Pour chaque mesure d'angle en degrés, écris le nom de l'angle qui correspond : plus de 90°, 180°, moins de 90°, 360°.\nC) Pose et effectue :\n   a) 32,42 × 2,7\n   b) 3/8 + 1/3 + 7/9\n   c) 9h 23min 10s − 4h 38min 30s",
+      "reponse": "A) 480 : 8 = 60 élèves par classe.\nB) Plus de 90° : angle obtus. 180° : angle plat. Moins de 90° : angle aigu. 360° : angle plein.\nC) a) 32,42 × 2,7 = 87,534.\n   b) Un dénominateur commun à 8, 3 et 9 est 8 × 3 × 9 = 216 : 3/8 = 81/216, 1/3 = 72/216 et 7/9 = 168/216. La somme vaut (81 + 72 + 168)/216 = 321/216, que l'on simplifie par 3 : 107/72.\n   c) On emprunte deux fois : 9h 23mn 10s = 8h 82mn 70s. Alors 8h 82mn 70s − 4h 38mn 30s = 4h 44mn 40s.",
+      "correction_du_livre": "Le corrigé imprimé calcule « 32,41 × 2,7 = 87,507 » alors que l'énoncé demande 32,42 × 2,7, dont la réponse est 87,534."
+    },
+    {
+      "id": "cee-maths-2021-probleme",
+      "session": 2021,
+      "partie": "Problème",
+      "chapitres": [
+        "soustraction",
+        "problème de longueurs",
+        "fleuves",
+        "comparaison de grandeurs",
+        "différence"
+      ],
+      "enonce": "Le plus long fleuve d'Afrique est le Nil ; il mesure 6700 km. Le Niger a 2500 km de moins que le Nil. Le Sénégal a 2500 km de moins que le Niger. Le fleuve Gambie a 600 km de moins que le Sénégal.\nCalcule :\n1) La longueur de chaque fleuve\n2) La différence entre la longueur du premier fleuve et celle du dernier.",
+      "reponse": "1) On enchaîne les soustractions, chaque fleuve se comparant au précédent :\n   Nil : 6700 km (donné)\n   Niger : 6700 − 2500 = 4200 km\n   Sénégal : 4200 − 2500 = 1700 km\n   Gambie : 1700 − 600 = 1100 km\n2) Différence entre le Nil et la Gambie : 6700 − 1100 = 5600 km."
     }
   ]
 }
