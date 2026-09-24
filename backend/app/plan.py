@@ -20,6 +20,26 @@ from pathlib import Path
 # Chaque chapitre : (nom montré à l'élève, séances de travail prévues).
 # L'ordre est celui des fréquences relevées dans les annales.
 CHAPITRES = {
+    # 26 sessions du CEE, 2000-2025. La fréquence entre parenthèses est le
+    # nombre de sessions où le chapitre est tombé. L'ordre les suit, sauf que
+    # les conversions d'aires (11) remontent juste derrière les aires des
+    # figures (17) : on ne calcule pas une aire en hectares sans savoir
+    # convertir. Les séances sont plus courtes qu'au BEPC — un enfant de CM2
+    # ne tient pas une heure sur un même chapitre.
+    "cee": [
+        ("Poser et effectuer les opérations", 4),        # 25/26
+        ("Les durées : heures, minutes, secondes", 3),   # 18/26
+        ("Les aires : rectangle, carré, triangle", 3),   # 17/26
+        ("Les conversions d'aires : ha, a, ca", 2),      # 11/26
+        ("Les problèmes de prix et de bénéfice", 3),     # 17/26
+        ("Les fractions", 3),                            # 14/26
+        ("Les conversions : longueurs, masses, litres", 3),  # 14/26
+        ("Les périmètres et les clôtures", 2),           #  8/26
+        ("Lire, écrire et comparer les nombres", 2),     #  8/26
+        ("Les angles et les figures", 2),                #  6/26
+        ("La division avec quotient et reste", 2),       #  3/26
+        ("Les volumes", 2),                              #  2/26
+    ],
     # 21 sessions du BEPC, 2005-2025.
     "bepc": [
         ("Racines carrées", 3),

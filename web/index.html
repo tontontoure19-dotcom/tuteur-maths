@@ -187,6 +187,7 @@
   <input id="code" class="cache" placeholder="Code d'accès" autocomplete="off">
   <input id="prenom" placeholder="Ton prénom" autocomplete="given-name">
   <div class="niveaux">
+    <button class="niveau" data-niveau="cee">CM2<span>CEE · Calcul</span></button>
     <button class="niveau actif" data-niveau="bepc">10ᵉ année<span>BEPC · Maths</span></button>
     <button class="niveau" data-niveau="bepc-physique">10ᵉ année<span>BEPC · Physique</span></button>
     <button class="niveau" data-niveau="bepc-chimie">10ᵉ année<span>BEPC · Chimie</span></button>
@@ -197,7 +198,7 @@
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 36</div>
+  <div id="version">version 37</div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -259,8 +260,12 @@ let codeAcces = localStorage.getItem('code_acces') || '';
 // question rapide, puis revenir à son cours : chacune garde son fil.
 let seanceActive = null;
 // Les niveaux que l'application sait ouvrir.
-const LIBELLES_CONNUS = ['bepc', 'bepc-physique', 'bepc-chimie', 'bac',
+const LIBELLES_CONNUS = ['cee', 'bepc', 'bepc-physique', 'bepc-chimie', 'bac',
                          'bac-physique', 'bac-chimie'];
+// La classe de l'élève, pour l'afficher sous son prénom.
+const CLASSES = { cee: 'CM2', bepc: '10ᵉ année', 'bepc-physique': '10ᵉ année',
+                  'bepc-chimie': '10ᵉ année', bac: 'Terminale',
+                  'bac-physique': 'Terminale', 'bac-chimie': 'Terminale' };
 // Vrai dès que l'élève a lui-même touché un bouton de niveau.
 let niveauChoisiALaMain = false;
 
@@ -407,7 +412,7 @@ function afficherProfils() {
   if (!profils.length) { zone.innerHTML = ''; proposerProfilsDuCode(); return; }
   zone.innerHTML = '<div class="titre">Déjà sur ce téléphone :</div>' +
     profils.map(p => `<div class="profil" data-nom="${p.nom.replace(/"/g, '&quot;')}">
-        <span>${p.nom} <small>${p.niveau === 'bac' ? 'Terminale' : '10ᵉ année'}</small></span>
+        <span>${p.nom} <small>${CLASSES[p.niveau] || '10ᵉ année'}</small></span>
         <button class="suppr" title="Retirer">✕</button>
       </div>`).join('');
 
@@ -630,7 +635,7 @@ async function demarrer() {
 // L'examen visé n'est pas le même selon le niveau : la promesse d'accueil
 // doit nommer CELUI de l'élève, sinon la moitié des visiteurs se sent
 // étrangère à l'application dès la première phrase.
-const EXAMENS = { bepc: 'BEPC', 'bepc-physique': 'BEPC',
+const EXAMENS = { cee: 'CEE', bepc: 'BEPC', 'bepc-physique': 'BEPC',
                   'bepc-chimie': 'BEPC', bac: 'BAC', 'bac-physique': 'BAC',
                   'bac-chimie': 'BAC' };
 
@@ -654,7 +659,8 @@ function ouvrirChat() {
   ['progres', 'seances'].forEach(id => $(id).classList.add('cache'));
   seanceActive = Number(localStorage.getItem(cleSeance())) || null;
   ['entete', 'fil', 'barre', 'symboles'].forEach(id => $(id).classList.remove('cache'));
-  const LIBELLES = { bepc: '10ᵉ année · Maths',
+  const LIBELLES = { cee: 'CM2 · Calcul',
+                     bepc: '10ᵉ année · Maths',
                      'bepc-physique': '10ᵉ année · Physique',
                      'bepc-chimie': '10ᵉ année · Chimie',
                      bac: 'Terminale · Maths',
@@ -860,7 +866,7 @@ async function ouvrirProgres() {
    commençant par ce qui tombe le plus souvent. Sans plan, l'élève ouvrait
    l'application sans savoir quoi y faire — et ne revenait pas. */
 
-const MATIERES = { bepc: 'maths', 'bepc-physique': 'physique',
+const MATIERES = { cee: 'calcul', bepc: 'maths', 'bepc-physique': 'physique',
                    'bepc-chimie': 'chimie', bac: 'maths',
                    'bac-physique': 'physique', 'bac-chimie': 'chimie' };
 const MOIS_COURTS = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin',

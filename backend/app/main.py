@@ -405,13 +405,14 @@ def _retour_apres_absence(eleve: str, code: str | None) -> str:
 # demandait la loi d'Ohm et le répétiteur lui sortait un exercice de
 # géométrie.
 RESERVE_DU_NIVEAU = {
+    "cee": ("cee", "maths"),
     "bepc": ("bepc", "maths"),
     "bepc-physique": ("bepc", "physique"),
     "bepc-chimie": ("bepc", "chimie"),
     "bac": ("bac", "maths"),
     "bac-chimie": ("bac", "chimie"),
 }
-NOM_EXAMEN = {"bepc": "BEPC", "bac": "BAC"}
+NOM_EXAMEN = {"cee": "CEE", "bepc": "BEPC", "bac": "BAC"}
 
 
 def _annale_utile(message: str, niveau: str) -> str:
@@ -437,10 +438,15 @@ def _annale_utile(message: str, niveau: str) -> str:
         # sujet, sans la deviner.
         serie = ex.get("serie", "SM")
         provenance = f"Sujet tombé au BAC {session} en Guinée (série {serie}), {ex['partie']}"
+    elif examen == "cee":
+        # Au CEE le sujet se coupe en deux : les opérations, puis le problème.
+        # Ce ne sont pas deux épreuves, on ne dit donc pas « épreuve de ».
+        morceau = "les opérations" if ex["partie"] == "Opérations" else "le problème"
+        provenance = f"Exercice tombé au CEE {session} en Guinée, {morceau}"
     else:
         # « épreuve d'Activités Numériques » mais « épreuve de Théorie ».
         liaison = "d'" if ex["partie"][:1].lower() in "aeiouéèê" else "de "
-        provenance = f"Exercice tombé au BEPC {session}, épreuve {liaison}{ex['partie']}"
+        provenance = f"Exercice tombé au {nom} {session}, épreuve {liaison}{ex['partie']}"
     morceaux = [
         "# Un vrai sujet d'examen est disponible\n\n"
         f"{provenance} :\n\n"
@@ -1251,9 +1257,10 @@ def _journal_de_l_abonne(code_abonne: str) -> Path | None:
                                          _journal(f)[-1]["horodatage"]))
 
 
-MATIERE_DU_NIVEAU = {"bepc": "maths", "bepc-physique": "physique",
-                     "bepc-chimie": "chimie", "bac": "maths",
-                     "bac-physique": "physique", "bac-chimie": "chimie"}
+MATIERE_DU_NIVEAU = {"cee": "calcul", "bepc": "maths",
+                     "bepc-physique": "physique", "bepc-chimie": "chimie",
+                     "bac": "maths", "bac-physique": "physique",
+                     "bac-chimie": "chimie"}
 
 
 def _lignes_du_plan(fichier: Path) -> list[str]:
