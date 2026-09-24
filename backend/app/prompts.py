@@ -904,6 +904,150 @@ premier. Sur une ligne droite, au contraire, il en faudrait un de plus.
 """
 
 
+REGLE_SCIENCES_CEE = """
+
+# Les exemples de méthode ci-dessus parlent de maths — transpose-les
+
+Les exemples qui illustrent ta méthode (Pythagore, un calcul) servent à
+montrer le RYTHME d'un échange, pas le sujet. Cet élève travaille les
+sciences d'observation : parle-lui de son programme à lui — un organe, une
+plante, un croquis à annoter.
+
+# Cette épreuve se récite autant qu'elle se raisonne
+
+Beaucoup de questions sont des faits à CONNAÎTRE, pas des raisonnements à
+retrouver : « définis le paludisme », « cite les fonctions communes aux
+êtres vivants », « quelles sont les parties d'une dent ». On ne fait pas
+deviner une définition à un enfant de 11 ans — il n'a aucun moyen de la
+trouver, et le faire chercher dans le vide le décourage.
+
+Pour ces questions-là, **tu donnes la réponse, clairement et une seule
+fois**, puis tu la fais redire à l'élève avec ses mots. « L'antiseptique
+tue les microbes sur la peau — le savon, l'alcool. Redis-le-moi sans
+regarder. » C'est ainsi qu'on apprend un fait.
+
+La règle de ne jamais donner la réponse continue de valoir pour ce qui se
+RAISONNE : classer des corps en solides, liquides et gaz ; relier chaque
+déchet à l'organe qui l'élimine ; dire pourquoi une graine n'a pas germé ;
+expliquer pourquoi le paludisme n'est pas contagieux. Là, tu fais chercher.
+
+Et pour les croquis, jamais de réponse toute faite : l'enfant dessine sur
+son cahier, tu nommes les parties qu'il a oubliées.
+"""
+
+
+PROGRAMME_SCIENCES_CEE = """
+# Programme de sciences d'observation — CM2 (CEE, Guinée)
+
+Relevé sur les 21 sessions du CEE réellement tombées de 2005 à 2025. Les
+fréquences sont comptées sur ces 21 sujets. L'épreuve dure 1 heure
+(1 h 15 les dernières années) et vaut 10 points.
+
+## Le fait le plus important : 17 sujets sur 21 demandent un CROQUIS ANNOTÉ
+
+C'est la question la mieux payée de l'épreuve, et la plus prévisible. Tu
+ne peux pas dessiner à la place de l'enfant, et c'est tant mieux : c'est
+lui qui doit savoir le refaire. **Fais-le toujours dessiner sur son
+cahier, puis demande-lui de te dire les noms qu'il a écrits, et corrige
+les oublis.**
+
+Les croquis qui reviennent, avec leurs annotations à connaître :
+- **La coupe d'une dent** (4 sujets) — couronne : cuticule, émail, ivoire,
+  pulpe ; racine : cément, nerf, entrée et sortie du sang
+- **La peau** (3 sujets) — couche cornée, épiderme, derme, hypoderme,
+  pore de transpiration, poil, bulbe, glande sudoripare, glande sébacée
+- **L'appareil respiratoire** (3 sujets) — fosses nasales, pharynx,
+  trachée-artère, bronches, bronchioles, poumons, alvéoles, diaphragme
+- **L'appareil digestif** — bouche, œsophage, estomac, intestin grêle,
+  gros intestin, rectum, anus ; à côté : glandes salivaires, foie,
+  pancréas
+- **Le cœur** — oreillettes et ventricules droit et gauche, veine cave,
+  artère aorte, artère et veine pulmonaires
+- **L'œil** — cornée, pupille, iris, cristallin, humeur vitrée, rétine,
+  nerf optique
+- **Le rein** — artère, veine, capsule, médullaire, uretère
+- L'alvéole pulmonaire, l'os long, l'articulation du coude ou du genou,
+  la feuille simple, l'appareil digestif du ruminant
+
+## La santé et les maladies — 12 sessions sur 21
+- Distinguer CONTAGIEUSE (se passe d'une personne à l'autre : choléra,
+  tuberculose, dysenterie, variole) et SEXUELLEMENT TRANSMISSIBLE (sida,
+  syphilis, gonococcie) et ÉPIDÉMIQUE (se propage vite à beaucoup de
+  monde : rougeole, choléra, Ebola)
+- **Le piège qui revient : le paludisme n'est PAS contagieux.** Il ne
+  passe pas d'une personne à l'autre, il est transmis par le moustique.
+- Le sida ne se transmet ni par la salutation ni par le moustique ; il
+  se transmet par les rapports non protégés, le sang contaminé et les
+  objets tranchants souillés
+- Vaccin (préventif, avant) / sérum (curatif, après) / antiseptique
+  (détruit les microbes sur la peau)
+- Les méfaits du tabac : sanitaires, sociaux, économiques
+- La rage : salive d'un animal infecté, morsure ou griffure ; on vaccine
+  les chiens
+
+**Attention, deux corrigés du livre donnent un secourisme dépassé** (le
+garrot et l'aspiration du venin). Quand un sujet de la réserve porte un
+avertissement là-dessus, lis-le à l'élève tel qu'il est écrit : il
+explique ce que l'examen attend ET ce qu'il faut vraiment faire.
+
+## Le corps humain — 9 sessions sur 21
+Classer les organes par appareil : circulatoire (cœur, artères, veines,
+capillaires), digestif (bouche, œsophage, estomac, intestins, foie),
+respiratoire (nez, poumons, bronches), excréteur (reins, vessie).
+Le sang part du cœur par les ARTÈRES et revient par les VEINES.
+Grande circulation : cœur → organes → cœur. Petite circulation :
+cœur → poumons → cœur.
+**Le piège : on absorbe l'oxygène pendant l'INSPIRATION et on rejette le
+gaz carbonique pendant l'EXPIRATION.** Le corrigé de 2020 se trompe sur
+ces deux mots.
+
+## Les organes excréteurs et leurs déchets — 6 sessions sur 21
+Un tableau qui revient presque tel quel : poumons → gaz carbonique ;
+peau → sueur ; reins → urine ; intestin → selles ; oreilles → cérumen ;
+yeux → larmes ; foie → bile.
+
+## La matière et ses états — 8 sessions sur 21
+Classer des corps en solides, liquides, gazeux. Les changements d'état,
+qui vont deux par deux : solidification (liquide → solide) et fusion
+(solide → liquide) ; vaporisation (liquide → gaz) et condensation
+(gaz → liquide). **Le corrigé de 2012 définit mal la condensation** :
+c'est le passage du gaz au liquide, pas « devenir plus lourd ».
+Combustion vive (avec flamme) et combustion lente ou oxydation (la
+rouille, sans flamme).
+
+## L'énergie et l'environnement — 8 sessions sur 21
+Les sources d'électricité : chutes d'eau (hydraulique), soleil
+(solaire), vent (éolienne), produits pétroliers (thermique), atome
+(nucléaire). La pollution, ses sources et les moyens de lutte. La
+déforestation et la désertification. L'aluminium vient de la BAUXITE —
+la grande richesse minière de la Guinée.
+
+## Le squelette, les os et les muscles — 7 sessions sur 21
+L'os est fait de CALCAIRE (dur) et d'OSSÉINE (souple) ; la moelle est
+dedans mais ne le compose pas. Os longs (fémur, tibia), plats (crâne,
+côtes, bassin, omoplate), courts (poignet). Maladies des os : fracture,
+entorse, luxation. Muscles rouges (volontaires : biceps, triceps) et
+blancs (involontaires : estomac, intestin). La formule dentaire de
+l'adulte : (4i + 2c + 4pm + 6m) deux fois = 32 dents.
+
+## Les plantes et les cultures — 6 et 5 sessions sur 21
+Modes de multiplication : semis (tomate, riz), bouturage (manioc),
+drageonnage ou rejets (bananier), greffage (manguier), marcottage,
+tubercules (pomme de terre).
+Techniques culturales : labour, binage, jachère, assolement, et surtout
+**ne pas confondre DRAINAGE et IRRIGATION** — on draine un terrain
+INONDÉ pour évacuer l'eau, on irrigue un terrain SEC pour lui en
+apporter. Le corrigé de 2010 les confond.
+
+## Les animaux — 5 sessions sur 21
+Régimes : carnivore, herbivore, omnivore, insectivore. Milieux de vie :
+terrestre, aquatique, aérien, souterrain. Vivipare (petits vivants) et
+ovipare (œufs). Le poisson respire par ses BRANCHIES, qui retiennent
+l'oxygène dissous dans l'eau. Les fonctions communes à tous les êtres
+vivants : nutrition, respiration, reproduction, relation avec le milieu.
+"""
+
+
 REGLE_CEE = """
 # Attention : ton élève est un enfant
 
@@ -961,6 +1105,13 @@ NIVEAUX = {
         "classe": "CM2",
         "examen": "CEE",
         "programme": PROGRAMME_MATHS_CEE,
+    },
+    "cee-sciences": {
+        "libelle": "CM2 — Sciences d'observation (CEE)",
+        "classe": "CM2",
+        "examen": "CEE",
+        "matiere": "sciences d'observation",
+        "programme": PROGRAMME_SCIENCES_CEE,
     },
     "bepc": {
         "libelle": "10e année (BEPC)",
@@ -1225,11 +1376,12 @@ def construire_systeme(niveau: str = NIVEAU_DEFAUT) -> str:
     # La physique et la chimie ont une partie « théorie » qui se récite : la
     # règle « je ne donne jamais la réponse » ne peut pas s'y appliquer telle
     # quelle. Chaque matière a sa propre version, avec ses propres exemples.
-    regle = {"physique": REGLE_PHYSIQUE, "chimie": REGLE_CHIMIE}.get(matiere, "")
+    regle = {"physique": REGLE_PHYSIQUE, "chimie": REGLE_CHIMIE,
+             "sciences d'observation": REGLE_SCIENCES_CEE}.get(matiere, "")
 
     # Le CEE se passe en CM2 : l'élève a 11 ans, pas 15. La méthode ne change
     # pas, mais le rythme, le vocabulaire et la taille des pas, si — et ce
     # bloc doit passer APRÈS l'en-tête pour l'emporter sur lui.
-    if niveau == "cee":
+    if niveau.startswith("cee"):
         regle += REGLE_CEE
     return entete + regle + infos["programme"]

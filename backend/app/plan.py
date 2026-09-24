@@ -40,6 +40,21 @@ CHAPITRES = {
         ("La division avec quotient et reste", 2),       #  3/26
         ("Les volumes", 2),                              #  2/26
     ],
+    # 21 sessions du CEE, 2005-2025. Le croquis annoté tombe 17 fois sur 21 :
+    # c'est le chapitre le plus rentable, il passe en tête. Les séances sont
+    # courtes — cette épreuve se récite plus qu'elle ne se raisonne.
+    "cee-sciences": [
+        ("Les croquis à savoir annoter", 4),             # 17/21
+        ("La santé et les maladies", 3),                 # 12/21
+        ("Le corps humain : organes et appareils", 3),   #  9/21
+        ("La matière et ses états", 2),                  #  8/21
+        ("L'énergie et l'environnement", 2),             #  8/21
+        ("Le squelette, les os et les muscles", 2),      #  7/21
+        ("Les organes excréteurs et leurs déchets", 2),  #  6/21
+        ("Les plantes et leur multiplication", 2),       #  6/21
+        ("Les techniques culturales", 2),                #  5/21
+        ("Les animaux : régimes et milieux de vie", 2),  #  5/21
+    ],
     # 21 sessions du BEPC, 2005-2025.
     "bepc": [
         ("Racines carrées", 3),

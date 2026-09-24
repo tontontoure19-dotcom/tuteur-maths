@@ -406,6 +406,7 @@ def _retour_apres_absence(eleve: str, code: str | None) -> str:
 # géométrie.
 RESERVE_DU_NIVEAU = {
     "cee": ("cee", "maths"),
+    "cee-sciences": ("cee", "sciences"),
     "bepc": ("bepc", "maths"),
     "bepc-physique": ("bepc", "physique"),
     "bepc-chimie": ("bepc", "chimie"),
@@ -439,10 +440,14 @@ def _annale_utile(message: str, niveau: str) -> str:
         serie = ex.get("serie", "SM")
         provenance = f"Sujet tombé au BAC {session} en Guinée (série {serie}), {ex['partie']}"
     elif examen == "cee":
-        # Au CEE le sujet se coupe en deux : les opérations, puis le problème.
-        # Ce ne sont pas deux épreuves, on ne dit donc pas « épreuve de ».
-        morceau = "les opérations" if ex["partie"] == "Opérations" else "le problème"
-        provenance = f"Exercice tombé au CEE {session} en Guinée, {morceau}"
+        # En calcul, le sujet se coupe en deux : les opérations, puis le
+        # problème. En sciences il vient d'un bloc. Dans les deux cas ce ne
+        # sont pas des épreuves séparées, on ne dit donc pas « épreuve de ».
+        morceaux_cee = {"Opérations": ", les opérations",
+                        "Problème": ", le problème",
+                        "Sujet complet": ""}
+        suite = morceaux_cee.get(ex["partie"], "")
+        provenance = f"Exercice tombé au CEE {session} en Guinée{suite}"
     else:
         # « épreuve d'Activités Numériques » mais « épreuve de Théorie ».
         liaison = "d'" if ex["partie"][:1].lower() in "aeiouéèê" else "de "
@@ -1257,7 +1262,8 @@ def _journal_de_l_abonne(code_abonne: str) -> Path | None:
                                          _journal(f)[-1]["horodatage"]))
 
 
-MATIERE_DU_NIVEAU = {"cee": "calcul", "bepc": "maths",
+MATIERE_DU_NIVEAU = {"cee": "calcul", "cee-sciences": "sciences",
+                     "bepc": "maths",
                      "bepc-physique": "physique", "bepc-chimie": "chimie",
                      "bac": "maths", "bac-physique": "physique",
                      "bac-chimie": "chimie"}

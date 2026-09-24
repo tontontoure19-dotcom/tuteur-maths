@@ -1,6 +1,6 @@
 {
   "source": "Sujets du CEE guinéen relevés dans « Mon Examen — CEE, CM2 », EDAL-Guinée, Conakry, édition 2026, section « Sciences d'observation » (pages 148 à 183).",
-  "note": "RELEVÉ EN COURS. L'épreuve de sciences d'observation dure 1 heure (1 h 15 les dernières années) et compte 10 points. Elle mêle la biologie humaine (digestion, respiration, circulation, sang, peau, dent, os), la santé (sida, tabac, paludisme, premiers secours), les plantes et leur multiplication, les états de la matière et la protection de l'environnement. Plusieurs questions demandent un CROQUIS ANNOTÉ — l'enfant doit le dessiner sur son cahier ; le répétiteur nomme les parties et vérifie, il ne dessine pas à sa place. Les réponses ont été vérifiées ; les erreurs du livre sont signalées dans correction_du_livre.",
+  "note": "Les vingt et une sessions du CEE guinéen relevées dans la section « Sciences d'observation » (pages 148 à 183), de 2005 à 2025. L'épreuve dure 1 heure (1 h 15 les dernières années) et compte 10 points. Elle mêle la biologie humaine (digestion, respiration, circulation, sang, peau, dent, os, muscles), la santé (sida, tabac, paludisme, rage, premiers secours), les plantes et leur multiplication, les états de la matière, les sources d'énergie et la protection de l'environnement. Plusieurs questions demandent un CROQUIS ANNOTÉ : l'enfant le dessine sur son cahier, le répétiteur nomme les parties et vérifie — il ne dessine pas à sa place. ATTENTION : deux corrigés de ce livre donnent un secourisme dépassé (garrot et aspiration du venin en 2009, garrot avant compression en 2017). Les entrées concernées gardent les deux réponses, en disant laquelle l'examen attend et laquelle protège l'enfant.",
   "exercices": [
     {
       "id": "cee-sciences-2005",
@@ -235,6 +235,198 @@
       "enonce": "1) Cite les fonctions communes aux êtres vivants.\n2) Donne la signification des 4 mots suivants : Carnivores, Herbivores, Omnivores, Insectivores.\n3) Quelle est la composition du sang ?\n4) Fais le croquis annoté de la peau.\n5) Quelles sont les propriétés de l'aluminium et de quelle matière première provient-il ?",
       "reponse": "1) Les fonctions communes à tous les êtres vivants : la nutrition, la respiration, la reproduction, et la relation avec le milieu.\n2) Carnivore : animal qui se nourrit de viande (le chien, le lion, la panthère). Herbivore : être vivant qui se nourrit d'herbe ou de feuilles (la vache, le mouton). Omnivore : animal qui se nourrit de tout (le cochon, le phacochère). Insectivore : animal qui se nourrit d'insectes (la grenouille, l'hirondelle).\n3) Le sang est composé de globules rouges (les hématies), de globules blancs (les leucocytes), de plaquettes et de plasma.\n4) De la surface vers l'intérieur : la couche cornée et l'épiderme, puis le derme, puis l'hypoderme. On y trouve aussi le pore de transpiration, le poil avec son bulbe, la glande sudoripare (qui fabrique la sueur) et la glande sébacée.\n5) L'aluminium est un métal léger, résistant à la rouille, bon conducteur de la chaleur et de l'électricité. Il provient de la BAUXITE — et c'est la principale richesse minière de la Guinée.",
       "correction_du_livre": "Le corrigé imprimé écrit que le sang est fait « de globules rouges (hématites), de globules blancs (leucocytes) et du plasma ». Deux choses : les globules rouges sont les HÉMATIES (l'hématite est un minerai de fer), et il manque les PLAQUETTES, qui sont le quatrième constituant du sang et servent à arrêter les saignements."
+    },
+    {
+      "id": "cee-sciences-2016",
+      "session": 2016,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "pollution",
+        "moyens de lutte",
+        "hygiène publique",
+        "la rage",
+        "vaccination",
+        "respiration des poissons",
+        "branchies",
+        "sources d'énergie",
+        "énergie hydraulique",
+        "énergie solaire",
+        "l'œil",
+        "croquis annoté"
+      ],
+      "enonce": "1) Sensibilisé par la leçon sur la pollution en classe, tu en parles autour de toi. Cite à ton frère quelques sources de pollution et les moyens de lutte.\n2) a) Comment attrape-t-on la rage ? b) Comment se manifeste-t-elle et comment la prévenir ?\n3) Le poisson vit dans l'eau, pourtant il respire. Comment ?\n4) Donne trois sources de production de l'énergie électrique.\n5) Fais le croquis annoté de l'organe de l'œil.",
+      "reponse": "1) Sources de pollution : les déchets ménagers jetés dans les caniveaux et les rues, la défécation à l'air libre, les latrines construites près des points d'eau, les engrais et pesticides, les dépotoirs sauvages qui attirent mouches et moustiques, les fumées des industries, l'incinération des ordures.\nMoyens de lutte : ramasser les ordures dans des poubelles, aménager des dépôts et des centres de traitement, construire des latrines pour éviter le péril fécal, éloigner les rejets industriels des villages, traiter les produits rejetés par les usines, et sensibiliser les gens.\n2) a) La rage est une maladie contagieuse et mortelle. Elle se transmet à l'homme par la salive d'un animal infecté, lors d'une morsure, d'un léchage ou d'une griffure.\n   b) Elle se manifeste par des fourmillements, des démangeaisons et des tremblements dans la partie mordue, des spasmes musculaires, des hallucinations, des troubles du comportement et la bave. On la prévient en vaccinant les animaux domestiques (vaccin antirabique) et en éliminant les chiens errants. Important : après une morsure, il faut aller tout de suite au centre de santé — une fois les symptômes apparus, il est trop tard.\n3) Le poisson respire grâce à ses BRANCHIES. L'eau entre par sa bouche et ressort par les branchies, qui retiennent au passage l'oxygène dissous dans l'eau.\n4) Les chutes d'eau (énergie hydraulique, par les barrages), les produits pétroliers (énergie thermique), le soleil (panneaux solaires), le vent (éoliennes).\n5) L'œil, de l'avant vers l'arrière : la cornée, la pupille et l'iris (qui règle la lumière qui entre), le cristallin (la lentille), l'humeur vitrée qui remplit l'œil, la rétine au fond, et le nerf optique qui part vers le cerveau."
+    },
+    {
+      "id": "cee-sciences-2017",
+      "session": 2017,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "oxydation",
+        "rouille",
+        "antirouille",
+        "sources d'énergie",
+        "hémorragie",
+        "premiers secours",
+        "le cœur",
+        "croquis annoté"
+      ],
+      "enonce": "1) Une barre de fer abandonnée perd son éclat. Comment s'appelle ce phénomène ? Que faire pour l'éviter ?\n2) Cite les principales sources d'énergie qui produisent de l'électricité, avec un exemple à l'appui.\n3) Un de vos camarades se blesse, le sang sort par cascades. Comment appelle-t-on cet écoulement de sang et comment l'arrête-t-on ?\n4) Dessine le croquis d'une coupe du cœur.",
+      "reponse": "1) Ce phénomène s'appelle l'OXYDATION (la rouille). C'est une combustion lente, sans flamme. Pour l'éviter, on protège le fer de l'air et de l'humidité avec un produit antirouille : la peinture antirouille, la graisse, l'huile.\n2) Les chutes d'eau (énergie hydraulique, grâce aux barrages), le soleil (énergie solaire, par les panneaux), les produits pétroliers — pétrole, essence, mazout — (énergie thermique), le vent (énergie éolienne), l'atome (énergie nucléaire).\n3) Quand le sang sort par saccades, c'est une HÉMORRAGIE ARTÉRIELLE — le sang vient d'une artère, et il sort au rythme du cœur.\nATTENTION, cette question demande deux réponses.\nCe que le corrigé du livre attend : nettoyer la plaie, poser un garrot (caoutchouc, corde, bande d'étoffe), puis transporter d'urgence le blessé au centre de santé.\nCe que font les secouristes aujourd'hui : APPUYER FORT ET SANS RELÂCHER directement sur la plaie, avec un tissu propre, jusqu'à l'arrivée des secours. La compression directe est le premier geste, et c'est celui qui arrête le saignement. Le garrot n'est qu'un dernier recours quand la compression échoue, et il se pose par quelqu'un de formé.\nSi la question tombe à l'examen, écris ce que ton livre enseigne. Mais dans la vraie vie, appuie d'abord sur la plaie — et demande conseil à un agent de santé.\n4) Le cœur a quatre cavités : oreillette droite et ventricule droit à droite, oreillette gauche et ventricule gauche à gauche. Les vaisseaux : la veine cave (le sang revient du corps), l'artère pulmonaire (vers les poumons), la veine pulmonaire (retour des poumons), l'artère aorte (départ vers tout le corps).",
+      "correction_du_livre": "Le corrigé imprimé fait poser un garrot comme PREMIER geste devant une hémorragie artérielle, sans mentionner la compression directe. C'est l'inverse de ce qui est enseigné aujourd'hui : on appuie fort sur la plaie, et le garrot n'est qu'un dernier recours posé par quelqu'un de formé. C'est la deuxième fois que ce livre donne un secourisme dépassé — voir aussi la morsure de serpent du sujet 2009."
+    },
+    {
+      "id": "cee-sciences-2018",
+      "session": 2018,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "organes excréteurs",
+        "déchets de l'organisme",
+        "le rein",
+        "le foie",
+        "la bile",
+        "maladies épidémiques",
+        "milieux de vie",
+        "articulation du genou",
+        "croquis annoté"
+      ],
+      "enonce": "1) Complète les phrases suivantes : Le rein produit... ; ... rejette le gaz carbonique ; Le foie élimine... ; ... produit et rejette la sueur.\n2) Parmi les maladies suivantes — la rage, le sida, la rougeole, le choléra, la maladie à virus EBOLA — copie celles qui sont épidémiques.\n3) Relie par une flèche chaque animal à son milieu de vie : sous-terrain, terrestre, aquatique, aérien — souris, pigeon, chien, poisson.\n4) Reproduis le croquis de deux os emboîtés du genou de l'homme.",
+      "reponse": "1) Le rein produit l'URINE. Le POUMON rejette le gaz carbonique. Le foie élimine la BILE. La PEAU produit et rejette la sueur.\n2) Les maladies épidémiques sont la rougeole, le choléra et la maladie à virus EBOLA. Une maladie épidémique est une maladie infectieuse qui se propage rapidement à un grand nombre de personnes. (La rage et le sida sont contagieuses mais ne se propagent pas ainsi.)\n3) Souris → sous-terrain. Pigeon → aérien. Chien → terrestre. Poisson → aquatique.\n4) Au genou, deux os s'emboîtent : le FÉMUR au-dessus et le TIBIA en dessous. Devant l'articulation se trouve la ROTULE, un petit os plat qui la protège.",
+      "correction_du_livre": "Le corrigé imprimé écrit d'une seule traite « Le foie élimine la bile, produit et rejette la sueur », en oubliant de nommer la PEAU. Ce sont deux phrases différentes : le foie élimine la bile ; la peau produit et rejette la sueur."
+    },
+    {
+      "id": "cee-sciences-2019",
+      "session": 2019,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "intoxication",
+        "monoxyde de carbone",
+        "asphyxie",
+        "prévention",
+        "états de la matière",
+        "changements d'état",
+        "solidification",
+        "vaporisation",
+        "formule dentaire",
+        "les dents",
+        "alvéole pulmonaire",
+        "croquis annoté"
+      ],
+      "enonce": "1) Bineta brûle du charbon de bois dans un local clos et dort. Que risque-t-elle et pourquoi ?\n2) Parmi ces éléments — l'eau, le fer et la fumée — dis celui qui peut prendre les trois états de la matière. Explique son processus de transformation.\n3) Aide ton camarade à écrire la formule dentaire d'un adulte, qui te présente son devoir fait comme suit : 4/2 C   4/6 M   2/4 PM   I\n4) Dessine le croquis annoté d'une alvéole pulmonaire.",
+      "reponse": "1) Bineta risque une intoxication qui peut aller jusqu'à l'ASPHYXIE, et elle peut en mourir dans son sommeil. Le charbon qui brûle dans une pièce fermée consomme l'oxygène et dégage un gaz dangereux, le monoxyde de carbone : il est invisible et sans odeur, c'est ce qui le rend si dangereux — on s'endort sans rien sentir. Il ne faut JAMAIS laisser un foyer de charbon allumé dans une pièce fermée où l'on dort.\n2) C'est l'EAU qui peut prendre les trois états. Fortement refroidie, elle devient solide (la glace) : c'est la solidification. Sous l'action de la chaleur, elle devient gaz (la vapeur) : c'est la vaporisation. Et elle est liquide entre les deux.\n3) La formule dentaire d'un adulte se lit par demi-mâchoire, en haut et en bas. Pour une demi-mâchoire : 4 incisives (i), 2 canines (c), 4 prémolaires (pm) et 6 molaires (m). On l'écrit :\n   (4i + 2c + 4pm + 6m) / (4i + 2c + 4pm + 6m) = 32 dents.\n4) L'alvéole pulmonaire est le petit sac au bout d'une bronchiole. On annote : la bronchiole, l'air inspiré qui entre et l'air expiré qui sort, la paroi alvéolaire, l'air alvéolaire à l'intérieur, et tout autour le sang avec le sens de sa circulation. C'est là que l'oxygène passe de l'air dans le sang."
+    },
+    {
+      "id": "cee-sciences-2020",
+      "session": 2020,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "circulation sanguine",
+        "artères",
+        "veines",
+        "os long",
+        "croquis annoté",
+        "appareils du corps",
+        "appareil circulatoire",
+        "appareil digestif",
+        "appareil excréteur",
+        "appareil respiratoire",
+        "respiration",
+        "inspiration",
+        "expiration"
+      ],
+      "enonce": "1) Par quels vaisseaux le sang : a) part-il du cœur ? b) revient-il au cœur ?\n2) Fais le croquis annoté d'un os long.\n3) Place les organes qui rentrent dans la constitution des appareils cités dans le tableau : le foie, la veine, l'estomac, le cœur, les poumons, les artères, l'intestin grêle, les reins, les capillaires, la vessie, l'œsophage et le nez. Colonnes : appareil circulatoire | appareil digestif | appareil excréteur | appareil respiratoire.\n4) Au cours de la respiration : a) quel gaz absorbons-nous ? b) quel gaz rejetons-nous ? c) précise le mouvement de chacun.",
+      "reponse": "1) a) Le sang PART du cœur par les ARTÈRES. b) Il REVIENT au cœur par les VEINES. (Moyen de retenir : artère = le sang s'éloigne, veine = le sang revient.)\n2) Un os long se compose de deux extrémités renflées, les ÉPIPHYSES, et d'un corps allongé, la DIAPHYSE. À l'intérieur se trouve la MOELLE, autour le PÉRIOSTE, et aux extrémités le CARTILAGE qui permet à l'articulation de glisser.\n3) Appareil circulatoire : le cœur, la veine, les artères, les capillaires. Appareil digestif : le foie, l'estomac, l'intestin grêle, l'œsophage. Appareil excréteur : les reins, la vessie. Appareil respiratoire : les poumons, le nez.\n4) a) Nous absorbons l'OXYGÈNE. b) Nous rejetons le GAZ CARBONIQUE. c) Nous absorbons l'oxygène pendant l'INSPIRATION (l'air entre dans les poumons) et nous rejetons le gaz carbonique pendant l'EXPIRATION (l'air sort des poumons).",
+      "correction_du_livre": "Le corrigé imprimé écrit : « nous absorbons l'oxygène (aspiration) et nous rejetons le gaz carbonique (inspiration) ». Les deux mots sont faux. On absorbe l'oxygène pendant l'INSPIRATION et on rejette le gaz carbonique pendant l'EXPIRATION ; « aspiration » n'est pas un terme de respiration. Le même livre donne pourtant la bonne définition dans son corrigé de 2008 : « l'inspiration est l'entrée de l'air dans les poumons, l'expiration est la sortie de l'air »."
+    },
+    {
+      "id": "cee-sciences-2021",
+      "session": 2021,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "digestion",
+        "antiseptique",
+        "maladies et organes",
+        "tuberculose",
+        "gale",
+        "otite",
+        "cécité",
+        "multiplication des plantes",
+        "drageonnage",
+        "marcottage",
+        "bouturage",
+        "techniques culturales",
+        "drainage",
+        "irrigation",
+        "labour",
+        "organes excréteurs",
+        "articulation du coude",
+        "croquis annoté"
+      ],
+      "enonce": "1) Définis la digestion et l'antiseptique.\n2) Fais correspondre par une flèche chaque maladie à l'organe qu'elle attaque : la tuberculose, la gale, l'otite, la cécité — l'oreille, le poumon, l'œil, la peau.\n3) Le drainage, le drageonnage, l'irrigation, le marcottage, le labour et le bouturage : classe-les dans le tableau (modes de reproduction | techniques culturales).\n4) Par quel organe chacun des déchets suivants est-il éliminé ? Le gaz carbonique, la sueur, l'urine, le cérumen et les larmes.\n5) Fais le croquis annoté de l'articulation du coude.",
+      "reponse": "1) La DIGESTION est la transformation des aliments dans le tube digestif, pour que le corps puisse les absorber. Un ANTISEPTIQUE est un produit qui détruit les microbes — par exemple l'alcool, le savon ou l'eau de javel.\n2) La tuberculose → le poumon. La gale → la peau. L'otite → l'oreille. La cécité → l'œil.\n3) Modes de reproduction : le drageonnage, le marcottage, le bouturage (ce sont des façons de faire une nouvelle plante). Techniques culturales : le drainage, l'irrigation, le labour (ce sont des façons de travailler le terrain).\n4) Le gaz carbonique → les poumons. La sueur → la peau. L'urine → les reins. Le cérumen → les oreilles. Les larmes → les yeux (les glandes lacrymales).\n5) Au coude, deux os se rejoignent. On annote : les OS, le LIGAMENT qui les attache l'un à l'autre, et la SYNOVIE, le liquide qui graisse l'articulation pour qu'elle glisse sans user les os."
+    },
+    {
+      "id": "cee-sciences-2022",
+      "session": 2022,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "hygiène bucco-dentaire",
+        "écosystème",
+        "drainage",
+        "vivipare",
+        "ovipare",
+        "aluminium",
+        "bauxite",
+        "vaccination",
+        "maladies évitables par vaccin",
+        "le rein",
+        "croquis annoté"
+      ],
+      "enonce": "1) Explique comment avoir une bonne hygiène bucco-dentaire.\n2) Définis les termes suivants : écosystème, poulailler, drainage, vivipare.\n3) Cite quatre propriétés de l'aluminium et donne le nom de quatre objets fabriqués à partir de l'aluminium.\n4) Voici une liste de maladies, mets une croix dans les cases de celles dont on se protège par un vaccin : la tuberculose, l'angine, la dysenterie, la poliomyélite, la fièvre jaune, la gastrite, le diabète, le coronavirus.\n5) Fais le croquis annoté de la coupe d'un rein.",
+      "reponse": "1) Se brosser les dents deux fois par jour — matin et soir — et après chaque repas, avec une brosse à dents et du dentifrice ; changer régulièrement de brosse ; retirer les restes d'aliments avec un cure-dent ; manger sainement et éviter de grignoter du sucre entre les repas.\n2) ÉCOSYSTÈME : l'ensemble formé par un milieu de vie et tous les êtres vivants qui y habitent. POULAILLER : l'abri où l'on élève les poules. DRAINAGE : l'évacuation de l'eau en excès d'un terrain trop humide. VIVIPARE : un animal dont les petits naissent déjà formés et vivants — la vache, le chien, l'homme (le contraire est ovipare, qui pond des œufs, comme la poule).\n3) L'aluminium est argenté et brillant, léger, malléable (on le plie et on le travaille facilement), et il ne rouille pas — il ternit seulement. Il vient de la BAUXITE, la grande richesse minière de la Guinée. Objets : les casseroles, les câbles électriques, les avions, les portes et fenêtres.\n4) On se protège par un vaccin de : la TUBERCULOSE, la POLIOMYÉLITE, la FIÈVRE JAUNE et le CORONAVIRUS. Pas des autres : l'angine, la dysenterie, la gastrite et le diabète ne s'évitent pas par un vaccin.\n5) Le rein : l'ARTÈRE qui amène le sang à filtrer, la VEINE qui remporte le sang nettoyé, la CAPSULE qui l'entoure, la MÉDULLAIRE à l'intérieur, et l'URETÈRE par où l'urine descend vers la vessie."
+    },
+    {
+      "id": "cee-sciences-2023",
+      "session": 2023,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "le squelette",
+        "fusion",
+        "microbes",
+        "binage",
+        "grande circulation",
+        "petite circulation",
+        "sources d'énergie",
+        "modes de reproduction",
+        "techniques culturales",
+        "jachère",
+        "assolement",
+        "déforestation",
+        "appareil respiratoire",
+        "croquis annoté"
+      ],
+      "enonce": "1) Définis les termes suivants : le squelette, la fusion, les microbes, le binage.\n2) Quelle différence fais-tu entre la grande circulation et la petite circulation sanguine ?\n3) Relie par une flèche la source d'énergie qu'elle produit : vent, soleil, eau, atome — énergie nucléaire, énergie hydraulique, énergie solaire, énergie éolienne.\n4) Voici une liste de modes de reproduction, de techniques culturales et de causes de désertification : le feu de brousse, la jachère, l'irrigation, la culture sur brûlis, l'assolement, le labour, le bouturage, la déforestation. Classe-les dans le tableau.\n5) Fais le croquis de l'appareil respiratoire de l'homme.",
+      "reponse": "1) LE SQUELETTE : l'ensemble des os du corps. Chez l'adulte on compte habituellement 206 os. LA FUSION : le passage de l'état solide à l'état liquide sous l'effet de la chaleur. LES MICROBES : des organismes vivants extrêmement petits, qu'on ne peut pas voir à l'œil nu — seulement au microscope. LE BINAGE : ameublir la terre en surface autour des plantes, pour l'aérer et arracher les mauvaises herbes.\n2) LA GRANDE CIRCULATION : le sang part du cœur vers tous les organes du corps et revient au cœur. LA PETITE CIRCULATION : le sang part du cœur vers les poumons et revient au cœur. C'est dans la petite circulation qu'il se recharge en oxygène.\n3) Vent → énergie éolienne. Soleil → énergie solaire. Eau → énergie hydraulique. Atome → énergie nucléaire.\n4) Modes de reproduction : le bouturage. Techniques culturales : la jachère, l'irrigation, l'assolement, le labour. Causes de désertification : le feu de brousse, la culture sur brûlis, la déforestation.\n5) De haut en bas : les fosses nasales, le pharynx, la trachée-artère, les deux bronches, les bronchioles, les alvéoles pulmonaires dans les deux poumons, et sous eux le diaphragme.",
+      "correction_du_livre": "Trois choses dans le corrigé imprimé. Il définit le microbe comme « un ORGANE vivant » : un microbe est un ORGANISME vivant, pas un organe — un organe est une partie d'un corps. Il écrit « bourrage » au lieu de « bouturage » dans le tableau des modes de reproduction ; le bourrage n'existe pas en agriculture, et le même livre écrit correctement « bouturage » dans ses sujets de 2008, 2011 et 2021. Il annonce enfin 208 os pour le squelette adulte, alors que le nombre habituellement enseigné est 206 — écris le chiffre que donne ton maître."
+    },
+    {
+      "id": "cee-sciences-2024",
+      "session": 2024,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "paludisme",
+        "noyade",
+        "herbivore",
+        "les muscles",
+        "muscles rouges",
+        "muscles blancs",
+        "le squelette",
+        "os longs",
+        "os plats",
+        "os courts"
+      ],
+      "enonce": "1) Définis : paludisme, noyade, herbivore.\n2) Relie par une flèche le muscle à ses exemples : muscles rouges, muscles blancs — estomac, biceps, intestin, triceps.\n3) À partir de la liste ci-dessous, regroupe les os en os longs, plats et courts : tibia, clavicule, omoplate, os du poignet, bassin, côtes, fémur, crâne.",
+      "reponse": "1) LE PALUDISME : une maladie causée par un parasite que transmet la piqûre d'un moustique (l'anophèle femelle). Elle donne de la fièvre et des frissons. Elle ne se transmet pas d'une personne à une autre — c'est le moustique qui la porte, d'où l'importance de la moustiquaire. LA NOYADE : l'asphyxie causée par l'eau qui entre dans les voies respiratoires et empêche de respirer. HERBIVORE : un animal qui se nourrit d'herbe et de végétaux — la vache, le mouton, la chèvre.\n2) MUSCLES ROUGES → le biceps et le triceps. Ce sont les muscles qu'on commande volontairement, ceux qui font bouger le squelette. MUSCLES BLANCS → l'estomac et l'intestin. Ceux-là travaillent tout seuls, sans qu'on y pense, dans les organes.\n3) OS LONGS : le tibia, le fémur, la clavicule — ils sont plus longs que larges. OS PLATS : l'omoplate, le bassin, les côtes, le crâne — ils sont larges et minces, et protègent les organes. OS COURTS : les os du poignet — ils sont petits et ramassés."
     },
     {
       "id": "cee-sciences-2025",
