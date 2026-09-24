@@ -147,15 +147,22 @@ class Abonnements:
         return {"code": code, **entree}
 
     def rendre(self, code: str) -> dict | None:
-        """Annule un retrait : le testeur retrouve son accès."""
+        """Annule un retrait ou une coupure : l'accès revient tel qu'il était.
+
+        Sert aux deux cas, et c'est voulu : un testeur retiré comme un abonné
+        coupé se rendent de la même façon. Surtout, la date d'expiration n'est
+        PAS touchée — sans cela, le seul moyen de rouvrir un abonné coupé
+        serait de lui ajouter un mois qu'il n'a pas payé.
+        """
         registre = self._lire()
-        if code not in registre or not registre[code].get("retire"):
+        entree = registre.get(code)
+        if entree is None or (entree.get("actif") and not entree.get("retire")):
             return None
-        registre[code].pop("retire", None)
-        registre[code].pop("retire_le", None)
-        registre[code]["actif"] = True
+        entree.pop("retire", None)
+        entree.pop("retire_le", None)
+        entree["actif"] = True
         self._ecrire(registre)
-        return {"code": code, **registre[code]}
+        return {"code": code, **entree}
 
     def est_retire(self, code: str) -> bool:
         """Cet accès a-t-il été retiré à la main ?"""

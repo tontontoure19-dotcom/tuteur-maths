@@ -1595,11 +1595,16 @@ def retirer_acces(abonne: str, code: str | None = None):
 
 @app.post("/api/admin/abonnement/{abonne}/rendre")
 def rendre_acces(abonne: str, code: str | None = None):
-    """Annule un retrait — le testeur retrouve son accès et son travail."""
+    """Rouvre un accès retiré ou coupé, sans toucher à sa date de fin.
+
+    Vaut pour les deux cas : le testeur retiré et l'abonné coupé. Sans cela,
+    rouvrir un abonné coupé obligerait à lui ajouter un mois qu'il n'a pas
+    payé — une erreur de clic se paierait en jours offerts.
+    """
     _exiger_admin(code)
     resultat = ABONNEMENTS.rendre(abonne)
     if resultat is None:
-        raise HTTPException(status_code=404, detail="Cet accès n'est pas retiré.")
+        raise HTTPException(status_code=404, detail="Cet accès est déjà ouvert.")
     return resultat
 
 

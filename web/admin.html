@@ -285,7 +285,9 @@ async function charger() {
             <button data-renommer="${echapper(a.code)}" data-nom="${echapper(a.nom)}" title="Corriger le nom">✏️</button>
             <button class="vert" data-prolonger="${echapper(a.code)}" title="Ajouter un mois">+ mois</button>
             <button data-semaine="${echapper(a.code)}" title="Ajouter une semaine">+ sem.</button>
-            ${a.actif ? `<button class="rouge" data-couper="${echapper(a.code)}" title="Couper l'accès">✕</button>` : ''}`}
+            ${a.actif
+              ? `<button class="rouge" data-couper="${echapper(a.code)}" title="Couper l'accès">✕</button>`
+              : `<button data-rendre="${echapper(a.code)}" title="Rouvrir sans changer la date de fin">↩ rouvrir</button>`}`}
         </div>
       </div>`;
     }).join('');
