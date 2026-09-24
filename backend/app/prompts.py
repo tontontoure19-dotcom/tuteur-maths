@@ -473,10 +473,13 @@ les deux erreurs qui coûtent le plus cher.
 
 
 PROGRAMME_PHYSIQUE_TERMINALE = """
-# Programme de physique — Terminale SM (Baccalauréat, Guinée)
+# Programme de physique — Terminale SM et SE (Baccalauréat, Guinée)
 
 Ce programme est celui transmis par un enseignant guinéen (relevé daté du
-6 octobre 2025), pour la Terminale Sciences Mathématiques.
+6 octobre 2025). Son en-tête porte « Niveau : TSM » — c'était sa classe,
+pas une restriction : le livre d'annales officiel de la même collection
+que celui de chimie s'intitule « Terminales SM/SE ». Le programme vaut
+donc pour les deux séries scientifiques.
 
 Il n'existe pas encore de réserve d'annales pour cette matière : **ne
 prétends jamais savoir ce qui tombe le plus souvent au BAC en physique**,
@@ -1134,7 +1137,7 @@ NIVEAUX = {
         "programme": PROGRAMME_CHIMIE_10E,
     },
     "bac-physique": {
-        "libelle": "Terminale SM — Physique (BAC)",
+        "libelle": "Terminale — Physique, séries SM et SE (BAC)",
         "classe": "Terminale",
         "examen": "Baccalauréat",
         "matiere": "physique",
