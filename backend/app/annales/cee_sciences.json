@@ -26,6 +26,30 @@
       "reponse": "1) Épuration : rein, vessie, foie. Circulation : veines, artères, capillaires, cœur. Respiration : poumons, nez. Digestion : intestin, estomac, dents (le foie aide aussi à la digestion en fabriquant la bile).\n2) Le terrain est inondé : il faut évacuer l'eau et la retenir ailleurs. Le drainage (creuser des rigoles pour faire partir l'eau), la réimplantation des haies, et l'infiltration des eaux.\n3) Le fonio suit toujours le même chemin : bouche → œsophage → estomac → intestin grêle → gros intestin → rectum → anus. Sur le schéma on place aussi les glandes salivaires, le foie et le pancréas, qui versent leurs sucs mais ne sont pas sur le trajet lui-même.\n4) Dent → carie. Système nerveux → surmenage. Peau → gales. Estomac → ulcère."
     },
     {
+      "id": "cee-sciences-2006",
+      "session": 2006,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "appareil digestif des ruminants",
+        "panse",
+        "bonnet",
+        "feuillet",
+        "caillette",
+        "croquis annoté",
+        "composition des os",
+        "osséine",
+        "calcaire",
+        "maladies contagieuses",
+        "paludisme",
+        "états de la matière",
+        "corps solides",
+        "corps liquides",
+        "corps gazeux"
+      ],
+      "enonce": "1) À l'aide d'un croquis, indiquez les différentes parties de l'appareil digestif d'un ruminant.\n2) Entourez « V » si c'est vrai ou « F » si c'est faux. L'os est composé de : calcaire, cartilage, moelle, osséine.\n3) Mettez une croix devant la bonne réponse : les maladies contagieuses sont : variole, paludisme, dysenterie, tuberculose, maux de dent, choléra.\n4) Classe les corps suivants dans un tableau (solide, liquide, gaz) : l'air, l'huile, le sable, l'oxygène, le coton, le gasoil, la pluie, le fer, la fumée, le caillou.",
+      "reponse": "1) Le ruminant (la vache) a un estomac à quatre poches. Les aliments suivent ce chemin : œsophage → panse → bonnet → feuillet → caillette → intestin. C'est ce qui lui permet de ruminer : l'herbe revient de la panse à la bouche pour être remâchée.\n2) Calcaire : VRAI. Cartilage : FAUX. Moelle : FAUX. Osséine : VRAI. (L'os est fait de calcaire, qui le rend dur, et d'osséine, qui le rend souple. La moelle est DANS l'os mais ne le compose pas ; le cartilage est un autre tissu.)\n3) Maladies contagieuses : la variole, la dysenterie, la tuberculose, le choléra. Attention au piège : le PALUDISME n'est pas contagieux — il ne se transmet pas d'une personne à une autre, mais par la piqûre d'un moustique. Et les maux de dent ne sont pas une maladie contagieuse.\n4) Solides : le sable, le coton, le fer, le caillou. Liquides : l'huile, le gasoil, la pluie. Gaz : l'air, l'oxygène, la fumée."
+    },
+    {
       "id": "cee-sciences-2007",
       "session": 2007,
       "partie": "Sujet complet",
@@ -88,6 +112,108 @@
       "enonce": "1) Un de vos camarades est mordu par un serpent dans une localité éloignée du centre de santé. Quelles mesures prendre pour sauver sa vie ?\n2) Relie par une flèche chaque action de l'homme à sa conséquence : Déforestation, Rejet de fumée toxique, Rejet de produit toxique dans une rivière — Pollution de l'air, Pollution de l'eau, Disparition des végétaux et animaux.\n3) Relie par une flèche chaque déchet à l'organe qui l'élimine : Gaz carbonique, Sueur, Urine, Cérumen — Reins, Peau, Poumons, Oreilles.\n4) Fais la coupe longitudinale d'une dent et indique les différentes parties.",
       "reponse": "1) ATTENTION, cette question demande deux réponses différentes.\nCe que le corrigé du livre attend : poser un garrot au-dessus de la morsure pour empêcher le venin d'atteindre le cœur, et extraire le venin en le suçant ou avec un appareil.\nCe que disent aujourd'hui les secouristes : NE PAS poser de garrot et NE PAS sucer la plaie — ces deux gestes aggravent la blessure. Il faut allonger le camarade, le calmer, ne pas le faire marcher, immobiliser le membre mordu en le laissant plus bas que le cœur, et le transporter au centre de santé le plus vite possible.\nSi la question tombe à l'examen, écris ce que ton livre et ton maître enseignent. Mais dans la vraie vie, c'est la seconde réponse qui sauve, et il faut demander conseil à un agent de santé.\n2) Déforestation → disparition des végétaux et animaux. Rejet de fumée toxique → pollution de l'air. Rejet de produit toxique dans une rivière → pollution de l'eau.\n3) Gaz carbonique → poumons. Sueur → peau. Urine → reins. Cérumen → oreilles.\n4) Couronne : cuticule, émail, ivoire, pulpe. Racine : cément, nerf, entrée et sortie du sang.",
       "correction_du_livre": "Ce n'est pas une erreur de calcul mais elle est plus grave : le corrigé imprimé conseille, pour une morsure de serpent, de poser un garrot et d'aspirer le venin à la bouche. Ces deux gestes ne sont plus recommandés — ils abîment le membre et exposent celui qui aspire. La conduite retenue aujourd'hui est d'allonger et de calmer la victime, de ne pas la faire marcher, d'immobiliser le membre et de rejoindre un centre de santé au plus vite. L'entrée garde les deux réponses : celle qu'attend l'examen, et celle qui protège l'enfant."
+    },
+    {
+      "id": "cee-sciences-2010",
+      "session": 2010,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "composition des os",
+        "osséine",
+        "calcaire",
+        "les cinq sens",
+        "organes des sens",
+        "techniques culturales",
+        "irrigation",
+        "drainage",
+        "la peau",
+        "croquis annoté"
+      ],
+      "enonce": "1) Parmi les éléments suivants, indique par une croix ceux qui rentrent dans la composition des os : salive, osséine, cartilage, calcaire, moelle, sang, plasma.\n2) Relie par une flèche les organes à leur fonction : la peau, le nez, l'oreille, la langue, les yeux — la vue, le goût, l'odorat, l'ouïe, le toucher.\n3) Votre école veut mettre en valeur un potager, mais le terrain choisi est SEC. Quelle technique culturale faut-il pour cela ?\n4) Fais le croquis de la peau et indique ses différentes parties.",
+      "reponse": "1) Deux éléments seulement : l'OSSÉINE et le CALCAIRE.\n2) La peau → le toucher. Le nez → l'odorat. L'oreille → l'ouïe. La langue → le goût. Les yeux → la vue.\n3) Le terrain est SEC : il faut y AMENER de l'eau, c'est l'IRRIGATION. Ne confonds pas les deux mots, ils sont opposés : on irrigue un terrain sec pour lui apporter de l'eau, on draine un terrain inondé pour en faire partir l'eau. (C'est le drainage qu'il fallait répondre au sujet de 2005, où le terrain était inondé.)\n4) De la surface vers l'intérieur : la couche cornée et l'épiderme, puis le derme, puis l'hypoderme. On y voit aussi le pore de transpiration, le poil avec son bulbe, la glande sudoripare et la glande sébacée.",
+      "correction_du_livre": "Le corrigé imprimé répond « le drainage » à la question du terrain SEC, en le définissant comme « faire circuler l'eau d'un réservoir vers le potager ». Cette définition est celle de l'IRRIGATION. Drainer, c'est au contraire évacuer l'eau d'un terrain trop humide — c'est bien ce que le même livre répond, avec raison, au sujet de 2005 où le terrain était inondé. Les deux mots désignent des gestes opposés."
+    },
+    {
+      "id": "cee-sciences-2011",
+      "session": 2011,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "multiplication des plantes",
+        "greffage",
+        "bouturage",
+        "drageonnage",
+        "semis",
+        "organes excréteurs",
+        "déchets de l'organisme",
+        "lait maternel",
+        "aliment complet",
+        "appareil respiratoire",
+        "croquis annoté"
+      ],
+      "enonce": "1) Relie par une flèche chaque plante à son mode de multiplication : bananier, tomate, manioc, manguier — greffage, bouturage, drageonnement, semis.\n2) Relie par une flèche chaque organe à son déchet : peau, reins, poumons — gaz carbonique, urine, sueur.\n3) Pourquoi le lait maternel suffit-il à l'alimentation du nourrisson ?\n4) Fais le croquis de l'appareil respiratoire et indique ses différentes parties.",
+      "reponse": "1) Bananier → drageonnement. Tomate → semis. Manioc → bouturage. Manguier → greffage.\n2) Peau → sueur. Reins → urine. Poumons → gaz carbonique.\n3) Parce que le lait maternel est un ALIMENT COMPLET : il contient à lui seul tout ce dont le nourrisson a besoin — des matières azotées, des matières grasses, des matières minérales, du sucre et des vitamines.\n4) De haut en bas : les fosses nasales, le pharynx, la trachée-artère, puis les deux bronches qui entrent dans le poumon droit et le poumon gauche, les bronchioles, et au bout les alvéoles pulmonaires. Sous les poumons, le diaphragme, le muscle qui fait entrer et sortir l'air."
+    },
+    {
+      "id": "cee-sciences-2012",
+      "session": 2012,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "changements d'état",
+        "solidification",
+        "fusion",
+        "évaporation",
+        "condensation",
+        "pollution",
+        "déforestation",
+        "protection de l'environnement",
+        "états de la matière"
+      ],
+      "enonce": "1) Définissez : la solidification, la fusion, l'évaporation, la condensation.\n2) Reliez par une flèche les actions de l'homme et leurs conséquences : déforestation, rejet de fumées toxiques, rejet de produits toxiques dans la rivière — pollution de l'air, pollution de l'eau, disparition de la faune et de la flore.\n3) Voici une liste de corps : oxygène, huile, or, essence. Placez-les selon leur état dans un tableau (solides, liquides, gazeux).",
+      "reponse": "1) Les quatre changements d'état vont deux par deux :\n  SOLIDIFICATION : passage de l'état liquide à l'état solide (l'eau qui devient glace au congélateur).\n  FUSION : passage de l'état solide à l'état liquide (la glace qui fond au soleil). C'est l'inverse de la solidification.\n  ÉVAPORATION : passage de l'état liquide à l'état gazeux (l'eau de la marmite qui part en vapeur).\n  CONDENSATION : passage de l'état gazeux à l'état liquide (la vapeur qui se dépose en gouttelettes sur un verre froid). C'est l'inverse de l'évaporation.\n2) Déforestation → disparition de la faune et de la flore. Rejet de fumées toxiques → pollution de l'air. Rejet de produits toxiques dans la rivière → pollution de l'eau.\n3) Solides : l'or. Liquides : l'huile, l'essence. Gazeux : l'oxygène.",
+      "correction_du_livre": "Le corrigé imprimé définit la condensation par « condenser, c'est rendre plus épais, plus dense ou plus lourd », et donne pour exemple « le lait placé au congélateur se refroidit, devient plus lourd ». C'est faux : la condensation est le passage de l'état GAZEUX à l'état LIQUIDE. Un lait qui refroidit ne se condense pas, il refroidit. Le bon exemple est la vapeur d'eau qui redevient gouttelettes sur une surface froide."
+    },
+    {
+      "id": "cee-sciences-2013",
+      "session": 2013,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "combustion vive",
+        "combustion lente",
+        "oxydation",
+        "rouille",
+        "organes et fonctions",
+        "digestion",
+        "épuration",
+        "respiration",
+        "circulation",
+        "germination",
+        "causes de non germination",
+        "trajet des aliments",
+        "croquis annoté"
+      ],
+      "enonce": "1) Définissez les termes suivants : combustion vive, combustion lente.\n2) Selon leur rôle, placez les organes suivants dans un tableau (Digestion | Épuration | Respiration | Circulation) : foie, veines, estomac, cœur, poumon, artères, intestin grêle, vessie, capillaires, dents, nez, reins, gros intestin.\n3) Vous avez semé une graine d'arachide qui n'a pas germé. Citez quatre causes possibles de cette non-germination.\n4) Vous venez de manger un morceau de viande. En vous servant d'un croquis, indiquez le trajet qu'il suit de la bouche à l'anus.",
+      "reponse": "1) COMBUSTION VIVE : combustion qui dégage de la lumière (une flamme) et de la chaleur. Exemple : le papier qui brûle. COMBUSTION LENTE, ou oxydation : combustion qui ne produit pas de lumière. Exemple : la formation de la rouille sur du fer.\n2) Digestion : estomac, intestin grêle, dents, gros intestin. Épuration : foie, vessie, reins, poumons. Respiration : poumon, nez. Circulation : veines, cœur, artères, capillaires. (Les poumons figurent deux fois : ils servent à respirer, et ils éliminent le gaz carbonique, ce qui est une épuration.)\n3) Quatre causes possibles : la graine était de mauvaise qualité ; elle n'a pas reçu assez d'eau ; elle n'a pas reçu d'air ; elle a été mal enfouie dans le sol (trop profond ou pas assez).\n4) Bouche → œsophage → estomac → intestin grêle → gros intestin → rectum → anus.",
+      "correction_du_livre": "Le tableau imprimé titre sa deuxième colonne « Equation » au lieu d'« Épuration ». Le livre écorche ce mot une fois de plus — il écrit « Eruption » dans le sujet de 2007."
+    },
+    {
+      "id": "cee-sciences-2014",
+      "session": 2014,
+      "partie": "Sujet complet",
+      "chapitres": [
+        "transmission du sida",
+        "la feuille",
+        "limbe",
+        "nervure",
+        "pétiole",
+        "croquis annoté",
+        "vaccin",
+        "sérum",
+        "antiseptique",
+        "prévention",
+        "méfaits du tabac"
+      ],
+      "enonce": "1) Mettez vrai (V) ou faux (F) devant les affirmations suivantes. Le SIDA se transmet : par la salutation ; par le moustique ; par la transfusion sanguine ; par les relations sexuelles non protégées.\n2) Faites le croquis d'une feuille simple et indiquez ses différentes parties.\n3) Faites la différence entre un vaccin, un sérum et un antiseptique.\n4) Vous surprenez un de vos camarades avec une cigarette. Expliquez-lui les méfaits du tabac.",
+      "reponse": "1) Par la salutation : FAUX. Par le moustique : FAUX. Par la transfusion sanguine : VRAI. Par les relations sexuelles non protégées : VRAI. (Retiens bien les deux premiers : on n'attrape pas le sida en serrant la main, ni par une piqûre de moustique. Le croire fait rejeter les malades pour rien.)\n2) Une feuille simple a trois parties : le LIMBE (la partie large et plate), les NERVURES (les lignes qui la parcourent) et le PÉTIOLE (la petite tige qui la rattache à la branche).\n3) VACCIN : il protège AVANT la maladie, il est préventif ; il se donne le plus souvent en injection. SÉRUM : il soigne une personne DÉJÀ malade, il est curatif. ANTISEPTIQUE : c'est un désinfectant, il tue les microbes sur la peau, dans l'eau de boisson ou sur les aliments — le savon, l'eau de javel, l'alcool, le chlore.\n4) Les méfaits sanitaires : le tabac contient des substances dangereuses et provoque des maladies — bronchite, cancer du poumon, asthme — et réduit l'espérance de vie. Les méfaits sociaux : le fumeur perd le prestige et l'honneur. Les méfaits économiques : fumer coûte cher et augmente les dépenses."
     },
     {
       "id": "cee-sciences-2015",
