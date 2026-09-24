@@ -76,9 +76,9 @@
         "heures minutes secondes",
         "arrondi"
       ],
-      "enonce": "Posez et effectuez les opérations suivantes :\n1) 456,7 + 12,34 + 4,56 =\n2) 5h 9mn 21s − 2h 14mn 53s =\n3) 953,12 × 40,08 =\n4) 76 809 : 15,44 = (à 1/1000 près)",
-      "reponse": "1) En alignant les virgules : 456,70 + 12,34 + 4,56 = 473,60.\n2) On emprunte deux fois : 5h 9mn 21s = 4h 68mn 81s. Alors 4h 68mn 81s − 2h 14mn 53s = 2h 54mn 28s.\n3) 953,12 × 40,08 = 38 201,0496.\n4) On rend le diviseur entier : 76 809 : 15,44 revient à 7 680 900 : 1544 = 4974,67 (au millième près).",
-      "correction_du_livre": "L'énoncé imprimé écrit la première opération « 458,7 + 1234 + 4,56 », mais le corrigé calcule « 456,7 + 12,34 + 4,56 = 473,60 ». Les deux ne peuvent pas être vrais en même temps. C'est le corrigé qui est cohérent avec lui-même, et ses nombres sont de l'ordre de grandeur attendu au CEE : c'est l'énoncé qui a été mal recopié."
+      "enonce": "Posez et effectuez les opérations suivantes :\n1) 458,7 + 1234 + 4,56 =\n2) 5h 9mn 21s − 2h 14mn 53s =\n3) 953,12 × 40,08 =\n4) 76 809 : 15,44 = (à 1/1000 près)",
+      "reponse": "1) On aligne les virgules en complétant par des zéros — l'entier 1234 s'écrit 1234,00 : 458,70 + 1234,00 + 4,56 = 1697,26.\n2) On emprunte deux fois : 5h 9mn 21s = 4h 68mn 81s. Alors 4h 68mn 81s − 2h 14mn 53s = 2h 54mn 28s.\n3) 953,12 × 40,08 = 38 201,0496.\n4) On rend le diviseur entier : 76 809 : 15,44 revient à 7 680 900 : 1544 = 4974,67 (au millième près).",
+      "correction_du_livre": "Le corrigé imprimé ne calcule pas l'opération de l'énoncé : il pose « 456,7 + 12,34 + 4,56 = 473,60 » là où le sujet demande 458,7 + 1234 + 4,56. C'est l'énoncé qui fait foi — un entier au milieu de décimaux est d'ailleurs courant au CEE, le sujet de 2000 en contenait un aussi. La bonne réponse est 1697,26."
     },
     {
       "id": "cee-maths-2002-probleme",
@@ -145,9 +145,9 @@
         "réduction au même dénominateur",
         "opérations posées"
       ],
-      "enonce": "Posez et effectuez les opérations suivantes :\n1) 0,894 : 38 =\n2) 693,02 × 2,5 =\n3) 7865,08 − 947,28 =\n4) 2h 55mn 45s + 1h 15mn 20s =\n5) 2/7 + 2/5 + 5/6 =",
-      "reponse": "1) 0,894 : 38 = 0,023 (à 0,001 près).\n2) 693,02 × 2,5 = 1732,550.\n3) 7865,08 − 947,28 = 6917,80.\n4) On additionne chaque colonne, puis on retient : 45s + 20s = 65s = 1mn 05s ; 55mn + 15mn = 70mn, plus la minute retenue = 71mn = 1h 11mn ; 2h + 1h = 3h, plus l'heure retenue = 4h. Le résultat est donc 4h 11mn 05s.\n5) On réduit au même dénominateur. Le plus petit dénominateur commun à 7, 5 et 6 est 210 : 2/7 = 60/210, 2/5 = 84/210, 5/6 = 175/210. La somme vaut (60 + 84 + 175)/210 = 319/210.",
-      "correction_du_livre": "Le corrigé imprimé s'arrête à « 3h 71mn 65s = 3h 70mn 65s » pour la quatrième opération : c'est doublement faux. Une durée doit être réduite — 65 secondes font 1 minute et 5 secondes, et 71 minutes font 1 heure et 11 minutes — ce qui donne 4h 11mn 05s. L'énoncé imprimé écrit par ailleurs « 7865,08 − 947,26 » et « 2/7 + 2/6 + 5/6 » là où le corrigé calcule avec 947,28 et 2/5 ; ce sont les nombres du corrigé qui se tiennent."
+      "enonce": "Posez et effectuez les opérations suivantes :\n1) 0,894 : 38 =\n2) 693,02 × 2,5 =\n3) 7865,08 − 947,26 =\n4) 2h 55mn 45s + 1h 15mn 20s =\n5) 2/7 + 2/6 + 5/6 =",
+      "reponse": "1) 0,894 : 38 = 0,023 (à 0,001 près).\n2) 693,02 × 2,5 = 1732,550.\n3) 7865,08 − 947,26 = 6917,82.\n4) On additionne chaque colonne, puis on retient : 45s + 20s = 65s = 1mn 05s ; 55mn + 15mn = 70mn, plus la minute retenue = 71mn = 1h 11mn ; 2h + 1h = 3h, plus l'heure retenue = 4h. Le résultat est donc 4h 11mn 05s.\n5) On réduit au même dénominateur. 2/6 se simplifie en 1/3, et le plus petit dénominateur commun à 7 et 6 est 42 : 2/7 = 12/42, 2/6 = 14/42, 5/6 = 35/42. La somme vaut (12 + 14 + 35)/42 = 61/42, c'est-à-dire 1 et 19/42.",
+      "correction_du_livre": "Le corrigé imprimé travaille sur d'autres nombres que l'énoncé. Il pose « 7865,08 − 947,28 = 6917,80 » alors que le sujet demande 7865,08 − 947,26, dont la réponse est 6917,82 — c'est d'ailleurs exactement l'opération, et la réponse, que reprend le sujet de 2009. Il calcule de même « 2/7 + 2/5 + 5/6 » au lieu de 2/7 + 2/6 + 5/6.\nIl commet en outre une vraie faute de méthode sur les durées : il s'arrête à « 3h 71mn 65s = 3h 70mn 65s », alors qu'une durée doit être réduite — 65 secondes font 1 minute et 5 secondes, 71 minutes font 1 heure et 11 minutes — ce qui donne 4h 11mn 05s."
     },
     {
       "id": "cee-maths-2004-probleme",
@@ -203,6 +203,151 @@
       "enonce": "Un parc rectangulaire a 340 m de long et 275 m de large. Deux allées en croix de 3 m de large sont aménagées suivant les médianes.\n1) Faire son croquis, puis calculer en hectares l'aire des allées.\n2) On répand sur les allées 85 kg de gravier au mètre carré. Quel est le poids du gravier répandu ?",
       "reponse": "1) Aire totale du parc = 340 m × 275 m = 93 500 m². Les deux allées découpent le parc en quatre rectangles ; ensemble ils mesurent (340 − 3) m sur (275 − 3) m, soit 337 m × 272 m = 91 664 m². L'aire des allées est la différence : 93 500 − 91 664 = 1836 m², c'est-à-dire 0,1836 ha.\n   (On peut vérifier autrement : l'allée en longueur mesure 340 × 3 = 1020 m², celle en largeur 275 × 3 = 825 m², et leur croisement de 3 m sur 3 m est compté deux fois, soit 1020 + 825 − 9 = 1836 m².)\n2) Poids du gravier = 85 kg × 1836 = 156 060 kg, soit 156,06 tonnes.",
       "correction_du_livre": "Le corrigé imprimé accumule les fautes sur ce problème. Il écrit l'aire du parc « 340 × 275 = 83 600 m² » alors que le produit vaut 93 500 (le « 9,35 ha » qu'il annonce juste après correspond d'ailleurs bien à 93 500). Il donne la largeur de l'aire restante égale à 337 m au lieu de 272 m. Il convertit 1836 m² en « 1,884 ha » alors que 1836 m² font 0,1836 ha. Enfin il calcule le gravier avec 1838 m² au lieu de 1836 et annonce « 156 080 kg ou 158,080 t », deux nombres qui ne correspondent ni l'un ni l'autre à son propre calcul. Le résultat exact est 85 × 1836 = 156 060 kg, soit 156,06 tonnes."
+    },
+    {
+      "id": "cee-maths-2006-operations",
+      "session": 2006,
+      "partie": "Opérations",
+      "chapitres": [
+        "addition de décimaux",
+        "soustraction de durées",
+        "heures minutes secondes",
+        "multiplication de décimaux",
+        "division de décimaux",
+        "opérations posées"
+      ],
+      "enonce": "Effectuez les opérations suivantes :\n1) 304 + 78,753 + 348,9 =\n2) 4h 37mn 23s − 1h 43mn 37s =\n3) 806,75 × 90,4 =\n4) 2628,75 : 39,8 =",
+      "reponse": "1) En alignant les virgules : 304,000 + 78,753 + 348,900 = 731,653.\n2) On emprunte deux fois : 4h 37mn 23s = 3h 96mn 83s. Alors 3h 96mn 83s − 1h 43mn 37s = 2h 53mn 46s.\n3) 806,75 × 90,4 = 72 930,200.\n4) On rend le diviseur entier : 2628,75 : 39,8 revient à 26 287,5 : 398 = 66,04."
+    },
+    {
+      "id": "cee-maths-2006-probleme",
+      "session": 2006,
+      "partie": "Problème",
+      "chapitres": [
+        "aire d'un rectangle",
+        "aire d'un triangle",
+        "figure composée",
+        "conversion d'aires",
+        "hectare",
+        "intérêt simple",
+        "pourcentage",
+        "périmètre du cercle",
+        "diamètre",
+        "problème de jardin"
+      ],
+      "enonce": "Un jardin est composé d'un rectangle ABCD et d'un triangle rectangle CDE accolés, avec AD = 50 m, CD = 15 m et DE = 17 m.\n1) Quelle est la surface totale de ce jardin ?\n2) Quelle est la valeur du jardin à raison de 250 000 francs l'hectare ?\n3) Que rapporterait, en un an, la somme que vous venez de calculer si elle était placée à 4,5 % ?\n4) On creuse dans le jardin un bassin circulaire dont le diamètre est égal à la moitié de la largeur du rectangle. Quel est le périmètre de ce bassin ? (On prendra π = 3,14.)",
+      "reponse": "1) Surface du rectangle = AD × CD = 50 m × 15 m = 750 m². Surface du triangle rectangle = (base × hauteur) : 2 = (17 × 15) : 2 = 127,5 m². Surface totale = 750 + 127,5 = 877,5 m².\n2) Il faut convertir en hectares : 1 ha = 10 000 m², donc 877,5 m² = 0,08775 ha. La valeur du jardin est 0,08775 × 250 000 = 21 937,5 F.\n3) L'intérêt d'un an à 4,5 % vaut (21 937,5 × 4,5) : 100 = 987,1875 F, c'est-à-dire environ 987,19 F.\n4) La largeur du rectangle est CD = 15 m, donc le diamètre du bassin vaut 15 : 2 = 7,5 m. Le périmètre d'un cercle est P = D × π = 7,5 × 3,14 = 23,55 m.",
+      "correction_du_livre": "Le corrigé imprimé convertit 877,5 m² en « 0,8775 ha » : c'est dix fois trop, 877,5 m² font 0,08775 ha. Il se rattrape sans le dire pour la valeur du jardin (21 937,5 F est juste, et correspond bien à 0,08775 ha), mais calcule ensuite l'intérêt avec 21 837,5 F au lieu de 21 937,5 et annonce 982,665 F. L'intérêt d'un an à 4,5 % vaut 987,1875 F."
+    },
+    {
+      "id": "cee-maths-2007-operations",
+      "session": 2007,
+      "partie": "Opérations",
+      "chapitres": [
+        "conversion de masses",
+        "quintal",
+        "kilogramme",
+        "hectogramme",
+        "conversion de capacités",
+        "hectolitre",
+        "décalitre",
+        "litre",
+        "addition de fractions",
+        "réduction au même dénominateur",
+        "addition de durées",
+        "heures minutes secondes",
+        "division de décimaux",
+        "opérations posées"
+      ],
+      "enonce": "Posez et effectuez les opérations suivantes :\n1) 5 q + 30 kg + 43,50 hg = ......... g\n2) 45 hl + 4,34 dal + 5 l = ......... l\n3) 4/5 + 7/4 =\n4) 4h 35mn 40s + 3h 50mn 59s =\n5) 67,35 : 3 =",
+      "reponse": "1) On ramène tout aux grammes : 1 quintal = 100 kg, donc 5 q = 500 kg = 500 000 g ; 30 kg = 30 000 g ; 1 hg = 100 g, donc 43,50 hg = 4350 g. Total : 500 000 + 30 000 + 4350 = 534 350 g.\n2) On ramène tout aux litres : 1 hl = 100 l, donc 45 hl = 4500 l ; 1 dal = 10 l, donc 4,34 dal = 43,4 l. Total : 4500 + 43,4 + 5 = 4548,4 l.\n3) Le plus petit dénominateur commun à 5 et 4 est 20 : 4/5 = 16/20 et 7/4 = 35/20. La somme vaut 51/20.\n4) 40s + 59s = 99s ; 35mn + 50mn = 85mn ; 4h + 3h = 7h, soit 7h 85mn 99s. On réduit : 99s = 1mn 39s, d'où 7h 86mn 39s ; puis 86mn = 1h 26mn, d'où 8h 26mn 39s.\n5) 67,35 : 3 = 22,45."
+    },
+    {
+      "id": "cee-maths-2007-probleme",
+      "session": 2007,
+      "partie": "Problème",
+      "chapitres": [
+        "échelle",
+        "plan cadastral",
+        "périmètre d'un rectangle",
+        "demi-périmètre",
+        "dimensions d'un rectangle",
+        "aire d'un rectangle",
+        "prix d'achat",
+        "fraction d'une somme",
+        "prix de revient",
+        "problème de terrain"
+      ],
+      "enonce": "Un paysan achète un terrain rectangulaire dessiné sur un plan cadastral à l'échelle 1/1250 ; sur le plan, il mesure 12,8 cm de périmètre.\n1) Quel est le périmètre réel de ce terrain ?\n2) La longueur est le triple de sa largeur. Quelles sont les dimensions réelles de ce terrain ?\n3) Ce terrain est acheté à 125 F le mètre carré. Le propriétaire l'entoure d'une clôture dont le prix total est égal au 1/4 du prix d'achat du terrain.\n4) Quel est le prix de revient du terrain ainsi clôturé ?",
+      "reponse": "1) À l'échelle 1/1250, chaque centimètre du plan représente 1250 cm réels : 12,8 × 1250 = 16 000 cm, c'est-à-dire 160 m.\n2) Le demi-périmètre vaut 160 : 2 = 80 m, et c'est la somme d'une longueur et d'une largeur. Comme la longueur est le triple de la largeur, le demi-périmètre contient 3 + 1 = 4 fois la largeur : largeur = 80 : 4 = 20 m, et longueur = 20 × 3 = 60 m.\n3) Surface = 60 m × 20 m = 1200 m². Prix du terrain = 1200 × 125 = 150 000 F. Prix de la clôture = 150 000 : 4 = 37 500 F.\n4) Prix de revient = prix d'achat + frais = 150 000 + 37 500 = 187 500 F."
+    },
+    {
+      "id": "cee-maths-2008-operations",
+      "session": 2008,
+      "partie": "Opérations",
+      "chapitres": [
+        "conversion d'aires",
+        "hectare",
+        "conversion de longueurs",
+        "mètre et centimètre",
+        "fraction d'une somme",
+        "périmètre d'un rectangle",
+        "périmètre d'un carré",
+        "côté d'un carré"
+      ],
+      "enonce": "1) Combien faut-il ajouter à 75 m² pour faire 1 hectare ?\n2) Une planche mesure 2 m et 5 cm de long. Un élève a écrit 2,5 m. De combien de cm s'est-il trompé ?\n3) Les 1/4 d'un coupon d'étoffe valent 1560 FG. Quel est le prix du coupon entier ?\n4) Un carré a le même périmètre qu'un rectangle de 135 m de long sur 85 m de large. Quel est le côté du carré ?",
+      "reponse": "1) 1 hectare = 10 000 m², donc il faut ajouter 10 000 − 75 = 9925 m².\n2) Attention au piège : 2 m et 5 cm ne s'écrivent pas 2,5 m mais 2,05 m. En centimètres, 2,05 m = 205 cm et 2,5 m = 250 cm : l'élève s'est trompé de 250 − 205 = 45 cm.\n3) Si le quart vaut 1560 FG, le coupon entier en vaut quatre fois plus : 1560 × 4 = 6240 FG.\n4) Périmètre du rectangle = (135 × 2) + (85 × 2) = 270 + 170 = 440 m. Le carré a le même périmètre et quatre côtés égaux, donc son côté vaut 440 : 4 = 110 m."
+    },
+    {
+      "id": "cee-maths-2008-probleme",
+      "session": 2008,
+      "partie": "Problème",
+      "chapitres": [
+        "aire d'un trapèze",
+        "conversion d'aires",
+        "are",
+        "fraction d'une somme",
+        "intérêt simple",
+        "pourcentage",
+        "problème de champ",
+        "placement bancaire"
+      ],
+      "enonce": "Un champ a la forme d'un trapèze. Sa grande base mesure 138 m, sa petite base 35 m et sa hauteur 28 m. Il a été vendu à 12 500 FG l'are. Calculer :\n1) L'aire de ce champ\n2) La valeur de ce champ\nLe propriétaire du champ place les 2/5 de la valeur dans une banque avec un taux d'intérêt de 5 %.\n3) Calculer l'intérêt de 2 ans.",
+      "reponse": "1) L'aire d'un trapèze vaut (grande base + petite base) × hauteur, le tout divisé par 2 : S = (138 + 35) × 28 : 2 = 173 × 28 : 2 = 4844 : 2 = 2422 m².\n2) Le prix est donné à l'are : comme 1 are = 100 m², 2422 m² font 24,22 ares. Valeur du champ = 24,22 × 12 500 = 302 750 FG.\n3) Les 2/5 de la valeur : (302 750 × 2) : 5 = 121 100 FG. L'intérêt d'une année à 5 % vaut (121 100 × 5) : 100 = 6055 F, donc l'intérêt de deux ans vaut 6055 × 2 = 12 110 F."
+    },
+    {
+      "id": "cee-maths-2009-operations",
+      "session": 2009,
+      "partie": "Opérations",
+      "chapitres": [
+        "division euclidienne",
+        "quotient et reste",
+        "retrouver le dividende",
+        "conversion d'aires",
+        "hectare",
+        "are",
+        "centiare",
+        "comparaison de fractions",
+        "soustraction de décimaux"
+      ],
+      "enonce": "Posez et effectuez les opérations suivantes :\n1) En divisant un certain nombre par 14, Bintou a obtenu 679 pour quotient et 11 pour reste. Quel nombre a-t-elle divisé par 14 ?\n2) 77 ha + 83 ca + 42,05 a = ......... m²\n3) Complétez à l'aide de l'un des signes = ; < ; > :\n   3/4 ... 1 ; 7/5 ... 1 ; 13/13 ... 1 ; 1 ... 15/13\n4) 7865,08 − 947,26 =",
+      "reponse": "1) Dans une division, dividende = diviseur × quotient + reste. Ici : 14 × 679 + 11 = 9506 + 11 = 9517. (On vérifie : 9517 : 14 donne bien 679 avec 11 de reste, et le reste est plus petit que 14.)\n2) On convertit tout en m² : 1 ha = 10 000 m², donc 77 ha = 770 000 m² ; 1 ca = 1 m², donc 83 ca = 83 m² ; 1 a = 100 m², donc 42,05 a = 4205 m². Total : 770 000 + 83 + 4205 = 774 288 m².\n3) Une fraction est plus petite que 1 quand son numérateur est plus petit que son dénominateur, plus grande quand il est plus grand, et égale quand ils sont égaux : 3/4 < 1 ; 7/5 > 1 ; 13/13 = 1 ; 1 < 15/13.\n4) 7865,08 − 947,26 = 6917,82."
+    },
+    {
+      "id": "cee-maths-2009-probleme",
+      "session": 2009,
+      "partie": "Problème",
+      "chapitres": [
+        "aire d'un triangle",
+        "fraction d'une longueur",
+        "conversion d'aires",
+        "hectare",
+        "rendement agricole",
+        "tonne",
+        "problème de champ"
+      ],
+      "enonce": "Un champ a la forme d'un triangle. La mesure de sa base est de 260 m. Sa hauteur est égale aux 3/4 de la base.\n1) Calculez son aire en mètres carrés (m²) puis en hectares (ha).\n2) Ce champ a produit 8,4162 t de manioc. Quel a été son rendement à l'hectare ?",
+      "reponse": "1) La hauteur vaut les 3/4 de 260 m, soit (260 × 3) : 4 = 195 m. L'aire d'un triangle vaut (base × hauteur) : 2 = (260 × 195) : 2 = 50 700 : 2 = 25 350 m². Comme 1 ha = 10 000 m², cela fait 2,535 ha.\n2) Le rendement à l'hectare est la production divisée par le nombre d'hectares : 8,4162 t : 2,535 = 3,32 t par hectare (soit 3320 kg à l'hectare)."
     }
   ]
 }
