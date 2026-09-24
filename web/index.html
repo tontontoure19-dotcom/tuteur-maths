@@ -187,18 +187,24 @@
   <input id="code" class="cache" placeholder="Code d'accès" autocomplete="off">
   <input id="prenom" placeholder="Ton prénom" autocomplete="given-name">
   <div class="niveaux">
-    <button class="niveau" data-niveau="cee">CM2<span>CEE · Calcul</span></button>
     <button class="niveau actif" data-niveau="bepc">10ᵉ année<span>BEPC · Maths</span></button>
     <button class="niveau" data-niveau="bepc-physique">10ᵉ année<span>BEPC · Physique</span></button>
     <button class="niveau" data-niveau="bepc-chimie">10ᵉ année<span>BEPC · Chimie</span></button>
     <button class="niveau" data-niveau="bac">Terminale<span>BAC · Maths (SM et SE)</span></button>
     <button class="niveau" data-niveau="bac-physique">Terminale<span>BAC · Physique (SM)</span></button>
     <button class="niveau" data-niveau="bac-chimie">Terminale<span>BAC · Chimie (SM et SE)</span></button>
+    <!-- Le CM2 reste disponible mais n'est pas mis en avant : il se place en
+         dernier, après les niveaux du secondaire. Décision du 24/09/2026 —
+         l'enfant de CM2 ne s'y met pas seul, c'est le parent qui doit l'y
+         asseoir, et le plafond de crédit ne laisse qu'une dizaine d'élèves
+         actifs. On l'essaie sur un ou deux enfants avant d'en faire un
+         segment. -->
+    <button class="niveau" data-niveau="cee">CM2<span>CEE · Calcul</span></button>
   </div>
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 37</div>
+  <div id="version">version 38</div>
   <div id="deja-inscrits"></div>
 </div>
 
