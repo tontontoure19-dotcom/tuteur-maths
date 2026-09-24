@@ -348,6 +348,182 @@
       ],
       "enonce": "Un champ a la forme d'un triangle. La mesure de sa base est de 260 m. Sa hauteur est égale aux 3/4 de la base.\n1) Calculez son aire en mètres carrés (m²) puis en hectares (ha).\n2) Ce champ a produit 8,4162 t de manioc. Quel a été son rendement à l'hectare ?",
       "reponse": "1) La hauteur vaut les 3/4 de 260 m, soit (260 × 3) : 4 = 195 m. L'aire d'un triangle vaut (base × hauteur) : 2 = (260 × 195) : 2 = 50 700 : 2 = 25 350 m². Comme 1 ha = 10 000 m², cela fait 2,535 ha.\n2) Le rendement à l'hectare est la production divisée par le nombre d'hectares : 8,4162 t : 2,535 = 3,32 t par hectare (soit 3320 kg à l'hectare)."
+    },
+    {
+      "id": "cee-maths-2010-operations",
+      "session": 2010,
+      "partie": "Opérations",
+      "chapitres": [
+        "division de décimaux",
+        "multiplication de décimaux",
+        "conversion de durées",
+        "minutes en heures",
+        "secondes",
+        "soustraction de fractions",
+        "réduction au même dénominateur",
+        "opérations posées"
+      ],
+      "enonce": "Pose et effectue les opérations suivantes :\n1) 12 500 : 0,64 =\n2) 1714,15 × 150,27 =\n3) 2817 min 51s = ......... h ......... s\n4) 5/16 − 1/7 =",
+      "reponse": "1) On rend le diviseur entier en déplaçant les virgules de deux rangs : 12 500 : 0,64 revient à 1 250 000 : 64 = 19 531,25.\n2) 1714,15 × 150,27 = 257 585,3205 (deux décimales dans chaque facteur, donc quatre dans le résultat).\n3) On cherche combien d'heures entières il y a dans 2817 minutes : 2817 : 60 = 46 avec 57 de reste, donc 2817 min = 46 h 57 mn. Il reste à convertir ces 57 minutes en secondes et à y ajouter les 51 s : 57 × 60 = 3420 s, puis 3420 + 51 = 3471 s. Donc 2817 min 51 s = 46 h 3471 s.\n4) Le plus petit dénominateur commun à 16 et 7 est 112 : 5/16 = 35/112 et 1/7 = 16/112. La différence vaut 19/112."
+    },
+    {
+      "id": "cee-maths-2010-probleme",
+      "session": 2010,
+      "partie": "Problème",
+      "chapitres": [
+        "périmètre d'un carré",
+        "clôture",
+        "rangées de fil",
+        "nombre de piquets",
+        "espacement",
+        "problème de jardin"
+      ],
+      "enonce": "Un jardin a la forme d'un carré de 90 m de côté. Il est entouré de trois rangées de fil de fer. Les piquets sont espacés de 3 m et à chaque coin est planté un piquet.\n1) Quel est le périmètre de ce jardin ?\n2) Calcule la longueur du fil de fer utilisé.\n3) Calcule le nombre de piquets utilisés.",
+      "reponse": "1) Le carré a quatre côtés égaux : P = 90 × 4 = 360 m.\n2) Le fil fait trois fois le tour : 360 × 3 = 1080 m.\n3) Les piquets sont espacés de 3 m tout autour : 360 : 3 = 120 piquets. (Attention au raisonnement : sur une ligne droite il faudrait ajouter un piquet, mais ici la clôture se referme sur elle-même — le dernier piquet rejoint le premier, donc il y a autant de piquets que d'intervalles.)"
+    },
+    {
+      "id": "cee-maths-2011-operations",
+      "session": 2011,
+      "partie": "Opérations",
+      "chapitres": [
+        "conversion d'aires",
+        "hectare",
+        "are",
+        "centiare",
+        "multiplication",
+        "conversion de volumes",
+        "mètre cube",
+        "litre",
+        "réduction au même dénominateur",
+        "fractions égales",
+        "simplification de fractions"
+      ],
+      "enonce": "1) Complète : 3 ha 50 a 7 ca = ......... m²\n2) Pose et effectue : 40 279 × 221 = .........\n3) Pour avoir 1 m³, combien de litres faut-il ajouter à 359 litres ?\n4) Réduis au même dénominateur les fractions 6/8 et 9/12.",
+      "reponse": "1) 1 ha = 10 000 m², donc 3 ha = 30 000 m² ; 1 a = 100 m², donc 50 a = 5000 m² ; 1 ca = 1 m², donc 7 ca = 7 m². Total : 30 000 + 5000 + 7 = 35 007 m².\n2) 40 279 × 221 = 8 901 659.\n3) 1 m³ = 1000 litres, donc il faut ajouter 1000 − 359 = 641 litres.\n4) Le plus petit dénominateur commun à 8 et 12 est 24 : 6/8 = 18/24 et 9/12 = 18/24. Les deux fractions sont donc égales — elles valent toutes les deux 3/4."
+    },
+    {
+      "id": "cee-maths-2011-probleme",
+      "session": 2011,
+      "partie": "Problème",
+      "chapitres": [
+        "volume d'un pavé droit",
+        "parallélépipède rectangle",
+        "aire de base",
+        "fraction d'un volume",
+        "conversion de volumes",
+        "mètre cube",
+        "litre",
+        "problème de bassin"
+      ],
+      "enonce": "Un bassin a la forme d'un parallélépipède rectangle de 6,75 m de long, 3,5 m de large et 2,21 m de profondeur.\n1) Quel est le volume de ce bassin ?\n2) Il est rempli d'eau aux 3/5. Calcule la quantité d'eau contenue dans ce bassin.",
+      "reponse": "1) On calcule d'abord l'aire de la base : 6,75 m × 3,50 m = 23,6250 m². Le volume est cette aire multipliée par la profondeur : 23,6250 × 2,21 = 52,21125 m³.\n2) Les 3/5 du volume : (52,21125 × 3) : 5 = 31,32675 m³. Comme 1 m³ = 1000 litres, cela représente 31 326,75 litres d'eau."
+    },
+    {
+      "id": "cee-maths-2012-operations",
+      "session": 2012,
+      "partie": "Opérations",
+      "chapitres": [
+        "addition de grands nombres",
+        "soustraction de grands nombres",
+        "division euclidienne",
+        "quotient décimal",
+        "arrondi",
+        "opérations posées"
+      ],
+      "enonce": "Posez et effectuez les opérations suivantes :\n1) 45 547 012 + 395 805 =\n2) 875 450 − 600 095 =\n3) 16 840 : 732 = (à 1/1000ᵉ près)",
+      "reponse": "1) 45 547 012 + 395 805 = 45 942 817.\n2) 875 450 − 600 095 = 275 355.\n3) 16 840 : 732 = 23,005 (au millième près). On peut le vérifier : 732 × 23 = 16 836, il reste 4, et 4 divisé par 732 donne 0,005 environ.",
+      "correction_du_livre": "Le corrigé imprimé annonce 16 840 : 732 = 23,142. C'est faux : 732 × 23,142 ferait près de 16 940, pas 16 840. Le premier pas de la division est pourtant juste — 732 × 23 = 16 836 — mais il reste alors 4, et non 104 : le quotient exact est 23,005 au millième près."
+    },
+    {
+      "id": "cee-maths-2012-probleme",
+      "session": 2012,
+      "partie": "Problème",
+      "chapitres": [
+        "périmètre d'un carré",
+        "aire d'un carré",
+        "clôture",
+        "rangées de fil",
+        "dépense totale",
+        "problème d'âges",
+        "année de naissance"
+      ],
+      "enonce": "I. a) Un jardin a la forme d'un carré dont le côté mesure 32 m. Calculer son périmètre, puis son aire.\n   b) On entoure ce jardin de 8 rangées de fil de fer qui coûte 3200 francs le mètre. Calculez la longueur du fil de fer utilisé, puis la dépense totale.\nII. Kadiatou est née lorsque sa mère avait 30 ans. En cette année 2012, Kadiatou a 13 ans. Trouvez :\n   a) l'année de naissance de Kadiatou\n   b) l'âge de sa mère aujourd'hui\n   c) l'année de naissance de sa mère.",
+      "reponse": "I. a) Périmètre = 32 × 4 = 128 m. Aire = 32 × 32 = 1024 m².\n   b) Le fil fait huit fois le tour : 128 × 8 = 1024 m. Dépense = 1024 × 3200 = 3 276 800 F.\nII. a) Kadiatou a 13 ans en 2012, elle est donc née en 2012 − 13 = 1999.\n   b) Sa mère avait 30 ans à sa naissance et Kadiatou a grandi de 13 ans depuis : la mère a aujourd'hui 30 + 13 = 43 ans.\n   c) La mère a 43 ans en 2012, elle est donc née en 2012 − 43 = 1969 (on retrouve la même chose par 1999 − 30 = 1969)."
+    },
+    {
+      "id": "cee-maths-2013-operations",
+      "session": 2013,
+      "partie": "Opérations",
+      "chapitres": [
+        "soustraction de durées",
+        "heures minutes secondes",
+        "conversion de longueurs",
+        "mètre",
+        "décamètre",
+        "décimètre",
+        "centimètre",
+        "multiplication de décimaux",
+        "soustraction de décimaux",
+        "division de décimaux",
+        "arrondi"
+      ],
+      "enonce": "Posez et effectuez les opérations suivantes :\na) 6h 23min 34s − 2h 56min 37s =\nb) 875,34 m + 1836,7 dam + 7,5 dm = ......... cm\nc) 15,08 × 203 =\nd) 7865,08 − 957,269 =\ne) 127,5 : 3,21 = ......... (au 1/100ᵉ près)",
+      "reponse": "a) On emprunte deux fois : 6h 23mn 34s = 5h 82mn 94s. Alors 5h 82mn 94s − 2h 56mn 37s = 3h 26mn 57s.\nb) On ramène tout aux centimètres : 1 m = 100 cm, donc 875,34 m = 87 534 cm ; 1 dam = 1000 cm, donc 1836,7 dam = 1 836 700 cm ; 1 dm = 10 cm, donc 7,5 dm = 75 cm. Total : 87 534 + 1 836 700 + 75 = 1 924 309 cm.\nc) 15,08 × 203 = 3061,24.\nd) 7865,080 − 957,269 = 6907,811.\ne) On rend le diviseur entier : 127,5 : 3,21 revient à 12 750 : 321 = 39,71 (au centième près).",
+      "correction_du_livre": "Le corrigé imprimé calcule « 7865,080 − 947,269 = 6917,811 » alors que l'énoncé demande 7865,08 − 957,269. Avec le nombre du sujet, la réponse est 6907,811."
+    },
+    {
+      "id": "cee-maths-2013-probleme",
+      "session": 2013,
+      "partie": "Problème",
+      "chapitres": [
+        "périmètre d'un rectangle",
+        "demi-périmètre",
+        "dimensions d'un rectangle",
+        "aire d'un rectangle",
+        "prix au m2",
+        "clôture",
+        "dépense totale",
+        "problème de jardin"
+      ],
+      "enonce": "Un jardin rectangulaire a 180 m de périmètre. Sa longueur est quatre fois plus grande que sa largeur.\n1) Calculez ses dimensions et son aire.\n2) Combien coûtera ce jardin si on le vendait à raison de 20 500 Fg le m² ?\n3) Le propriétaire l'entoure d'un grillage valant 75 000 Fg le mètre. Quelle est la dépense totale du jardin ainsi clôturé ?",
+      "reponse": "1) Le périmètre contient deux longueurs et deux largeurs. Comme la longueur vaut 4 largeurs, le périmètre contient 4 + 1 + 4 + 1 = 10 largeurs : 180 = 10 × largeur, donc largeur = 18 m. Le demi-périmètre valant 180 : 2 = 90 m, la longueur est 90 − 18 = 72 m. Aire = 72 × 18 = 1296 m².\n2) Prix du jardin = 20 500 × 1296 = 26 568 000 Fg.\n3) Le grillage fait le tour du jardin, soit 180 m : 75 000 × 180 = 13 500 000 Fg. La dépense totale du jardin ainsi clôturé est donc 26 568 000 + 13 500 000 = 40 068 000 Fg.",
+      "correction_du_livre": "Le corrigé imprimé s'arrête au prix du grillage, 13 500 000 Fg, et l'appelle « dépense totale ». Mais la question porte sur la dépense totale du jardin ainsi clôturé : il faut ajouter le prix du jardin lui-même, ce qui donne 40 068 000 Fg."
+    },
+    {
+      "id": "cee-maths-2014-operations",
+      "session": 2014,
+      "partie": "Opérations",
+      "chapitres": [
+        "conversion d'aires",
+        "hectare",
+        "are",
+        "décamètre carré",
+        "décimètre carré",
+        "multiplication de décimaux",
+        "soustraction de durées",
+        "heures minutes secondes",
+        "division de décimaux",
+        "arrondi"
+      ],
+      "enonce": "Posez et effectuez les opérations suivantes :\n1) 7,3 ha + 6 dm² = ......... dam²\n2) 139,47 × 0,75 =\n3) 2h 30min − 1h 29mn 45s =\n4) 425,70 : 25,25 = ......... (à 1/100 près)",
+      "reponse": "1) On ramène tout aux décamètres carrés. 1 are = 1 dam², et 1 ha = 100 a, donc 7,3 ha = 730 a = 730 dam². Pour les décimètres carrés : 1 dam² = 100 m² et 1 m² = 100 dm², donc 1 dam² = 10 000 dm² et 6 dm² = 0,0006 dam². Total : 730 + 0,0006 = 730,0006 dam².\n2) 139,47 × 0,75 = 104,6025 (multiplier par 0,75 revient à prendre les trois quarts).\n3) Il n'y a pas de secondes à gauche : on transforme, 2h 30mn = 2h 29mn 60s. Alors 2h 29mn 60s − 1h 29mn 45s = 1h 00mn 15s.\n4) On rend le diviseur entier : 425,70 : 25,25 revient à 42 570 : 2525 = 16,86 (au centième près).",
+      "correction_du_livre": "Le corrigé imprimé calcule « 159,47 × 0,75 = 119,6025 » alors que l'énoncé demande 139,47 × 0,75, dont la réponse est 104,6025."
+    },
+    {
+      "id": "cee-maths-2014-probleme",
+      "session": 2014,
+      "partie": "Problème",
+      "chapitres": [
+        "prix d'achat",
+        "frais",
+        "prix de revient",
+        "prix de vente",
+        "bénéfice",
+        "problème de commerce",
+        "prix unitaire"
+      ],
+      "enonce": "Un marchand achète 200 litres d'huile de palme à raison de 8450 fg le litre. Le transport revient à 48 000 fg et la mise en fût à 15 000 fg. Il revend ces 200 litres à raison de 12 500 fg le litre.\n1) Calcule le prix d'achat des 200 litres.\n2) Quel est le prix de revient d'un litre d'huile ?\n3) Ce marchand a-t-il un bénéfice ou une perte ? De combien ?",
+      "reponse": "1) Prix d'achat = 8450 × 200 = 1 690 000 fg.\n2) Les frais s'ajoutent au prix d'achat : 48 000 + 15 000 = 63 000 fg, donc le prix de revient des 200 litres vaut 1 690 000 + 63 000 = 1 753 000 fg. Pour un litre : 1 753 000 : 200 = 8765 fg.\n3) Prix de vente = 12 500 × 200 = 2 500 000 fg. Comme le prix de vente dépasse le prix de revient, le marchand réalise un bénéfice : 2 500 000 − 1 753 000 = 747 000 fg."
     }
   ]
 }
