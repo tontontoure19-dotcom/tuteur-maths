@@ -256,7 +256,8 @@ async function charger() {
     }
 
     $('liste').innerHTML = d.abonnements.map(a => {
-      const etat = a.testeur ? '<span class="etat e-testeur">testeur</span>'
+      const etat = a.retire ? '<span class="etat e-fini">retiré</span>'
+                 : a.testeur ? '<span class="etat e-testeur">testeur</span>'
                  : !a.actif ? '<span class="etat e-fini">coupé</span>'
                  : a.expire ? '<span class="etat e-fini">expiré</span>'
                  : a.jours_restants <= 3 ? `<span class="etat e-bientot">${a.jours_restants} j</span>`
@@ -265,8 +266,10 @@ async function charger() {
         <div class="infos">
           <div class="nom">${echapper(a.nom)} ${etat}</div>
           <div class="code">${echapper(a.code)}</div>
-          <div class="detail">${a.testeur
-              ? 'sans date de fin · géré dans Render'
+          <div class="detail">${a.retire
+              ? 'accès retiré le ' + dateLisible(a.retire_le)
+              : a.testeur
+              ? 'sans date de fin · code distribué depuis Render'
               : `${a.niveau === 'bac' ? 'Terminale' : '10ᵉ année'} · ${echapper(a.formule)}
                  · jusqu'au ${dateLisible(a.expire_le)}
                  ${a.telephone ? '· ' + echapper(a.telephone) : ''}`}</div>
@@ -274,7 +277,11 @@ async function charger() {
         </div>
         <div class="actions">
           <button data-message="${echapper(a.code)}" data-nom="${echapper(a.nom)}" title="Message de la semaine">📩</button>
-          ${a.testeur ? '' : `
+          ${a.retire ? `
+            <button class="vert" data-rendre="${echapper(a.code)}" title="Rendre l'accès">↩ rendre</button>`
+           : a.testeur ? `
+            <button class="rouge" data-retirer="${echapper(a.code)}" title="Retirer l'accès">✕ retirer</button>`
+           : `
             <button data-renommer="${echapper(a.code)}" data-nom="${echapper(a.nom)}" title="Corriger le nom">✏️</button>
             <button class="vert" data-prolonger="${echapper(a.code)}" title="Ajouter un mois">+ mois</button>
             <button data-semaine="${echapper(a.code)}" title="Ajouter une semaine">+ sem.</button>
@@ -287,6 +294,18 @@ async function charger() {
     brancher('renommer', renommer);
     brancher('prolonger', c => agir(`/api/admin/abonnement/${encodeURIComponent(c)}/prolonger?formule=mois`));
     brancher('semaine', c => agir(`/api/admin/abonnement/${encodeURIComponent(c)}/prolonger?formule=semaine`));
+    brancher('retirer', c => {
+      if (confirm(`Retirer l'accès du testeur ${c} ?
+
+`
+                + `Il ne pourra plus ouvrir l'application. Son travail est conservé `
+                + `et vous pouvez lui rendre l'accès à tout moment.
+
+`
+                + `Inutile de toucher à Render.`))
+        agir(`/api/admin/abonnement/${encodeURIComponent(c)}/retirer`);
+    });
+    brancher('rendre', c => agir(`/api/admin/abonnement/${encodeURIComponent(c)}/rendre`));
     brancher('couper', c => {
       if (confirm(`Couper l'accès de ${c} ?\n\nLe travail de l'élève est conservé.`))
         agir(`/api/admin/abonnement/${encodeURIComponent(c)}/couper`);

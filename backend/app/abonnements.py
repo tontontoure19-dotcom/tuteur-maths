@@ -120,6 +120,47 @@ class Abonnements:
         self._ecrire(registre)
         return {"code": code, **registre[code]}
 
+    def retirer(self, code: str, nom: str = "") -> dict:
+        """Coupe un accès de TESTEUR sans passer par Render.
+
+        Les codes des testeurs vivent dans la variable d'environnement
+        CODE_ACCES : les enlever oblige à éditer une liste séparée par des
+        virgules dans le tableau de bord, avec le risque d'effacer le mauvais
+        code, et à redéployer. On inscrit donc le retrait ici, sur le disque
+        persistant, et c'est lui qui l'emporte à la vérification.
+
+        Le retrait est réversible par « rendre » : on ne perd jamais ce qu'on
+        sait d'un testeur, au cas où il reviendrait.
+        """
+        registre = self._lire()
+        entree = registre.get(code, {})
+        entree.update({
+            "nom": nom.strip() or entree.get("nom", "—"),
+            "niveau": entree.get("niveau"),
+            "formule": "testeur retiré",
+            "retire_le": _aujourdhui().isoformat(),
+            "retire": True,
+            "actif": False,
+        })
+        registre[code] = entree
+        self._ecrire(registre)
+        return {"code": code, **entree}
+
+    def rendre(self, code: str) -> dict | None:
+        """Annule un retrait : le testeur retrouve son accès."""
+        registre = self._lire()
+        if code not in registre or not registre[code].get("retire"):
+            return None
+        registre[code].pop("retire", None)
+        registre[code].pop("retire_le", None)
+        registre[code]["actif"] = True
+        self._ecrire(registre)
+        return {"code": code, **registre[code]}
+
+    def est_retire(self, code: str) -> bool:
+        """Cet accès a-t-il été retiré à la main ?"""
+        return bool(self._lire().get(code, {}).get("retire"))
+
     def couper(self, code: str) -> dict | None:
         """Suspend un abonnement sans effacer ce qu'on sait de lui."""
         registre = self._lire()
@@ -136,7 +177,8 @@ class Abonnements:
         abonnement = self._lire().get(code)
         if not abonnement or not abonnement.get("actif"):
             return False
-        return _aujourdhui() <= date.fromisoformat(abonnement["expire_le"])
+        fin = abonnement.get("expire_le")
+        return bool(fin) and _aujourdhui() <= date.fromisoformat(fin)
 
     def details(self, code: str) -> dict | None:
         abonnement = self._lire().get(code)
@@ -150,12 +192,19 @@ class Abonnements:
         registre = self._lire()
         liste = []
         for code, abonnement in registre.items():
-            fin = date.fromisoformat(abonnement["expire_le"])
+            # Un testeur retiré n'a pas de date de fin : il n'en a jamais eu.
+            # Le registre ne doit jamais pouvoir casser la page du responsable,
+            # on lit donc la date sans supposer qu'elle est là.
+            brut = abonnement.get("expire_le")
+            fin = date.fromisoformat(brut) if brut else None
             liste.append({
                 "code": code,
                 **abonnement,
-                "jours_restants": (fin - _aujourdhui()).days,
-                "expire": fin < _aujourdhui(),
+                "jours_restants": (fin - _aujourdhui()).days if fin else None,
+                "expire": bool(fin and fin < _aujourdhui()),
             })
-        liste.sort(key=lambda a: (not a["actif"], a["jours_restants"]))
+        # Les sans-date passent en dernier : ce sont les accès retirés.
+        liste.sort(key=lambda a: (not a["actif"],
+                                  a["jours_restants"] is None,
+                                  a["jours_restants"] or 0))
         return liste

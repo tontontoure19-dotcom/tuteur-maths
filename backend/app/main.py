@@ -254,6 +254,17 @@ def _verifier_code(code: str | None) -> str | None:
     if not CODES_ACCES and not CODE_ADMIN:
         return None
     propre = (code or "").strip()
+
+    # Un retrait décidé dans l'espace responsable l'emporte sur tout le reste,
+    # y compris sur la variable d'environnement : c'est le seul moyen de
+    # couper un testeur sans rééditer CODE_ACCES dans Render et redéployer.
+    if ABONNEMENTS.est_retire(propre):
+        raise HTTPException(
+            status_code=402,
+            detail=("Cet accès a été retiré. Si tu penses que c'est une erreur, "
+                    "préviens la personne qui t'a donné le code."),
+        )
+
     if propre in CODES_ACCES or _est_admin(propre) or ABONNEMENTS.valide(propre):
         return propre
 
@@ -1564,6 +1575,31 @@ def couper_abonnement(abonne: str, code: str | None = None):
     resultat = ABONNEMENTS.couper(abonne)
     if resultat is None:
         raise HTTPException(status_code=404, detail="Abonnement introuvable.")
+    return resultat
+
+
+@app.post("/api/admin/abonnement/{abonne}/retirer")
+def retirer_acces(abonne: str, code: str | None = None):
+    """Retire un accès de testeur, sans toucher à Render ni redéployer.
+
+    Les codes des testeurs vivent dans la variable CODE_ACCES : les enlever
+    de là oblige à éditer une liste séparée par des virgules et à redéployer,
+    avec le risque d'effacer le mauvais code. Le retrait s'inscrit donc dans
+    le registre, sur le disque persistant, et l'emporte à la vérification.
+    """
+    _exiger_admin(code)
+    activite = _activite_du_code(abonne)
+    nom = ", ".join(activite["eleves"])
+    return ABONNEMENTS.retirer(abonne, nom)
+
+
+@app.post("/api/admin/abonnement/{abonne}/rendre")
+def rendre_acces(abonne: str, code: str | None = None):
+    """Annule un retrait — le testeur retrouve son accès et son travail."""
+    _exiger_admin(code)
+    resultat = ABONNEMENTS.rendre(abonne)
+    if resultat is None:
+        raise HTTPException(status_code=404, detail="Cet accès n'est pas retiré.")
     return resultat
 
 
