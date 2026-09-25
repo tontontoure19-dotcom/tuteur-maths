@@ -537,18 +537,15 @@ def _consommation(code: str | None) -> dict:
     }
 
 
-def _verifier_quota(eleve: str, code: str | None) -> None:
-    """Ce qu'un abonnement a le droit de consommer.
+def _verifier_place_eleve(eleve: str, code: str | None) -> None:
+    """Un abonnement = un élève. Ce refus-là reste bloquant à l'entrée.
 
-    L'application garde le code enregistré dans l'appareil, comme WhatsApp :
-    redemander le code chaque jour ferait fuir les élèves. La contrepartie,
-    c'est que le budget doit être protégé ici, côté serveur.
+    Il ne s'agit pas de budget mais d'identité : laisser entrer un second
+    élève mélangerait son travail à celui du premier.
     """
     if not code:
         return
-    fichiers = _fichiers_du_code(code)
-
-    connus = {f.stem for f in fichiers}
+    connus = {f.stem for f in _fichiers_du_code(code)}
     if _identifiant(eleve, code) not in connus and len(connus) >= MAX_ELEVES_PAR_CODE:
         raise HTTPException(
             status_code=409,
@@ -560,26 +557,48 @@ def _verifier_quota(eleve: str, code: str | None) -> None:
             ),
         )
 
+
+def _motif_lecture_seule(code: str | None) -> str:
+    """Pourquoi cet élève ne peut plus POSER de question aujourd'hui.
+
+    Rend une phrase à lui montrer, ou une chaîne vide si tout va bien. Le
+    plafond ferme la porte aux nouvelles questions — celles-là coûtent de
+    l'argent — mais pas à la relecture de son propre travail, qui ne coûte
+    rien. Une élève qui a épuisé son mois à quelques jours de l'examen doit
+    pouvoir relire ce qu'elle a déjà compris.
+    """
+    if not code:
+        return ""
     etat = _consommation(code)
 
     # Garde-fou technique : une boucle ou un code partagé à toute une classe.
     # Volontairement très au-dessus d'une journée de révision normale.
     if etat["jour"] >= MAX_QUESTIONS_PAR_JOUR:
-        raise HTTPException(
-            status_code=429,
-            detail=("Tu as beaucoup travaillé aujourd'hui — c'est le maximum que "
-                    "je peux suivre en une journée. Reprends demain, ton travail "
-                    "est gardé."),
-        )
+        return ("Tu as beaucoup travaillé aujourd'hui — c'est le maximum que "
+                "je peux suivre en une journée. Tu peux relire tout ton travail, "
+                "et reprendre les questions demain.")
 
     if etat["mois"] >= MAX_QUESTIONS_PAR_MOIS:
-        raise HTTPException(
-            status_code=429,
-            detail=(f"Tu as posé {etat['mois']} questions ce mois-ci, c'est le "
-                    "maximum de ton abonnement. Il repart à zéro le 1er du mois "
-                    "prochain — préviens la personne qui te suit si tu as besoin "
-                    "de plus."),
-        )
+        return (f"Tu as posé {etat['mois']} questions ce mois-ci, c'est le "
+                "maximum de ton abonnement. Tu gardes accès à tout ton travail "
+                "pour le relire. Les questions repartent le 1er du mois "
+                "prochain — préviens la personne qui te suit si tu as besoin "
+                "de plus tôt.")
+
+    return ""
+
+
+def _verifier_quota(eleve: str, code: str | None) -> None:
+    """Ce qu'un abonnement a le droit de consommer, au moment de répondre.
+
+    L'application garde le code enregistré dans l'appareil, comme WhatsApp :
+    redemander le code chaque jour ferait fuir les élèves. La contrepartie,
+    c'est que le budget doit être protégé ici, côté serveur.
+    """
+    _verifier_place_eleve(eleve, code)
+    motif = _motif_lecture_seule(code)
+    if motif:
+        raise HTTPException(status_code=429, detail=motif)
 
 
 # Quand il reste si peu de questions, le répétiteur prévient l'élève lui-même,
@@ -861,12 +880,19 @@ def verifier_eleve(eleve: str, code: str | None = None,
     Sans ce contrôle, la conversation s'ouvrait et c'est la première
     question qui était refusée : l'élève se croyait entré, puis se faisait
     rejeter. Le refus doit arriver avant, sur l'écran d'accueil.
+
+    Le plafond, lui, n'interdit plus d'entrer : il ouvre une séance en
+    LECTURE SEULE. L'élève retrouve ses cours et sa progression, et c'est
+    l'envoi d'une nouvelle question qui est refusé — la relecture ne coûte
+    rien, la bloquer reviendrait à retirer à une élève payante ce qu'elle a
+    déjà payé, parfois à quelques jours de l'examen.
     """
     code_utilise = _verifier_code(code)
-    _verifier_quota(eleve, code_utilise)
+    _verifier_place_eleve(eleve, code_utilise)
     if not _fichier_session(eleve, code_utilise).exists():
         _enregistrer(eleve, "inscription", "", code=code_utilise, niveau=niveau)
-    return {"autorise": True}
+    motif = _motif_lecture_seule(code_utilise)
+    return {"autorise": True, "lecture_seule": bool(motif), "motif": motif}
 
 
 @app.get("/api/profils")

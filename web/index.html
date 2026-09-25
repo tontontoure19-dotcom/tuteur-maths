@@ -97,6 +97,11 @@
   #symboles button:active{background:var(--vert-clair);border-color:var(--vert)}
 
   /* ---- Barre de saisie ---- */
+  /* Le bandeau du plafond prend la place de la barre de saisie : jaune, pas
+     rouge — l'élève n'a rien fait de mal, elle a beaucoup travaillé. */
+  #plafond{flex-shrink:0;background:#FFF8DC;border-top:1px solid #E8DFA8;
+           padding:14px 16px;padding-bottom:calc(env(safe-area-inset-bottom) + 14px);
+           font-size:14px;line-height:1.5;color:#5C4A00}
   #barre{flex-shrink:0;background:#fff;border-top:1px solid #E8E4DE;padding:10px 12px;
          padding-bottom:calc(env(safe-area-inset-bottom) + 10px);display:flex;gap:8px;align-items:flex-end}
   #texte{flex:1;border:1px solid #DDD8D0;border-radius:20px;padding:11px 15px;font-size:16px;
@@ -205,7 +210,7 @@
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 40</div>
+  <div id="version">version 41</div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -247,6 +252,10 @@
   <button data-symbole="°">°</button>
 </div>
 
+<!-- Montré à la place de la barre de saisie quand le plafond est atteint :
+     l'élève continue de lire ses cours, mais ne peut plus questionner. -->
+<div id="plafond" class="cache"></div>
+
 <div id="barre" class="cache">
   <input type="file" id="fichier" accept="image/*" capture="environment" hidden>
   <button class="rond" id="photo-btn" title="Photographier l'exercice">📷</button>
@@ -263,6 +272,10 @@ let historique = [];      // conversation envoyée à l'IA
 let photo = null;         // {data, type} de la photo en attente
 let occupe = false;
 let codeAcces = localStorage.getItem('code_acces') || '';
+/* Plafond atteint : l'élève garde tout son travail sous les yeux, mais ne
+   peut plus poser de question. Contient la phrase à lui montrer, ou '' si
+   elle peut travailler normalement. */
+let lectureSeule = '';
 // Séance de travail en cours. L'élève peut en ouvrir une deuxième pour une
 // question rapide, puis revenir à son cours : chacune garde son fil.
 let seanceActive = null;
@@ -620,6 +633,13 @@ async function demarrer() {
       $('accueil-erreur').classList.remove('cache');
       return;
     }
+    // Plafond atteint : on entre quand même, mais sans pouvoir poser de
+    // question. Relire son travail ne coûte rien, et c'est précisément ce
+    // dont l'élève a besoin les jours où elle révise le plus.
+    if (r.ok) {
+      const d = await r.json().catch(() => ({}));
+      lectureSeule = d.lecture_seule ? (d.motif || '') : '';
+    }
     if (r.status === 403) {
       $('accueil-erreur').textContent = "Ce code d'accès n'est pas reconnu. " +
         'Vérifie-le auprès de la personne qui te l\'a donné.';
@@ -666,6 +686,7 @@ function ouvrirChat() {
   ['progres', 'seances'].forEach(id => $(id).classList.add('cache'));
   seanceActive = Number(localStorage.getItem(cleSeance())) || null;
   ['entete', 'fil', 'barre', 'symboles'].forEach(id => $(id).classList.remove('cache'));
+  appliquerLectureSeule();
   const LIBELLES = { cee: 'CM2 · Calcul',
                      'cee-sciences': 'CM2 · Sciences',
                      bepc: '10ᵉ année · Maths',
@@ -1035,7 +1056,19 @@ function afficherProgres(d) {
 }
 
 function majEnvoyer() {
-  $('envoyer').disabled = occupe || (!zone.value.trim() && !photo);
+  $('envoyer').disabled = occupe || lectureSeule !== '' || (!zone.value.trim() && !photo);
+}
+
+/* Plafond atteint : on remplace la barre de saisie par une explication, sans
+   rien retirer du fil. L'élève peut relire tous ses cours, refaire ses
+   exercices, consulter sa progression — seule la question nouvelle est
+   refusée, parce que c'est elle qui coûte. */
+function appliquerLectureSeule() {
+  const actif = lectureSeule !== '';
+  $('plafond').textContent = lectureSeule;
+  $('plafond').classList.toggle('cache', !actif);
+  ['barre', 'symboles'].forEach(id => $(id).classList.toggle('cache', actif));
+  majEnvoyer();
 }
 
 /* Le tuteur écrit **un mot** pour insister : on l'affiche en gras au lieu
@@ -1066,7 +1099,7 @@ class ErreurServeur extends Error {}
 /* ---------- Envoi et réponse en direct ---------- */
 async function envoyer() {
   const texte = zone.value.trim();
-  if (occupe || (!texte && !photo)) return;
+  if (occupe || lectureSeule || (!texte && !photo)) return;
 
   occupe = true;
   afficher('eleve', texte, photo && photo.url);
@@ -1113,6 +1146,13 @@ async function envoyer() {
        redemander le code n'y changerait rien : on la montre telle quelle. */
     if (r.status === 402 || r.status === 409 || r.status === 429) {
       const { detail } = await r.json().catch(() => ({}));
+      // Le plafond tombe parfois en pleine séance. On bascule alors en
+      // lecture seule : inutile de laisser l'élève réessayer et recevoir le
+      // même refus à chaque message.
+      if (r.status === 429) {
+        lectureSeule = detail || "Tu as atteint le maximum de questions de ton abonnement.";
+        appliquerLectureSeule();
+      }
       throw new ErreurServeur(detail || "Cet abonnement a atteint sa limite.");
     }
     if (!r.ok) throw new Error('serveur');
