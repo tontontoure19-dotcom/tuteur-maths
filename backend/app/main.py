@@ -1532,6 +1532,7 @@ def _activite_du_code(code_abonne: str) -> dict:
     dernier jour, quand il est trop tard pour relancer.
     """
     eleves, questions, derniere = [], 0, ""
+    niveaux: set[str] = set()
     for fichier in _fichiers_du_code(code_abonne):
         echanges = _journal(fichier)
         if not echanges:
@@ -1540,6 +1541,13 @@ def _activite_du_code(code_abonne: str) -> dict:
                       or fichier.stem.split("_", 1)[-1].replace("_", " ").title())
         questions += sum(1 for e in echanges if e["role"] == "eleve")
         derniere = max(derniere, echanges[-1]["horodatage"])
+        # Les matières où l'élève a VRAIMENT posé une question. On écarte les
+        # lignes d'inscription : ouvrir un niveau par curiosité n'est pas y
+        # travailler, et le compter ferait crier au partage pour rien. On
+        # écarte aussi les lignes sans matière — les plus anciennes, d'avant
+        # l'arrivée des matières — pour la même raison.
+        niveaux.update(e["niveau"] for e in echanges
+                       if e["role"] == "eleve" and e.get("niveau"))
 
     jours = None
     if derniere:
@@ -1556,6 +1564,11 @@ def _activite_du_code(code_abonne: str) -> dict:
         "jours_sans_travailler": jours,
         # Le signal qui compte : un code distribué que personne n'a ouvert.
         "jamais_commence": questions == 0,
+        # Les matières réellement travaillées. Un abonnement de Terminale où
+        # l'on trouve des séances de 10ᵉ année trahit presque à coup sûr un
+        # code prêté : le copain ne peut entrer qu'en prenant le prénom de
+        # l'abonné, mais il ne peut pas cacher sa classe.
+        "niveaux_utilises": sorted(niveaux),
     }
 
 
