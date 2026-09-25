@@ -97,8 +97,8 @@ tuteur-bepc/
 ```
 
 **Le fichier le plus important est `backend/app/prompts.py`.** C'est lui qui
-définit comment le tuteur enseigne et refuse de donner les réponses. C'est là
-qu'on intégrera les sujets d'annales du BEPC.
+définit comment le tuteur enseigne et refuse de donner les réponses. Les
+sujets d'annales, eux, vivent dans `backend/app/annales/`.
 
 ---
 
@@ -117,9 +117,14 @@ C'est la base du futur rapport hebdomadaire au parent.
 
 | | Montant |
 |---|---|
-| Prix pour le parent | ~75 000 GNF/mois |
+| Prix pour le parent — BEPC et BAC | 100 000 GNF/mois |
+| Prix pour le parent — CEE (CM2) | 75 000 GNF/mois |
 | Coût de l'IA (estimation) | ~30 000 GNF/élève/mois |
-| **Marge** | **~45 000 GNF/élève/mois** |
+| **Marge** | **45 000 à 70 000 GNF/élève/mois** |
+
+À titre de comparaison, un répétiteur à domicile à Conakry demande
+100 000 à 150 000 GNF par mois en groupe, et 300 000 à 500 000 GNF en
+cours individuel.
 
 À valider avec les coûts réels mesurés pendant le test.
 
@@ -127,17 +132,43 @@ C'est la base du futur rapport hebdomadaire au parent.
 
 ## Ce qui reste à faire
 
-- [ ] Intégrer les vrais sujets d'annales BEPC dans `prompts.py`
+- [x] Intégrer de vrais sujets d'annales (voir le tableau ci-dessous)
 - [x] Suivi de niveau et recommandations (page parent)
 - [ ] Envoi automatique du bilan par WhatsApp chaque semaine
-- [ ] Limite d'usage par abonnement (protéger la marge)
-- [ ] Mise en ligne (Render) pour que les élèves y accèdent hors du PC
-- [ ] Choisir le nom définitif (langue nationale)
+- [x] Limite d'usage par abonnement (protéger la marge)
+- [x] Mise en ligne (Render) pour que les élèves y accèdent hors du PC
+- [x] Choisir le nom définitif (langue nationale) — **Kharandi**
 - [x] Deux niveaux : 10e année (BEPC) et Terminale (BAC)
 - [x] Plusieurs élèves sur un même téléphone (profils séparés)
-- [ ] Système de codes d'accès (un code = un abonnement)
+- [x] Système de codes d'accès (un code = un abonnement)
 - [ ] Paiement hebdomadaire (Orange Money / MTN)
 - [ ] Test avec des candidats BEPC et BAC
+- [ ] Annales de CEE : géographie et histoire (après octobre 2026)
+- [ ] Annales de BAC maths : sessions 2017 à 2025 (pages manquantes)
+
+---
+
+## Annales intégrées
+
+Le tuteur puise dans de vrais sujets d'examen. Ils ne servent jamais à
+donner la réponse : ils servent à proposer à l'élève un exercice tombé
+sur ce qu'il vient justement de travailler.
+
+| Examen | Matière | Sessions | Entrées |
+|---|---|---|---|
+| CEE (CM2) | Calcul | 26, de 2000 à 2025 | 52 |
+| CEE (CM2) | Sciences d'observation | 21, de 2005 à 2025 | 21 |
+| BEPC | Maths | 21, de 2005 à 2025 | 72 |
+| BEPC | Physique | 20, de 2006 à 2025 | 56 |
+| BEPC | Chimie | 20, de 2006 à 2025 | 50 |
+| BAC | Maths | 4 seulement, 2012-2015 ⚠️ | 15 |
+| BAC | Physique | 9, de 2016 à 2024, SM et SE | 18 |
+| BAC | Chimie | 30, de 1993 à 2025 | 35 |
+
+Chaque résultat a été **recalculé** plutôt que recopié du corrigé. Quand
+le livre se trompe, l'entrée porte un champ `correction_du_livre` qui
+explique l'erreur : l'élève voit ainsi le bon calcul sans être accusé de
+s'être trompé.
 
 ---
 
