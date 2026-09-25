@@ -146,9 +146,27 @@ def _journal(fichier: Path) -> list[dict]:
     return echanges
 
 
-def _seance_courante(echanges: list[dict]) -> int:
-    """Dernière séance touchée par l'élève."""
-    return echanges[-1]["seance"] if echanges else 1
+def _seance_courante(echanges: list[dict], niveau: str | None = None) -> int:
+    """Dernière séance touchée par l'élève, dans cette matière.
+
+    La matière compte. Sans elle, l'élève qui passait des maths à la
+    physique voyait sa première question de physique rangée dans la séance
+    de MATHS restée ouverte : la séance appartient à la matière de sa
+    première ligne, si bien que la question disparaissait du fil de physique
+    et venait polluer celui de maths. On ouvre donc une séance neuve quand
+    la matière demandée n'en a encore aucune.
+
+    Sans matière précisée, on garde l'ancien comportement : les appelants
+    qui filtrent déjà leurs échanges n'ont rien à changer.
+    """
+    if not echanges:
+        return 1
+    if not niveau:
+        return echanges[-1]["seance"]
+    de_la_matiere = _du_niveau(echanges, niveau)
+    if de_la_matiere:
+        return de_la_matiere[-1]["seance"]
+    return max(e["seance"] for e in echanges) + 1
 
 
 def _du_niveau(echanges: list[dict], niveau: str | None) -> list[dict]:
@@ -752,9 +770,11 @@ def chat(demande: DemandeChat):
         for m in demande.messages
     ]
 
-    # Séance de travail : celle demandée, sinon la dernière ouverte.
+    # Séance de travail : celle demandée, sinon la dernière ouverte DANS
+    # CETTE MATIÈRE — une question de physique n'a rien à faire dans la
+    # séance de maths que l'élève avait laissée ouverte.
     seance = demande.seance or _seance_courante(
-        _journal(_fichier_session(demande.eleve, code_utilise)))
+        _journal(_fichier_session(demande.eleve, code_utilise)), demande.niveau)
 
     # Se calcule AVANT d'enregistrer le message : sinon la dernière trace
     # aurait une seconde d'âge et l'absence deviendrait invisible.
@@ -1168,6 +1188,12 @@ def _reponse_plan(plan: dict | None, niveau: str) -> dict:
         "etat": module_plan.etat(plan) if plan else None,
         "mois_proposes": _mois_proposes(),
         "rythmes": list(module_plan.RYTHMES),
+        # Les premiers chapitres de la matière. L'élève qui arrive n'a pas
+        # encore de plan : c'est avec eux que l'accueil lui propose quelque
+        # chose de précis à faire, au lieu de lui demander sur quoi il
+        # travaille — question à laquelle beaucoup ne savent pas répondre.
+        "chapitres_cles": [nom for nom, _ in
+                           module_plan.CHAPITRES.get(niveau, [])[:3]],
     }
 
 

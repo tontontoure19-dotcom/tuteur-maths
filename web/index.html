@@ -80,6 +80,15 @@
   .tuteur{align-self:flex-start;background:#fff;border:1px solid #E8E4DE;border-bottom-left-radius:5px}
   .erreur{align-self:center;background:#FDECEC;color:#9B2C2C;font-size:14px;border-radius:12px}
   .msg img{max-width:100%;border-radius:12px;margin-bottom:8px;display:block}
+  /* Les points de départ proposés au tout premier message. Un élève qui
+     arrive n'a pas forcément d'exercice sous la main : sans eux il doit
+     inventer une question, et beaucoup referment l'application. */
+  .departs{align-self:flex-start;max-width:86%;display:flex;flex-direction:column;
+           gap:7px;margin-top:-2px}
+  .depart{background:#fff;border:1.5px solid var(--vert);color:var(--vert);
+          border-radius:16px;padding:11px 15px;font-size:14.5px;font-weight:600;
+          text-align:left;cursor:pointer;font-family:inherit;line-height:1.35}
+  .depart:active{background:var(--vert-clair)}
   .points span{display:inline-block;width:7px;height:7px;margin:0 2px;background:var(--gris);
                border-radius:50%;animation:saute 1.2s infinite}
   .points span:nth-child(2){animation-delay:.2s}.points span:nth-child(3){animation-delay:.4s}
@@ -210,7 +219,7 @@
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 42</div>
+  <div id="version">version 43</div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -706,9 +715,11 @@ function ouvrirChat() {
   // réseau ; le serveur, lui, a l'historique complet et prend le relais.
   const local = restaurer();
   if (!local) {
+    // Une question courte, à laquelle les boutons de départ répondent en un
+    // geste. L'ancienne version détaillait quoi faire en deux phrases : un
+    // élève qui arrive ne lit pas des consignes, il touche ou il s'en va.
     const accueil = afficher('tuteur',
-      'Salut ' + eleve + ' ! Sur quoi tu travailles aujourd\'hui ?\n\n' +
-      'Tu peux m\'écrire ta question, ou photographier ton exercice avec le bouton 📷.');
+      'Salut ' + eleve + ' ! Par quoi on commence ?');
     annoncerPlan(accueil);
   }
   $('fil').scrollTop = $('fil').scrollHeight;
@@ -1026,11 +1037,74 @@ function afficherPlan(d, modifier = false) {
 async function annoncerPlan(bulle) {
   try {
     const d = await chargerPlan();
-    if (!d.plan || !d.etat.prochain || !bulle.isConnected) return;
-    bulle.corps.innerHTML = formater(
-      'Salut ' + eleve + ' ! Au programme de ton plan : **' + d.etat.prochain + '**. On s\'y met ?\n\n' +
-      'Si tu as plutôt un exercice à toi, écris-le ou photographie-le avec le bouton 📷.');
+    if (!bulle.isConnected) return;
+    if (d.plan && d.etat && d.etat.prochain) {
+      bulle.corps.innerHTML = formater(
+        'Salut ' + eleve + ' ! Au programme de ton plan : **' + d.etat.prochain + '**. On s\'y met ?');
+      proposerDepart([d.etat.prochain]);
+      return;
+    }
+    proposerDepart(d.chapitres_cles || []);
   } catch (e) { /* sans plan ou hors ligne : le message d'accueil habituel suffit */ }
+}
+
+/* Trois façons de commencer, en un seul geste.
+
+   C'est le point le plus fragile du produit : sur douze testeurs, trois
+   n'ont jamais envoyé un seul message. L'accueil demandait « sur quoi tu
+   travailles ? » — une question qui suppose d'avoir un exercice sous la
+   main, de choisir, puis de taper. Trois obstacles avant le premier mot.
+   Ces boutons n'en laissent aucun, et ne coûtent rien : ils n'appellent
+   l'IA que si l'élève en touche un. */
+const NOM_EXAMEN_COURT = { cee: 'CEE', bepc: 'BEPC', bac: 'BAC' };
+
+function proposerDepart(chapitres) {
+  if (lectureSeule || document.querySelector('.departs')) return;
+  const chapitre = (chapitres || [])[0];
+  const examen = NOM_EXAMEN_COURT[niveau.split('-')[0]] || 'examen';
+
+  // Les chapitres sont écrits comme des titres (« Racines carrées ») : au
+  // milieu d'une phrase, la majuscule détonne.
+  const dansLaPhrase = chapitre
+    && chapitre.charAt(0).toLowerCase() + chapitre.slice(1);
+
+  const choix = [['📷', "J'ai un exercice, je le photographie", () => $('fichier').click()]];
+  if (chapitre) {
+    choix.push(['📄', 'Un exercice tombé au ' + examen,
+                () => lancer('Donne-moi un exercice tombé au ' + examen
+                             + ' sur ' + dansLaPhrase + '.')]);
+    choix.push(['📚', 'Explique-moi : ' + chapitre,
+                () => lancer('Explique-moi ' + dansLaPhrase + '. Je pars de zéro.')]);
+  } else {
+    choix.push(['📚', 'Par où je commence ?',
+                () => lancer('Par où je commence pour préparer le ' + examen + ' ?')]);
+  }
+
+  const bloc = document.createElement('div');
+  bloc.className = 'departs';
+  choix.forEach(([icone, libelle, faire]) => {
+    const b = document.createElement('button');
+    b.className = 'depart';
+    b.textContent = icone + '  ' + libelle;
+    b.addEventListener('click', faire);
+    bloc.appendChild(b);
+  });
+  $('fil').appendChild(bloc);
+  $('fil').scrollTop = $('fil').scrollHeight;
+}
+
+/* L'élève a touché un bouton : on écrit sa phrase à sa place et on envoie. */
+function lancer(phrase) {
+  zone.value = phrase;
+  majEnvoyer();
+  envoyer();
+}
+
+/* Dès le premier message, les propositions n'ont plus lieu d'être : elles
+   encombreraient le fil de la conversation. */
+function retirerDepart() {
+  const bloc = document.querySelector('.departs');
+  if (bloc) bloc.remove();
 }
 
 function afficherProgres(d) {
@@ -1106,6 +1180,7 @@ async function envoyer() {
   const texte = zone.value.trim();
   if (occupe || lectureSeule || (!texte && !photo)) return;
 
+  retirerDepart();
   occupe = true;
   afficher('eleve', texte, photo && photo.url);
   historique.push({ role: 'user', content: texte,
