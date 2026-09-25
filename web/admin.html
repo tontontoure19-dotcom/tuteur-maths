@@ -28,7 +28,10 @@
        font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;width:100%}
   .btn:disabled{opacity:.5;cursor:wait}
 
-  .chiffres{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+  /* auto-fit plutôt qu'un nombre fixe : un compteur de plus ne casse plus la
+     rangée, il se replace tout seul selon la largeur de l'écran. */
+  .chiffres{display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));
+            gap:10px;margin-bottom:14px}
   .chiffre{background:#fff;border:1px solid var(--bord);border-radius:14px;padding:14px 10px;text-align:center}
   .chiffre b{display:block;font-size:22px;color:var(--vert)}
   .chiffre span{font-size:11.5px;color:var(--gris)}
@@ -105,6 +108,7 @@
         <select id="niveau">
           <option value="bepc">10ᵉ année (BEPC)</option>
           <option value="bac">Terminale (BAC)</option>
+          <option value="cee">CM2 (CEE)</option>
         </select>
       </div>
       <div>
@@ -112,7 +116,9 @@
         <select id="formule">
           <option value="essai">Essai gratuit — 10 jours</option>
           <option value="semaine">Semaine — 20 000 GNF</option>
-          <option value="mois">Mois — 75 000 GNF</option>
+          <!-- Le tarif du mois n'est pas le même au CM2 : le libellé se met
+               à jour tout seul quand on change de niveau (voir majTarif). -->
+          <option value="mois">Mois — 100 000 GNF</option>
         </select>
       </div>
       <div class="large">
@@ -145,8 +151,19 @@ const echapper = t => String(t ?? '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'
 let codeAdmin = sessionStorage.getItem('code_admin') || '';
 const avecCode = url => url + (url.includes('?') ? '&' : '?') + 'code=' + encodeURIComponent(codeAdmin);
 
+/* prompt() n'est pas disponible partout : certaines applications installées
+   et certains navigateurs le refusent, et il lève alors une erreur qui
+   remplacerait toute la page par un message technique. */
+function saisir(question, valeur) {
+  try {
+    return prompt(question, valeur);
+  } catch (e) {
+    return null;
+  }
+}
+
 function demanderCode() {
-  const saisi = prompt("Votre code de responsable (ADMIN-…) :");
+  const saisi = saisir("Votre code de responsable (ADMIN-…) :");
   if (!saisi || !saisi.trim()) return false;
   codeAdmin = saisi.trim();
   sessionStorage.setItem('code_admin', codeAdmin);
@@ -175,6 +192,24 @@ function afficherErreur(texte) {
 }
 
 /* ---------- Créer un abonnement ---------- */
+
+/* Les noms des niveaux, au même endroit pour le formulaire et pour la liste :
+   quand un niveau s'ajoute dans l'application, il ne faut pas que la page du
+   responsable continue d'afficher l'ancien. */
+const NOM_NIVEAU = { bepc: '10ᵉ année', bac: 'Terminale', cee: 'CM2' };
+
+/* Le mois ne coûte pas la même chose au CM2 qu'au BEPC et au BAC. Le libellé
+   suit le niveau choisi, pour qu'on ne crée pas un abonnement au mauvais
+   tarif sans s'en apercevoir. */
+const PRIX_MOIS = { bepc: '100 000', bac: '100 000', cee: '75 000' };
+
+function majTarif() {
+  const option = $('formule').querySelector('option[value="mois"]');
+  option.textContent = `Mois — ${PRIX_MOIS[$('niveau').value] || '100 000'} GNF`;
+}
+$('niveau').addEventListener('change', majTarif);
+majTarif();
+
 $('creer').addEventListener('click', creer);
 
 async function creer() {
@@ -229,9 +264,14 @@ function copierMessage(d) {
 }
 
 /* ---------- La liste ---------- */
+/* Une date peut manquer : un code de testeur n'a pas de fin d'abonnement.
+   On ne laisse jamais ce cas jeter une erreur — la liste est construite d'un
+   seul bloc, et une seule ligne fautive suffirait à la faire disparaître
+   entièrement, privant le responsable de tous ses abonnés. */
 const dateLisible = iso => {
+  if (!iso || typeof iso !== 'string') return 'sans date';
   const [a, m, j] = iso.split('-');
-  return `${j}/${m}/${a}`;
+  return j ? `${j}/${m}/${a}` : 'sans date';
 };
 
 async function charger() {
@@ -247,6 +287,8 @@ async function charger() {
       <div class="chiffre"><b>${d.actifs}</b><span>abonnements actifs</span></div>
       <div class="chiffre ${d.a_relancer ? 'alerte' : ''}"><b>${d.a_relancer}</b><span>à relancer</span></div>
       <div class="chiffre"><b>${expirant}</b><span>expirent sous 3 jours</span></div>
+      <div class="chiffre ${d.proches_du_plafond ? 'alerte' : ''}"
+           ><b>${d.proches_du_plafond}</b><span>proches du plafond</span></div>
       <div class="chiffre"><b>${d.codes_testeurs}</b><span>codes testeurs</span></div>`;
 
     if (!d.abonnements.length) {
@@ -270,7 +312,7 @@ async function charger() {
               ? 'accès retiré le ' + dateLisible(a.retire_le)
               : a.testeur
               ? 'sans date de fin · code distribué depuis Render'
-              : `${a.niveau === 'bac' ? 'Terminale' : '10ᵉ année'} · ${echapper(a.formule)}
+              : `${NOM_NIVEAU[a.niveau] || '10ᵉ année'} · ${echapper(a.formule)}
                  · jusqu'au ${dateLisible(a.expire_le)}
                  ${a.telephone ? '· ' + echapper(a.telephone) : ''}`}</div>
           <div class="travail">${activite(a)}</div>
@@ -329,7 +371,14 @@ function activite(a) {
   const j = a.jours_sans_travailler;
   const quand = j === 0 ? "aujourd'hui" : j === 1 ? 'hier' : `il y a ${j} jours`;
   const froid = j !== null && j >= 3 ? ' silence' : '';
-  return `<span class="travaille${froid}">${qui}${a.questions} question(s) · ${quand}</span>`;
+  /* Le plafond du mois n'apparaît que lorsqu'il approche : le reste du temps
+     c'est un chiffre de plus qui noie ceux qui comptent. */
+  const plafond = a.reste_mois <= 0
+    ? ' <span class="jamais">⚠ plafond du mois atteint</span>'
+    : a.reste_mois <= 100
+    ? ` <span class="jamais">⚠ plus que ${a.reste_mois} questions ce mois-ci</span>`
+    : '';
+  return `<span class="travaille${froid}">${qui}${a.questions} question(s) · ${quand}</span>${plafond}`;
 }
 
 function brancher(action, faire) {
@@ -381,7 +430,7 @@ async function montrerMessage(code) {
 async function renommer(code) {
   const bouton = document.querySelector(`[data-renommer="${CSS.escape(code)}"]`);
   const actuel = bouton ? bouton.dataset.nom : '';
-  const nouveau = prompt("Nouveau nom de l'abonné :", actuel);
+  const nouveau = saisir("Nouveau nom de l'abonné :", actuel);
   if (nouveau === null || !nouveau.trim() || nouveau.trim() === actuel) return;
   await agir(`/api/admin/abonnement/${encodeURIComponent(code)}/renommer`,
              { nom: nouveau.trim() });

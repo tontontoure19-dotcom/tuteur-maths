@@ -586,6 +586,11 @@ def _verifier_quota(eleve: str, code: str | None) -> None:
 # au lieu de le couper sans crier gare en pleine concentration.
 QUESTIONS_AVANT_ALERTE = 15
 
+# Seuil auquel l'abonné remonte dans la page du responsable. Plus large que
+# celui de l'élève : lui n'a qu'à ralentir, le responsable doit avoir le
+# temps de relever le plafond ou de recharger le crédit avant la coupure.
+QUESTIONS_AVANT_PLAFOND = 100
+
 
 def _alerte_quota(code: str | None) -> str:
     """Prévient le répétiteur que l'élève approche de sa limite du mois."""
@@ -1481,6 +1486,18 @@ def depenses(code: str | None = None):
     }
 
 
+def _quota_du_code(code_abonne: str) -> dict:
+    """Où en est cet abonné de son plafond du mois.
+
+    L'élève est prévenu tout seul quand il approche (voir _alerte_quota),
+    mais le responsable, lui, ne l'était nulle part : un abonné qui paie
+    pouvait être coupé au milieu du mois sans que personne ne s'en aperçoive
+    avant qu'il se plaigne.
+    """
+    etat = _consommation(code_abonne)
+    return {"questions_mois": etat["mois"], "reste_mois": etat["reste"]}
+
+
 def _activite_du_code(code_abonne: str) -> dict:
     """Ce que l'élève a réellement fait avec son abonnement.
 
@@ -1520,7 +1537,15 @@ def _activite_du_code(code_abonne: str) -> dict:
 def liste_abonnements(code: str | None = None):
     """Tous les abonnements, les plus proches de l'expiration en premier."""
     _exiger_admin(code)
-    abonnements = [{**a, **_activite_du_code(a["code"])} for a in ABONNEMENTS.tous()]
+    # Une entrée sans date de fin est forcément celle d'un testeur : seuls
+    # leurs codes n'expirent pas. Le cas se produit après « rendre » sur un
+    # testeur retiré — son entrée reste au registre, donc la boucle plus bas
+    # ne la reconstruit pas, et sans cette étiquette la page la prendrait
+    # pour un abonnement payant et irait chercher une date qui n'existe pas.
+    abonnements = [{"testeur": not a.get("expire_le"),
+                    **a, **_activite_du_code(a["code"]),
+                    **_quota_du_code(a["code"])}
+                   for a in ABONNEMENTS.tous()]
 
     # Les codes des testeurs vivent encore dans Render, sans date de fin. On
     # les affiche quand même : sinon leur travail reste invisible, alors que
@@ -1539,6 +1564,7 @@ def liste_abonnements(code: str | None = None):
             "expire": False,
             "testeur": True,
             **activite,
+            **_quota_du_code(code_testeur),
         })
 
     # « Actifs » ne compte que les vrais abonnements : mêler les testeurs
@@ -1553,6 +1579,13 @@ def liste_abonnements(code: str | None = None):
         # distribué que personne n'ouvre est le même problème.
         "a_relancer": sum(1 for a in abonnements
                           if a["actif"] and not a["expire"] and a["jamais_commence"]),
+        # Ceux qui vont buter sur le plafond du mois. Au rythme de l'élève la
+        # plus active mesurée (32 questions par jour), ce qui reste ici donne
+        # environ trois jours pour réagir — relever le plafond ou recharger.
+        "proches_du_plafond": sum(1 for a in abonnements
+                                  if a["actif"] and not a["expire"]
+                                  and a["reste_mois"] <= QUESTIONS_AVANT_PLAFOND),
+        "questions_par_mois": MAX_QUESTIONS_PAR_MOIS,
         "codes_testeurs": len(CODES_ACCES),
     }
 

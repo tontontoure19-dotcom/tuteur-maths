@@ -29,6 +29,17 @@ def _aujourdhui() -> date:
     return datetime.now(timezone.utc).date()
 
 
+# Le code porte le nom de l'examen visé : un parent de CM2 à qui on donne un
+# code commençant par BEPC croit qu'on s'est trompé d'enfant. Le niveau peut
+# arriver détaillé (« bac-physique ») : on ne garde que ce qui précède le
+# tiret, l'examen étant le même pour toutes les matières d'un niveau.
+EXAMEN_DU_NIVEAU = {"cee": "CEE", "bepc": "BEPC", "bac": "BAC"}
+
+
+def _prefixe_du_niveau(niveau: str) -> str:
+    return EXAMEN_DU_NIVEAU.get((niveau or "").split("-")[0], "BEPC")
+
+
 class Abonnements:
     """Le registre des abonnements, rangé sur le disque persistant."""
 
@@ -71,7 +82,7 @@ class Abonnements:
               telephone: str = "") -> dict:
         """Ouvre un abonnement et rend le code à donner à l'élève."""
         jours = {"essai": JOURS_ESSAI, "semaine": JOURS_SEMAINE, "mois": JOURS_MOIS}[formule]
-        code = self.fabriquer_code("BAC" if niveau == "bac" else "BEPC")
+        code = self.fabriquer_code(_prefixe_du_niveau(niveau))
 
         registre = self._lire()
         registre[code] = {

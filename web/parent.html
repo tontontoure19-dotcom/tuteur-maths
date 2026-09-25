@@ -94,6 +94,19 @@ let codeAcces = localStorage.getItem('code_acces') || '';
 const avecCode = url => codeAcces ? url + (url.includes('?') ? '&' : '?') +
                                     'code=' + encodeURIComponent(codeAcces) : url;
 
+/* prompt() n'est pas disponible partout : certaines applications installées
+   et certains navigateurs le refusent, et il lève alors une erreur. Sans
+   cette précaution, ce refus remontait jusqu'en haut et le parent lisait
+   « Impossible de contacter le serveur » — un message faux, qui lui fait
+   croire à une panne alors qu'il manque seulement son code. */
+function demanderCode(question) {
+  try {
+    return prompt(question);
+  } catch (e) {
+    return null;
+  }
+}
+
 /* Code refusé — le plus souvent parce qu'il a changé. On le redemande sur
    place, sinon le parent tombe sur « aucun élève » sans comprendre pourquoi. */
 async function recuperer(url, options = {}) {
@@ -102,7 +115,7 @@ async function recuperer(url, options = {}) {
   if (r.status !== 403) return r;
   localStorage.removeItem('code_acces');
   codeAcces = '';
-  const saisi = prompt("Votre code d'accès n'est plus valable.\nSaisissez le nouveau code :");
+  const saisi = demanderCode("Votre code d'accès n'est plus valable.\nSaisissez le nouveau code :");
   if (!saisi || !saisi.trim()) return r;
   codeAcces = saisi.trim();
   localStorage.setItem('code_acces', codeAcces);
@@ -113,11 +126,16 @@ async function recuperer(url, options = {}) {
 
 fetch('/api/config').then(r => r.json()).then(c => {
   if (c.code_requis && !codeAcces) {
-    const saisi = prompt("Code d'accès :");
+    const saisi = demanderCode("Code d'accès :");
     if (saisi) { codeAcces = saisi.trim(); localStorage.setItem('code_acces', codeAcces); location.reload(); }
   }
 }).catch(() => {});
 const echapper = t => String(t ?? '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+/* Le niveau peut arriver détaillé (« bac-chimie ») : on n'en garde que
+   l'examen. Sans le CM2 dans cette table, un élève de CEE s'affichait sans
+   aucun niveau à côté de son nom. */
+const NOM_NIVEAU = { cee: 'CM2 · ', bepc: '10ᵉ année · ', bac: 'Terminale · ' };
 
 $('nom').addEventListener('keydown', e => { if (e.key === 'Enter') charger(); });
 $('voir').addEventListener('click', charger);
@@ -131,8 +149,25 @@ if (depuisLien) { $('nom').value = depuisLien; charger(); } else { proposerEleve
 async function proposerEleves(message) {
   try {
     const r = await recuperer('/api/eleves');
+    // Un code refusé n'est pas une panne. Sans cette distinction, le parent
+    // qui ferme la fenêtre du code lit « impossible de contacter le
+    // serveur » et croit le site en panne, alors qu'il lui manque juste
+    // son code.
+    if (r.status === 403) {
+      $('zone').innerHTML = '<div class="info">Pour voir le suivi, il faut le ' +
+        "code d'accès de l'élève.<br>C'est le même que celui de l'application. " +
+        '<button class="lien-eleve" id="ressaisir">Saisir le code</button></div>';
+      $('ressaisir').addEventListener('click', () => {
+        const saisi = demanderCode("Code d'accès :");
+        if (saisi && saisi.trim()) {
+          localStorage.setItem('code_acces', saisi.trim());
+          location.reload();
+        }
+      });
+      return;
+    }
     const { eleves, admin } = await r.json();
-    if (!eleves.length) {
+    if (!eleves || !eleves.length) {
       $('zone').innerHTML = '<div class="info">Aucun élève n\'a encore utilisé le tuteur.<br>' +
         'Le suivi apparaîtra dès les premiers exercices.</div>';
       return;
@@ -140,8 +175,7 @@ async function proposerEleves(message) {
     const liens = eleves.map(e =>
       `<div class="ligne-eleve">
          <button class="lien-eleve" data-nom="${echapper(e.nom)}">
-           ${echapper(e.nom)} <span>${e.niveau === 'bac' ? 'Terminale · ' :
-                                       e.niveau === 'bepc' ? '10ᵉ année · ' : ''}${
+           ${echapper(e.nom)} <span>${NOM_NIVEAU[(e.niveau || '').split('-')[0]] || ''}${
              e.questions ? e.questions + ' question(s)' : 'inscrit, pas encore de question'}</span>
          </button>
          ${admin ? `<button class="effacer" data-nom="${echapper(e.nom)}"
