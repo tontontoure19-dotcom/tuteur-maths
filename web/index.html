@@ -19,9 +19,19 @@
 
   /* ---- Écran d'accueil : on demande juste le prénom ---- */
   /* overflow-y : avec le clavier ouvert, l'écran d'accueil doit rester
-     parcourable au lieu de tronquer le bouton « Commencer ». */
-  #accueil{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;
+     parcourable au lieu de tronquer le bouton « Commencer ».
+     Le centrage se fait par marges automatiques, PAS par justify-content:
+     center. Avec le centrage classique, dès que le contenu dépasse la
+     hauteur de l'écran il déborde des DEUX côtés, et le défilement ne
+     rattrape que le bas : le haut devient inatteignable. C'est ce qui
+     effaçait le logo, le nom et la première ligne de la promesse depuis
+     qu'il y a huit niveaux. Les marges automatiques, elles, retombent à
+     zéro quand la place manque : le contenu repart du haut et défile
+     normalement. */
+  #accueil{flex:1;display:flex;flex-direction:column;align-items:center;
            padding:28px;text-align:center;gap:14px;overflow-y:auto}
+  #accueil > *:first-child{margin-top:auto}
+  #accueil > *:last-child{margin-bottom:auto}
   #accueil .logo{font-size:56px;line-height:1}
   #accueil h1{font-size:24px;font-weight:800}
   #accueil p{color:var(--gris);font-size:15px;max-width:300px;line-height:1.5}
@@ -219,7 +229,7 @@
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 44</div>
+  <div id="version">version 45</div>
   <div id="deja-inscrits"></div>
 </div>
 
