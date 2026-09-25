@@ -46,7 +46,7 @@
   .abonne .matieres{font-size:12.5px;margin-top:2px}
   .travail .travaille{color:var(--vert)}
   .travail .travaille.silence{color:var(--orange)}
-  .travail .jamais,.matieres .jamais{color:var(--rouge);font-weight:600}
+  .travail .jamais{color:var(--rouge);font-weight:600}
   .travail .muet,.matieres .muet{color:var(--gris)}
   .chiffre.alerte{border-color:var(--rouge)}
   .chiffre.alerte b{color:var(--rouge)}
@@ -384,10 +384,20 @@ function activite(a) {
 }
 
 /* Les matières où l'élève a réellement posé des questions.
-   C'est la seule trace d'un code prêté : un copain ne peut entrer qu'en
-   reprenant le prénom de l'abonné, mais il ne peut pas cacher sa classe.
-   Un abonnement de Terminale où l'on voit des séances de 10ᵉ année est donc
-   très probablement partagé. */
+
+   C'est une information de produit, pas de surveillance : elle dit ce que
+   les élèves travaillent vraiment, donc quelles matières méritent du temps.
+
+   Cette ligne a d'abord signalé en rouge les classes ne correspondant pas à
+   l'abonnement, pour repérer un code prêté. On l'a retiré, et c'est
+   volontaire. D'une part un élève de Terminale qui vient chercher les
+   exercices du BEPC pour réviser ses bases est parfaitement légitime, et
+   l'accuser coûte plus cher que de rater un fraudeur. D'autre part on ne
+   prête pas son code à un enfant de CM2 mais au camarade assis à côté de
+   soi — or deux élèves de la même classe ne produisent aucune anomalie :
+   l'alerte manquait justement le seul cas fréquent. Les matières sont
+   écrites noir sur blanc sous la classe de l'abonnement : un écart se voit,
+   et le jugement reste au responsable. */
 const LIBELLE_MATIERE = {
   'cee': 'CM2 calcul', 'cee-sciences': 'CM2 sciences',
   'bepc': '10ᵉ maths', 'bepc-physique': '10ᵉ physique', 'bepc-chimie': '10ᵉ chimie',
@@ -399,16 +409,9 @@ function matieres(a) {
   const utilises = a.niveaux_utilises || [];
   if (!utilises.length) return '';
   const noms = utilises.map(n => echapper(LIBELLE_MATIERE[n] || n)).join(', ');
-  // On ne crie au partage que si l'on SAIT à quoi l'abonné a souscrit : le
-  // niveau d'un code de testeur n'est pas renseigné, il n'y a rien à comparer.
-  const etranger = a.niveau
-    && utilises.some(n => n.split('-')[0] !== a.niveau);
   // Une ligne à part sous l'activité, sans réutiliser la classe du bloc qui
   // la contient : l'imbriquer appliquerait deux fois le même style.
-  return etranger
-    ? `<div class="matieres"><span class="jamais">⚠ classe inattendue : ${noms}</span>
-        <span class="muet">— un autre élève utilise peut-être ce code</span></div>`
-    : `<div class="matieres"><span class="muet">${noms}</span></div>`;
+  return `<div class="matieres"><span class="muet">${noms}</span></div>`;
 }
 
 function brancher(action, faire) {

@@ -1564,10 +1564,9 @@ def _activite_du_code(code_abonne: str) -> dict:
         "jours_sans_travailler": jours,
         # Le signal qui compte : un code distribué que personne n'a ouvert.
         "jamais_commence": questions == 0,
-        # Les matières réellement travaillées. Un abonnement de Terminale où
-        # l'on trouve des séances de 10ᵉ année trahit presque à coup sûr un
-        # code prêté : le copain ne peut entrer qu'en prenant le prénom de
-        # l'abonné, mais il ne peut pas cacher sa classe.
+        # Les matières réellement travaillées, pour que le responsable sache
+        # ce que ses élèves ouvrent vraiment — le niveau enregistré à la
+        # création ne dit que ce qu'on a vendu, pas ce qui sert.
         "niveaux_utilises": sorted(niveaux),
     }
 
