@@ -96,25 +96,28 @@ CHAPITRES = {
         ("Identification des ions", 2),
         ("Pile Leclanché, fonte et acier", 2),
     ],
-    # Physique de Terminale SM : aucune annale relevée pour l'instant, donc
-    # aucune fréquence. L'ordre suit celui du programme de l'enseignant, qui
-    # est aussi l'ordre où les chapitres s'enchaînent — la dynamique a besoin
-    # de la cinématique, l'induction du champ magnétique.
+    # Physique de Terminale SM/SE : 18 sessions relevées, 2016-2024, les deux
+    # séries chaque année. Le commentaire donne le nombre de sessions où le
+    # chapitre est tombé, et le poids en séances le suit. L'ORDRE, lui, reste
+    # celui du programme de l'enseignant : en physique les chapitres
+    # s'enchaînent, la dynamique a besoin de la cinématique et l'induction du
+    # champ magnétique — on ne peut pas les trier par fréquence sans casser
+    # ces dépendances.
     "bac-physique": [
-        ("Cinématique et mouvements", 3),
-        ("Dynamique : relation fondamentale et énergie cinétique", 4),
-        ("Interaction et champ gravitationnel, satellites et planètes", 3),
-        ("Mouvement d'un projectile dans le champ de pesanteur", 3),
-        ("Particule chargée dans un champ électrostatique", 3),
-        ("Solide en rotation et théorème de Huygens", 3),
-        ("Oscillations mécaniques libres : pendule élastique", 3),
-        ("Champ magnétique et loi de Laplace", 4),
-        ("Induction électromagnétique et auto-induction", 4),
-        ("Oscillations électriques et courant alternatif", 4),
-        ("Ondes électromagnétiques", 2),
-        ("Optique ondulatoire : interférences lumineuses", 3),
-        ("Effet photoélectrique et niveaux d'énergie de l'atome", 3),
-        ("Physique nucléaire : noyau, radioactivité, réactions", 4),
+        ("Cinématique et mouvements", 4),                                 # 11/18
+        ("Dynamique : relation fondamentale et énergie cinétique", 4),    #  9/18
+        ("Interaction et champ gravitationnel, satellites et planètes", 3),  # 5/18
+        ("Mouvement d'un projectile dans le champ de pesanteur", 3),      #  5/18
+        ("Particule chargée dans un champ électrostatique", 2),           #  3/18
+        ("Solide en rotation et théorème de Huygens", 2),                 #  2/18
+        ("Oscillations mécaniques libres : pendule élastique", 2),        #  2/18
+        ("Champ magnétique et loi de Laplace", 5),                        # 14/18
+        ("Induction électromagnétique et auto-induction", 4),             # 12/18
+        ("Oscillations électriques et courant alternatif", 5),            # 12/18
+        ("Ondes électromagnétiques", 1),                                  #  0/18
+        ("Optique ondulatoire : interférences lumineuses", 4),            #  9/18
+        ("Effet photoélectrique et niveaux d'énergie de l'atome", 3),     #  4/18
+        ("Physique nucléaire : noyau, radioactivité, réactions", 5),      # 12/18
     ],
     # Chimie de Terminale SM/SE : 30 sessions relevées, de 1993 à 2025. La
     # fréquence entre parenthèses est le nombre de sessions où le chapitre

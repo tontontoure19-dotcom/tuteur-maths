@@ -422,6 +422,7 @@ RESERVE_DU_NIVEAU = {
     "bepc-physique": ("bepc", "physique"),
     "bepc-chimie": ("bepc", "chimie"),
     "bac": ("bac", "maths"),
+    "bac-physique": ("bac", "physique"),
     "bac-chimie": ("bac", "chimie"),
 }
 NOM_EXAMEN = {"cee": "CEE", "bepc": "BEPC", "bac": "BAC"}
