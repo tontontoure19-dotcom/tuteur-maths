@@ -219,7 +219,7 @@
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 43</div>
+  <div id="version">version 44</div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -1121,6 +1121,11 @@ function afficherProgres(d) {
       </div></div>`;
   }).join('');
 
+  /* Le plan affiché juste au-dessus ne concerne QUE la matière ouverte,
+     alors que ce bilan-ci les réunit toutes : sans le dire, l'élève de
+     chimie qui voit « Racines carrées » dans ses chapitres croit à une
+     erreur. On le nomme plutôt que de calculer un bilan par matière, qui
+     multiplierait son coût par le nombre de matières travaillées. */
   $('zone-bilan').innerHTML = `
     <div class="compteurs">
       <div class="compteur"><b>${a.questions ?? 0}</b><span>questions posées</span></div>
@@ -1129,7 +1134,7 @@ function afficherProgres(d) {
     </div>
     <div class="bloc"><h2>Où tu en es</h2>
       <p class="resume">${echapper(d.resume)}</p></div>
-    <div class="bloc"><h2>Tes chapitres</h2>
+    <div class="bloc"><h2>Tes chapitres · toutes tes matières</h2>
       ${chapitres || '<p style="color:var(--gris)">Aucun chapitre identifié pour l\'instant.</p>'}</div>
     <div class="etape"><b>Ta prochaine étape</b><br>${echapper(d.prochaine_etape)}</div>`;
 }
