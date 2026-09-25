@@ -210,7 +210,7 @@
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 41</div>
+  <div id="version">version 42</div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -736,7 +736,12 @@ async function reprendreDuServeur(dejaAffiche) {
     messages.forEach(m => afficher(m.role === 'user' ? 'eleve' : 'tuteur',
                                    m.content, urlServeur(m.photo)));
     if (!dejaAffiche) {
-      afficher('tuteur', 'Je t\'ai retrouvé ton travail. On continue ?');
+      // En lecture seule, « on continue ? » serait une invitation à laquelle
+      // l'élève ne peut pas répondre : on lui dit plutôt ce qu'elle PEUT
+      // faire, c'est-à-dire relire.
+      afficher('tuteur', lectureSeule
+        ? 'Voici tout ton travail. Relis-le autant que tu veux — tout est là.'
+        : 'Je t\'ai retrouvé ton travail. On continue ?');
     }
     sauvegarder();
     $('fil').scrollTop = $('fil').scrollHeight;
