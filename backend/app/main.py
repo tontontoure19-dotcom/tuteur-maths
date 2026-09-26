@@ -1341,7 +1341,8 @@ MATIERE_DU_NIVEAU = {"cee": "calcul", "cee-sciences": "sciences",
                      "bepc": "maths",
                      "bepc-physique": "physique", "bepc-chimie": "chimie",
                      "bac": "maths", "bac-physique": "physique",
-                     "bac-chimie": "chimie", "bac-philo": "philosophie"}
+                     "bac-chimie": "chimie", "bac-philo": "philosophie",
+                     "bac-francais": "français"}
 
 
 def _lignes_du_plan(fichier: Path) -> list[str]:

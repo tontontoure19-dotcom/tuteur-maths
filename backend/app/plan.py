@@ -185,6 +185,28 @@ CHAPITRES = {
         ("Les sciences humaines", 3),
         ("Le problème de la vérité : critères et caractéristiques", 4),
     ],
+    # Français de Terminale SS : relevé sur le cahier manuscrit d'un
+    # enseignant (8 octobre 2025). AUCUNE ANNALE pour cette série.
+    # Les quatre techniques d'abord, comme en philosophie : c'est sur elles
+    # que l'élève est noté, quelle que soit l'œuvre tombée. Le résumé passe
+    # en tête des quatre parce qu'il a des règles fixes — c'est le seul où
+    # un élève peut progresser vite et voir le résultat.
+    "bac-francais": [
+        ("Méthode du résumé de texte", 4),
+        ("Méthode de l'explication de texte", 4),
+        ("Méthode du commentaire composé", 5),
+        ("Méthode de la dissertation littéraire", 5),
+        ("La littérature des indépendances", 4),
+        ("Les problèmes de l'Afrique contemporaine", 3),
+        ("La mondialisation et l'intégration des cultures", 3),
+        ("Poésie africaine : Senghor, Césaire, Diop, Damas", 4),
+        ("Romans africains : Fantouré, Kourouma, Monénembo, Bâ", 5),
+        ("La révolte et l'engagement dans la littérature française", 4),
+        ("La condition ouvrière", 3),
+        ("Poésie française : Apollinaire, Éluard, Aragon", 3),
+        ("Romans français : Malraux, Camus, Sartre", 4),
+        ("Autres littératures : russe, américaine, brésilienne, anglaise", 2),
+    ],
 }
 
 # Les deux dernières semaines ne se planifient pas chapitre par chapitre :
