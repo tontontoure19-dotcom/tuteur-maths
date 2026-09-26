@@ -255,8 +255,9 @@ function copierMessage(d) {
     `Bonjour ! Voici l'accès à Kharandi pour ${d.nom}.\n\n` +
     `Le lien : ${location.origin}\n` +
     `Le code : ${d.code}\n\n` +
-    `On ouvre le lien sur le téléphone, on saisit le code une seule fois, puis le prénom de l'élève.\n` +
-    `Il peut ensuite photographier un exercice qui le bloque.\n\n` +
+    `On ouvre le lien sur le téléphone, on saisit le code une seule fois, puis le prénom de l'élève.\n\n` +
+    `Le répétiteur lui fait le cours chapitre par chapitre, comme en classe — et il le débloque ` +
+    `aussi sur un exercice, qu'il peut simplement photographier.\n\n` +
     `⚠️ Le répétiteur ne donne jamais la réponse : il fait chercher. C'est fait exprès.\n\n` +
     `Accès valable jusqu'au ${dateLisible(d.expire_le)}.`;
   navigator.clipboard.writeText(texte)

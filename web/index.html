@@ -207,7 +207,7 @@
 <div id="accueil">
   <div class="logo">📐</div>
   <h1>Kharandi</h1>
-  <p id="promesse">Bloqué sur un exercice ? Envoie-le-moi.<br>On le résout ensemble, et tu sauras le refaire seul le jour du BEPC.</p>
+  <p id="promesse">Ton répétiteur jusqu'au BEPC.<br>Il te fait le cours, chapitre par chapitre — et il t'aide quand un exercice résiste.</p>
   <input id="code" class="cache" placeholder="Code d'accès" autocomplete="off">
   <input id="prenom" placeholder="Ton prénom" autocomplete="given-name">
   <div class="niveaux">
@@ -229,7 +229,7 @@
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 45</div>
+  <div id="version">version 46</div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -685,11 +685,16 @@ const EXAMENS = { cee: 'CEE', 'cee-sciences': 'CEE', bepc: 'BEPC', 'bepc-physiqu
                   'bepc-chimie': 'BEPC', bac: 'BAC', 'bac-physique': 'BAC',
                   'bac-chimie': 'BAC' };
 
+/* Le COURS d'abord, le dépannage ensuite. L'ancienne promesse — « Bloqué
+   sur un exercice ? Envoie-le-moi » — enfermait le répétiteur dans le
+   dépannage, alors qu'il sait conduire un chapitre entier comme en classe.
+   Or un élève qui ne vient que lorsqu'il bloque vient rarement : c'est
+   probablement une des causes du peu de retours au lendemain. */
 function majPromesse() {
   $('promesse').innerHTML =
-    'Bloqué sur un exercice ? Envoie-le-moi.<br>' +
-    'On le résout ensemble, et tu sauras le refaire seul le jour du ' +
-    (EXAMENS[niveau] || 'examen') + '.';
+    'Ton répétiteur jusqu\'au ' + (EXAMENS[niveau] || 'examen') + '.<br>' +
+    'Il te fait le cours, chapitre par chapitre — et il t\'aide quand un ' +
+    'exercice résiste.';
 }
 
 document.querySelectorAll('.niveau').forEach(b => b.addEventListener('click', () => {
