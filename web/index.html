@@ -109,6 +109,7 @@
      la rangée que rétrécir des touches déjà petites pour un doigt. */
   #symboles{flex-shrink:0;display:flex;gap:6px;padding:8px 12px 0;
             overflow-x:auto;background:#fff;-webkit-overflow-scrolling:touch}
+
   #symboles::-webkit-scrollbar{display:none}
   #symboles button{flex-shrink:0;min-width:42px;height:38px;border:1px solid #E8E4DE;
                    background:var(--fond);border-radius:10px;font-size:17px;
@@ -200,6 +201,22 @@
   #progres .lien-plan{background:none;border:none;color:var(--gris);text-decoration:underline;
                       font-size:13.5px;cursor:pointer;font-family:inherit;margin-top:10px;padding:0}
   .cache{display:none !important}
+
+  /* ---- Ordinateur : borner la colonne de lecture ----
+     Sans cette borne, une explication du répétiteur s'étirait sur toute la
+     largeur de l'écran : 1348 px et 125 caractères par ligne sur un écran
+     de 1600, là où l'œil lit confortablement entre 45 et 75. On revenait à
+     la ligne sans retrouver où on en était.
+     Ce bloc est en FIN de feuille à dessein : les règles de #fil et #barre
+     posent un raccourci « padding », qui écraserait un padding-left écrit
+     plus haut, media query ou non. Les fonds restent pleine largeur, et
+     rien ne change sur téléphone. */
+  @media (min-width:900px){
+    #fil{padding-left:max(16px,calc((100% - 760px) / 2));
+         padding-right:max(16px,calc((100% - 760px) / 2))}
+    #barre,#symboles{padding-left:max(12px,calc((100% - 760px) / 2));
+                     padding-right:max(12px,calc((100% - 760px) / 2))}
+  }
 </style>
 </head>
 <body>
@@ -229,7 +246,7 @@
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 46</div>
+  <div id="version">version 47</div>
   <div id="deja-inscrits"></div>
 </div>
 
