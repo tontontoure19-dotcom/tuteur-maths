@@ -253,12 +253,18 @@ async function creer() {
 function copierMessage(d) {
   const texte =
     `Bonjour ! Voici l'accès à Kharandi pour ${d.nom}.\n\n` +
-    `Le lien : ${location.origin}\n` +
+    `POUR L'ÉLÈVE : ${location.origin}\n` +
     `Le code : ${d.code}\n\n` +
     `On ouvre le lien sur le téléphone, on saisit le code une seule fois, puis le prénom de l'élève.\n\n` +
     `Le répétiteur lui fait le cours chapitre par chapitre, comme en classe — et il le débloque ` +
     `aussi sur un exercice, qu'il peut simplement photographier.\n\n` +
     `⚠️ Le répétiteur ne donne jamais la réponse : il fait chercher. C'est fait exprès.\n\n` +
+    // Le suivi est ce que le parent achète vraiment. Sans ce lien ici, il ne
+    // le découvrait qu'au premier message hebdomadaire, une semaine plus
+    // tard : il payait sept jours pour quelque chose d'invisible.
+    `POUR VOUS, LE SUIVI : ${location.origin}/parent.html\n` +
+    `Avec le même code. Vous y verrez les chapitres travaillés, ce qui est acquis ` +
+    `et ce qui reste à revoir.\n\n` +
     `Accès valable jusqu'au ${dateLisible(d.expire_le)}.`;
   navigator.clipboard.writeText(texte)
     .then(() => { $('copier').textContent = 'Message copié ✓'; })
