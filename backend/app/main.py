@@ -1194,6 +1194,12 @@ def _reponse_plan(plan: dict | None, niveau: str) -> dict:
         # travaille — question à laquelle beaucoup ne savent pas répondre.
         "chapitres_cles": [nom for nom, _ in
                            module_plan.CHAPITRES.get(niveau, [])[:3]],
+        # Toutes les matières n'ont pas d'annales — la philosophie n'en a
+        # aucune. Sans ce drapeau, l'accueil proposait « un exercice tombé au
+        # BAC » à un élève de philosophie, et poussait le répétiteur à
+        # affirmer l'existence d'un sujet qu'il n'a pas.
+        "a_des_annales": bool(annales_store.charger(*RESERVE_DU_NIVEAU[niveau])
+                              if niveau in RESERVE_DU_NIVEAU else False),
     }
 
 
@@ -1335,7 +1341,7 @@ MATIERE_DU_NIVEAU = {"cee": "calcul", "cee-sciences": "sciences",
                      "bepc": "maths",
                      "bepc-physique": "physique", "bepc-chimie": "chimie",
                      "bac": "maths", "bac-physique": "physique",
-                     "bac-chimie": "chimie"}
+                     "bac-chimie": "chimie", "bac-philo": "philosophie"}
 
 
 def _lignes_du_plan(fichier: Path) -> list[str]:

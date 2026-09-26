@@ -234,6 +234,7 @@
     <button class="niveau" data-niveau="bac">Terminale<span>BAC · Maths (SM et SE)</span></button>
     <button class="niveau" data-niveau="bac-physique">Terminale<span>BAC · Physique (SM et SE)</span></button>
     <button class="niveau" data-niveau="bac-chimie">Terminale<span>BAC · Chimie (SM et SE)</span></button>
+    <button class="niveau" data-niveau="bac-philo">Terminale<span>BAC · Philosophie (SS)</span></button>
     <!-- Le CM2 reste disponible mais n'est pas mis en avant : il se place en
          dernier, après les niveaux du secondaire. Décision du 24/09/2026 —
          l'enfant de CM2 ne s'y met pas seul, c'est le parent qui doit l'y
@@ -246,7 +247,7 @@
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 47</div>
+  <div id="version">version 48</div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -317,11 +318,12 @@ let lectureSeule = '';
 let seanceActive = null;
 // Les niveaux que l'application sait ouvrir.
 const LIBELLES_CONNUS = ['cee', 'cee-sciences', 'bepc', 'bepc-physique', 'bepc-chimie', 'bac',
-                         'bac-physique', 'bac-chimie'];
+                         'bac-physique', 'bac-chimie', 'bac-philo'];
 // La classe de l'élève, pour l'afficher sous son prénom.
 const CLASSES = { cee: 'CM2', 'cee-sciences': 'CM2', bepc: '10ᵉ année', 'bepc-physique': '10ᵉ année',
                   'bepc-chimie': '10ᵉ année', bac: 'Terminale',
-                  'bac-physique': 'Terminale', 'bac-chimie': 'Terminale' };
+                  'bac-physique': 'Terminale', 'bac-chimie': 'Terminale',
+                  'bac-philo': 'Terminale' };
 // Vrai dès que l'élève a lui-même touché un bouton de niveau.
 let niveauChoisiALaMain = false;
 
@@ -700,7 +702,7 @@ async function demarrer() {
 // étrangère à l'application dès la première phrase.
 const EXAMENS = { cee: 'CEE', 'cee-sciences': 'CEE', bepc: 'BEPC', 'bepc-physique': 'BEPC',
                   'bepc-chimie': 'BEPC', bac: 'BAC', 'bac-physique': 'BAC',
-                  'bac-chimie': 'BAC' };
+                  'bac-chimie': 'BAC', 'bac-philo': 'BAC' };
 
 /* Le COURS d'abord, le dépannage ensuite. L'ancienne promesse — « Bloqué
    sur un exercice ? Envoie-le-moi » — enfermait le répétiteur dans le
@@ -735,7 +737,8 @@ function ouvrirChat() {
                      'bepc-chimie': '10ᵉ année · Chimie',
                      bac: 'Terminale · Maths',
                      'bac-physique': 'Terminale · Physique',
-                     'bac-chimie': 'Terminale · Chimie' };
+                     'bac-chimie': 'Terminale · Chimie',
+                     'bac-philo': 'Terminale · Philosophie' };
   $('salut').textContent = 'Salut ' + eleve + ' 👋 · ' + (LIBELLES[niveau] || '10ᵉ année');
   // On repart d'un fil vide : sinon, l'élève qui passe des maths à la
   // physique sans recharger la page garderait l'ancien cours à l'écran —
@@ -945,7 +948,8 @@ async function ouvrirProgres() {
 
 const MATIERES = { cee: 'calcul', 'cee-sciences': 'sciences', bepc: 'maths', 'bepc-physique': 'physique',
                    'bepc-chimie': 'chimie', bac: 'maths',
-                   'bac-physique': 'physique', 'bac-chimie': 'chimie' };
+                   'bac-physique': 'physique', 'bac-chimie': 'chimie',
+                   'bac-philo': 'philosophie' };
 const MOIS_COURTS = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin',
                      'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
 const dateCourte = iso => {
@@ -1073,10 +1077,10 @@ async function annoncerPlan(bulle) {
     if (d.plan && d.etat && d.etat.prochain) {
       bulle.corps.innerHTML = formater(
         'Salut ' + eleve + ' ! Au programme de ton plan : **' + d.etat.prochain + '**. On s\'y met ?');
-      proposerDepart([d.etat.prochain]);
+      proposerDepart([d.etat.prochain], d.a_des_annales);
       return;
     }
-    proposerDepart(d.chapitres_cles || []);
+    proposerDepart(d.chapitres_cles || [], d.a_des_annales);
   } catch (e) { /* sans plan ou hors ligne : le message d'accueil habituel suffit */ }
 }
 
@@ -1090,7 +1094,7 @@ async function annoncerPlan(bulle) {
    l'IA que si l'élève en touche un. */
 const NOM_EXAMEN_COURT = { cee: 'CEE', bepc: 'BEPC', bac: 'BAC' };
 
-function proposerDepart(chapitres) {
+function proposerDepart(chapitres, avecAnnales) {
   if (lectureSeule || document.querySelector('.departs')) return;
   const chapitre = (chapitres || [])[0];
   const examen = NOM_EXAMEN_COURT[niveau.split('-')[0]] || 'examen';
@@ -1102,9 +1106,16 @@ function proposerDepart(chapitres) {
 
   const choix = [['📷', "J'ai un exercice, je le photographie", () => $('fichier').click()]];
   if (chapitre) {
-    choix.push(['📄', 'Un exercice tombé au ' + examen,
-                () => lancer('Donne-moi un exercice tombé au ' + examen
-                             + ' sur ' + dansLaPhrase + '.')]);
+    // On ne promet un sujet d'examen que là où il en existe vraiment. La
+    // philosophie n'a aucune annale : lui proposer « un exercice tombé au
+    // BAC » pousserait le répétiteur à inventer une provenance.
+    choix.push(avecAnnales
+      ? ['📄', 'Un exercice tombé au ' + examen,
+         () => lancer('Donne-moi un exercice tombé au ' + examen
+                      + ' sur ' + dansLaPhrase + '.')]
+      : ['📝', 'Donne-moi un sujet à travailler',
+         () => lancer('Propose-moi un sujet sur ' + dansLaPhrase
+                      + ', et fais-moi le travailler.')]);
     choix.push(['📚', 'Explique-moi : ' + chapitre,
                 () => lancer('Explique-moi ' + dansLaPhrase + '. Je pars de zéro.')]);
   } else {

@@ -160,6 +160,31 @@ CHAPITRES = {
         ("Probabilités", 3),
         ("Équations différentielles", 2),
     ],
+    # Philosophie de Terminale SS : relevée sur le programme manuscrit d'un
+    # enseignant (15 octobre 2025). AUCUNE ANNALE pour cette série : aucune
+    # fréquence ici, et il ne faut pas en inventer. L'ordre est celui du
+    # cahier, qui est aussi celui de l'année scolaire.
+    #
+    # Les deux méthodes passent en PREMIER, avant toute matière, et c'est
+    # délibéré : un élève qui connaît l'esthétique sans savoir disserter
+    # n'a aucun point. La forme s'apprend avant le fond, et elle resservira
+    # à chaque chapitre.
+    "bac-philo": [
+        ("Méthode de la dissertation philosophique", 5),
+        ("Méthode de l'explication de texte", 4),
+        ("L'esthétique : art, artisanat, technique, le beau et le laid", 3),
+        ("Les différentes formes d'art et leur classification", 2),
+        ("L'art africain et ses sept fonctions", 4),
+        ("L'État, le Droit et la Morale", 4),
+        ("Les grandes conceptions de la morale", 4),
+        ("Les droits de l'homme et les droits des peuples", 3),
+        ("La liberté, la démocratie et la bonne gouvernance", 4),
+        ("L'épistémologie : définition et objet", 2),
+        ("Les sciences de la nature : méthode, faits, lois, théories", 4),
+        ("Causalité, déterminisme et finalité", 3),
+        ("Les sciences humaines", 3),
+        ("Le problème de la vérité : critères et caractéristiques", 4),
+    ],
 }
 
 # Les deux dernières semaines ne se planifient pas chapitre par chapitre :
