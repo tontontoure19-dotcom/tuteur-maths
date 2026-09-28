@@ -99,6 +99,16 @@
           border-radius:16px;padding:11px 15px;font-size:14.5px;font-weight:600;
           text-align:left;cursor:pointer;font-family:inherit;line-height:1.35}
   .depart:active{background:var(--vert-clair)}
+  /* Question écrite sans réseau : elle reste à l'écran, en attente, et part
+     dès que la connexion revient. Elle est pâlie pour qu'on voie qu'elle
+     n'est pas encore partie. */
+  .msg.en-attente{opacity:.55}
+  .attente{align-self:flex-start;max-width:86%;background:#FFF8DC;
+           border:1px solid #E8DFA8;border-radius:14px;padding:10px 13px;
+           font-size:13.5px;color:#5C4A00;line-height:1.45}
+  .attente button{background:none;border:none;color:var(--vert);font-weight:600;
+                  text-decoration:underline;cursor:pointer;font-family:inherit;
+                  font-size:13.5px;padding:0}
   .points span{display:inline-block;width:7px;height:7px;margin:0 2px;background:var(--gris);
                border-radius:50%;animation:saute 1.2s infinite}
   .points span:nth-child(2){animation-delay:.2s}.points span:nth-child(3){animation-delay:.4s}
@@ -248,7 +258,7 @@
   <button class="btn" id="commencer" disabled>Commencer</button>
   <button id="changer-code" class="lien cache">Ce n'est pas mon code d'accès</button>
   <div id="accueil-erreur" class="cache"></div>
-  <div id="version">version 49</div>
+  <div id="version">version 50</div>
   <div id="deja-inscrits"></div>
 </div>
 
@@ -314,6 +324,10 @@ let codeAcces = localStorage.getItem('code_acces') || '';
    peut plus poser de question. Contient la phrase à lui montrer, ou '' si
    elle peut travailler normalement. */
 let lectureSeule = '';
+/* Question écrite alors que le réseau était coupé. En Guinée la coupure
+   n'est pas l'exception : sans cela, l'élève devait tout retaper sur un
+   clavier de téléphone — et beaucoup refermaient l'application. */
+let enAttente = null;
 // Séance de travail en cours. L'élève peut en ouvrir une deuxième pour une
 // question rapide, puis revenir à son cours : chacune garde son fil.
 let seanceActive = null;
@@ -394,6 +408,7 @@ const identifiantDe = nom =>
 const suffixeMatiere = () => (niveau && niveau !== 'bepc') ? '_' + niveau : '';
 const cleConversation = () => 'conv_' + identifiantDe(eleve) + suffixeMatiere();
 const cleSeance = () => 'seance_' + identifiantDe(eleve) + suffixeMatiere();
+const cleAttente = () => 'attente_' + identifiantDe(eleve) + suffixeMatiere();
 
 function lireProfils() {
   try { return JSON.parse(localStorage.getItem('profils') || '[]'); }
@@ -747,6 +762,10 @@ function ouvrirChat() {
   // et cet ancien cours serait renvoyé au répétiteur comme s'il était le
   // sien.
   historique = [];
+  // Remis à zéro comme le reste : l'attente appartient à un élève ET à une
+  // matière, celle d'avant n'a rien à faire ici. reprendreAttente() ira
+  // rechercher celle de la conversation qu'on ouvre.
+  enAttente = null;
   $('fil').innerHTML = '';
   // Ce qui est dans le téléphone s'affiche tout de suite, sans attendre le
   // réseau ; le serveur, lui, a l'historique complet et prend le relais.
@@ -793,7 +812,14 @@ async function reprendreDuServeur(dejaAffiche) {
     }
     sauvegarder();
     $('fil').scrollTop = $('fil').scrollHeight;
-  } catch (e) { /* hors ligne : la conversation du téléphone suffit */ }
+  } catch (e) {
+    /* hors ligne : la conversation du téléphone suffit */
+  } finally {
+    // En dernier, toujours : cette fonction peut vider le fil pour le
+    // reconstruire, ce qui effacerait une question en attente affichée
+    // avant elle. Le « finally » couvre aussi ses retours anticipés.
+    reprendreAttente();
+  }
 }
 
 // Reprise automatique du dernier élève actif sur ce téléphone.
@@ -1152,6 +1178,65 @@ function retirerDepart() {
   if (bloc) bloc.remove();
 }
 
+/* ---------- Question en attente de réseau ----------------------------
+   La réponse du répétiteur a besoin d'internet — aucune IA de cette
+   qualité ne tient dans un téléphone. La QUESTION, elle, n'en a pas
+   besoin : l'élève l'écrit quand il y pense, elle attend dans son
+   téléphone, et elle part toute seule au retour du réseau. Il retrouve la
+   réponse en rouvrant l'application. */
+
+function marquerEnAttente(bulleEleve) {
+  bulleEleve.classList.add('en-attente');
+  const note = document.createElement('div');
+  note.className = 'attente';
+  note.id = 'attente-note';
+  note.append('⏳ Pas encore envoyée — je l\'envoie dès que la connexion revient. ');
+  const bouton = document.createElement('button');
+  bouton.textContent = 'Réessayer maintenant';
+  bouton.addEventListener('click', renvoyerAttente);
+  note.appendChild(bouton);
+  $('fil').appendChild(note);
+  $('fil').scrollTop = $('fil').scrollHeight;
+}
+
+function mettreEnAttente(texte, bulleEleve) {
+  enAttente = texte;
+  try { localStorage.setItem(cleAttente(), texte); } catch (e) { /* mémoire pleine */ }
+  marquerEnAttente(bulleEleve);
+}
+
+/* Efface l'attente ET sa trace à l'écran : envoyer() réaffichera la
+   question proprement, sinon elle apparaîtrait deux fois. */
+function oublierAttente() {
+  enAttente = null;
+  try { localStorage.removeItem(cleAttente()); } catch (e) { /* rien à faire */ }
+  document.querySelectorAll('#fil .msg.en-attente').forEach(b => b.remove());
+  const note = $('attente-note');
+  if (note) note.remove();
+}
+
+function renvoyerAttente() {
+  if (!enAttente || occupe || lectureSeule) return;
+  const texte = enAttente;
+  oublierAttente();
+  zone.value = texte;
+  majEnvoyer();
+  envoyer();
+}
+
+/* À l'ouverture : une question écrite hier sans réseau est toujours là. */
+function reprendreAttente() {
+  let texte = null;
+  try { texte = localStorage.getItem(cleAttente()); } catch (e) { /* rien */ }
+  if (!texte || enAttente) return;
+  enAttente = texte;
+  marquerEnAttente(afficher('eleve', texte));
+  if (navigator.onLine) setTimeout(renvoyerAttente, 900);
+}
+
+// Le réseau revient : la question part sans que l'élève ait à y penser.
+window.addEventListener('online', () => { if (enAttente) renvoyerAttente(); });
+
 function afficherProgres(d) {
   const a = d.activite || {};
   const liste = d.chapitres || [];
@@ -1232,7 +1317,10 @@ async function envoyer() {
 
   retirerDepart();
   occupe = true;
-  afficher('eleve', texte, photo && photo.url);
+  // On garde la bulle et la présence d'une photo : si le réseau lâche, la
+  // suite du traitement en a besoin pour ne rien faire retaper à l'élève.
+  const bulleEleve = afficher('eleve', texte, photo && photo.url);
+  const avaitPhoto = !!photo;
   historique.push({ role: 'user', content: texte,
                     image: photo && photo.data, image_type: photo && photo.type });
   sauvegarder();
@@ -1311,14 +1399,34 @@ async function envoyer() {
     sauvegarder();
   } catch (err) {
     bulle.remove();
-    // Seuls les messages écrits par le serveur sont montrés tels quels :
-    // ils sont en français et disent quoi faire. Une panne de réseau donne
-    // « Load failed » sur iPhone — l'élève n'a rien à faire de ça.
-    afficher('erreur', err instanceof ErreurServeur
-      ? err.message
-      : "Ta connexion s'est interrompue. Renvoie ta question — ton travail est gardé.");
     historique.pop();
     sauvegarder();
+
+    // Un refus du SERVEUR (abonnement fini, plafond, code inconnu) est écrit
+    // en français et dit quoi faire : on le montre tel quel, et réessayer n'y
+    // changerait rien.
+    if (err instanceof ErreurServeur) {
+      afficher('erreur', err.message);
+      bulleEleve.remove();
+      // On ne met pas ce cas en attente — réessayer ne changerait rien tant
+      // que le responsable n'a pas agi. Mais on rend le texte : certains de
+      // ces refus sont passagers (le crédit se recharge), et personne ne
+      // devrait retaper sa question sur un clavier de téléphone. Le bouton
+      // d'envoi se réactive tout seul dans le « finally ».
+      zone.value = texte;
+
+    // Une PANNE DE RÉSEAU, en revanche, se répare toute seule. On ne
+    // montre surtout pas « Load failed » : on garde la question.
+    } else if (avaitPhoto) {
+      // La photo ne peut pas être gardée — les images rempliraient la
+      // mémoire du téléphone. On rend au moins le texte.
+      bulleEleve.remove();
+      zone.value = texte;
+      afficher('erreur', "Ta connexion s'est interrompue. J'ai gardé ton texte : "
+                       + 'reprends la photo et renvoie.');
+    } else {
+      mettreEnAttente(texte, bulleEleve);
+    }
   } finally {
     occupe = false; majEnvoyer();
   }
