@@ -144,21 +144,29 @@ CHAPITRES = {
         ("Classification des couples et indicateurs colorés", 3),       #  4/30
         ("Des acides α-aminés aux protéines", 3),                       #  2/30
     ],
-    # BAC SM/SE : cinq sessions seulement, pas de fréquences fiables. Le
-    # problème d'étude de fonction et l'arithmétique tombent à chaque
-    # session : ils passent en tête, le reste suit l'ordre du programme.
+    # BAC SM/SE : 13 sessions, 2012-2025 (2016 absente de l'ouvrage). La
+    # fréquence entre parenthèses est le nombre de sessions où le chapitre
+    # est tombé. L'ordre les suit, à une exception près : les trois premiers
+    # gardent leur ordre d'apprentissage, car on n'étudie pas une fonction
+    # logarithme avant de savoir calculer une limite.
+    #
+    # Les équations différentielles ferment la marche et c'est voulu : elles
+    # sont au programme (chapitre 13) mais ne sont tombées dans AUCUNE des
+    # treize sessions. Un élève pressé par l'examen n'a pas à y passer du
+    # temps avant le reste — mais on ne les retire pas, le programme est le
+    # programme.
     "bac": [
-        ("Limites, continuité et dérivées", 3),
-        ("Fonctions logarithme et exponentielle", 4),
-        ("Étude de fonctions et théorème des valeurs intermédiaires", 4),
-        ("Arithmétique : PGCD, Bézout, congruences", 4),
-        ("Intégration et calcul d'aire", 4),
-        ("Nombres complexes", 4),
-        ("Similitudes et transformations", 3),
-        ("Suites numériques et récurrence", 4),
-        ("Barycentres", 2),
-        ("Probabilités", 3),
-        ("Équations différentielles", 2),
+        ("Limites, continuité et dérivées", 3),                            # 13/13
+        ("Fonctions logarithme et exponentielle", 4),                      # 12/13
+        ("Étude de fonctions et théorème des valeurs intermédiaires", 4),  # 13/13
+        ("Suites numériques et récurrence", 4),                            # 11/13
+        ("Arithmétique : PGCD, Bézout, congruences", 4),                   # 10/13
+        ("Intégration et calcul d'aire", 4),                               #  9/13
+        ("Nombres complexes", 4),                                          #  7/13
+        ("Barycentres", 3),                                                #  6/13
+        ("Probabilités", 3),                                               #  6/13
+        ("Similitudes et transformations", 3),                             #  5/13
+        ("Équations différentielles", 2),                                  #  0/13
     ],
     # Philosophie de Terminale SS : relevée sur le programme manuscrit d'un
     # enseignant (15 octobre 2025). AUCUNE ANNALE pour cette série : aucune

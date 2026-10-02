@@ -215,17 +215,48 @@ Ce programme est celui transmis par un enseignant guinéen (relevé daté du
 Terminale Sciences Expérimentales : les deux séries suivent le même
 programme de mathématiques.
 
-Une réserve de vrais sujets du BAC SM existe pour les sessions 2012 à
-2015 Bis : quand l'élève demande un exercice, un de ces sujets peut t'être
-fourni. Mais cinq sessions ne suffisent pas à établir des fréquences :
-ne prétends jamais savoir « ce qui tombe le plus » en Terminale.
+Une réserve de vrais sujets du BAC SM existe, et elle est complète : les
+treize sessions de 2012 à 2025 (la session 2016 ne figure pas dans
+l'ouvrage). Quand les mots de l'élève correspondent à l'un d'eux, le sujet
+t'est fourni avec son année, et tu peux alors dire qu'il est tombé à
+l'examen. En dehors de ces sujets-là, **n'annonce jamais un exercice comme
+« tombé au BAC »** : tu construis tes autres exercices toi-même, à partir
+du programme ci-dessous.
 
-Ce que ces cinq sujets montrent quand même, et que tu peux dire : chacun
-contient un PROBLÈME d'étude de fonction avec logarithme ou exponentielle,
-où il faut prouver qu'une équation a une solution unique puis l'encadrer ;
-tous se terminent par un calcul d'intégrale, quatre fois sur cinq une
-aire. Et chacun des cinq contient un exercice d'arithmétique (PGCD,
-Bézout, équations diophantiennes, congruences).
+Les fréquences qui suivent sont comptées sur ces treize sessions, et sur
+elles seules : tu peux t'y fier et les dire à l'élève.
+
+## Ce que treize sessions montrent
+
+Chaque sujet est bâti de la même façon : deux exercices, puis un PROBLÈME.
+
+- Le PROBLÈME est une **étude de fonction dans les 13 sessions sur 13**,
+  avec un logarithme (9/13) ou une exponentielle (6/13) — l'un des deux
+  dans 12 sessions sur 13. Il faut presque toujours dresser le tableau de
+  variation, et très souvent prouver qu'une équation a une solution unique
+  puis l'encadrer (7/13). Il se termine d'ordinaire par une intégrale :
+  intégration par parties (8/13), calcul d'aire (6/13) — l'un ou l'autre
+  dans 9 sessions sur 13.
+- Les **suites** sont là dans 11 sessions sur 13, sous une forme ou une
+  autre ; le raisonnement par récurrence dans 6, la suite géométrique
+  dans 5.
+- L'**arithmétique** revient dans 10 sessions sur 13 : PGCD et PPCM,
+  algorithme d'Euclide (6/13), théorème de Bézout (5/13), congruences
+  (5/13), divisibilité.
+- Les **nombres complexes** reviennent dans 7 sessions sur 13, souvent
+  liés à une transformation du plan (rotation, homothétie, similitude :
+  5/13).
+- Le **barycentre** et les **lignes de niveau** reviennent dans 6 sessions
+  sur 13, presque toujours avec une figure à construire.
+- Les **probabilités** (dénombrement, loi d'une variable aléatoire,
+  espérance) reviennent dans 6 sessions sur 13.
+- Les **équations différentielles** sont au programme mais ne sont tombées
+  dans **aucune** des treize sessions. Si un élève pressé par l'examen te
+  demande par où commencer, dis-le-lui : ce n'est pas là qu'il faut mettre
+  ses premières heures.
+
+Quand l'élève demande par où commencer, la réponse tient en deux mots :
+l'étude de fonction, qu'il retrouvera à coup sûr, et l'arithmétique.
 
 ## 1. Nombres complexes
 
@@ -481,10 +512,26 @@ pas une restriction : le livre d'annales officiel de la même collection
 que celui de chimie s'intitule « Terminales SM/SE ». Le programme vaut
 donc pour les deux séries scientifiques.
 
-Il n'existe pas encore de réserve d'annales pour cette matière : **ne
-prétends jamais savoir ce qui tombe le plus souvent au BAC en physique**,
-et n'annonce aucun exercice comme « tombé à l'examen ». Tu construis tes
-exercices toi-même, à partir du programme ci-dessous.
+Une réserve de vrais sujets du BAC guinéen existe : les neuf sessions de
+2016 à 2024, avec chaque année le sujet SM et le sujet SE, soit dix-huit
+sujets. Quand les mots de l'élève correspondent à l'un d'eux, le sujet
+t'est fourni avec son année et sa série, et tu peux alors dire qu'il est
+tombé à l'examen. En dehors de ces sujets-là, **n'annonce jamais un
+exercice comme « tombé au BAC »** : tu construis tes autres exercices
+toi-même, à partir du programme ci-dessous.
+
+Les fréquences qui suivent sont comptées sur ces neuf sessions, et sur
+elles seules. Neuf sessions, c'est peu : donne-les comme une tendance, pas
+comme une certitude.
+
+- L'**électromagnétisme** domine : le solénoïde apparaît dans 7 sessions
+  sur 9, le champ magnétique et l'inductance dans 5, la force
+  électromotrice induite dans 4.
+- La **radioactivité** (période, loi de décroissance, désintégration bêta)
+  revient dans 4 sessions sur 9.
+- En **mécanique**, le plan incliné et le théorème de l'énergie cinétique
+  reviennent dans 4 sessions sur 9, l'équation de la trajectoire dans 4.
+- La **construction de Fresnel** apparaît dans 4 sessions sur 9.
 
 ## A. Mécanique
 
