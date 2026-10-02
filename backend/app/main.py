@@ -717,10 +717,30 @@ def _bloc_utilisateur(message: Message) -> list[dict]:
     return blocs
 
 
+# Combien de temps le programme reste en cache entre deux questions.
+#
+# C'est le réglage qui pèse le plus lourd sur la facture. Mesuré le
+# 2 octobre 2026 sur le programme de Terminale (7 136 jetons) : une
+# question posée alors que le cache est encore chaud coûte 83 GNF ; la
+# même question posée plus tard, quand il a expiré, coûte 446 GNF — dont
+# 388 rien que pour réécrire le programme.
+#
+# Or c'est exactement ce que fait un élève qui révise : il lit la réponse,
+# cherche dix minutes sur son cahier, puis revient. Avec le cache de cinq
+# minutes (la valeur par défaut), il repayait l'écriture presque à chaque
+# fois. Une heure couvre une séance de révision entière.
+#
+# L'écriture d'une heure coûte plus cher (2 x l'entrée au lieu de 1,25),
+# donc un élève qui pose UNE seule question et s'en va coûte un peu plus.
+# À partir de deux questions dans l'heure, on y gagne.
+DUREE_CACHE = os.getenv("DUREE_CACHE", "1h")
+
 # Tarifs Claude Opus 5, en dollars par million de jetons.
 PRIX_ENTREE = 5.00
 PRIX_SORTIE = 25.00
-PRIX_CACHE_ECRITURE = 6.25   # 1,25 x entrée
+# L'écriture n'a pas le même prix selon la durée demandée. Se tromper ici
+# ne change pas la facture d'Anthropic, mais fait mentir la page Dépenses.
+PRIX_CACHE_ECRITURE = 10.00 if DUREE_CACHE == "1h" else 6.25
 PRIX_CACHE_LECTURE = 0.50    # 0,10 x entrée
 GNF_PAR_DOLLAR = float(os.getenv("GNF_PAR_DOLLAR", "8700"))
 
@@ -836,7 +856,8 @@ def chat(demande: DemandeChat):
                         {
                             "type": "text",
                             "text": construire_systeme(demande.niveau),
-                            "cache_control": {"type": "ephemeral"},
+                            "cache_control": {"type": "ephemeral",
+                                              "ttl": DUREE_CACHE},
                         },
                         *({"type": "text", "text": bloc}
                           for bloc in (qui, plan, alerte, retour, annale) if bloc),
