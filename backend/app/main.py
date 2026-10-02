@@ -243,9 +243,20 @@ MAX_ELEVES_PAR_CODE = int(os.getenv("MAX_ELEVES_PAR_CODE", "1"))
 
 # Le budget se protège au MOIS, pas au jour : un plafond journalier coupe un
 # élève en pleine révision le jour où il travaille le mieux — c'est arrivé à
-# une abonnée, en plein cours. 400 questions ≈ 25 000 GNF, soit un tiers d'un
-# abonnement mensuel à 75 000 GNF.
+# une abonnée, en plein cours.
+#
+# ATTENTION : ce plafond doit rester SOUS le point mort, sinon l'élève le
+# plus travailleur est celui qui coûte le plus cher. Le point mort vaut
+# PRIX_ABONNEMENT_GNF divisé par le coût moyen d'une question, et il est
+# affiché dans la page Dépenses de l'espace responsable — c'est le seul
+# endroit où le vrai chiffre se lit. L'ancien commentaire ici tablait sur
+# 62 GNF la question ; les mesures d'octobre 2026 donnent plutôt 90 à 240
+# GNF selon la matière et la longueur de la séance.
 MAX_QUESTIONS_PAR_MOIS = int(os.getenv("MAX_QUESTIONS_PAR_MOIS", "800"))
+
+# Prix de référence d'un abonnement mensuel (BEPC et BAC ; le CEE est à
+# 75 000). Sert uniquement à calculer le point mort affiché au responsable.
+PRIX_ABONNEMENT_GNF = int(os.getenv("PRIX_ABONNEMENT_GNF", "100000"))
 
 # Garde-fou technique seulement : une boucle, ou un code partagé à toute une
 # classe. Très au-dessus d'une journée de révision normale (~30 questions).
@@ -1279,7 +1290,7 @@ def creer_abonnement(demande: NouvelAbonnement, code: str | None = None):
     d'un redéploiement : un parent qui paie reçoit son code dans la minute.
     """
     _exiger_admin(code)
-    if demande.formule not in ("essai", "semaine", "mois"):
+    if demande.formule not in ("essai", "semaine", "mois", "fratrie"):
         raise HTTPException(status_code=400, detail="Formule inconnue.")
     if not demande.nom.strip():
         raise HTTPException(status_code=400, detail="Il faut le nom de l'abonné.")
@@ -1520,25 +1531,50 @@ def depenses(code: str | None = None):
         fiche = par_eleve.setdefault(etiquette, {"nom": etiquette, "gnf": 0.0})
         fiche["gnf"] += cout_bilan
 
-    # Réattribue à chaque élève ce que ses échanges ont coûté.
+    # Réattribue à chaque élève ce que ses échanges ont coûté, et compte au
+    # passage ses questions : c'est le coût PAR QUESTION qui décide du
+    # plafond mensuel, pas la dépense totale.
+    reponses = 0
     for fichier in DOSSIER_SESSIONS.glob("*.jsonl"):
         nom = None
         somme = 0.0
+        comptees = 0
         for ligne in fichier.read_text(encoding="utf-8").splitlines():
             if not ligne:
                 continue
             entree = json.loads(ligne)
             nom = entree.get("eleve") or nom
-            somme += entree.get("cout_gnf") or 0
+            cout = entree.get("cout_gnf") or 0
+            somme += cout
+            # Une réponse facturée = une question posée. On ne compte pas les
+            # lignes de l'élève : elles n'ont pas de coût propre.
+            if cout:
+                comptees += 1
+        reponses += comptees
         etiquette = nom or fichier.stem.split("_", 1)[-1].replace("_", " ").title()
-        par_eleve.setdefault(etiquette, {"nom": etiquette, "gnf": 0.0})["gnf"] += somme
+        fiche = par_eleve.setdefault(etiquette, {"nom": etiquette, "gnf": 0.0})
+        fiche["gnf"] += somme
+        fiche["questions"] = fiche.get("questions", 0) + comptees
+
+    # Le coût moyen se calcule sur le total, bilans compris : c'est ce que
+    # l'abonnement doit réellement couvrir.
+    moyenne = round(total / reponses) if reponses else 0
 
     classement = sorted(par_eleve.values(), key=lambda e: -e["gnf"])
     return {
         "total_gnf": round(total),
         "mois_gnf": round(mois),
         "semaine_gnf": round(semaine),
-        "par_eleve": [{"nom": e["nom"], "gnf": round(e["gnf"])}
+        "questions": reponses,
+        "cout_moyen_gnf": moyenne,
+        # Combien de questions un abonnement du mois paie, au coût actuel.
+        # En dessous du plafond, l'élève le plus travailleur reste rentable ;
+        # au-dessus, il coûte plus cher qu'il ne rapporte.
+        "questions_rentables": round(PRIX_ABONNEMENT_GNF / moyenne) if moyenne else None,
+        "prix_abonnement_gnf": PRIX_ABONNEMENT_GNF,
+        "plafond_mois": MAX_QUESTIONS_PAR_MOIS,
+        "par_eleve": [{"nom": e["nom"], "gnf": round(e["gnf"]),
+                       "questions": e.get("questions", 0)}
                       for e in classement if e["gnf"] >= 1],
         # Le solde ne se lit que dans la console Anthropic.
         "console": "https://console.anthropic.com/settings/billing",
@@ -1665,7 +1701,7 @@ def liste_abonnements(code: str | None = None):
 def prolonger_abonnement(abonne: str, formule: str = "mois", code: str | None = None):
     """Renouvellement après paiement."""
     _exiger_admin(code)
-    if formule not in ("semaine", "mois"):
+    if formule not in ("semaine", "mois", "fratrie"):
         raise HTTPException(status_code=400, detail="Formule inconnue.")
     resultat = ABONNEMENTS.prolonger(abonne, formule)
     if resultat is None:

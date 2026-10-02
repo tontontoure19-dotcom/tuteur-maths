@@ -78,10 +78,22 @@ class Abonnements:
                 return code
 
     def creer(self, nom: str, niveau: str = "bepc",
-              formule: Literal["essai", "semaine", "mois"] = "essai",
+              formule: Literal["essai", "semaine", "mois", "fratrie"] = "essai",
               telephone: str = "") -> dict:
-        """Ouvre un abonnement et rend le code à donner à l'élève."""
-        jours = {"essai": JOURS_ESSAI, "semaine": JOURS_SEMAINE, "mois": JOURS_MOIS}[formule]
+        """Ouvre un abonnement et rend le code à donner à l'élève.
+
+        « fratrie » dure autant qu'un mois : c'est le même accès, au tarif
+        réduit du deuxième enfant d'une même famille. Le prix n'est pas
+        stocké ici — l'application n'encaisse rien — mais la formule l'est,
+        pour que le responsable retrouve plus tard qui paie plein tarif.
+
+        Chaque enfant garde son propre code, et c'est délibéré : un code
+        partagé entre deux enfants mélangerait leurs séances, fausserait les
+        deux rapports au parent, et désarmerait la protection contre le
+        partage de code.
+        """
+        jours = {"essai": JOURS_ESSAI, "semaine": JOURS_SEMAINE,
+                 "mois": JOURS_MOIS, "fratrie": JOURS_MOIS}[formule]
         code = self.fabriquer_code(_prefixe_du_niveau(niveau))
 
         registre = self._lire()
@@ -98,7 +110,7 @@ class Abonnements:
         return {"code": code, **registre[code]}
 
     def prolonger(self, code: str,
-                  formule: Literal["semaine", "mois"] = "mois") -> dict | None:
+                  formule: Literal["semaine", "mois", "fratrie"] = "mois") -> dict | None:
         """Renouvellement après paiement.
 
         On repart de la date d'expiration quand elle est encore devant nous :
@@ -108,7 +120,8 @@ class Abonnements:
         if code not in registre:
             return None
 
-        jours = {"semaine": JOURS_SEMAINE, "mois": JOURS_MOIS}[formule]
+        jours = {"semaine": JOURS_SEMAINE, "mois": JOURS_MOIS,
+                 "fratrie": JOURS_MOIS}[formule]
         fin = date.fromisoformat(registre[code]["expire_le"])
         depart = max(fin, _aujourdhui())
 

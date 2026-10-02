@@ -120,6 +120,9 @@
           <!-- Le tarif du mois n'est pas le même au CM2 : le libellé se met
                à jour tout seul quand on change de niveau (voir majTarif). -->
           <option value="mois">Mois — 100 000 GNF</option>
+          <!-- Tarif réduit du deuxième enfant d'une même famille : même
+               durée qu'un mois, même accès, son propre code. -->
+          <option value="fratrie">Deuxième enfant — 50 000 GNF</option>
         </select>
       </div>
       <div class="large">
@@ -204,9 +207,25 @@ const NOM_NIVEAU = { bepc: '10ᵉ année', bac: 'Terminale', cee: 'CM2' };
    tarif sans s'en apercevoir. */
 const PRIX_MOIS = { bepc: '100 000', bac: '100 000', cee: '75 000' };
 
+/* Deuxième enfant d'une même famille : la moitié, arrondie aux 5 000 GNF
+   supérieurs pour le CM2. Le coût réel d'un élève est celui de ses
+   questions, pas celui d'un compte : un deuxième enfant reste largement
+   bénéficiaire à ce tarif, et une famille qui a deux enfants inscrits ne
+   s'en va plus. */
+const PRIX_FRATRIE = { bepc: '50 000', bac: '50 000', cee: '40 000' };
+
+/* « fratrie » est le mot du code, pas celui du responsable. */
+const NOM_FORMULE = {
+  essai: 'essai gratuit', semaine: 'semaine', mois: 'mois',
+  fratrie: 'deuxième enfant',
+};
+
 function majTarif() {
-  const option = $('formule').querySelector('option[value="mois"]');
-  option.textContent = `Mois — ${PRIX_MOIS[$('niveau').value] || '100 000'} GNF`;
+  const niveau = $('niveau').value;
+  $('formule').querySelector('option[value="mois"]').textContent =
+    `Mois — ${PRIX_MOIS[niveau] || '100 000'} GNF`;
+  $('formule').querySelector('option[value="fratrie"]').textContent =
+    `Deuxième enfant — ${PRIX_FRATRIE[niveau] || '50 000'} GNF`;
 }
 $('niveau').addEventListener('change', majTarif);
 majTarif();
@@ -320,7 +339,7 @@ async function charger() {
               ? 'accès retiré le ' + dateLisible(a.retire_le)
               : a.testeur
               ? 'sans date de fin · code distribué depuis Render'
-              : `${NOM_NIVEAU[a.niveau] || '10ᵉ année'} · ${echapper(a.formule)}
+              : `${NOM_NIVEAU[a.niveau] || '10ᵉ année'} · ${NOM_FORMULE[a.formule] || echapper(a.formule)}
                  · jusqu'au ${dateLisible(a.expire_le)}
                  ${a.telephone ? '· ' + echapper(a.telephone) : ''}`}</div>
           <div class="travail">${activite(a)}</div>
@@ -333,7 +352,11 @@ async function charger() {
             <button class="rouge" data-retirer="${echapper(a.code)}" title="Retirer l'accès">✕ retirer</button>`
            : `
             <button data-renommer="${echapper(a.code)}" data-nom="${echapper(a.nom)}" title="Corriger le nom">✏️</button>
-            <button class="vert" data-prolonger="${echapper(a.code)}" title="Ajouter un mois">+ mois</button>
+            <button class="vert" data-prolonger="${echapper(a.code)}"
+                    data-formule="${a.formule === 'fratrie' ? 'fratrie' : 'mois'}"
+                    title="${a.formule === 'fratrie'
+                      ? 'Ajouter un mois au tarif deuxième enfant'
+                      : 'Ajouter un mois'}">+ mois</button>
             <button data-semaine="${echapper(a.code)}" title="Ajouter une semaine">+ sem.</button>
             ${a.actif
               ? `<button class="rouge" data-couper="${echapper(a.code)}" title="Couper l'accès">✕</button>`
@@ -344,7 +367,11 @@ async function charger() {
 
     brancher('message', montrerMessage);
     brancher('renommer', renommer);
-    brancher('prolonger', c => agir(`/api/admin/abonnement/${encodeURIComponent(c)}/prolonger?formule=mois`));
+    /* Un deuxième enfant se renouvelle AU TARIF DEUXIÈME ENFANT : sans ça,
+       « + mois » le repassait silencieusement à plein tarif dans le
+       registre, et la trace de qui paie quoi était perdue. */
+    brancher('prolonger', (c, d) => agir(
+      `/api/admin/abonnement/${encodeURIComponent(c)}/prolonger?formule=${d.formule || 'mois'}`));
     brancher('semaine', c => agir(`/api/admin/abonnement/${encodeURIComponent(c)}/prolonger?formule=semaine`));
     brancher('retirer', c => {
       if (confirm(`Retirer l'accès du testeur ${c} ?
@@ -423,7 +450,7 @@ function matieres(a) {
 
 function brancher(action, faire) {
   document.querySelectorAll(`[data-${action}]`).forEach(b =>
-    b.addEventListener('click', () => faire(b.dataset[action])));
+    b.addEventListener('click', () => faire(b.dataset[action], b.dataset)));
 }
 
 /* Le message hebdomadaire au parent. C'est lui qui fait renouveler
@@ -504,8 +531,29 @@ async function chargerDepenses() {
     const gnf = n => n.toLocaleString('fr-FR') + ' GNF';
     const lignes = d.par_eleve.length
       ? d.par_eleve.map(e =>
-          `<div class="cout"><span>${echapper(e.nom)}</span><b>${gnf(e.gnf)}</b></div>`).join('')
+          `<div class="cout"><span>${echapper(e.nom)}${
+             e.questions ? ` <small>— ${e.questions} question${e.questions > 1 ? 's' : ''}</small>` : ''
+           }</span><b>${gnf(e.gnf)}</b></div>`).join('')
       : '<div class="info">Aucune dépense enregistrée.</div>';
+
+    /* Le point mort : au-delà, un élève coûte plus cher que son abonnement.
+       Tant qu'aucune question n'a été posée, la moyenne n'a pas de sens et
+       on n'affiche rien plutôt qu'un chiffre inventé. */
+    let verdict = '';
+    if (d.questions_rentables) {
+      const trop = d.plafond_mois > d.questions_rentables;
+      verdict = `
+        <div class="note ${trop ? 'erreur' : ''}">
+          Au coût actuel, un abonnement de ${gnf(d.prix_abonnement_gnf)} paie
+          <b>${d.questions_rentables.toLocaleString('fr-FR')} questions</b> dans le mois.
+          Le plafond est réglé à <b>${d.plafond_mois.toLocaleString('fr-FR')}</b>.
+          ${trop
+            ? `⚠️ Le plafond est AU-DESSUS du point mort : un élève très
+               travailleur peut vous coûter plus cher qu'il ne rapporte.
+               Descendez MAX_QUESTIONS_PAR_MOIS sous ${d.questions_rentables.toLocaleString('fr-FR')}.`
+            : 'Le plafond est sous le point mort : vous êtes protégé.'}
+        </div>`;
+    }
 
     $('depenses').innerHTML = `
       <div class="sommes">
@@ -513,6 +561,11 @@ async function chargerDepenses() {
         <div class="somme"><b>${gnf(d.mois_gnf)}</b><span>ce mois-ci</span></div>
         <div class="somme"><b>${gnf(d.total_gnf)}</b><span>depuis le début</span></div>
       </div>
+      <div class="sommes">
+        <div class="somme"><b>${d.questions.toLocaleString('fr-FR')}</b><span>questions posées</span></div>
+        <div class="somme"><b>${gnf(d.cout_moyen_gnf)}</b><span>par question</span></div>
+      </div>
+      ${verdict}
       ${lignes}
       <div class="note">Ceci est ce que l'application a consommé, pas votre solde.
         Le solde restant se lit dans
